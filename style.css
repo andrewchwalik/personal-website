@@ -57,13 +57,17 @@ body, h1, h2, p, span, a {
     height: calc(85vh - 50px);
     background: white;
     padding: 0 8%;
-    margin-bottom: 0; /* Remove gap between hero and the grey section */
+    margin-bottom: 0; /* Remove any margin below the hero section */
+    position: relative; /* Ensures no unwanted space below the image */
 }
 
 /* Center Image */
 .center-image {
     max-height: 65vh;
     width: auto;
+    display: block; /* Removes inline spacing around the image */
+    margin: 0; /* Ensures no margin around the image */
+    padding: 0; /* Removes padding around the image */
 }
 
 /* Text Beside Image */
@@ -98,6 +102,8 @@ body, h1, h2, p, span, a {
     padding: 50px 20px;
     text-align: center;
     margin-top: 0; /* Ensure it directly follows the hero section */
+    position: relative;
+    top: -5px; /* Nudge the grey section upward to eliminate any residual gap */
 }
 
 .portfolio-items {
