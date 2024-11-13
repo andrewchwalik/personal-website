@@ -68,17 +68,19 @@ body {
 
 .center-image {
     position: absolute;
-    bottom: 0; /* Align the base to the next section */
-    transform: translateY(50%); /* Slight offset to visually align better */
-    max-height: 400px; /* Adjust based on your design */
-    width: auto;
+    bottom: 0; /* Aligns image base with the next section */
+    left: 50%; /* Centers the image horizontally */
+    transform: translate(-50%, 0); /* Ensures perfect centering */
+    max-height: 70vh; /* Adjust image height for responsiveness */
+    width: auto; /* Maintain aspect ratio */
+    z-index: 1; /* Place the image above the section divider */
 }
 
 /* Portfolio Section */
 #portfolio {
     padding: 50px 20px;
     text-align: center;
-    margin-top: -200px; /* Bring the section closer to the image */
+    margin-top: -10px; /* Ensure the next section overlaps slightly */
 }
 
 .portfolio-items {
