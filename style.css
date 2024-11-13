@@ -58,29 +58,26 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    height: calc(100vh - 60px); /* Full viewport height minus nav bar */
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    background: white; /* Set the background to white */
+    height: calc(100vh - 60px); /* Full viewport height minus nav bar */
+    background: white; /* Set background to white */
+    padding: 0 10%; /* Add padding for spacing on left and right */
 }
 
 .center-image {
-    position: relative;
     max-height: 80vh; /* Ensure image scales well */
     width: auto;
     z-index: 1;
-    margin: 0 20px;
 }
 
 /* Text on the Left */
 .text-left {
-    position: absolute;
-    left: 10%;
-    top: 50%;
-    transform: translateY(-50%);
+    flex: 1; /* Allow flexible space on the left */
     text-align: right;
     font-family: 'Arial', sans-serif;
+    padding-right: 20px; /* Add space between text and image */
 }
 
 .text-left h1 {
@@ -93,16 +90,15 @@ body {
     font-size: 1rem;
     font-weight: lighter;
     color: #555;
+    line-height: 1.5;
 }
 
 /* Text on the Right */
 .text-right {
-    position: absolute;
-    right: 10%;
-    top: 50%;
-    transform: translateY(-50%);
+    flex: 1; /* Allow flexible space on the right */
     text-align: left;
     font-family: 'Arial', sans-serif;
+    padding-left: 20px; /* Add space between text and image */
 }
 
 .text-right h1 {
@@ -115,6 +111,7 @@ body {
     font-size: 1rem;
     font-weight: lighter;
     color: #555;
+    line-height: 1.5;
 }
 
 /* Portfolio Section */
