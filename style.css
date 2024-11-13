@@ -22,15 +22,20 @@ body, h1, h2, p, span, a {
 }
 
 .nav-items {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     gap: 20px;
     font-size: 1.2rem;
     font-weight: 400;
     text-transform: lowercase;
     color: black;
+}
+
+.nav-items a {
+    color: black;
+}
+
+.nav-items a:hover {
+    color: #f7b42c;
 }
 
 .nav-icons {
@@ -55,13 +60,18 @@ body, h1, h2, p, span, a {
     justify-content: space-between;
     align-items: center;
     height: calc(85vh - 50px);
-    background: white; /* Background set to white */
+    background: white;
     padding: 0 8%;
+    position: relative;
 }
 
 .center-image {
     max-height: 65vh;
     width: auto;
+    position: absolute;
+    bottom: -50px; /* Adjust this value as needed */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Text on the Left */
@@ -88,73 +98,4 @@ body, h1, h2, p, span, a {
 .text-right {
     flex: 1;
     text-align: left;
-    padding-left: 15px;
-}
-
-.text-right h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-    color: black;
-}
-
-.text-right p {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: #555;
-}
-
-/* Portfolio Section */
-#portfolio {
-    background-color: #f5f5f5; /* Grey background */
-    padding: 50px 20px;
-    text-align: center;
-}
-
-/* Footer Section */
-footer {
-    background: white; /* Footer background set to white */
-    color: black;
-    padding: 20px 0;
-    border-top: 1px solid #ddd; /* Subtle divider */
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between; /* Align elements horizontally */
-    align-items: center;
-    padding: 0 8%;
-    gap: 20px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 20px;
-}
-
-.footer-links a {
-    color: black;
-    font-size: 1rem;
-    font-weight: 400;
-    text-transform: lowercase;
-}
-
-.footer-links a:hover {
-    color: #f7b42c;
-}
-
-.footer-social a {
-    color: black;
-    font-size: 1.5rem;
-    margin: 0 10px;
-}
-
-.footer-social a:hover {
-    color: #f7b42c;
-}
-
-.footer-text {
-    font-size: 0.8rem;
-    font-weight: 300;
-    color: #777;
-}
+    padding 
