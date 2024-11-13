@@ -53,7 +53,8 @@ body, h1, h2, p, span, a {
     height: calc(85vh - 50px);
     background: white;
     padding: 0 8%;
-    position: relative; /* Allow overlapping of grey section */
+    margin-bottom: -20px; /* Overlap grey section to close the gap */
+    position: relative; /* Enables precise overlap */
 }
 
 /* Center Image */
@@ -96,8 +97,9 @@ body, h1, h2, p, span, a {
     background-color: #f5f5f5; /* Grey background */
     padding: 50px 20px;
     text-align: center;
-    margin-top: -30px; /* Overlap with the hero section */
-    position: relative; /* Prevents layout shifting */
+    margin-top: 0; /* Remove any additional gaps */
+    position: relative;
+    top: -20px; /* Pull grey section up to cover the gap */
 }
 
 /* Portfolio Items (Cards) */
