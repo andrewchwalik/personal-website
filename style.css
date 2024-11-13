@@ -88,10 +88,10 @@ body, h1, h2, p, span, a {
 /* Center Image */
 .center-image {
     position: absolute;
-    bottom: 0; /* Align rock with the bottom of the section */
-    left: 50%; /* Center the image horizontally */
-    transform: translateX(-47%) translateY(3%); /* Fine-tune to align the line and rock */
-    height: 80%; /* Adjust height to fit proportions */
+    bottom: -5px; /* Rock flush with bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Ensure dividing line cuts through middle */
+    height: 75%; /* Adjust height to maintain proportions */
     z-index: 3;
 }
 
