@@ -88,9 +88,9 @@ body, h1, h2, p, span, a {
 /* Center Image */
 .center-image {
     position: absolute;
-    bottom: -4px; /* Align the rock flush with the bottom */
+    bottom: -2px; /* Align the rock flush with the bottom */
     left: 50%; /* Center horizontally */
-    transform: translateX(-49.2%) translateY(0); /* Ensure the dividing line aligns with the middle */
+    transform: translateX(-49.7%) translateY(0); /* Ensure the dividing line aligns with the middle */
     height: 78%; /* Maintain proportions */
     z-index: 3;
 }
