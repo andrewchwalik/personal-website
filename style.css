@@ -54,6 +54,7 @@ body, h1, h2, p, span, a {
     background-size: cover;
     background-position: center;
     display: flex;
+    margin-top: -10px; /* Pull the section closer to the nav bar */
 }
 
 /* Overlays for Split Effect */
@@ -90,7 +91,7 @@ body, h1, h2, p, span, a {
     position: absolute;
     bottom: 0; /* Ensure rock flush with bottom */
     left: 50%; /* Center the image horizontally */
-    transform: translateX(-57%) translateY(0); /* Shift further left */
+    transform: translateX(-57%) translateY(-5%); /* Shift the image upward */
     height: 78%; /* Maintain proportions */
     z-index: 3;
 }
