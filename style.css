@@ -58,28 +58,70 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 85vh; /* Reduce the height to bring the image closer to the navbar */
+    height: calc(100vh - 60px); /* Full viewport height minus nav bar */
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: flex-end;
     background: white; /* Set the background to white */
 }
 
 .center-image {
-    position: absolute;
-    bottom: 5%; /* Slightly above the next section */
-    left: 50%;
-    transform: translate(-50%, 0);
+    position: relative;
     max-height: 80vh; /* Ensure image scales well */
     width: auto;
     z-index: 1;
+    margin: 0 20px;
+}
+
+/* Text on the Left */
+.text-left {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+    font-family: 'Arial', sans-serif;
+}
+
+.text-left h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.text-left p {
+    font-size: 1rem;
+    font-weight: lighter;
+    color: #555;
+}
+
+/* Text on the Right */
+.text-right {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+}
+
+.text-right h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.text-right p {
+    font-size: 1rem;
+    font-weight: lighter;
+    color: #555;
 }
 
 /* Portfolio Section */
 #portfolio {
     padding: 50px 20px;
     text-align: center;
-    margin-top: -20px; /* Bring the section closer to the image */
+    margin-top: -10px; /* Ensure the next section overlaps slightly */
 }
 
 .portfolio-items {
