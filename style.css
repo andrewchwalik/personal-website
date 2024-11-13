@@ -56,7 +56,10 @@ body, h1, h2, p, span, a {
 /* Left Side */
 .left-side {
     flex: 1;
-    background: url('img/texture-grey.jpg') center/cover; /* Add textured grey background */
+    background: #4a4a4a; /* Dark grey color */
+    background-image: url('img/texture-grey.jpg'); /* Replace with your textured grey image */
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +92,7 @@ body, h1, h2, p, span, a {
 .center-image {
     position: absolute;
     bottom: 0;
-    left: 48%; /* Adjust to align the line with the center of the person */
+    left: 49%; /* Adjust the image to align the line perfectly */
     transform: translateX(-50%);
     height: 70%;
     z-index: 10;
@@ -102,8 +105,64 @@ body, h1, h2, p, span, a {
     text-align: center;
 }
 
-/* Portfolio Items */
-.portfolio-items {
+/* Footer Section */
+footer {
+    background: white;
+    color: black;
+    padding: 50px 0;
+    border-top: 1px solid #ddd;
+    position: relative;
+}
+
+.footer-container {
+    position: relative;
+    text-align: center;
+}
+
+.footer-arrow {
+    display: inline-block;
+    background: white;
+    color: black;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 46px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+}
+
+.footer-arrow:hover {
+    background: #f7b42c;
+    color: white;
+}
+
+.footer-links {
     display: flex;
     justify-content: center;
-   
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.footer-links a {
+    color: black;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+.footer-links a:hover {
+    color: #f7b42c;
+}
+
+.footer-text {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #777;
+    margin-top: 20px;
+}
