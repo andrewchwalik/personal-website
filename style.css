@@ -90,7 +90,7 @@ body, h1, h2, p, span, a {
     position: absolute;
     bottom: 0; /* Ensure rock flush with bottom */
     left: 50%; /* Center the image horizontally */
-    transform: translateX(-55%) translateY(0); /* Further shift left */
+    transform: translateX(-57%) translateY(0); /* Shift further left */
     height: 78%; /* Maintain proportions */
     z-index: 3;
 }
