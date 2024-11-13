@@ -5,62 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Website</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for Icons -->
+    <!-- Font: Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Social Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts for Open Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="nav-bar">
-            <div class="nav-items">
-                <span>about.</span>
-                <span>ventures.</span>
-                <span>vlogs.</span>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-items">
+            <span>about.</span>
+            <span>ventures.</span>
+            <span>vlogs.</span>
+        </div>
+        <div class="nav-icons">
+            <a href="https://www.youtube.com/channel/UCgp9-baYOYgKONAlfDOaVBQ" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/andrewchwalik/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-split">
+        <div class="left-side">
+            <h1>ANDREW</h1>
+        </div>
+        <div class="right-side">
+            <h1>CHWALIK</h1>
+        </div>
+        <img src="img/Andrew.png" alt="Andrew" class="center-image">
+    </div>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2>Some of My Latest Work</h2>
+        <div class="portfolio-items">
+            <div class="item">
+                <img src="https://picsum.photos/300/200?random=1" alt="Project 1">
+                <h3>Project Title 1</h3>
+                <p>Short description of the project goes here.</p>
             </div>
-            <div class="nav-icons">
-                <a href="https://www.youtube.com/channel/UCgp9-baYOYgKONAlfDOaVBQ" target="_blank">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://www.instagram.com/andrewchwalik/" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
+            <div class="item">
+                <img src="https://picsum.photos/300/200?random=2" alt="Project 2">
+                <h3>Project Title 2</h3>
+                <p>Short description of the project goes here.</p>
+            </div>
+            <div class="item">
+                <img src="https://picsum.photos/300/200?random=3" alt="Project 3">
+                <h3>Project Title 3</h3>
+                <p>Short description of the project goes here.</p>
             </div>
         </div>
-        <div class="hero">
-            <div class="text-left">
-                <h1>entrepreneur.</h1>
-                <p>Small business owner and soccer entrepreneur</p>
-            </div>
-            <img src="img/Andrew.png" alt="Andrew" class="center-image">
-            <div class="text-right">
-                <h1>content creator.</h1>
-                <p>Social media and video content creator</p>
-            </div>
-        </div>
-    </header>
-    <main>
-        <section id="portfolio">
-            <h2>Some of My Latest Work</h2>
-            <div class="portfolio-items">
-                <div class="item">
-                    <img src="https://picsum.photos/300/200?random=1" alt="Project 1">
-                    <h3>Project Title 1</h3>
-                    <p>Short description of the project goes here.</p>
-                </div>
-                <div class="item">
-                    <img src="https://picsum.photos/300/200?random=2" alt="Project 2">
-                    <h3>Project Title 2</h3>
-                    <p>Short description of the project goes here.</p>
-                </div>
-                <div class="item">
-                    <img src="https://picsum.photos/300/200?random=3" alt="Project 3">
-                    <h3>Project Title 3</h3>
-                    <p>Short description of the project goes here.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <a href="#" class="footer-arrow">
