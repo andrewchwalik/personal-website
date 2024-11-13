@@ -56,30 +56,29 @@ body {
 }
 
 /* Hero Section */
-header {
-    text-align: center;
-    padding: 50px 20px;
+.hero {
+    position: relative;
+    height: calc(100vh - 60px); /* Full viewport height minus nav bar */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     background: linear-gradient(to right, #1f1c2c, #928dab);
     color: white;
 }
 
-.hero h1 {
-    font-size: 3rem;
-}
-
-.hero .divider {
-    color: #f7b42c;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-top: 10px;
+.center-image {
+    position: absolute;
+    bottom: 0; /* Align the base to the next section */
+    transform: translateY(50%); /* Slight offset to visually align better */
+    max-height: 400px; /* Adjust based on your design */
+    width: auto;
 }
 
 /* Portfolio Section */
 #portfolio {
     padding: 50px 20px;
     text-align: center;
+    margin-top: -200px; /* Bring the section closer to the image */
 }
 
 .portfolio-items {
