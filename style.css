@@ -48,13 +48,12 @@ body, h1, h2, p, span, a {
 /* Hero Split Section */
 .hero-split {
     position: relative;
-    height: 100vh;
+    height: 90vh; /* Reduce overall height of the section */
     width: 100%;
     background-image: url('img/texture-grey.jpg'); /* Ensure texture image is correct */
     background-size: cover;
     background-position: center;
     display: flex;
-    margin-top: -10px; /* Pull the section closer to the nav bar */
 }
 
 /* Overlays for Split Effect */
@@ -91,7 +90,7 @@ body, h1, h2, p, span, a {
     position: absolute;
     bottom: 0; /* Ensure rock flush with bottom */
     left: 50%; /* Center the image horizontally */
-    transform: translateX(-57%) translateY(-5%); /* Shift the image upward */
+    transform: translateX(-57%) translateY(0); /* Ensure no vertical shift */
     height: 78%; /* Maintain proportions */
     z-index: 3;
 }
