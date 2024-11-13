@@ -2,46 +2,40 @@
 body, h1, h2, p, span, a {
     margin: 0;
     padding: 0;
+    font-family: 'Open Sans', Arial, sans-serif;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: 'Open Sans', sans-serif; /* Ensures consistency across the site */
 }
 
 /* Navigation Bar */
 .nav-bar {
     display: flex;
-    justify-content: space-between; /* Ensure nav items and icons are correctly spaced */
+    justify-content: center;
     align-items: center;
     background-color: white;
+    width: 100%;
     height: 50px;
-    padding: 0 20px; /* Restore padding around nav items */
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;
     z-index: 1000;
-    border-bottom: 1px solid #ddd; /* Optional: subtle bottom border for definition */
 }
 
 .nav-items {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     gap: 20px;
-    font-size: 1.2rem; /* Match original size */
-    font-weight: 400; /* Ensure consistent font weight */
-    color: black;
-}
-
-.nav-items a {
-    color: black;
-    font-weight: 600; /* Specific weight for navigation links */
+    font-size: 1.2rem;
+    font-weight: 400;
     text-transform: lowercase;
-    transition: color 0.3s;
-}
-
-.nav-items a:hover {
-    color: #f7b42c; /* Match hover color */
+    color: black;
 }
 
 .nav-icons {
+    position: absolute;
+    right: 20px;
     display: flex;
     gap: 15px;
 }
@@ -55,9 +49,71 @@ body, h1, h2, p, span, a {
     color: #f7b42c;
 }
 
-/* Footer */
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: calc(85vh - 50px);
+    background: white; /* Background set to white */
+    padding: 0 8%;
+}
+
+.center-image {
+    max-height: 65vh;
+    width: auto;
+}
+
+/* Text on the Left */
+.text-left {
+    flex: 1;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.text-left h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: black;
+}
+
+.text-left p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #555;
+}
+
+/* Text on the Right */
+.text-right {
+    flex: 1;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.text-right h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: black;
+}
+
+.text-right p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #555;
+}
+
+/* Portfolio Section */
+#portfolio {
+    background-color: #f5f5f5; /* Grey background */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* Footer Section */
 footer {
-    background: white;
+    background: white; /* Footer background set to white */
     color: black;
     padding: 20px 0;
     border-top: 1px solid #ddd; /* Subtle divider */
@@ -65,9 +121,10 @@ footer {
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Align elements horizontally */
     align-items: center;
-    padding: 0 20px; /* Ensure proper spacing in footer */
+    padding: 0 8%;
+    gap: 20px;
 }
 
 .footer-links {
@@ -78,24 +135,18 @@ footer {
 .footer-links a {
     color: black;
     font-size: 1rem;
-    font-weight: 600; /* Match font weight */
+    font-weight: 400;
     text-transform: lowercase;
-    transition: color 0.3s;
 }
 
 .footer-links a:hover {
     color: #f7b42c;
 }
 
-.footer-social {
-    display: flex;
-    gap: 15px;
-}
-
 .footer-social a {
     color: black;
     font-size: 1.5rem;
-    transition: color 0.3s;
+    margin: 0 10px;
 }
 
 .footer-social a:hover {
@@ -104,37 +155,6 @@ footer {
 
 .footer-text {
     font-size: 0.8rem;
-    font-weight: 300; /* Restore lighter text for copyright */
+    font-weight: 300;
     color: #777;
-    text-align: center;
-}
-
-/* Scroll to Top Button */
-.scroll-to-top {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    border: 2px solid #ddd;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.scroll-to-top a {
-    color: #f7b42c;
-    font-size: 1.5rem;
-}
-
-.scroll-to-top:hover {
-    background: #f7b42c;
-}
-
-.scroll-to-top:hover a {
-    color: white;
 }
