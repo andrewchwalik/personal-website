@@ -13,11 +13,13 @@ body, h1, h2, p, span, a {
     justify-content: center;
     align-items: center;
     background-color: black;
-    width: 100vw;
+    width: 100%;
     height: 60px;
-    position: relative;
-    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 1000;
+    color: white;
 }
 
 .nav-items {
@@ -45,7 +47,12 @@ body, h1, h2, p, span, a {
 }
 
 .nav-icons a:hover {
-    color: #f7b42c;
+    color: #f7b42c; /* Add hover effect */
+}
+
+/* Add space to avoid content being hidden under fixed navbar */
+body {
+    padding-top: 60px;
 }
 
 /* Hero Section */
