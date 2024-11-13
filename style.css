@@ -62,8 +62,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    background: linear-gradient(to right, #1f1c2c, #928dab);
+    background: white; /* Change background to white */
     color: white;
+    border-bottom: 5px solid #ddd; /* Optional: a subtle divider between hero and next section */
 }
 
 .center-image {
