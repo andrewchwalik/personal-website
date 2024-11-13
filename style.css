@@ -17,10 +17,9 @@ body {
 header {
     width: 100%;
     padding: 20px 0;
-    text-align: right;
+    text-align: center;
     position: absolute;
     top: 0;
-    right: 0;
 }
 
 nav a {
@@ -28,6 +27,8 @@ nav a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
 }
 
 main {
