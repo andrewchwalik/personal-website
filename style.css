@@ -19,13 +19,9 @@ header {
     text-align: center;
     position: fixed;
     top: 0;
-    background-color: #fdfdfb; /* Keeps header visible over content */
+    background-color: #fdfdfb;
     z-index: 10;
-}
-
-header nav {
-    text-align: center;
-    margin: 0 auto;
+    border-bottom: 1px solid #ddd;
 }
 
 header nav a {
@@ -44,11 +40,10 @@ header nav a.active {
 
 /* Main Content (Home Page) */
 main {
-    display: block; /* Ensure vertical stacking of elements */
     width: 90%;
     max-width: 1200px;
-    margin: 150px auto 0; /* Adjust for space below the header */
-    text-align: center; /* Center align text for intro */
+    margin: 150px auto 0;
+    text-align: center;
 }
 
 /* Intro Section Styling */
@@ -60,6 +55,7 @@ main {
 .instagram {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
     font-size: 0.9rem;
     color: #e1306c;
@@ -117,8 +113,9 @@ p {
 /* Each Venture */
 .venture {
     display: flex;
-    flex-direction: column; /* Stack logo and text vertically */
+    flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center-align logo and text */
+    text-align: center;
     margin-bottom: 40px; /* Add spacing between ventures */
     border-bottom: 1px solid #ddd; /* Optional: Divider between ventures */
     padding-bottom: 20px; /* Space under each venture */
@@ -130,8 +127,8 @@ p {
 
 /* Logo Styling */
 .venture img {
-    display: block; /* Ensure the image doesn't align inline with text */
-    width: 100px; /* Adjust as needed for logo size */
+    display: block;
+    width: 100px; /* Adjust for consistent logo size */
     height: auto; /* Maintain aspect ratio */
     margin-bottom: 15px; /* Add spacing below the logo */
 }
@@ -139,12 +136,10 @@ p {
 /* Text Styling */
 .venture h2 {
     font-size: 1.5rem;
-    text-align: center;
     margin-bottom: 10px;
 }
 
 .venture p {
     font-size: 1rem;
     color: #555;
-    text-align: center;
 }
