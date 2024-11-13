@@ -130,23 +130,26 @@ header nav a.active {
 /* Each Venture */
 .venture {
     display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 20px;
+    flex-direction: row; /* Align logo and text side by side */
+    align-items: flex-start; /* Align logo and text to the top */
+    margin-bottom: 40px; /* Space between ventures */
+    border-bottom: 1px solid #ddd; /* Optional: Add a divider between ventures */
+    padding-bottom: 20px; /* Add space at the bottom of each block */
 }
 
 .venture:last-of-type {
-    border-bottom: none;
+    border-bottom: none; /* Remove the border from the last item */
 }
 
+/* Logo Styling */
 .venture img {
-    width: 80px;
-    height: 80px;
+    width: 80px; /* Adjust as needed for logo size */
+    height: 80px; /* Keep it proportional */
     object-fit: contain;
-    margin-right: 20px;
+    margin-right: 20px; /* Add space between logo and text */
 }
 
+/* Text Styling */
 .venture h2 {
     font-size: 1.5rem;
     margin-bottom: 10px;
