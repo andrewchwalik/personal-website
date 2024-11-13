@@ -53,10 +53,11 @@ body, h1, h2, p, span, a {
 .hero {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Ensures text is vertically centered with image */
+    align-items: flex-end; /* Align text and image base */
     height: calc(85vh - 50px);
     background: white;
     padding: 0 8%;
+    margin-bottom: -5px; /* Remove gap with the next section */
 }
 
 .center-image {
@@ -65,32 +66,13 @@ body, h1, h2, p, span, a {
 }
 
 /* Text on the Left */
-.text-left {
-    flex: 1;
-    text-align: right;
-    padding-right: 15px;
-}
-
-.text-left h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-    color: black;
-}
-
-.text-left p {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: #555;
-}
-
-/* Text on the Right */
+.text-left,
 .text-right {
     flex: 1;
-    text-align: left;
-    padding-left: 15px;
+    text-align: center;
 }
 
+.text-left h1,
 .text-right h1 {
     font-size: 2rem;
     font-weight: 800;
@@ -98,6 +80,7 @@ body, h1, h2, p, span, a {
     color: black;
 }
 
+.text-left p,
 .text-right p {
     font-size: 0.9rem;
     font-weight: 300;
@@ -113,8 +96,8 @@ body, h1, h2, p, span, a {
 
 .portfolio-items {
     display: flex;
-    justify-content: center;
-    gap: 15px; /* Reduced gap between cards */
+    justify-content: space-between;
+    gap: 10px; /* Reduced gap between cards */
     margin-top: 30px;
 }
 
@@ -155,22 +138,44 @@ body, h1, h2, p, span, a {
 footer {
     background: white;
     color: black;
-    padding: 20px 0;
+    padding: 50px 0;
     border-top: 1px solid #ddd;
     position: relative;
 }
 
 .footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 8%;
-    gap: 20px;
+    position: relative;
+    text-align: center;
+}
+
+.footer-arrow {
+    display: inline-block;
+    background: white;
+    color: black;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 46px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: -25px; /* Indent into the section above */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+}
+
+.footer-arrow:hover {
+    background: #f7b42c;
+    color: white;
 }
 
 .footer-links {
     display: flex;
+    justify-content: center;
     gap: 20px;
+    margin-top: 40px;
 }
 
 .footer-links a {
@@ -184,28 +189,9 @@ footer {
     color: #f7b42c;
 }
 
-.footer-social a {
-    color: black;
-    font-size: 1.5rem;
-    margin: 0 10px;
-}
-
-.footer-social a:hover {
-    color: #f7b42c;
-}
-
 .footer-text {
     font-size: 0.8rem;
     font-weight: 300;
     color: #777;
+    margin-top: 20px;
 }
-
-/* Back to Top Arrow */
-.back-to-top {
-    position: absolute;
-    top: -20px; /* Indented into the section above */
-    right: 50%;
-    transform: translateX(50%);
-    background: black;
-    color: white;
-    padding: 
