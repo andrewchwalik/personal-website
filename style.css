@@ -53,7 +53,7 @@ body, h1, h2, p, span, a {
     height: calc(85vh - 50px);
     background: white;
     padding: 0 8%;
-    margin-bottom: -5px; /* Eliminates the gap between hero and portfolio */
+    margin-bottom: 0; /* Ensure no margin between hero and portfolio */
 }
 
 /* Center Image */
@@ -70,7 +70,7 @@ body, h1, h2, p, span, a {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically centers text */
+    justify-content: center; /* Centers text vertically */
     text-align: center;
     padding: 0 15px;
 }
@@ -95,7 +95,7 @@ body, h1, h2, p, span, a {
     background-color: #f5f5f5; /* Grey background */
     padding: 50px 20px;
     text-align: center;
-    margin-top: 0; /* Ensures it directly follows the hero section */
+    margin: 0; /* Eliminate any potential gap */
 }
 
 /* Portfolio Items (Cards) */
