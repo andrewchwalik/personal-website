@@ -58,30 +58,28 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    height: calc(100vh - 60px); /* Full viewport height minus nav bar */
+    height: 85vh; /* Reduce the height to bring the image closer to the navbar */
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    background: white; /* Change background to white */
-    color: white;
-    border-bottom: 5px solid #ddd; /* Optional: a subtle divider between hero and next section */
+    background: white; /* Set the background to white */
 }
 
 .center-image {
     position: absolute;
-    bottom: 0; /* Aligns image base with the next section */
-    left: 50%; /* Centers the image horizontally */
-    transform: translate(-50%, 0); /* Ensures perfect centering */
-    max-height: 70vh; /* Adjust image height for responsiveness */
-    width: auto; /* Maintain aspect ratio */
-    z-index: 1; /* Place the image above the section divider */
+    bottom: 5%; /* Slightly above the next section */
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-height: 80vh; /* Ensure image scales well */
+    width: auto;
+    z-index: 1;
 }
 
 /* Portfolio Section */
 #portfolio {
     padding: 50px 20px;
     text-align: center;
-    margin-top: -10px; /* Ensure the next section overlaps slightly */
+    margin-top: -20px; /* Bring the section closer to the image */
 }
 
 .portfolio-items {
