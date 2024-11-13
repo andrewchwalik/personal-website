@@ -87,3 +87,72 @@ p {
     height: auto;
     display: block;
 }
+
+/* General Body Styling */
+body {
+    background-color: #fdfdfb;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navigation */
+header nav {
+    text-align: center;
+    margin: 20px 0;
+}
+
+header nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header nav a.active {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* Ventures Section */
+.ventures {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.ventures h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+/* Each Venture */
+.venture {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.venture:last-of-type {
+    border-bottom: none;
+}
+
+.venture img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+.venture h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.venture p {
+    font-size: 1rem;
+    color: #555;
+}
