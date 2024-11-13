@@ -48,13 +48,14 @@ body, h1, h2, p, span, a {
 /* Hero Split Section */
 .hero-split {
     position: relative;
-    height: 85vh; /* Reduce the overall height even further */
+    height: 80vh; /* Reduce the overall height of the section further */
     width: 100%;
     background-image: url('img/texture-grey.jpg'); /* Ensure texture image is correct */
     background-size: cover;
     background-position: center;
     display: flex;
     padding-top: 0; /* Remove any extra padding */
+    margin-top: -20px; /* Pull the section even closer to the nav bar */
 }
 
 /* Overlays for Split Effect */
