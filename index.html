@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrew Chwalik</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font: Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Social Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <div class="nav-bar">
+    <!-- Transparent Navigation Bar -->
+    <nav class="nav-bar">
         <div class="nav-items">
-            <span>about.</span>
-            <span>ventures.</span>
-            <span>vlogs.</span>
+            <a href="#home">home.</a>
+            <a href="#about">about.</a>
+            <a href="#ventures">ventures.</a>
+            <a href="#vlogs">vlogs.</a>
         </div>
         <div class="nav-icons">
             <a href="https://www.youtube.com/channel/UCgp9-baYOYgKONAlfDOaVBQ" target="_blank">
@@ -26,37 +24,35 @@
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
-    </div>
+    </nav>
 
     <!-- Hero Section -->
-    <div class="hero-split">
-        <div class="left-overlay">
-            <h1>ANDREW</h1>
+    <section id="home" class="hero-split">
+        <div class="hero-text">
+            <h1>Andrew</h1>
+            <h2>Chwalik</h2>
         </div>
-        <div class="right-overlay">
-            <h1>CHWALIK</h1>
-        </div>
-        <img src="img/Andrew.png" alt="Andrew" class="center-image">
-    </div>
+        <img class="center-image" src="img/Andrew.png" alt="Andrew on a Rock">
+    </section>
 
     <!-- Portfolio Section -->
     <section id="portfolio">
-        <h2>Some of My Latest Work</h2>
+        <h2>Latest Work</h2>
         <div class="portfolio-items">
             <div class="item">
-                <img src="https://picsum.photos/300/200?random=1" alt="Project 1">
-                <h3>Project Title 1</h3>
-                <p>Short description of the project goes here.</p>
+                <img src="img/project1.jpg" alt="Project 1">
+                <h3>Project Title</h3>
+                <p>Description of the project.</p>
             </div>
             <div class="item">
-                <img src="https://picsum.photos/300/200?random=2" alt="Project 2">
-                <h3>Project Title 2</h3>
-                <p>Short description of the project goes here.</p>
+                <img src="img/project2.jpg" alt="Project 2">
+                <h3>Project Title</h3>
+                <p>Description of the project.</p>
             </div>
             <div class="item">
-                <img src="https://picsum.photos/300/200?random=3" alt="Project 3">
-                <h3>Project Title 3</h3>
-                <p>Short description of the project goes here.</p>
+                <img src="img/project3.jpg" alt="Project 3">
+                <h3>Project Title</h3>
+                <p>Description of the project.</p>
             </div>
         </div>
     </section>
@@ -64,17 +60,13 @@
     <!-- Footer -->
     <footer>
         <div class="footer-container">
-            <a href="#" class="footer-arrow">
-                <i class="fas fa-arrow-up"></i>
-            </a>
+            <a href="#home" class="footer-arrow">↑</a>
             <div class="footer-links">
-                <a href="#">about.</a>
-                <a href="#">ventures.</a>
-                <a href="#">vlogs.</a>
+                <a href="#about">about.</a>
+                <a href="#ventures">ventures.</a>
+                <a href="#vlogs">vlogs.</a>
             </div>
-            <div class="footer-text">
-                <p>&copy; 2024 Andrew Chwalik. All Rights Reserved.</p>
-            </div>
+            <p class="footer-text">© 2024 Andrew Chwalik. All rights reserved.</p>
         </div>
     </footer>
 </body>
