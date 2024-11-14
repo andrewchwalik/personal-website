@@ -35,14 +35,11 @@ body, h1, h2, p, span, a {
 
 .nav-icons {
     position: absolute;
-    right: 20px;
+    right: 120px; /* Adjust this value to line up with "CHWALIK" */
     display: flex;
     gap: 15px;
-}
-
-.nav-icons a {
-    color: grey; /* Ensure icons are white for readability */
     font-size: 1.5rem;
+    color: black; /* Keep icon color consistent */
 }
 
 /* Hero Split Section */
