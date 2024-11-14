@@ -21,16 +21,16 @@ body, h1, h2, p, span, a {
     z-index: 1000;
 }
 
+/* Navigation Items Alignment */
 .nav-items {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 20px; /* Adjust the value to align with "Andrew" */
     display: flex;
     gap: 20px;
     font-size: 1.2rem;
     font-weight: 400;
     text-transform: lowercase;
-    color: white; /* Ensure white text for readability over background */
+    color: white;
 }
 
 .nav-icons {
