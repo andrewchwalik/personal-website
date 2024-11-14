@@ -17,7 +17,7 @@ body, h1, h2, p, span, a {
     left: 0;
     width: 100%;
     height: 50px;
-    background-color: transparent; /* Make the navigation bar transparent */
+    background-color: transparent; /* Transparent navigation bar */
     z-index: 1000;
     padding: 0 20px;
 }
@@ -50,29 +50,44 @@ body, h1, h2, p, span, a {
 /* Hero Split Section */
 .hero-split {
     position: relative;
-    height: 80vh;
-    margin-top: -30px; /* Reduce space under navigation bar */
+    height: 100vh; /* Fullscreen hero section */
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: url('img/texture-grey.jpg');
     background-size: cover;
     background-position: center;
+    text-align: center;
 }
 
-.left-overlay {
-    flex: 1;
-    background-color: rgba(74, 74, 74, 0.8);
+/* Hero Text Overlay */
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
-.right-overlay {
-    flex: 1;
-    background-color: rgba(255, 255, 255, 0.9);
+.hero-text h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
 }
 
+.hero-text h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #dddddd;
+}
+
+/* Center Image */
 .center-image {
     position: absolute;
-    bottom: 0; /* Align with bottom of the section */
+    bottom: 0; /* Align flush with bottom */
     left: 50%;
-    transform: translateX(-57%);
+    transform: translateX(-50%);
     height: 78%; /* Maintain proportions */
 }
 
