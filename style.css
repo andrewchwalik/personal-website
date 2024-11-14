@@ -40,6 +40,8 @@ body, h1, h2, p, span, a {
     display: flex;
     gap: 15px;
     font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif; /* Ensure consistent font */
+    font-weight: 100; /* Montserrat Thin */
     color: black; /* Keep icon color consistent */
 }
 
