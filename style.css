@@ -28,7 +28,8 @@ body, h1, h2, p, span, a {
     display: flex;
     gap: 20px;
     font-size: 1.2rem;
-    font-weight: 400;
+    font-family: 'Montserrat', sans-serif; /* Set font to Montserrat */
+    font-weight: 100; /* Montserrat Thin */
     text-transform: lowercase;
     color: white;
 }
