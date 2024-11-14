@@ -29,7 +29,7 @@ body, h1, h2, p, span, a {
     gap: 20px;
     font-size: 1.2rem;
     font-family: 'Montserrat', sans-serif; /* Set font to Montserrat */
-    font-weight: 100; /* Montserrat Thin */
+    font-weight: 100; /* Ensure Montserrat Thin is applied */
     text-transform: lowercase;
     color: white;
 }
@@ -40,8 +40,8 @@ body, h1, h2, p, span, a {
     display: flex;
     gap: 15px;
     font-size: 1.5rem;
-    font-family: 'Montserrat', sans-serif; /* Ensure consistent font */
-    font-weight: 100; /* Montserrat Thin */
+    font-family: 'Montserrat', sans-serif; /* Ensure Montserrat Thin is applied */
+    font-weight: 100; /* Ensure Montserrat Thin is applied */
     color: black; /* Keep icon color consistent */
 }
 
@@ -79,7 +79,7 @@ body, h1, h2, p, span, a {
 .left-overlay h1, .right-overlay h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 5rem;
-    font-weight: 800;
+    font-weight: 800; /* Montserrat Bold */
     color: white;
 }
 
