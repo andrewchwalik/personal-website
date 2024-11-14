@@ -24,7 +24,7 @@ body, h1, h2, p, span, a {
 /* Navigation Items Alignment */
 .nav-items {
     position: absolute;
-    left: 140px; /* Adjust this value to line up with "ANDREW" */
+    left: 160px; /* Adjust this value to line up with "ANDREW" */
     display: flex;
     gap: 20px;
     font-size: 1.2rem;
