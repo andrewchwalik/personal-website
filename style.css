@@ -7,7 +7,7 @@ body, h1, h2, p, span, a {
     text-decoration: none;
 }
 
-/* Transparent Navigation Bar */
+/* Navigation Bar */
 .nav-bar {
     display: flex;
     justify-content: space-between; /* Align tabs left and icons right */
@@ -17,33 +17,30 @@ body, h1, h2, p, span, a {
     left: 0;
     width: 100%;
     height: 50px;
-    background-color: transparent; /* Transparent navigation bar */
+    background-color: white; /* Solid white background */
     z-index: 1000;
     padding: 0 20px;
 }
 
-/* Navigation Items */
 .nav-items {
     display: flex;
     gap: 20px;
 }
 
 .nav-items a {
-    color: white; /* Ensure text is white for visibility */
+    color: black; /* Black text for navigation */
     font-size: 1.2rem;
     font-weight: 400;
     text-transform: lowercase;
-    margin-right: 20px;
 }
 
-/* Social Media Icons */
 .nav-icons {
     display: flex;
     gap: 15px;
 }
 
 .nav-icons a {
-    color: white; /* Ensure icons are white for readability */
+    color: black; /* Black icons */
     font-size: 1.5rem;
 }
 
@@ -52,37 +49,39 @@ body, h1, h2, p, span, a {
     position: relative;
     height: 100vh; /* Fullscreen hero section */
     display: flex;
-    justify-content: center;
-    align-items: center;
     background-image: url('img/texture-grey.jpg');
     background-size: cover;
     background-position: center;
-    text-align: center;
 }
 
-/* Hero Text Overlay */
-.hero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
+.left-overlay {
+    flex: 1;
+    background-color: rgba(74, 74, 74, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.hero-text h1 {
-    font-size: 4rem;
-    font-weight: 700;
+.left-overlay h1 {
     color: white;
-    margin-bottom: 10px;
+    font-size: 5rem;
+    font-weight: 700;
 }
 
-.hero-text h2 {
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: #dddddd;
+.right-overlay {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Center Image */
+.right-overlay h1 {
+    color: #4a4a4a;
+    font-size: 5rem;
+    font-weight: 700;
+}
+
 .center-image {
     position: absolute;
     bottom: 0; /* Align flush with bottom */
