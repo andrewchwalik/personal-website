@@ -34,7 +34,7 @@ body, h1, h2, p, span, a {
     color: white;
 }
 
-.nav-icons {
+.nav-icons a {
     position: absolute;
     right: 160px; /* Adjust this value to line up with "CHWALIK" */
     display: flex;
@@ -42,7 +42,11 @@ body, h1, h2, p, span, a {
     font-size: 1.5rem;
     font-family: 'Montserrat', sans-serif; /* Ensure Montserrat Thin is applied */
     font-weight: 100; /* Ensure Montserrat Thin is applied */
-    color: black; /* Keep icon color consistent */
+    color: #4a4a4a; /* Match CHWALIK's dark grey color */
+}
+
+.nav-icons a:hover {
+    color: #f7b42c; /* Optional: Add hover effect */
 }
 
 /* Hero Split Section */
