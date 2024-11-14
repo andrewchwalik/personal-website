@@ -34,19 +34,21 @@ body, h1, h2, p, span, a {
     color: white;
 }
 
-.nav-icons a {
+.nav-icons {
     position: absolute;
-    right: 160px; /* Adjust this value to line up with "CHWALIK" */
+    right: 160px; /* Keep the alignment with "CHWALIK" */
     display: flex;
-    gap: 15px;
+    gap: 15px; /* Maintain proper spacing between icons */
     font-size: 1.5rem;
-    font-family: 'Montserrat', sans-serif; /* Ensure Montserrat Thin is applied */
-    font-weight: 100; /* Ensure Montserrat Thin is applied */
+}
+
+.nav-icons a {
     color: #4a4a4a; /* Match CHWALIK's dark grey color */
+    text-decoration: none; /* Ensure no underline */
 }
 
 .nav-icons a:hover {
-    color: #f7b42c; /* Optional: Add hover effect */
+    color: #f7b42c; /* Optional hover effect in yellow */
 }
 
 /* Hero Split Section */
