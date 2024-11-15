@@ -151,63 +151,69 @@ body, h1, h2, p, span, a {
 }
 
 /* Footer Section */
-footer {
+footer.footer {
     background: white;
-    color: black;
-    padding: 50px 0;
-    border-top: 1px solid #ddd;
-    position: relative;
-}
-
-.footer-container {
+    color: #4a4a4a; /* Match the dark grey color */
+    padding: 50px 20px;
+    border-top: 1px solid #ddd; /* Light grey line for separation */
     position: relative;
     text-align: center;
+}
+
+.footer-arrow-container {
+    position: relative;
+    margin-top: -30px; /* Lift the arrow into the section above */
 }
 
 .footer-arrow {
     display: inline-block;
     background: white;
-    color: black;
-    border: 2px solid #ddd;
+    color: #4a4a4a; /* Dark grey to match footer text */
+    border: 2px solid #ddd; /* Light grey border for the arrow */
     border-radius: 50%;
     width: 50px;
     height: 50px;
     line-height: 46px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    position: relative;
+    z-index: 2;
+    font-size: 1.5rem;
     transition: all 0.3s ease;
 }
 
 .footer-arrow:hover {
-    background: #f7b42c;
+    background: #f7b42c; /* Hover effect with yellow */
     color: white;
+}
+
+.footer-content {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-content p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #777; /* Light grey for copyright text */
 }
 
 .footer-links {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 40px;
-}
-
-.footer-links a {
-    color: black;
+    gap: 25px; /* Equal spacing between links */
     font-size: 1rem;
     font-weight: 400;
     text-transform: lowercase;
 }
 
-.footer-links a:hover {
-    color: #f7b42c;
+.footer-links a {
+    color: #4a4a4a; /* Dark grey for links */
+    text-decoration: none;
 }
 
-.footer-text {
-    font-size: 0.8rem;
-    font-weight: 300;
-    color: #777;
-    margin-top: 20px;
+.footer-links a:hover {
+    color: #f7b42c; /* Yellow hover effect */
 }
