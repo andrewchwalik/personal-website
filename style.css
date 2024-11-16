@@ -137,15 +137,37 @@ body, h1, h2, p, span, a {
     text-align: center;
 }
 
+/* Portfolio Title Styling */
+.portfolio-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600; /* Slightly bold font */
+    text-transform: uppercase;
+    color: #4a4a4a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.portfolio-title .line {
+    flex: 1;
+    height: 1px;
+    background-color: #ddd;
+}
+
+/* Portfolio Items */
 .portfolio-items {
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .item {
     background: white;
+    border: 1px solid #ddd; /* Add white border */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -166,15 +188,24 @@ body, h1, h2, p, span, a {
 }
 
 .item h3 {
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 600; /* Slightly bold font for titles */
     margin: 10px 0;
+    color: #333;
 }
 
 .item p {
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     color: #666;
     padding: 0 10px 10px;
+}
+
+/* YouTube Card */
+.youtube-card iframe {
+    border: none;
+    border-radius: 10px 10px 0 0;
 }
 
 /* Footer Section */
