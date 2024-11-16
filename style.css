@@ -244,7 +244,7 @@ body, h1, h2, p, span, a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/YouTube_social_white_square_%282017%29.svg/300px-YouTube_social_white_square_%282017%29.svg.png?20220808215424') no-repeat center;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/120px-YouTube_full-color_icon_%282024%29.svg.png') no-repeat center;
     background-size: contain;
     width: 60px;
     height: 60px;
