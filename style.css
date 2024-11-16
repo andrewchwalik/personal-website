@@ -61,7 +61,7 @@ body, h1, h2, p, span, a {
     background-position: center;
     display: flex;
     padding-top: 0; /* Remove any extra padding */
-    margin-top: -10px; /* Pull the section even closer to the nav bar */
+    margin-top: -20px; /* Pull the section even closer to the nav bar */
 }
 
 /* Overlays for Split Effect */
