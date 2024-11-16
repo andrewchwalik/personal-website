@@ -154,10 +154,10 @@ body, h1, h2, p, span, a {
 footer.footer {
     background: white;
     color: #4a4a4a; /* Match the dark grey color */
-    border-top: 1px solid #ddd; /* Top border for separation */
+    border-top: 1px solid #ddd; /* Light grey top line for separation */
     position: relative;
-    padding: 50px 0; /* Adjusted padding for proper spacing */
-    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); /* Shadow below the top line for raised effect */
+    padding: 50px 0; /* Padding for proper spacing */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Shadow on the footer itself */
 }
 
 /* Footer Hump */
@@ -168,14 +168,14 @@ footer.footer {
     transform: translateX(-50%);
     width: 60px; /* Width of the hump */
     height: 30px; /* Height of the hump */
-    background: white;
-    border: 1px solid #ddd; /* Match the top line of the footer */
-    border-bottom: none; /* Seamlessly blends into footer */
+    background: white; /* Matches the footer background exactly */
+    border: 1px solid #ddd; /* Matches the footer border */
+    border-bottom: none; /* Seamless blending into the footer */
     border-radius: 30px 30px 0 0; /* Creates the hump shape */
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); /* Mimics the footer shadow for consistency */
+    z-index: 1; /* Ensure it sits above the footer content */
 }
 
 /* Footer Arrow */
@@ -194,7 +194,7 @@ footer.footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* Ensures footer content doesn't stretch */
+    max-width: 1200px; /* Ensures footer content doesn’t stretch */
     margin: 0 auto; /* Center the content */
     padding: 0 20px;
 }
@@ -210,7 +210,7 @@ footer.footer {
 }
 
 .footer-links a {
-    color: #4a4a4a; /* Match footer text */
+    color: #4a4a4a; /* Dark grey for links */
     text-decoration: none;
     transition: color 0.2s ease;
 }
