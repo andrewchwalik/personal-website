@@ -167,11 +167,12 @@ body, h1, h2, p, span, a {
 
 .item {
     background: white;
-    border: 1px solid #ddd; /* Add white border */
+    border: 1px solid #ddd; /* Add border for definition */
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     overflow: hidden;
-    max-width: 300px;
+    max-width: 320px; /* Adjust for 16:9 ratio */
+    width: 100%; /* Responsive width */
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -181,27 +182,31 @@ body, h1, h2, p, span, a {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* YouTube Thumbnail - 16:9 Aspect Ratio */
+.item iframe, 
 .item img {
-    width: 100%;
-    height: auto;
-    border-bottom: 1px solid #ddd;
+    width: 100%; /* Full card width */
+    aspect-ratio: 16/9; /* Maintain 16:9 aspect ratio */
+    border-bottom: 1px solid #ddd; /* Divider between thumbnail and text */
+    object-fit: cover; /* Ensure proper scaling */
 }
 
+/* Card Titles */
 .item h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
-    font-weight: 600; /* Slightly bold font for titles */
+    font-weight: 600; /* Slightly bold */
     margin: 10px 0;
     color: #333;
 }
 
+/* Card Descriptions */
 .item p {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     color: #666;
     padding: 0 10px 10px;
 }
-
 /* YouTube Card */
 .youtube-card iframe {
     border: none;
