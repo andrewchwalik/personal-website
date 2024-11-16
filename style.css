@@ -241,7 +241,7 @@ body, h1, h2, p, span, a {
     object-fit: cover; /* Ensure image covers the container */
     display: block; /* Remove inline spacing issues */
     border: none; /* Ensure no border is applied */
-    transform: scale(1.05); /* Slightly zoom in to crop black bars */
+    transform: scale(1.01); /* Slightly zoom in to crop black bars */
     transition: transform 0.2s ease; /* Smooth transition for hover effects */
 }
 
