@@ -164,7 +164,7 @@ footer.footer {
 /* Footer Hump */
 .footer-hump {
     position: absolute;
-    top: -15px; /* Adjusted to align the hump's bottom curve with the footer line */
+    top: -28px; /* Move the hump higher so its bottom points align with the footer line */
     left: 50%;
     transform: translateX(-50%);
     width: 60px; /* Width of the hump */
