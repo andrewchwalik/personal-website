@@ -207,10 +207,33 @@ body, h1, h2, p, span, a {
     color: #666;
     padding: 0 10px 10px;
 }
+
 /* YouTube Card */
+.youtube-card {
+    background: white;
+    border: 1px solid #ddd; /* Add white border */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden;
+    max-width: 320px; /* Ensure consistent card size */
+    width: 100%; /* Fully responsive */
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 .youtube-card iframe {
-    border: none;
-    border-radius: 10px 10px 0 0;
+    display: block;
+    width: 100%; /* Fill the card’s width */
+    aspect-ratio: 16/9; /* Ensure the video maintains 16:9 ratio */
+    border: none; /* Remove any iframe border */
+    border-bottom: 1px solid #ddd; /* Divider between video and text */
+    height: auto; /* Let the aspect ratio control the height */
+    object-fit: cover; /* Ensures no black borders around the edges */
+}
+
+.youtube-card h3, .youtube-card p {
+    font-family: 'Montserrat', sans-serif;
+    margin: 10px 0;
 }
 
 /* Footer Section */
