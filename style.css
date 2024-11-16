@@ -102,7 +102,7 @@ body, h1, h2, p, span, a {
     text-align: center; /* Center under "Andrew" */
     margin-top: 10px; /* Space between heading and subtext */
     position: absolute;
-    bottom: 10%; /* Adjust vertical position to sit under "Andrew" */
+    top: 60%; /* Adjust vertical position to sit under "Andrew" */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -115,7 +115,7 @@ body, h1, h2, p, span, a {
     text-align: center; /* Center under "Chwalik" */
     margin-top: 10px; /* Space between heading and subtext */
     position: absolute;
-    bottom: 30%; /* Adjust vertical position to sit under "Chwalik" */
+    top: 60%; /* Adjust vertical position to sit under "Chwalik" */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -193,4 +193,76 @@ footer.footer {
     position: absolute;
     top: -31px; /* Initial position to align bottom points with the footer line */
     left: 50%;
-    transform:
+    transform: translateX(-50%);
+    width: 60px; /* Width of the hump */
+    height: 30px; /* Base height of the hump */
+    background: white; /* Matches the footer background exactly */
+    border: 1px solid #ddd; /* Matches the footer border */
+    border-bottom: none; /* Seamless blending into the footer */
+    border-radius: 30px 30px 0 0; /* Creates the hump shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Bring the hump and arrow above everything */
+    transition: top 0.2s ease, height 0.2s ease; /* Smooth animation for hover */
+}
+
+/* Footer Arrow */
+.footer-arrow {
+    font-size: 1.2rem;
+    color: #4a4a4a; /* Match footer text color */
+    text-decoration: none; /* Remove underline from the link */
+    pointer-events: auto; /* Ensure clickable behavior */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Hover Effect for Hump */
+.footer-hump:hover {
+    top: -35px; /* Subtle upward motion for hover */
+    height: 35px; /* Slight height extension */
+    border-radius: 35px 35px 0 0; /* Adjust curve for hover */
+}
+
+/* Footer Container */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Ensures footer content doesn’t stretch */
+    margin: 0 auto; /* Center the content */
+    padding: 0 20px;
+}
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    gap: 20px; /* Space between the links */
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100; /* Montserrat Thin */
+    text-transform: lowercase;
+}
+
+.footer-links a {
+    color: #4a4a4a; /* Dark grey for links */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #000; /* Slight darkening on hover */
+}
+
+/* Copyright Text */
+.footer-copyright {
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100; /* Montserrat Thin */
+    text-align: right;
+    text-transform: lowercase;
+    color: #4a4a4a;
+}
