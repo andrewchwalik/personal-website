@@ -156,14 +156,14 @@ footer.footer {
     color: #4a4a4a; /* Match the dark grey color */
     border-top: 1px solid #ddd; /* Light grey top line for separation */
     position: relative;
-    padding: 50px 0; /* Padding for proper spacing */
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Shadow on the footer itself */
+    padding: 30px 0; /* Reduced height of the footer */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow on the footer to appear lower */
 }
 
 /* Footer Hump */
 .footer-hump {
     position: absolute;
-    top: -25px; /* Moves the hump into the section above */
+    top: -20px; /* Moves the hump into the section above */
     left: 50%;
     transform: translateX(-50%);
     width: 60px; /* Width of the hump */
@@ -176,6 +176,7 @@ footer.footer {
     justify-content: center;
     align-items: center;
     z-index: 1; /* Ensure it sits above the footer content */
+    transition: transform 0.2s ease; /* Smooth animation for hover */
 }
 
 /* Footer Arrow */
@@ -185,8 +186,12 @@ footer.footer {
     transition: transform 0.2s ease; /* Smooth hover effect */
 }
 
+.footer-hump:hover {
+    transform: translate(-50%, -10px); /* Move the hump upward with the arrow */
+}
+
 .footer-arrow:hover {
-    transform: translateY(-5px); /* Slight upward movement on hover */
+    transform: translateY(-10px); /* Move the arrow upward */
 }
 
 /* Footer Container */
