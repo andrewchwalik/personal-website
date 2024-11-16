@@ -164,10 +164,9 @@ footer.footer {
 /* Footer Hump */
 .footer-hump {
     position: absolute;
-    top: -30px; /* Initial position to align bottom points with the footer line */
+    top: -30px; /* Align the bottom of the hump with the footer's dividing line */
     left: 50%;
     transform: translateX(-50%);
-    transform-origin: bottom; /* Anchor the bottom edge of the hump */
     width: 60px; /* Width of the hump */
     height: 30px; /* Base height of the hump */
     background: white; /* Matches the footer background exactly */
@@ -178,7 +177,7 @@ footer.footer {
     justify-content: center;
     align-items: center;
     z-index: 10; /* Bring the hump and arrow above everything */
-    transition: height 0.3s ease, transform 0.3s ease; /* Smooth animation for hover */
+    transition: top 0.3s ease, height 0.3s ease; /* Smooth animation for hover */
 }
 
 /* Footer Arrow */
@@ -190,8 +189,8 @@ footer.footer {
 
 /* Hover Effect for Hump */
 .footer-hump:hover {
-    height: 40px; /* Extend the hump upward */
-    transform: translateX(-50%); /* Ensure the bottom remains stationary */
+    top: -40px; /* Move the top of the hump upward */
+    height: 40px; /* Extend the height upward */
     border-radius: 40px 40px 0 0; /* Adjust the curve to match extended height */
 }
 
