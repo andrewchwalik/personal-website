@@ -164,9 +164,10 @@ footer.footer {
 /* Footer Hump */
 .footer-hump {
     position: absolute;
-    top: -30px; /* Position the hump to align bottom points with the footer line */
+    top: -30px; /* Initial position to align bottom points with the footer line */
     left: 50%;
     transform: translateX(-50%);
+    transform-origin: bottom; /* Anchor the bottom edge of the hump */
     width: 60px; /* Width of the hump */
     height: 30px; /* Base height of the hump */
     background: white; /* Matches the footer background exactly */
@@ -190,8 +191,8 @@ footer.footer {
 /* Hover Effect for Hump */
 .footer-hump:hover {
     height: 40px; /* Extend the hump upward */
-    border-radius: 40px 40px 0 0; /* Increase the curve as height increases */
-    transform: translateX(-50%); /* Ensure no bottom movement */
+    transform: translateX(-50%); /* Ensure the bottom remains stationary */
+    border-radius: 40px 40px 0 0; /* Adjust the curve to match extended height */
 }
 
 /* Footer Container */
