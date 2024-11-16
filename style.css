@@ -237,10 +237,12 @@ body, h1, h2, p, span, a {
 
 .youtube-thumbnail-container img {
     width: 100%; /* Full width of container */
-    height: 100%; /* Full height */
-    object-fit: cover; /* Scale and crop thumbnail */
-    display: block; /* Remove inline spacing */
-    border: none; /* Ensure no border is added */
+    height: 100%; /* Full height of container */
+    object-fit: cover; /* Ensure image covers the container */
+    display: block; /* Remove inline spacing issues */
+    border: none; /* Ensure no border is applied */
+    transform: scale(1.05); /* Slightly zoom in to crop black bars */
+    transition: transform 0.2s ease; /* Smooth transition for hover effects */
 }
 
 /* Hide the embedded iframe unless explicitly needed */
