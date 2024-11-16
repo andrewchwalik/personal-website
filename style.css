@@ -158,7 +158,8 @@ footer.footer {
     position: relative;
     padding: 30px 0; /* Reduced height of the footer */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow on the footer to appear lower */
-    overflow: hidden; /* Prevent any overflow issues when the hump moves up */
+    z-index: 1; /* Base z-index for the footer */
+    overflow: visible; /* Ensure nothing gets clipped */
 }
 
 /* Footer Hump */
@@ -176,7 +177,7 @@ footer.footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1; /* Ensure it sits above the footer content */
+    z-index: 10; /* Bring the hump and arrow above everything */
     transition: transform 0.3s ease, height 0.3s ease; /* Smooth animation for hover */
 }
 
