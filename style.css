@@ -189,6 +189,7 @@ body, h1, h2, p, span, a {
     aspect-ratio: 16/9; /* Maintain 16:9 aspect ratio */
     border-bottom: 1px solid #ddd; /* Divider between thumbnail and text */
     object-fit: cover; /* Ensure proper scaling */
+    background-color: transparent; /* Remove black background if present */
 }
 
 /* Card Titles */
@@ -242,26 +243,17 @@ body, h1, h2, p, span, a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2.5rem;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 50%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_circle_%282017%29.svg') no-repeat center;
+    background-size: contain;
     width: 60px;
     height: 60px;
-    line-height: 60px;
-    text-align: center;
     z-index: 1;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .youtube-thumbnail-container:hover .play-button-overlay {
-    transform: translate(-50%, -50%) scale(1.1); /* Slight zoom effect on hover */
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.youtube-card h3, .youtube-card p {
-    font-family: 'Montserrat', sans-serif;
-    margin: 10px 0;
+    transform: translate(-50%, -50%) scale(1.1); /* Slight zoom effect */
 }
 
 /* Footer Section */
