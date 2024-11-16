@@ -90,15 +90,9 @@
 </footer>
 
 <script>
-    // Replace with your API Key
-    const API_KEY = 'AIzaSyCXo9sraIhRIqdObB8FS9kqTMvcVEcCXmY';
-    // Replace with your Channel ID
-    const CHANNEL_ID = 'UCgp9-baYOYgKONAlfDOaVBQ';
+    const API_KEY = 'AIzaSyCXo9sraIhRIqdObB8FS9kqTMvcVEcCXmY'; // Replace with your API key
+    const CHANNEL_ID = 'UCgp9-baYOYgKONAlfDOaVBQ'; // Replace with your Channel ID
 
-    // Select the YouTube iframe in the HTML
-    const youtubeIframe = document.getElementById('youtube-video');
-
-    // Function to fetch the latest video
     async function fetchLatestVideo() {
         try {
             const response = await fetch(
@@ -106,10 +100,28 @@
             );
             const data = await response.json();
 
-            if (data.items.length > 0) {
-                const videoId = data.items[0].id.videoId;
-                // Set the iframe source to the latest video
-                youtubeIframe.src = `https://www.youtube.com/embed/${videoId}`;
+            if (data.items && data.items.length > 0) {
+                const video = data.items[0];
+                const videoId = video.id.videoId;
+                const thumbnailUrl = video.snippet.thumbnails.high.url; // High-quality thumbnail
+
+                // Update the thumbnail and add click functionality
+                const thumbnailImg = document.getElementById('youtube-thumbnail');
+                thumbnailImg.src = thumbnailUrl;
+
+                const container = document.getElementById('youtube-container');
+                container.addEventListener('click', () => {
+                    container.innerHTML = `
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+                    `;
+                });
             } else {
                 console.error('No videos found for this channel.');
             }
@@ -118,7 +130,6 @@
         }
     }
 
-    // Call the function to fetch the video
     fetchLatestVideo();
 </script>
     
