@@ -103,6 +103,16 @@ body, h1, h2, p, span, a {
     z-index: 3;
 }
 
+/* Subtext Below Hero Headings */
+.subtext {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100; /* Montserrat Thin */
+    font-size: 1rem; /* Slightly smaller text */
+    color: white; /* Match overlay text color */
+    text-align: center; /* Center below respective headings */
+    margin-top: 10px; /* Space between heading and subtext */
+}
+
 /* Portfolio Section */
 #portfolio {
     background-color: #f5f5f5;
