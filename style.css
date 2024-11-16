@@ -211,45 +211,49 @@ body, h1, h2, p, span, a {
 
 /* YouTube Card */
 .youtube-card {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    max-width: 320px;
-    width: 100%;
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: white; /* Set card background */
+    border: 1px solid #ddd; /* Define border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Remove overflow issues */
+    max-width: 320px; /* Set max width */
+    width: 100%; /* Responsive */
+    text-align: center; /* Center text */
+    margin: 0; /* Remove external margins */
+    padding: 0; /* Remove internal padding */
+    position: relative; /* Ensure contained positioning */
 }
 
 .youtube-thumbnail-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    border-bottom: 1px solid #ddd; /* Divider below the thumbnail */
-    background-color: white; /* Ensure no black background */
+    position: relative; /* Needed for overlay positioning */
+    width: 100%; /* Full card width */
+    aspect-ratio: 16/9; /* Maintain 16:9 aspect ratio */
+    overflow: hidden; /* Hide any overflow */
+    border-bottom: 1px solid #ddd; /* Light divider below thumbnail */
+    background-color: white; /* Ensure consistent background */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
 }
 
 .youtube-thumbnail-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border: none; /* Remove any default borders */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    object-fit: cover; /* Cover the container */
+    display: block; /* Prevent inline spacing */
+    border: none; /* Ensure no border is applied */
 }
 
 .play-button-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/120px-YouTube_full-color_icon_%282024%29.svg.png') no-repeat center;
-    background-size: contain;
-    width: 60px;
-    height: 60px;
-    z-index: 1;
-    cursor: pointer;
+    position: absolute; /* Absolute for proper positioning */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Perfect center alignment */
+    background: url('https://upload.wikimedia.org/wikipedia/commons/7/75/YouTube_social_white_circle_%282017%29.svg') no-repeat center;
+    background-size: contain; /* Resize the icon */
+    width: 60px; /* Play button size */
+    height: 60px; /* Play button size */
+    z-index: 2; /* Ensure it appears above all else */
+    cursor: pointer; /* Pointer cursor for hover effect */
     transition: transform 0.2s ease;
 }
 
@@ -257,6 +261,17 @@ body, h1, h2, p, span, a {
     transform: translate(-50%, -50%) scale(1.1); /* Slight zoom effect */
 }
 
+/* Remove unwanted black play button (iframe overlay styling) */
+.youtube-thumbnail-container iframe {
+    display: none; /* Completely hide iframe until explicitly needed */
+}
+
+/* Card Text Styles */
+.youtube-card h3, .youtube-card p {
+    font-family: 'Montserrat', sans-serif; /* Ensure consistent font */
+    margin: 10px 0; /* Standard margin */
+    color: #333; /* Neutral text color */
+}
 /* Footer Section */
 footer.footer {
     background: white;
