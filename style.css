@@ -158,14 +158,13 @@ footer.footer {
     position: relative;
     padding: 30px 0; /* Reduced height of the footer */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow on the footer to appear lower */
-    z-index: 1; /* Base z-index for the footer */
     overflow: visible; /* Ensure nothing gets clipped */
 }
 
 /* Footer Hump */
 .footer-hump {
     position: absolute;
-    top: -20px; /* Moves the hump into the section above */
+    top: -15px; /* Adjusted to align the hump's bottom curve with the footer line */
     left: 50%;
     transform: translateX(-50%);
     width: 60px; /* Width of the hump */
