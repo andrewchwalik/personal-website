@@ -153,71 +153,78 @@ body, h1, h2, p, span, a {
 /* Footer Section */
 footer.footer {
     background: white;
-    color: #4a4a4a; /* Match dark grey color */
-    padding: 50px 0 40px; /* Padding matches reference design */
-    border-top: 1px solid #ddd; /* Light grey line for separation */
+    color: #4a4a4a; /* Match the dark grey color */
+    border-top: 1px solid #ddd; /* Top border for separation */
     position: relative;
+    padding: 50px 0; /* Adjusted padding for proper spacing */
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); /* Shadow below the top line for raised effect */
 }
 
-/* Footer Arrow Container */
-.footer-arrow-container {
-    position: relative;
-    margin-top: -30px; /* Lift the arrow into the section above */
+/* Footer Hump */
+.footer-hump {
+    position: absolute;
+    top: -25px; /* Moves the hump into the section above */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px; /* Width of the hump */
+    height: 30px; /* Height of the hump */
+    background: white;
+    border: 1px solid #ddd; /* Match the top line of the footer */
+    border-bottom: none; /* Seamlessly blends into footer */
+    border-radius: 30px 30px 0 0; /* Creates the hump shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); /* Mimics the footer shadow for consistency */
 }
 
 /* Footer Arrow */
 .footer-arrow {
-    display: inline-block;
-    background: white;
-    color: #4a4a4a; /* Dark grey color for arrow */
-    border: 2px solid #ddd; /* Light grey border for the arrow */
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    line-height: 46px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     font-size: 1.2rem;
-    transition: all 0.3s ease;
+    color: #4a4a4a; /* Match footer text color */
+    transition: transform 0.2s ease; /* Smooth hover effect */
 }
 
-/* Arrow Hover Effect */
 .footer-arrow:hover {
-    background: #f7b42c; /* Yellow hover effect */
-    color: white; /* White arrow icon */
+    transform: translateY(-5px); /* Slight upward movement on hover */
 }
 
-/* Footer Content */
-.footer-content {
-    margin-top: 20px; /* Spacing below the arrow */
-    text-align: center;
-}
-
-/* Footer Copyright */
-.footer-content .footer-copyright {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: #777; /* Lighter grey for copyright text */
-    margin-bottom: 20px;
+/* Footer Container */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Ensures footer content doesn't stretch */
+    margin: 0 auto; /* Center the content */
+    padding: 0 20px;
 }
 
 /* Footer Links */
 .footer-links {
     display: flex;
-    justify-content: center;
-    gap: 40px; /* Spacing between links */
+    gap: 20px; /* Space between the links */
     font-size: 1rem;
-    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100; /* Montserrat Thin */
     text-transform: lowercase;
 }
 
 .footer-links a {
-    color: #4a4a4a; /* Dark grey for links */
+    color: #4a4a4a; /* Match footer text */
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
-/* Link Hover Effect */
 .footer-links a:hover {
-    color: #f7b42c; /* Yellow hover effect */
+    color: #000; /* Slight darkening on hover */
+}
+
+/* Copyright Text */
+.footer-copyright {
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100; /* Montserrat Thin */
+    text-align: right;
+    text-transform: lowercase;
+    color: #4a4a4a;
 }
