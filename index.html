@@ -31,115 +31,153 @@
     </div>
 
     <!-- Hero Section -->
-<div class="hero-split">
-    <div class="left-overlay">
-        <h1>ANDREW</h1>
-        <p class="subtext">Content Creator & Small Business Owner</p>
+    <div class="hero-split">
+        <div class="left-overlay">
+            <h1>ANDREW</h1>
+            <p class="subtext">Content Creator & Small Business Owner</p>
+        </div>
+        <div class="right-overlay">
+            <h1>CHWALIK</h1>
+            <p class="subtext">Soccer Coach & Podcaster</p>
+        </div>
+        <img src="img/Andrew.png" alt="Andrew" class="center-image">
     </div>
-    <div class="right-overlay">
-        <h1>CHWALIK</h1>
-        <p class="subtext">Soccer Coach & Podcaster</p>
-    </div>
-    <img src="img/Andrew.png" alt="Andrew" class="center-image">
-</div>
 
     <!-- Portfolio Section -->
-  <section id="portfolio">
-    <h2 class="portfolio-title">
-        <span class="line"></span>
-        some of my latest content
-        <span class="line"></span>
-    </h2>
-    <div class="portfolio-items">
-        <div class="item youtube-card">
-    <div class="youtube-thumbnail-container">
-        <img id="youtube-thumbnail" src="https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg" alt="YouTube Thumbnail">
-        <div class="play-button-overlay"></div>
-        <!-- Hidden YouTube iframe -->
-        <iframe
-            id="youtube-iframe"
-            src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&showinfo=0&modestbranding=1&controls=0&autoplay=0"
-            frameborder="0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen
-        ></iframe>
-    </div>
-    <h3>Latest YouTube Video</h3>
-    <p>Published on my YouTube channel.</p>
-</div>
-        <div class="item">
-            <img src="https://picsum.photos/300/200?random=2" alt="Project 2">
-            <h3>Creating a lean design system</h3>
-            <p>Design system</p>
+    <section id="portfolio">
+        <h2 class="portfolio-title">
+            <span class="line"></span>
+            some of my latest content
+            <span class="line"></span>
+        </h2>
+        <div class="portfolio-items">
+            <!-- First Card: Latest YouTube Video -->
+            <div class="item youtube-card">
+                <div class="youtube-thumbnail-container" id="youtube-container">
+                    <img id="youtube-thumbnail" src="https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg" alt="YouTube Thumbnail">
+                    <div class="play-button-overlay"></div>
+                </div>
+                <h3>Latest YouTube Video</h3>
+                <p>Published on my YouTube channel.</p>
+            </div>
+            <!-- Second Card: Latest Podcast -->
+            <div class="item youtube-card podcast-card">
+                <div class="youtube-thumbnail-container">
+                    <!-- Placeholder thumbnail -->
+                    <img id="podcast-thumbnail" src="img/nutmegged.png" alt="Podcast Thumbnail">
+                    <div class="play-button-overlay"></div>
+                    <!-- Hidden YouTube iframe -->
+                    <iframe
+                        id="podcast-iframe"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                <h3>Latest Podcast Episode</h3>
+                <p>Check out the latest episode from Nutmegged Podcast.</p>
+            </div>
+            <!-- Example Card 3 -->
+            <div class="item">
+                <img src="https://picsum.photos/300/200?random=2" alt="Project 2">
+                <h3>Creating a lean design system</h3>
+                <p>Design system</p>
+            </div>
+            <!-- Example Card 4 -->
+            <div class="item">
+                <img src="https://picsum.photos/300/200?random=3" alt="Project 3">
+                <h3>Interior design news feed</h3>
+                <p>Side project</p>
+            </div>
         </div>
-        <div class="item">
-            <img src="https://picsum.photos/300/200?random=3" alt="Project 3">
-            <h3>Interior design news feed</h3>
-            <p>Side project</p>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
-<footer class="footer">
-    <div class="footer-hump">
-        <a href="#home" class="footer-arrow">
-            <i class="fas fa-chevron-up"></i>
-        </a>
-    </div>
-    <div class="footer-container">
-        <div class="footer-links">
-            <a href="#about">about.</a>
-            <a href="#ventures">ventures.</a>
-            <a href="#vlogs">vlogs.</a>
+    <footer class="footer">
+        <div class="footer-hump">
+            <a href="#home" class="footer-arrow">
+                <i class="fas fa-chevron-up"></i>
+            </a>
         </div>
-        <p class="footer-copyright">© 2024 Andrew Chwalik.</p>
-    </div>
-</footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#about">about.</a>
+                <a href="#ventures">ventures.</a>
+                <a href="#vlogs">vlogs.</a>
+            </div>
+            <p class="footer-copyright">© 2024 Andrew Chwalik.</p>
+        </div>
+    </footer>
 
-<script>
-    const API_KEY = 'AIzaSyCXo9sraIhRIqdObB8FS9kqTMvcVEcCXmY'; // Replace with your API key
-    const CHANNEL_ID = 'UCgp9-baYOYgKONAlfDOaVBQ'; // Replace with your Channel ID
+    <!-- JavaScript for YouTube Cards -->
+    <script>
+        const API_KEY = 'AIzaSyCXo9sraIhRIqdObB8FS9kqTMvcVEcCXmY';
+        const YOUTUBE_CHANNEL_ID = 'UCgp9-baYOYgKONAlfDOaVBQ';
+        const PODCAST_PLAYLIST_ID = 'PLn0E04ztucTwqL5cLDPvBuM-82QLbh3d5';
 
-    async function fetchLatestVideo() {
-        try {
-            const response = await fetch(
-                `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=1`
-            );
-            const data = await response.json();
+        // Load latest YouTube video
+        async function fetchLatestVideo() {
+            try {
+                const response = await fetch(
+                    `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${YOUTUBE_CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=1`
+                );
+                const data = await response.json();
+                if (data.items && data.items.length > 0) {
+                    const video = data.items[0];
+                    const videoId = video.id.videoId;
+                    const thumbnailUrl = video.snippet.thumbnails.high.url;
 
-            if (data.items && data.items.length > 0) {
-                const video = data.items[0];
-                const videoId = video.id.videoId;
-                const thumbnailUrl = video.snippet.thumbnails.high.url; // High-quality thumbnail
+                    const thumbnailImg = document.getElementById('youtube-thumbnail');
+                    thumbnailImg.src = thumbnailUrl;
 
-                // Update the thumbnail and add click functionality
-                const thumbnailImg = document.getElementById('youtube-thumbnail');
-                thumbnailImg.src = thumbnailUrl;
-
-                const container = document.getElementById('youtube-container');
-                container.addEventListener('click', () => {
-                    container.innerHTML = `
-                        <iframe
-                            width="100%"
-                            height="100%"
-                            src="https://www.youtube.com/embed/${videoId}?autoplay=1"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                        ></iframe>
-                    `;
-                });
-            } else {
-                console.error('No videos found for this channel.');
+                    const container = document.getElementById('youtube-container');
+                    container.addEventListener('click', () => {
+                        container.innerHTML = `
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                            ></iframe>
+                        `;
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching latest YouTube video:', error);
             }
-        } catch (error) {
-            console.error('Error fetching YouTube video:', error);
         }
-    }
 
-    fetchLatestVideo();
-</script>
-    
+        // Load latest podcast video
+        async function fetchLatestPodcast() {
+            try {
+                const response = await fetch(
+                    `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${PODCAST_PLAYLIST_ID}&part=snippet&maxResults=1`
+                );
+                const data = await response.json();
+                if (data.items && data.items.length > 0) {
+                    const video = data.items[0].snippet;
+                    const videoId = video.resourceId.videoId;
+                    const videoThumbnail = video.thumbnails.high.url;
+
+                    const podcastThumbnail = document.getElementById('podcast-thumbnail');
+                    const podcastIframe = document.getElementById('podcast-iframe');
+
+                    podcastThumbnail.src = videoThumbnail;
+                    podcastThumbnail.closest('.youtube-thumbnail-container').addEventListener('click', () => {
+                        podcastThumbnail.style.display = 'none';
+                        podcastIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                        podcastIframe.style.display = 'block';
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching podcast video:', error);
+            }
+        }
+
+        fetchLatestVideo();
+        fetchLatestPodcast();
+    </script>
 </body>
 </html>
