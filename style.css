@@ -265,6 +265,18 @@ body, h1, h2, p, span, a {
     transition: transform 0.2s ease;
 }
 
+/* Podcast Thumbnail Styling */
+#podcast-thumbnail-container img {
+    content: url('img/nutmegged.png'); /* Explicitly use the correct path for nutmegged.png */
+    width: 100%; /* Full card width */
+    height: 100%; /* Full card height */
+    object-fit: cover; /* Scale and crop image */
+    display: block; /* Ensure proper alignment */
+    border: none; /* Remove any border */
+    transform: scale(1.01); /* Slightly zoom in to remove potential black bars */
+    transition: transform 0.2s ease; /* Smooth zoom effect */
+}
+
 /* Hover Effect for Play Button */
 .youtube-thumbnail-container:hover .play-button-overlay {
     transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
