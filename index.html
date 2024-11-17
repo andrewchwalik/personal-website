@@ -63,15 +63,14 @@
             <!-- Second Card: Latest Podcast -->
             <div class="item youtube-card podcast-card">
                 <div class="youtube-thumbnail-container">
-                    <!-- Placeholder thumbnail -->
                     <img id="podcast-thumbnail" src="img/nutmegged.png" alt="Podcast Thumbnail">
                     <div class="play-button-overlay"></div>
-                    <!-- Hidden YouTube iframe -->
                     <iframe
                         id="podcast-iframe"
                         frameborder="0"
                         allow="autoplay; encrypted-media"
                         allowfullscreen
+                        style="display: none;"
                     ></iframe>
                 </div>
                 <h3>Latest Podcast Episode</h3>
@@ -152,27 +151,15 @@
         // Load latest podcast video
         async function fetchLatestPodcast() {
             try {
-                const response = await fetch(
-                    `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${PODCAST_PLAYLIST_ID}&part=snippet&maxResults=1`
-                );
-                const data = await response.json();
-                if (data.items && data.items.length > 0) {
-                    const video = data.items[0].snippet;
-                    const videoId = video.resourceId.videoId;
-                    const videoThumbnail = video.thumbnails.high.url;
+                const podcastIframe = document.getElementById('podcast-iframe');
+                const podcastThumbnailContainer = document.getElementById('podcast-thumbnail').closest('.youtube-thumbnail-container');
 
-                    const podcastThumbnail = document.getElementById('podcast-thumbnail');
-                    const podcastIframe = document.getElementById('podcast-iframe');
-
-                    podcastThumbnail.src = videoThumbnail;
-                    podcastThumbnail.closest('.youtube-thumbnail-container').addEventListener('click', () => {
-                        podcastThumbnail.style.display = 'none';
-                        podcastIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                        podcastIframe.style.display = 'block';
-                    });
-                }
+                podcastThumbnailContainer.addEventListener('click', () => {
+                    podcastIframe.src = `https://www.youtube.com/embed?listType=playlist&list=${PODCAST_PLAYLIST_ID}&autoplay=1`;
+                    podcastIframe.style.display = 'block';
+                });
             } catch (error) {
-                console.error('Error fetching podcast video:', error);
+                console.error('Error initializing podcast video:', error);
             }
         }
 
