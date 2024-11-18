@@ -218,12 +218,12 @@ body, h1, h2, p, span, a {
     transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
 }
 
-/* Explicitly Hide Play Button Globally (Prevent Header Issues) */
-body .play-button-overlay {
-    display: none; /* Ensure it doesn't show outside portfolio section */
+/* Prevent Play Button Outside Portfolio */
+.play-button-overlay {
+    display: none !important; /* Hide play button everywhere else */
 }
 
-/* Re-enable Play Button Only Inside Portfolio Section */
+/* Re-enable Play Button Specifically Inside Portfolio */
 #portfolio .youtube-thumbnail-container .play-button-overlay {
     display: block !important;
 }
