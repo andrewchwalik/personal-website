@@ -57,7 +57,7 @@
                     <img id="youtube-thumbnail" src="https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg" alt="YouTube Thumbnail">
                     <div class="play-button-overlay"></div>
                 </div>
-                <h3 id="youtube-title">Latest YouTube Video</h3>
+                <h3>Latest YouTube Video</h3>
                 <p>My Latest YouTube Video</p>
             </div>
             <!-- Second Card: Latest Podcast -->
@@ -118,10 +118,14 @@
                     const videoTitle = video.snippet.title;
                     const thumbnailUrl = video.snippet.thumbnails.high.url;
 
-                    document.getElementById('youtube-thumbnail').src = thumbnailUrl;
-                    document.getElementById('youtube-title').textContent = videoTitle;
+                    const container = document.getElementById('youtube-container');
+                    const thumbnailImg = document.getElementById('youtube-thumbnail');
+                    const videoTitleElement = document.querySelector('.youtube-card h3');
 
-                    document.getElementById('youtube-container').addEventListener('click', () => {
+                    thumbnailImg.src = thumbnailUrl;
+                    videoTitleElement.textContent = videoTitle;
+
+                    container.addEventListener('click', () => {
                         window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
                     });
                 }
@@ -141,13 +145,15 @@
                     const video = data.items[0].snippet;
                     const videoId = video.resourceId.videoId;
                     const videoTitle = video.title;
+
                     const podcastThumbnail = document.getElementById('podcast-thumbnail');
                     const podcastTitle = document.getElementById('podcast-title');
 
-                    podcastThumbnail.src = video.thumbnails.high.url;
+                    podcastThumbnail.src = 'img/nutmegged.png'; // Keep your custom thumbnail
                     podcastTitle.textContent = videoTitle;
 
-                    document.getElementById('podcast-container').addEventListener('click', () => {
+                    const podcastContainer = document.getElementById('podcast-container');
+                    podcastContainer.addEventListener('click', () => {
                         window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
                     });
                 }
@@ -172,7 +178,8 @@
                     storytimeThumbnail.src = video.snippet.thumbnails.high.url;
                     storytimeTitle.textContent = videoTitle;
 
-                    document.getElementById('storytime-container').addEventListener('click', () => {
+                    const container = document.getElementById('storytime-container');
+                    container.addEventListener('click', () => {
                         window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
                     });
                 }
