@@ -192,6 +192,17 @@ body, h1, h2, p, span, a {
     background-color: transparent; /* Remove black background if present */
 }
 
+.youtube-card h3 {
+    font-family: 'Montserrat', sans-serif; /* Consistent font */
+    font-size: 1.2rem; /* Title size */
+    font-weight: 600; /* Slightly bold */
+    margin: 10px 15px; /* Add white space to the sides */
+    color: #333;
+    text-align: center;
+    padding: 0 10px; /* Adds extra space within the title */
+    line-height: 1.5; /* Better readability */
+}
+
 /* Storytime Card Title Styling */
 .storytime-title {
     margin: 10px 15px; /* Adds white space on the sides */
