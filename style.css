@@ -221,12 +221,12 @@ body, h1, h2, p, span, a {
     left: 50%;
     transform: translate(-50%, -50%);
     background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/120px-YouTube_full-color_icon_%282024%29.svg.png') no-repeat center;
-    background-size: 100%; /* Ensure the play button scales properly */
-    width: 50px; /* Adjust button size to fit properly */
-    height: 50px; /* Match width to maintain the circle */
+    background-size: contain; /* Ensure button scales correctly */
+    width: 60px;
+    height: 60px;
     z-index: 2; /* Ensure it appears above other elements */
     cursor: pointer; /* Pointer cursor for hover */
-    transition: transform 0.2s ease, background-size 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .youtube-thumbnail-container:hover .play-button-overlay {
