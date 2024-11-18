@@ -175,7 +175,7 @@ body, h1, h2, p, span, a {
     width: 100%; /* Responsive width */
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    padding-bottom: 20px; /* Add padding to increase white space at the bottom */
+    padding-bottom: 15px; /* Add padding to increase white space at the bottom */
 }
 
 .item:hover {
@@ -191,30 +191,6 @@ body, h1, h2, p, span, a {
     border-bottom: 1px solid #ddd; /* Divider between thumbnail and text */
     object-fit: cover; /* Ensure proper scaling */
     background-color: transparent; /* Remove black background if present */
-}
-
-/* Scoped Play Button Overlay */
-.youtube-card .youtube-thumbnail-container .play-button-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/120px-YouTube_full-color_icon_%282024%29.svg.png') no-repeat center;
-    background-size: contain; /* Ensure button scales correctly */
-    width: 60px;
-    height: 60px;
-    z-index: 2; /* Ensure it appears above other elements */
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.youtube-card .youtube-thumbnail-container:hover .play-button-overlay {
-    transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
-}
-
-/* Hero Split Adjustment - Exclude Play Button */
-.hero-split .play-button-overlay {
-    display: none !important;
 }
 
 /* Card Titles */
