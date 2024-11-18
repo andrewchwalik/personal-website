@@ -134,26 +134,33 @@ async function fetchLatestVideo() {
     }
 }
 
-fetchLatestVideo();
-        async function fetchLatestPodcast() {
-            try {
-                const response = await fetch(
-                    `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${PODCAST_PLAYLIST_ID}&part=snippet&maxResults=1`
-                );
-                const data = await response.json();
-                if (data.items && data.items.length > 0) {
-                    const video = data.items[0].snippet;
-                    const videoId = video.resourceId.videoId;
+// Load latest podcast video
+async function fetchLatestPodcast() {
+    try {
+        const response = await fetch(
+            `https://www.googleapis.com/youtube/v3/playlistItems?key=${API_KEY}&playlistId=${PODCAST_PLAYLIST_ID}&part=snippet&maxResults=1`
+        );
+        const data = await response.json();
+        if (data.items && data.items.length > 0) {
+            const video = data.items[0].snippet;
+            const videoId = video.resourceId.videoId;
+            const videoTitle = video.title;
+            const podcastThumbnail = document.getElementById('podcast-thumbnail');
+            const podcastTitle = document.getElementById('podcast-title');
 
-                    const podcastContainer = document.getElementById('podcast-container');
-                    podcastContainer.addEventListener('click', () => {
-                        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
-                    });
-                }
-            } catch (error) {
-                console.error('Error fetching podcast video:', error);
-            }
+            // Update the title and add click event for redirection
+            podcastTitle.textContent = videoTitle;
+
+            // Add click functionality to open the video on YouTube
+            const podcastContainer = document.getElementById('podcast-container');
+            podcastContainer.addEventListener('click', () => {
+                window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+            });
         }
+    } catch (error) {
+        console.error('Error fetching podcast video:', error);
+    }
+}
 
         async function fetchLatestStorytime() {
             try {
