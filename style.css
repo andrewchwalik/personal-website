@@ -212,14 +212,15 @@ body, h1, h2, p, span, a {
     transition: transform 0.2s ease;
 }
 
-/* Scoped Hover Effect for Play Button */
+/* Hover Effect for Play Button in Portfolio */
 #portfolio .youtube-thumbnail-container:hover .play-button-overlay {
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Prevent Play Button from Appearing Elsewhere */
+/* Ensure Play Button Doesn't Appear Outside Portfolio */
 .hero-split .play-button-overlay,
-.nav-bar .play-button-overlay {
+.nav-bar .play-button-overlay,
+body .play-button-overlay {
     display: none !important;
 }
 
