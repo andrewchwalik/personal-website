@@ -175,7 +175,6 @@ body, h1, h2, p, span, a {
     width: 100%; /* Responsive width */
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    padding-bottom: 15px; /* Add extra padding at the bottom */
 }
 
 .item:hover {
