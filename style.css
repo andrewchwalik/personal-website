@@ -201,6 +201,11 @@ body, h1, h2, p, span, a {
     margin: 10px 15px; /* Adjust margins for better spacing */
     color: #333;
     text-align: center; /* Center-align the text */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Limit to two lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Card Descriptions */
