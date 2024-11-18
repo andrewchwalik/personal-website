@@ -199,6 +199,7 @@ body, h1, h2, p, span, a {
     margin: 10px 15px; /* Add white space to the sides */
     color: #333;
     text-align: center;
+    padding: 0 10px; /* Adds extra space within the title */
     line-height: 1.2; /* Slightly tighter line spacing */
     max-height: 2.6em; /* Restrict height to two lines */
     overflow: hidden; /* Hide extra text */
