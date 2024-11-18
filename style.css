@@ -175,7 +175,7 @@ body, h1, h2, p, span, a {
     width: 100%; /* Responsive width */
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    padding: 15px; /* Add padding around the card contents */
+    padding-bottom: 15px; /* Add padding to increase white space at the bottom */
 }
 
 .item:hover {
@@ -193,107 +193,19 @@ body, h1, h2, p, span, a {
     background-color: transparent; /* Remove black background if present */
 }
 
-/* Title Styling for All Cards with Ellipsis */
-.youtube-card h3, 
-.podcast-card h3, 
-.storytime-card h3 {
+/* Card Titles */
+.item h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
-    font-weight: 600;
-    margin: 10px 15px; /* Add padding to prevent title from touching edges */
+    font-weight: 600; /* Slightly bold */
+    margin: 10px 15px; /* Adjust margins for better spacing */
     color: #333;
-    text-align: center;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Limit to 2 lines */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    text-align: center; /* Center-align the text */
 }
 
 /* Card Descriptions */
 .item p {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    color: #666;
-    padding: 0 10px 10px;
-}
-
-/* YouTube Card */
-.youtube-card {
-    background: white; /* Card background color */
-    border: 1px solid #ddd; /* Light border for definition */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    overflow: hidden; /* Prevent overflow */
-    max-width: 320px; /* Limit width */
-    width: 100%; /* Responsive width */
-    text-align: center; /* Center text */
-    margin: 0; /* Remove unwanted margins */
-    padding: 0; /* Remove padding */
-    position: relative; /* Ensure play button positions correctly */
-}
-
-.youtube-thumbnail-container {
-    position: relative;
-    width: 100%; /* Full width */
-    aspect-ratio: 16/9; /* Maintain 16:9 ratio */
-    overflow: hidden; /* Hide overflow */
-    background-color: white; /* Ensure clean background */
-    border-bottom: 1px solid #ddd; /* Light divider below thumbnail */
-    margin: 0; /* Remove extra margin */
-    padding: 0; /* Remove padding */
-}
-
-.youtube-thumbnail-container img {
-    width: 100%; /* Full width of container */
-    height: 100%; /* Full height of container */
-    object-fit: cover; /* Ensure image covers the container */
-    display: block; /* Remove inline spacing issues */
-    border: none; /* Ensure no border is applied */
-    transform: scale(1.01); /* Slightly zoom in to crop black bars */
-    transition: transform 0.2s ease; /* Smooth transition for hover effects */
-}
-
-/* Hide the embedded iframe unless explicitly needed */
-.youtube-thumbnail-container iframe {
-    display: none; /* Completely hide the iframe */
-}
-
-/* Custom Play Button Overlay */
-.play-button-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/120px-YouTube_full-color_icon_%282024%29.svg.png') no-repeat center;
-    background-size: contain; /* Ensure button scales correctly */
-    width: 60px;
-    height: 60px;
-    z-index: 2; /* Ensure it appears above other elements */
-    cursor: pointer; /* Pointer cursor for hover */
-    transition: transform 0.2s ease;
-}
-
-/* Podcast Thumbnail Styling */
-#podcast-thumbnail-container img {
-    content: url('img/nutmegged.png'); /* Explicitly use the correct path for nutmegged.png */
-    width: 100%; /* Full card width */
-    height: 100%; /* Full card height */
-    object-fit: cover; /* Scale and crop image */
-    display: block; /* Ensure proper alignment */
-    border: none; /* Remove any border */
-    transform: scale(1.01); /* Slightly zoom in to remove potential black bars */
-    transition: transform 0.2s ease; /* Smooth zoom effect */
-}
-
-/* Hover Effect for Play Button */
-.youtube-thumbnail-container:hover .play-button-overlay {
-    transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
-}
-
-/* Card Descriptions */
-.youtube-card p {
-    font-family: 'Montserrat', sans-serif; /* Consistent font */
     font-size: 0.9rem;
     color: #666;
     padding: 0 10px 10px;
