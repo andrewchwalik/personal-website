@@ -192,26 +192,7 @@ body, h1, h2, p, span, a {
     background-color: transparent; /* Remove black background if present */
 }
 
-/* Youtube Video Card Title Styling */
 .youtube-card h3 {
-    font-family: 'Montserrat', sans-serif; /* Consistent font */
-    font-size: clamp(1rem, 2vw, 1.2rem); /* Dynamically adjust font size */
-    font-weight: 600; /* Slightly bold */
-    margin: 10px 15px; /* Add white space to the sides */
-    color: #333;
-    text-align: center;
-    padding: 0 10px; /* Adds extra space within the title */
-    line-height: 1.2; /* Slightly tighter line spacing */
-    max-height: 2.6em; /* Restrict height to two lines */
-    overflow: hidden; /* Hide extra text */
-    text-overflow: ellipsis; /* Add ellipsis if text is truncated */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Restrict to 2 lines */
-    -webkit-box-orient: vertical;
-}
-
-/* Podcast Card Title Styling */
-#podcast-title {
     font-family: 'Montserrat', sans-serif; /* Consistent font */
     font-size: clamp(1rem, 2vw, 1.2rem); /* Dynamically adjust font size */
     font-weight: 600; /* Slightly bold */
