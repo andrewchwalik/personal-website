@@ -194,12 +194,13 @@ body, h1, h2, p, span, a {
 
 /* Storytime Card Title Styling */
 .storytime-title {
-    margin: 10px 15px; /* Add padding to prevent title from touching edges */
-    text-align: center; /* Center-align the text */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #333; /* Ensure good contrast */
+    margin: 10px 15px; /* Adds white space on the sides */
+    text-align: center; /* Keeps the text centered */
+    padding: 0 10px; /* Adds extra space within the title */
+    font-family: 'Montserrat', sans-serif; /* Consistent font */
+    font-size: 1.2rem; /* Adjust font size */
+    font-weight: 600; /* Slightly bold */
+    color: #333; /* Dark color for readability */
 }
 
 /* Card Titles */
