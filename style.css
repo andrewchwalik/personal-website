@@ -182,23 +182,22 @@ body, h1, h2, p, span, a {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* YouTube Thumbnail - Corrected Aspect Ratio */
-.youtube-thumbnail-container img {
-    width: 100%; /* Full card width */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Adjust image to fit without cropping */
-    display: block; /* Prevent extra spacing or inline element issues */
-    border: none; /* Ensure no border around the image */
+.item img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    background-color: transparent;
 }
 
-/* Remove Unnecessary Scaling */
-.youtube-thumbnail-container img {
-    transform: none; /* Reset any scaling applied */
-    transition: none; /* Remove hover zooming on image itself */
+/* YouTube Thumbnail */
+.youtube-thumbnail-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Scoped YouTube Play Button */
-#portfolio .youtube-thumbnail-container .play-button-overlay {
+.youtube-thumbnail-container .play-button-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -210,55 +209,10 @@ body, h1, h2, p, span, a {
     z-index: 2;
     cursor: pointer;
     transition: transform 0.2s ease;
-    display: block; /* Ensure it appears on thumbnails */
 }
 
-/* Play Button Hover Effect */
-#portfolio .youtube-thumbnail-container:hover .play-button-overlay {
-    transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
-}
-
-/* Prevent Play Button Outside Portfolio */
-.play-button-overlay {
-    display: none !important; /* Hide play button everywhere else */
-}
-
-/* Re-enable Play Button Specifically Inside Portfolio */
-#portfolio .youtube-thumbnail-container .play-button-overlay {
-    display: block !important;
-}
-
-/* Additional Reset to Prevent Play Button from Appearing Elsewhere */
-.hero-split .play-button-overlay,
-.nav-bar .play-button-overlay {
-    display: none !important; /* Prevent accidental appearance in other sections */
-}
-
-/* Card Titles */
-.youtube-card h3,
-.podcast-card h3,
-.storytime-card h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 10px 5px; /* Adjust title position */
-    color: #333;
-    text-align: center;
-}
-
-/* Card Descriptions */
-.youtube-card p,
-.podcast-card p,
-.storytime-card p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    color: #666;
-    padding: 0 10px 10px;
-}
-
-/* Scoped Adjustments */
-.hero-split .play-button-overlay {
-    display: none !important; /* Explicitly hide play button in hero section */
+.youtube-thumbnail-container:hover .play-button-overlay {
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* Footer Section */
@@ -283,7 +237,7 @@ footer.footer {
     background: white; /* Matches the footer background exactly */
     border: 1px solid #ddd; /* Matches the footer border */
     border-bottom: none; /* Seamless blending into the footer */
-    border-radius: 30px 30px 0 0;/* Creates the hump shape */
+    border-radius: 30px 30px 0 0; /* Creates the hump shape */
     display: flex;
     justify-content: center;
     align-items: center;
