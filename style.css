@@ -210,28 +210,28 @@ body, h1, h2, p, span, a {
     z-index: 2;
     cursor: pointer;
     transition: transform 0.2s ease;
-    display: block; /* Ensure it is visible */
+    display: block; /* Ensure it appears on thumbnails */
 }
 
-/* Hover Effect for Play Button in Portfolio */
+/* Play Button Hover Effect */
 #portfolio .youtube-thumbnail-container:hover .play-button-overlay {
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
 }
 
-/* Explicitly Hide Play Button Outside Portfolio */
+/* Explicitly Hide Play Button Globally (Prevent Header Issues) */
+body .play-button-overlay {
+    display: none; /* Ensure it doesn't show outside portfolio section */
+}
+
+/* Re-enable Play Button Only Inside Portfolio Section */
+#portfolio .youtube-thumbnail-container .play-button-overlay {
+    display: block !important;
+}
+
+/* Additional Reset to Prevent Play Button from Appearing Elsewhere */
 .hero-split .play-button-overlay,
 .nav-bar .play-button-overlay {
-    display: none !important;
-}
-
-/* Global Play Button Display Reset */
-body .play-button-overlay {
-    display: none; /* Default to hidden */
-}
-
-/* Re-enable Play Button Only in #portfolio */
-#portfolio .play-button-overlay {
-    display: block !important;
+    display: none !important; /* Prevent accidental appearance in other sections */
 }
 
 /* Card Titles */
