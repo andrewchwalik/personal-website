@@ -105,7 +105,6 @@
         const PODCAST_PLAYLIST_ID = 'PLn0E04ztucTwqL5cLDPvBuM-82QLbh3d5';
         const STORYTIME_CHANNEL_ID = 'UCAlQN8uoZfv7FChxFDhjq2g';
 
-        // Load latest YouTube video
         async function fetchLatestVideo() {
             try {
                 const response = await fetch(
@@ -115,10 +114,8 @@
                 if (data.items && data.items.length > 0) {
                     const video = data.items[0];
                     const videoId = video.id.videoId;
-                    const thumbnailUrl = video.snippet.thumbnails.high.url;
-
                     const thumbnailImg = document.getElementById('youtube-thumbnail');
-                    thumbnailImg.src = thumbnailUrl;
+                    thumbnailImg.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
                     const container = document.getElementById('youtube-container');
                     container.addEventListener('click', () => {
@@ -130,7 +127,6 @@
             }
         }
 
-        // Load latest podcast video
         async function fetchLatestPodcast() {
             try {
                 const response = await fetch(
@@ -151,7 +147,6 @@
             }
         }
 
-        // Load latest Storytime video
         async function fetchLatestStorytime() {
             try {
                 const response = await fetch(
@@ -165,7 +160,7 @@
                     const storytimeThumbnail = document.getElementById('storytime-thumbnail');
                     const storytimeTitle = document.getElementById('storytime-title');
 
-                    storytimeThumbnail.src = video.snippet.thumbnails.high.url;
+                    storytimeThumbnail.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
                     storytimeTitle.textContent = videoTitle;
 
                     const container = document.getElementById('storytime-container');
