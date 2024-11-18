@@ -192,32 +192,14 @@ body, h1, h2, p, span, a {
     background-color: transparent; /* Remove black background if present */
 }
 
-.youtube-card h3 {
-    font-family: 'Montserrat', sans-serif; /* Consistent font */
-    font-size: clamp(1rem, 2vw, 1.2rem); /* Dynamically adjust font size */
-    font-weight: 600; /* Slightly bold */
-    margin: 10px 15px; /* Add white space to the sides */
-    color: #333;
-    text-align: center;
-    padding: 0 10px; /* Adds extra space within the title */
-    line-height: 1.2; /* Slightly tighter line spacing */
-    max-height: 2.6em; /* Restrict height to two lines */
-    overflow: hidden; /* Hide extra text */
-    text-overflow: ellipsis; /* Add ellipsis if text is truncated */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Restrict to 2 lines */
-    -webkit-box-orient: vertical;
-}
-
 /* Storytime Card Title Styling */
 .storytime-title {
-    margin: 10px 15px; /* Adds white space on the sides */
-    text-align: center; /* Keeps the text centered */
-    padding: 0 10px; /* Adds extra space within the title */
-    font-family: 'Montserrat', sans-serif; /* Consistent font */
-    font-size: 1.2rem; /* Adjust font size */
-    font-weight: 600; /* Slightly bold */
-    color: #333; /* Dark color for readability */
+    margin: 10px 15px; /* Add padding to prevent title from touching edges */
+    text-align: center; /* Center-align the text */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333; /* Ensure good contrast */
 }
 
 /* Card Titles */
