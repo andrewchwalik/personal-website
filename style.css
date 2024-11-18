@@ -189,6 +189,9 @@ body, h1, h2, p, span, a {
     aspect-ratio: 16/9; /* Maintain 16:9 ratio */
     overflow: hidden;
     border-bottom: 1px solid #ddd;
+    display: flex; /* Ensure child elements align properly */
+    justify-content: center;
+    align-items: center;
 }
 
 /* Custom Play Button Overlay (Scoped) */
@@ -198,11 +201,11 @@ body, h1, h2, p, span, a {
     left: 50%;
     transform: translate(-50%, -50%);
     background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/120px-YouTube_full-color_icon_%282024%29.svg.png') no-repeat center;
-    background-size: contain;
+    background-size: contain; /* Ensure button scales correctly */
     width: 60px;
     height: 60px;
     z-index: 2;
-    cursor: pointer;
+    cursor: pointer; /* Pointer cursor for hover */
     transition: transform 0.2s ease;
 }
 
@@ -210,9 +213,9 @@ body, h1, h2, p, span, a {
     transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
 }
 
-/* Hide play button in unintended areas */
+/* Hero Split Adjustment */
 .hero-split .play-button-overlay {
-    display: none !important;
+    display: none !important; /* Explicitly hide play button in hero section */
 }
 
 /* Footer Section */
