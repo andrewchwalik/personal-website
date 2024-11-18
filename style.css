@@ -194,7 +194,6 @@ body, h1, h2, p, span, a {
     align-items: center;
 }
 
-/* Custom Play Button Overlay (Scoped) */
 #portfolio .youtube-thumbnail-container .play-button-overlay {
     position: absolute;
     top: 50%;
@@ -213,7 +212,29 @@ body, h1, h2, p, span, a {
     transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
 }
 
-/* Hero Split Adjustment */
+/* Card Titles */
+.youtube-card h3,
+.podcast-card h3,
+.storytime-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 10px 5px; /* Adjust title position */
+    color: #333;
+    text-align: center;
+}
+
+/* Card Descriptions */
+.youtube-card p,
+.podcast-card p,
+.storytime-card p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    padding: 0 10px 10px;
+}
+
+/* Scoped Adjustments */
 .hero-split .play-button-overlay {
     display: none !important; /* Explicitly hide play button in hero section */
 }
