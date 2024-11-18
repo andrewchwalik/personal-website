@@ -57,28 +57,26 @@
                     <img id="youtube-thumbnail" src="https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg" alt="YouTube Thumbnail">
                     <div class="play-button-overlay"></div>
                 </div>
-                <h3 id="youtube-title">Loading...</h3>
-                <p>My Latest YouTube Video</p>
+                <h3>Latest YouTube Video</h3>
+                <p>Published on my YouTube channel.</p>
             </div>
-
             <!-- Second Card: Latest Podcast -->
             <div class="item youtube-card podcast-card">
                 <div class="youtube-thumbnail-container" id="podcast-container">
                     <img id="podcast-thumbnail" src="img/nutmegged.png" alt="Podcast Thumbnail">
                     <div class="play-button-overlay"></div>
                 </div>
-                <h3 id="podcast-title">Loading...</h3>
-                <p>My Latest Nutmegged Episode</p>
+                <h3>Latest Podcast Episode</h3>
+                <p>Check out the latest episode from Nutmegged Podcast.</p>
             </div>
-
             <!-- Third Card: Latest Storytime Video -->
             <div class="item youtube-card storytime-card">
                 <div class="youtube-thumbnail-container" id="storytime-container">
                     <img id="storytime-thumbnail" src="https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg" alt="Storytime Thumbnail">
                     <div class="play-button-overlay"></div>
                 </div>
-                <h3 id="storytime-title">Loading...</h3>
-                <p>My Latest Storytime Video</p>
+                <h3 id="storytime-title" class="storytime-title">Storytime Video</h3>
+                <p>Latest Storytime Video</p>
             </div>
         </div>
     </section>
@@ -107,7 +105,6 @@
         const PODCAST_PLAYLIST_ID = 'PLn0E04ztucTwqL5cLDPvBuM-82QLbh3d5';
         const STORYTIME_CHANNEL_ID = 'UCAlQN8uoZfv7FChxFDhjq2g';
 
-        // Load latest YouTube video
         async function fetchLatestVideo() {
             try {
                 const response = await fetch(
@@ -117,15 +114,11 @@
                 if (data.items && data.items.length > 0) {
                     const video = data.items[0];
                     const videoId = video.id.videoId;
-                    const videoTitle = video.snippet.title;
                     const thumbnailUrl = video.snippet.thumbnails.high.url;
 
                     const container = document.getElementById('youtube-container');
                     const thumbnailImg = document.getElementById('youtube-thumbnail');
-                    const videoTitleElement = document.getElementById('youtube-title');
-
                     thumbnailImg.src = thumbnailUrl;
-                    videoTitleElement.textContent = videoTitle;
 
                     container.addEventListener('click', () => {
                         window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
@@ -136,7 +129,6 @@
             }
         }
 
-        // Load latest podcast video
         async function fetchLatestPodcast() {
             try {
                 const response = await fetch(
@@ -146,12 +138,6 @@
                 if (data.items && data.items.length > 0) {
                     const video = data.items[0].snippet;
                     const videoId = video.resourceId.videoId;
-                    const videoTitle = video.title;
-                    const podcastThumbnail = document.getElementById('podcast-thumbnail');
-                    const podcastTitle = document.getElementById('podcast-title');
-
-                    podcastThumbnail.src = video.thumbnails.high.url;
-                    podcastTitle.textContent = videoTitle;
 
                     const podcastContainer = document.getElementById('podcast-container');
                     podcastContainer.addEventListener('click', () => {
@@ -163,7 +149,6 @@
             }
         }
 
-        // Load latest Storytime video
         async function fetchLatestStorytime() {
             try {
                 const response = await fetch(
