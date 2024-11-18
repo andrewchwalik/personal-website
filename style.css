@@ -246,6 +246,11 @@ body, h1, h2, p, span, a {
     padding: 0 10px 10px;
 }
 
+/* General Styles for Smooth Scrolling */
+html {
+    scroll-behavior: smooth; /* Enables smooth scrolling to anchors */
+}
+
 /* Footer Section */
 footer.footer {
     background: white;
