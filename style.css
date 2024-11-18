@@ -201,6 +201,16 @@ body, h1, h2, p, span, a {
     color: #333;
 }
 
+/* Adjust title for the third card */
+.storytime-title {
+    margin: 10px 15px; /* Add padding to prevent the text from touching the edges */
+    text-align: center; /* Ensure the title remains centered */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
 /* Card Descriptions */
 .item p {
     font-family: 'Montserrat', sans-serif;
