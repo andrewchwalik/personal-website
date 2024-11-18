@@ -210,6 +210,7 @@ body, h1, h2, p, span, a {
     z-index: 2;
     cursor: pointer;
     transition: transform 0.2s ease;
+    display: block; /* Ensure it is visible */
 }
 
 /* Hover Effect for Play Button in Portfolio */
@@ -217,11 +218,20 @@ body, h1, h2, p, span, a {
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Ensure Play Button Doesn't Appear Outside Portfolio */
+/* Explicitly Hide Play Button Outside Portfolio */
 .hero-split .play-button-overlay,
-.nav-bar .play-button-overlay,
-body .play-button-overlay {
+.nav-bar .play-button-overlay {
     display: none !important;
+}
+
+/* Global Play Button Display Reset */
+body .play-button-overlay {
+    display: none; /* Default to hidden */
+}
+
+/* Re-enable Play Button Only in #portfolio */
+#portfolio .play-button-overlay {
+    display: block !important;
 }
 
 /* Card Titles */
