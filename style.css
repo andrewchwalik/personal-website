@@ -182,34 +182,38 @@ body, h1, h2, p, span, a {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* YouTube Thumbnail - 16:9 Aspect Ratio */
-.youtube-thumbnail-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9; /* Maintain 16:9 ratio */
-    overflow: hidden;
-    border-bottom: 1px solid #ddd;
-    display: flex; /* Ensure child elements align properly */
-    justify-content: center;
-    align-items: center;
+/* YouTube Thumbnail - Corrected Aspect Ratio */
+.youtube-thumbnail-container img {
+    width: 100%; /* Full card width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Adjust image to fit without cropping */
+    display: block; /* Prevent extra spacing or inline element issues */
+    border: none; /* Ensure no border around the image */
 }
 
+/* Remove Unnecessary Scaling */
+.youtube-thumbnail-container img {
+    transform: none; /* Reset any scaling applied */
+    transition: none; /* Remove hover zooming on image itself */
+}
+
+/* Play Button Overlay (Remains Same) */
 #portfolio .youtube-thumbnail-container .play-button-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/120px-YouTube_full-color_icon_%282024%29.svg.png') no-repeat center;
-    background-size: contain; /* Ensure button scales correctly */
+    background-size: contain;
     width: 60px;
     height: 60px;
     z-index: 2;
-    cursor: pointer; /* Pointer cursor for hover */
+    cursor: pointer;
     transition: transform 0.2s ease;
 }
 
 .youtube-thumbnail-container:hover .play-button-overlay {
-    transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* Card Titles */
