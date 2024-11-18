@@ -69,17 +69,14 @@
                 <h3>Latest Podcast Episode</h3>
                 <p>Check out the latest episode from Nutmegged Podcast.</p>
             </div>
-            <!-- Example Card 3 -->
-            <div class="item">
-                <img src="https://picsum.photos/300/200?random=2" alt="Project 2">
-                <h3>Creating a lean design system</h3>
-                <p>Design system</p>
-            </div>
-            <!-- Example Card 4 -->
-            <div class="item">
-                <img src="https://picsum.photos/300/200?random=3" alt="Project 3">
-                <h3>Interior design news feed</h3>
-                <p>Side project</p>
+            <!-- Third Card: Latest Storytime Video -->
+            <div class="item youtube-card storytime-card">
+                <div class="youtube-thumbnail-container" id="storytime-container">
+                    <img id="storytime-thumbnail" src="https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg" alt="Storytime Thumbnail">
+                    <div class="play-button-overlay"></div>
+                </div>
+                <h3 id="storytime-title">Storytime Video</h3>
+                <p>Latest Storytime Video</p>
             </div>
         </div>
     </section>
@@ -106,8 +103,8 @@
         const API_KEY = 'AIzaSyCXo9sraIhRIqdObB8FS9kqTMvcVEcCXmY';
         const YOUTUBE_CHANNEL_ID = 'UCgp9-baYOYgKONAlfDOaVBQ';
         const PODCAST_PLAYLIST_ID = 'PLn0E04ztucTwqL5cLDPvBuM-82QLbh3d5';
+        const STORYTIME_CHANNEL_ID = 'UCAlQN8uoZfv7FChxFDhjq2g';
 
-        // Load latest YouTube video
         async function fetchLatestVideo() {
             try {
                 const response = await fetch(
@@ -132,7 +129,6 @@
             }
         }
 
-        // Load latest podcast video
         async function fetchLatestPodcast() {
             try {
                 const response = await fetch(
@@ -153,8 +149,35 @@
             }
         }
 
+        async function fetchLatestStorytime() {
+            try {
+                const response = await fetch(
+                    `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${STORYTIME_CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=1`
+                );
+                const data = await response.json();
+                if (data.items && data.items.length > 0) {
+                    const video = data.items[0];
+                    const videoId = video.id.videoId;
+                    const videoTitle = video.snippet.title;
+                    const storytimeThumbnail = document.getElementById('storytime-thumbnail');
+                    const storytimeTitle = document.getElementById('storytime-title');
+
+                    storytimeThumbnail.src = video.snippet.thumbnails.high.url;
+                    storytimeTitle.textContent = videoTitle;
+
+                    const container = document.getElementById('storytime-container');
+                    container.addEventListener('click', () => {
+                        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching Storytime video:', error);
+            }
+        }
+
         fetchLatestVideo();
         fetchLatestPodcast();
+        fetchLatestStorytime();
     </script>
 </body>
 </html>
