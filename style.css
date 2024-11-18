@@ -183,54 +183,36 @@ body, h1, h2, p, span, a {
 }
 
 /* YouTube Thumbnail - 16:9 Aspect Ratio */
-.item iframe, 
-.item img {
-    width: 100%; /* Full card width */
-    aspect-ratio: 16/9; /* Maintain 16:9 aspect ratio */
-    border-bottom: 1px solid #ddd; /* Divider between thumbnail and text */
-    object-fit: cover; /* Ensure proper scaling */
-    background-color: transparent; /* Remove black background if present */
+.youtube-thumbnail-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9; /* Maintain 16:9 ratio */
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Card Titles */
-.youtube-card h3, 
-.podcast-card h3, 
-.storytime-card h3 {
-    font-family: 'Montserrat', sans-serif; /* Consistent font */
-    font-size: 1.2rem; /* Title size */
-    font-weight: 600; /* Slightly bold */
-    margin: 10px 5px; /* Adjust title position */
-    color: #333; /* Ensure good contrast */
-    text-align: center; /* Center-align the text */
-}
-
-/* Card Descriptions */
-.youtube-card p, 
-.podcast-card p, 
-.storytime-card p {
-    font-family: 'Montserrat', sans-serif; /* Consistent font */
-    font-size: 0.9rem;
-    color: #666;
-    padding: 0 10px 10px;
-}
-
-/* Scoped Play Button Overlay */
-.youtube-thumbnail-container .play-button-overlay {
+/* Custom Play Button Overlay (Scoped) */
+#portfolio .youtube-thumbnail-container .play-button-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/120px-YouTube_full-color_icon_%282024%29.svg.png') no-repeat center;
-    background-size: contain; /* Ensure button scales correctly */
+    background-size: contain;
     width: 60px;
     height: 60px;
-    z-index: 2; /* Ensure it appears above other elements */
-    cursor: pointer; /* Pointer cursor for hover */
+    z-index: 2;
+    cursor: pointer;
     transition: transform 0.2s ease;
 }
 
 .youtube-thumbnail-container:hover .play-button-overlay {
     transform: translate(-50%, -50%) scale(1.1); /* Slight zoom on hover */
+}
+
+/* Hide play button in unintended areas */
+.hero-split .play-button-overlay {
+    display: none !important;
 }
 
 /* Footer Section */
