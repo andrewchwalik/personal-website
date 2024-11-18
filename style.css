@@ -197,7 +197,7 @@ body, h1, h2, p, span, a {
     transition: none; /* Remove hover zooming on image itself */
 }
 
-/* Play Button Overlay (Remains Same) */
+/* Scoped YouTube Play Button */
 #portfolio .youtube-thumbnail-container .play-button-overlay {
     position: absolute;
     top: 50%;
@@ -212,8 +212,15 @@ body, h1, h2, p, span, a {
     transition: transform 0.2s ease;
 }
 
-.youtube-thumbnail-container:hover .play-button-overlay {
+/* Scoped Hover Effect for Play Button */
+#portfolio .youtube-thumbnail-container:hover .play-button-overlay {
     transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Prevent Play Button from Appearing Elsewhere */
+.hero-split .play-button-overlay,
+.nav-bar .play-button-overlay {
+    display: none !important;
 }
 
 /* Card Titles */
