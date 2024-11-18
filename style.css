@@ -192,22 +192,22 @@ body, h1, h2, p, span, a {
     background-color: transparent; /* Remove black background if present */
 }
 
+/* Storytime Card Title Styling */
+.storytime-title {
+    margin: 10px 15px; /* Add padding to prevent title from touching edges */
+    text-align: center; /* Center-align the text */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333; /* Ensure good contrast */
+}
+
 /* Card Titles */
 .item h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
     font-weight: 600; /* Slightly bold */
     margin: 10px 0;
-    color: #333;
-}
-
-/* Adjust title for the third card */
-.storytime-title {
-    margin: 10px 15px; /* Add padding to prevent the text from touching the edges */
-    text-align: center; /* Ensure the title remains centered */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
     color: #333;
 }
 
