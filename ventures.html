@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventures</title>
     <link rel="stylesheet" href="style.css"> <!-- Use the existing CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"> <!-- For icons -->
 </head>
 <body>
+    <!-- Navigation Bar -->
     <div class="nav-bar">
         <div class="nav-items">
             <a href="index.html">home.</a>
@@ -14,13 +16,57 @@
             <a href="ventures.html" class="active">ventures.</a>
             <a href="vlogs.html">vlogs.</a>
         </div>
+        <div class="nav-icons">
+            <a href="https://www.youtube.com/channel/UCgp9-baYOYgKONAlfDOaVBQ" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/andrewchwalik/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
     </div>
-    <section>
-        <h1>Ventures</h1>
-        <p>Welcome to the ventures page. Here you'll find details about my latest business ventures!</p>
+
+    <!-- Hero Section -->
+    <div class="hero-split">
+        <div class="left-overlay">
+            <h1>ANDREW</h1>
+            <p class="subtext">Content Creator & Small Business Owner</p>
+        </div>
+        <div class="right-overlay">
+            <h1>CHWALIK</h1>
+            <p class="subtext">Soccer Coach & Podcaster</p>
+        </div>
+    </div>
+
+    <!-- Ventures Content Section -->
+    <section id="ventures">
+        <h2 class="portfolio-title">
+            <span class="line"></span>
+            my ventures
+            <span class="line"></span>
+        </h2>
+        <div class="portfolio-items">
+            <!-- Add content here -->
+            <p>Welcome to the ventures page! Add details about your business ventures here.</p>
+        </div>
     </section>
-    <footer>
-        <p>&copy; 2024 Andrew Chwalik</p>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-hump">
+            <a href="#home" class="footer-arrow">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+        </div>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="index.html">home.</a>
+                <a href="about.html">about.</a>
+                <a href="ventures.html">ventures.</a>
+                <a href="vlogs.html">vlogs.</a>
+            </div>
+            <p class="footer-copyright">© 2024 Andrew Chwalik.</p>
+        </div>
     </footer>
 </body>
 </html>
