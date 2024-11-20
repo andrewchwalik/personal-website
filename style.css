@@ -22,16 +22,18 @@ body, h1, h2, p, span, a {
 }
 
 /* Navigation Items Alignment */
-.nav-items {
-    position: absolute;
-    left: 160px; /* Adjust this value to line up with "ANDREW" */
-    display: flex;
-    gap: 20px;
+.nav-items a {
+    color: white; /* Keep navigation links white */
+    text-decoration: none; /* Remove underline */
     font-size: 1.2rem;
-    font-family: 'Montserrat', sans-serif; /* Set font to Montserrat */
+    font-family: 'Montserrat', sans-serif;
     font-weight: 100; /* Ensure Montserrat Thin is applied */
     text-transform: lowercase;
-    color: white;
+    margin: 0 10px; /* Space between navigation links */
+}
+
+.nav-items a:hover {
+    color: #f7b42c; /* Optional hover effect in yellow */
 }
 
 .nav-icons {
@@ -50,6 +52,7 @@ body, h1, h2, p, span, a {
 .nav-icons a:hover {
     color: #f7b42c; /* Optional hover effect in yellow */
 }
+
 
 /* Hero Split Section */
 .hero-split {
@@ -294,14 +297,12 @@ footer.footer {
     height: 100%;
 }
 
-/* Hover Effect for Hump */
 .footer-hump:hover {
     top: -35px; /* Subtle upward motion for hover */
     height: 35px; /* Slight height extension */
     border-radius: 35px 35px 0 0; /* Adjust curve for hover */
 }
 
-/* Footer Container */
 .footer-container {
     display: flex;
     justify-content: space-between;
@@ -312,19 +313,13 @@ footer.footer {
 }
 
 /* Footer Links */
-.footer-links {
-    display: flex;
-    gap: 20px; /* Space between the links */
+.footer-links a {
+    color: #4a4a4a; /* Dark grey for links */
+    text-decoration: none;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 100; /* Montserrat Thin */
     text-transform: lowercase;
-}
-
-.footer-links a {
-    color: #4a4a4a; /* Dark grey for links */
-    text-decoration: none;
-    transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
