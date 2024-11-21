@@ -336,3 +336,55 @@ footer.footer {
     text-transform: lowercase;
     color: #4a4a4a;
 }
+
+/* Ventures Page Styles */
+body {
+    background-color: #f9f9f9; /* Light white background */
+}
+
+.ventures-container {
+    max-width: 900px; /* Constrain content width */
+    margin: 0 auto; /* Center content */
+    padding: 40px 20px; /* Space around content */
+}
+
+.ventures-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 800; /* Bold title */
+    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.venture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px; /* Spacing between ventures */
+    text-align: center;
+}
+
+.venture-logo {
+    width: 60px; /* Small logo size */
+    height: 60px;
+    margin-bottom: 20px; /* Space below the logo */
+}
+
+.venture-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600; /* Bold subtitle */
+    color: #333;
+    margin-bottom: 10px; /* Space below subtitle */
+}
+
+.venture-description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 400; /* Regular weight for description */
+    color: #666;
+    line-height: 1.6; /* Better readability */
+    max-width: 600px; /* Limit description width */
+    margin: 0 auto; /* Center-align descriptions */
+}
