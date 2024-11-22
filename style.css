@@ -375,9 +375,9 @@ footer.footer {
 }
 
 .venture-logo {
-    width: 80px;
-    height: auto;
-    margin-bottom: 15px;
+    width: 100px; /* Increase the width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 15px; /* Keep the space below the logo consistent */
 }
 
 .venture-subtitle {
