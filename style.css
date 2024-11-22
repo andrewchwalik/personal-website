@@ -344,6 +344,15 @@ footer.footer {
     padding: 20px;
 }
 
+/* Specific styling for navigation titles on the ventures page */
+.ventures-container .nav-items a {
+    color: #4a4a4a; /* Match the grey color of the icons */
+}
+
+.ventures-container .nav-items a:hover {
+    color: red; /* Optional hover effect in yellow */
+}
+
 .ventures-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
