@@ -337,54 +337,60 @@ footer.footer {
     color: #4a4a4a;
 }
 
-/* Ventures Page Styles */
-body {
-    background-color: #f9f9f9; /* Light white background */
-}
-
+/* Ventures Page */
 .ventures-container {
-    max-width: 900px; /* Constrain content width */
-    margin: 0 auto; /* Center content */
-    padding: 40px 20px; /* Space around content */
+    max-width: 1200px;
+    margin: 50px auto; /* Center the container with space at the top */
+    padding: 20px;
 }
 
 .ventures-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    font-weight: 800; /* Bold title */
+    font-size: 2.5rem;
+    font-weight: 800;
     color: #333;
     text-align: center;
     margin-bottom: 40px;
 }
 
+.ventures-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 30px; /* Space between the cards */
+}
+
 .venture {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 40px; /* Spacing between ventures */
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
     text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.venture:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .venture-logo {
-    width: 60px; /* Small logo size */
-    height: 60px;
-    margin-bottom: 20px; /* Space below the logo */
+    width: 80px;
+    height: auto;
+    margin-bottom: 15px;
 }
 
 .venture-subtitle {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5rem;
-    font-weight: 600; /* Bold subtitle */
+    font-weight: 600;
     color: #333;
-    margin-bottom: 10px; /* Space below subtitle */
+    margin-bottom: 10px;
 }
 
 .venture-description {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
-    font-weight: 400; /* Regular weight for description */
     color: #666;
-    line-height: 1.6; /* Better readability */
-    max-width: 600px; /* Limit description width */
-    margin: 0 auto; /* Center-align descriptions */
+    line-height: 1.6;
 }
