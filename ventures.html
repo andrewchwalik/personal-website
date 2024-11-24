@@ -15,6 +15,55 @@
         .ventures-title {
             margin-top: 60px; /* Add more space above the title */
         }
+
+        /* Adjust cards to match portfolio style */
+        .ventures-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .venture {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            overflow: hidden;
+            max-width: 320px;
+            width: 100%; /* Responsive width */
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 20px; /* Add padding inside the card */
+        }
+
+        .venture:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Hover effect */
+        }
+
+        .venture-logo {
+            width: 80px; /* Adjust logo size */
+            height: auto;
+            margin-bottom: 15px; /* Space below the logo */
+        }
+
+        .venture-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 10px 15px;
+            color: #333;
+            text-align: center;
+        }
+
+        .venture-description {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #666;
+            padding: 0 10px;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -42,42 +91,42 @@
         <div class="ventures-grid">
             <div class="venture">
                 <img src="img/bluebird-logo.png" alt="Bluebird Logo" class="venture-logo">
-                <h2 class="venture-subtitle">Bluebird</h2>
+                <h3 class="venture-subtitle">Bluebird</h3>
                 <p class="venture-description">
                     Bluebird is a sandwich shop located on the shores of Lake Erie offering handmade paninis, salads, frozen yogurt, and other treats.
                 </p>
             </div>
             <div class="venture">
                 <img src="img/wash-company-logo.png" alt="Lakeside Logo" class="venture-logo">
-                <h2 class="venture-subtitle">Lakeside Laundromat</h2>
+                <h3 class="venture-subtitle">Lakeside Laundromat</h3>
                 <p class="venture-description">
                     Lakeside Laundromat is a residential and commercial laundromat located on the shores of Lake Erie offering various-sized washers and dryers for residents as well as commercial wash, dry, iron, and fold service for local businesses.
                 </p>
             </div>
             <div class="venture">
                 <img src="img/delaware-rising-logo.png" alt="Delaware Rising Logo" class="venture-logo">
-                <h2 class="venture-subtitle">Delaware Rising</h2>
+                <h3 class="venture-subtitle">Delaware Rising</h3>
                 <p class="venture-description">
                     Delaware Rising is a soccer club uniting our community through soccer, providing playing opportunities for all, and advancing the beautiful game in Delaware County, the state of Ohio, and the United States.
                 </p>
             </div>
             <div class="venture">
                 <img src="img/topped-logo.png" alt="Topped Logo" class="venture-logo">
-                <h2 class="venture-subtitle">Topped</h2>
+                <h3 class="venture-subtitle">Topped</h3>
                 <p class="venture-description">
                     Topped was an ice cream shop offering the finest hand-dipped ice cream, topped with all the sweets your heart desires.
                 </p>
             </div>
             <div class="venture">
                 <img src="img/nutmegged-logo.png" alt="Nutmegged Logo" class="venture-logo">
-                <h2 class="venture-subtitle">Nutmegged</h2>
+                <h3 class="venture-subtitle">Nutmegged</h3>
                 <p class="venture-description">
                     Nutmegged is a soccer podcast hosted by an American and Brit that breaks down the beautiful game's current events and trending topics.
                 </p>
             </div>
             <div class="venture">
                 <img src="img/storytime-logo.png" alt="Storytime Logo" class="venture-logo">
-                <h2 class="venture-subtitle">Storytime</h2>
+                <h3 class="venture-subtitle">Storytime</h3>
                 <p class="venture-description">
                     Storytime is a storytelling company that helps people tell the stories of their weddings, events, and beyond.
                 </p>
