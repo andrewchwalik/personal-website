@@ -350,7 +350,7 @@ footer.footer {
 }
 
 .ventures-container .nav-items a:hover {
-    color: red; /* Optional hover effect in yellow */
+    color: red; /* Optional hover effect in red */
 }
 
 .ventures-title {
@@ -363,44 +363,62 @@ footer.footer {
     margin-bottom: 40px;
 }
 
+/* Grid for Ventures Cards */
 .ventures-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 30px; /* Space between the cards */
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping of cards */
+    gap: 20px; /* Space between the cards */
+    justify-content: center; /* Center the cards in the container */
 }
 
+/* Individual Venture Card */
 .venture {
     background: white;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 20px;
+    overflow: hidden;
+    max-width: 320px; /* Match the size of portfolio cards */
+    width: 100%;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 20px 15px; /* Adjust padding to match portfolio style */
 }
 
+/* Hover Effect for Cards */
 .venture:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Venture Logo */
 .venture-logo {
-    width: 100px; /* Increase the width */
+    width: 80px; /* Adjust the size of the logo */
     height: auto; /* Maintain aspect ratio */
-    margin-bottom: 15px; /* Keep the space below the logo consistent */
+    margin-bottom: 15px; /* Space below the logo */
 }
 
+/* Venture Subtitle */
 .venture-subtitle {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Match portfolio card title size */
     font-weight: 600;
+    margin: 10px 15px; /* Add padding around the title */
     color: #333;
-    margin-bottom: 10px;
+    text-align: center;
+    display: -webkit-box; /* Limit title to 2 lines */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+/* Venture Description */
 .venture-description {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #666;
     line-height: 1.6;
+    padding: 0 10px;
+    text-align: center;
 }
