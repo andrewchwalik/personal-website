@@ -345,12 +345,12 @@ footer.footer {
 }
 
 /* Specific styling for navigation titles on the ventures page */
-.ventures-container .nav-items a {
+.nav-items a {
     color: #4a4a4a; /* Match the grey color of the icons */
 }
 
-.ventures-container .nav-items a:hover {
-    color: red; /* Optional hover effect in red */
+.nav-items a:hover {
+    color: red; /* Change hover effect to red */
 }
 
 .ventures-title {
