@@ -24,7 +24,6 @@ body, h1, h2, p, span, a {
 
 /* Navigation Items Alignment */
 .nav-items a {
-    color: white; /* Keep navigation links white */
     text-decoration: none; /* Remove underline */
     font-size: 1.2rem;
     font-family: 'Montserrat', sans-serif;
@@ -33,8 +32,22 @@ body, h1, h2, p, span, a {
     margin: 0 10px; /* Space between navigation links */
 }
 
-.nav-items a:hover {
-    color: red; /* Change hover color to red */
+/* Navigation Link Colors for Home Page */
+body:not(.ventures-page) .nav-items a {
+    color: white; /* White links for all pages except Ventures */
+}
+
+body:not(.ventures-page) .nav-items a:hover {
+    color: red; /* Hover effect in red */
+}
+
+/* Navigation Link Colors for Ventures Page */
+body.ventures-page .nav-items a {
+    color: #4a4a4a; /* Grey links for Ventures */
+}
+
+body.ventures-page .nav-items a:hover {
+    color: red; /* Hover effect in red */
 }
 
 .nav-icons {
@@ -53,7 +66,6 @@ body, h1, h2, p, span, a {
 .nav-icons a:hover {
     color: red; /* Optional hover effect in red */
 }
-
 
 /* Hero Split Section */
 .hero-split {
@@ -132,6 +144,17 @@ body, h1, h2, p, span, a {
     transform: translateX(-57%) translateY(0); /* Ensure no vertical shift */
     height: 78%; /* Maintain proportions */
     z-index: 3;
+}
+
+/* Footer Section */
+footer.footer {
+    background: white;
+    color: #4a4a4a; /* Match the dark grey color */
+    border-top: 1px solid #ddd; /* Light grey top line for separation */
+    position: relative;
+    padding: 30px 0; /* Reduced height of the footer */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow on the footer to appear lower */
+    overflow: visible; /* Ensure nothing gets clipped */
 }
 
 /* Portfolio Section */
