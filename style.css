@@ -479,7 +479,7 @@ body.links-page {
     position: relative;
     height: 168px;
     background:
-        url('img/links-header-image.jpg') center / cover no-repeat,
+        url('img/links-header-image.png') center top / cover no-repeat,
         linear-gradient(135deg, rgba(112, 118, 245, 0.92), rgba(118, 225, 214, 0.7)),
         linear-gradient(180deg, #7a78ff 0%, #97c4ff 100%);
 }
@@ -498,12 +498,24 @@ body.links-page {
 .links-page .links-header-placeholder {
     position: absolute;
     inset: 0;
-    opacity: 0.85;
+    opacity: 0.18;
     background:
         radial-gradient(circle at 16% 24%, rgba(255, 255, 255, 0.35) 0 12px, transparent 13px),
         radial-gradient(circle at 84% 28%, rgba(255, 221, 126, 0.45) 0 16px, transparent 17px),
         radial-gradient(circle at 70% 72%, rgba(255, 160, 201, 0.45) 0 20px, transparent 21px),
         linear-gradient(120deg, transparent 0 28%, rgba(255, 255, 255, 0.22) 28% 32%, transparent 32% 100%);
+    pointer-events: none;
+}
+
+.links-page .links-header-ball {
+    position: absolute;
+    right: 18px;
+    bottom: -24px;
+    z-index: 2;
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 22px rgba(37, 29, 79, 0.22));
 }
 
 .links-page .links-profile-wrap {
