@@ -24,7 +24,6 @@ body, h1, h2, p, span, a {
 
 /* Navigation Items Alignment */
 .nav-items a {
-    color: white; /* Keep navigation links white */
     text-decoration: none; /* Remove underline */
     font-size: 1.2rem;
     font-family: 'Montserrat', sans-serif;
@@ -33,8 +32,22 @@ body, h1, h2, p, span, a {
     margin: 0 10px; /* Space between navigation links */
 }
 
-.nav-items a:hover {
-    color: red; /* Change hover color to red */
+/* Navigation Link Colors for Home Page */
+body:not(.ventures-page) .nav-items a {
+    color: white; /* White links for all pages except Ventures */
+}
+
+body:not(.ventures-page) .nav-items a:hover {
+    color: red; /* Hover effect in red */
+}
+
+/* Navigation Link Colors for Ventures Page */
+body.ventures-page .nav-items a {
+    color: #4a4a4a; /* Grey links for Ventures */
+}
+
+body.ventures-page .nav-items a:hover {
+    color: red; /* Hover effect in red */
 }
 
 .nav-icons {
@@ -53,7 +66,6 @@ body, h1, h2, p, span, a {
 .nav-icons a:hover {
     color: red; /* Optional hover effect in red */
 }
-
 
 /* Hero Split Section */
 .hero-split {
@@ -132,6 +144,17 @@ body, h1, h2, p, span, a {
     transform: translateX(-57%) translateY(0); /* Ensure no vertical shift */
     height: 78%; /* Maintain proportions */
     z-index: 3;
+}
+
+/* Footer Section */
+footer.footer {
+    background: white;
+    color: #4a4a4a; /* Match the dark grey color */
+    border-top: 1px solid #ddd; /* Light grey top line for separation */
+    position: relative;
+    padding: 30px 0; /* Reduced height of the footer */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow on the footer to appear lower */
+    overflow: visible; /* Ensure nothing gets clipped */
 }
 
 /* Portfolio Section */
@@ -337,56 +360,90 @@ footer.footer {
     color: #4a4a4a;
 }
 
-/* Ventures Page Styles */
-body {
-    background-color: #f9f9f9; /* Light white background */
+/* Ventures Page */
+.ventures-container {
+    max-width: 1200px;
+    margin: 50px auto; /* Center the container with space at the top */
+    padding: 20px;
 }
 
-.ventures-container {
-    max-width: 900px; /* Constrain content width */
-    margin: 0 auto; /* Center content */
-    padding: 40px 20px; /* Space around content */
+/* Specific styling for navigation titles on the ventures page */
+.nav-items a {
+    color: #4a4a4a; /* Match the grey color of the icons */
+}
+
+.nav-items a:hover {
+    color: red; /* Change hover effect to red */
 }
 
 .ventures-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    font-weight: 800; /* Bold title */
+    font-size: 2.5rem;
+    font-weight: 800;
     color: #333;
     text-align: center;
+    margin-top: 60px; /* Increase top margin for more space */
     margin-bottom: 40px;
 }
 
-.venture {
+/* Grid for Ventures Cards */
+.ventures-grid {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 40px; /* Spacing between ventures */
+    flex-wrap: wrap; /* Allow wrapping of cards */
+    gap: 20px; /* Space between the cards */
+    justify-content: center; /* Center the cards in the container */
+}
+
+/* Individual Venture Card */
+.venture {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden;
+    max-width: 320px; /* Match the size of portfolio cards */
+    width: 100%;
     text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 20px 15px; /* Adjust padding to match portfolio style */
 }
 
+/* Hover Effect for Cards */
+.venture:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Venture Logo */
 .venture-logo {
-    width: 60px; /* Small logo size */
-    height: 60px;
-    margin-bottom: 20px; /* Space below the logo */
+    width: 80px; /* Adjust the size of the logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 15px; /* Space below the logo */
 }
 
+/* Venture Subtitle */
 .venture-subtitle {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600; /* Bold subtitle */
+    font-size: 1.2rem; /* Match portfolio card title size */
+    font-weight: 600;
+    margin: 10px 15px; /* Add padding around the title */
     color: #333;
-    margin-bottom: 10px; /* Space below subtitle */
+    text-align: center;
+    display: -webkit-box; /* Limit title to 2 lines */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+/* Venture Description */
 .venture-description {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 400; /* Regular weight for description */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
     color: #666;
-    line-height: 1.6; /* Better readability */
-    max-width: 600px; /* Limit description width */
-    margin: 0 auto; /* Center-align descriptions */
+    line-height: 1.6;
+    padding: 0 10px;
+    text-align: center;
 }
 
 /* Links page */
