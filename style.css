@@ -467,48 +467,26 @@ body.links-page {
     width: 100%;
     min-height: 100vh;
     background: rgba(255, 255, 255, 0.82);
-    overflow: hidden;
 }
 
 .links-page .links-header-art {
     position: relative;
-    height: 196px;
-    background:
-        url('img/links-header-image.png') center top / cover no-repeat,
-        linear-gradient(135deg, rgba(112, 118, 245, 0.92), rgba(118, 225, 214, 0.7)),
-        linear-gradient(180deg, #7a78ff 0%, #97c4ff 100%);
+    line-height: 0;
 }
 
-.links-page .links-header-art::after {
-    content: "";
-    position: absolute;
-    left: -10%;
-    right: -10%;
-    bottom: -82px;
-    height: 164px;
-    background: rgba(255, 255, 255, 0.98);
-    border-radius: 0 0 50% 50%;
-}
-
-.links-page .links-header-placeholder {
-    position: absolute;
-    inset: 0;
-    opacity: 0.18;
-    background:
-        radial-gradient(circle at 16% 24%, rgba(255, 255, 255, 0.35) 0 12px, transparent 13px),
-        radial-gradient(circle at 84% 28%, rgba(255, 221, 126, 0.45) 0 16px, transparent 17px),
-        radial-gradient(circle at 70% 72%, rgba(255, 160, 201, 0.45) 0 20px, transparent 21px),
-        linear-gradient(120deg, transparent 0 28%, rgba(255, 255, 255, 0.22) 28% 32%, transparent 32% 100%);
-    pointer-events: none;
+.links-page .links-header-image {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .links-page .links-header-ball {
     position: absolute;
     right: 18px;
-    bottom: -24px;
+    bottom: 6px;
     z-index: 2;
-    width: 88px;
-    height: 88px;
+    width: 58px;
+    height: 58px;
     object-fit: contain;
     filter: drop-shadow(0 10px 22px rgba(37, 29, 79, 0.22));
 }
@@ -518,7 +496,7 @@ body.links-page {
     z-index: 1;
     display: flex;
     justify-content: center;
-    margin-top: -58px;
+    margin-top: -42px;
 }
 
 .links-page .links-profile-image {
