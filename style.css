@@ -496,7 +496,7 @@ body.links-page {
     z-index: 1;
     display: flex;
     justify-content: center;
-    margin-top: -58px;
+    margin-top: -68px;
 }
 
 .links-page .links-profile-image {
@@ -517,9 +517,9 @@ body.links-page {
 }
 
 .links-page .links-eyebrow {
-    font-size: 0.72rem;
+    font-size: 0.64rem;
     font-weight: 500;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #6670a8;
 }
