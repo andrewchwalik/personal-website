@@ -52,7 +52,7 @@ body.ventures-page .nav-items a:hover {
 
 .nav-icons {
     position: absolute;
-    right: 160px; /* Keep the alignment with "CHWALIK" */
+    right: 24px;
     display: flex;
     gap: 15px; /* Maintain proper spacing between icons */
     font-size: 1.5rem;
@@ -276,32 +276,26 @@ footer.footer {
 /* About Section */
 .about-section {
     background: #ffffff;
-    padding: 70px 20px 80px;
+    padding: 64px 20px 80px;
 }
 
 .about-wrap {
-    max-width: 860px;
+    max-width: 980px;
     margin: 0 auto;
-    padding: 38px 34px;
-    border: 1px solid #e6e6e6;
-    border-radius: 16px;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    padding: 0 6px;
 }
 
-.about-wrap h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.1rem;
-    font-weight: 800;
-    color: #222;
-    margin-bottom: 18px;
+.about-wrap .portfolio-title {
+    margin-bottom: 26px;
 }
 
 .about-wrap p {
     font-family: 'Open Sans', Arial, sans-serif;
-    font-size: 1.03rem;
-    line-height: 1.75;
+    font-size: 1.02rem;
+    line-height: 1.78;
     color: #4d4d4d;
     margin-bottom: 16px;
+    max-width: 860px;
 }
 
 .about-wrap p:last-child {
@@ -662,13 +656,7 @@ footer.footer {
     }
 
     .about-wrap {
-        border-radius: 12px;
-        padding: 24px 18px;
-    }
-
-    .about-wrap h2 {
-        font-size: 1.55rem;
-        margin-bottom: 14px;
+        padding: 0;
     }
 
     .about-wrap p {
