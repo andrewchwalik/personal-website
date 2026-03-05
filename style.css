@@ -20,6 +20,7 @@ body, h1, h2, p, span, a {
     left: 0;
     z-index: 1000;
     padding-left: 20px; /* Add some space from the left edge */
+    box-sizing: border-box;
 }
 
 /* Navigation Items Alignment */
@@ -498,7 +499,8 @@ footer.footer {
         backdrop-filter: blur(6px);
         border-bottom: 1px solid rgba(74, 74, 74, 0.12);
         gap: 10px;
-        overflow: hidden;
+        overflow: clip;
+        box-sizing: border-box;
     }
 
     .nav-items {
@@ -507,6 +509,7 @@ footer.footer {
         gap: 11px;
         flex: 1;
         min-width: 0;
+        max-width: calc(100% - 60px);
         overflow-x: auto;
         white-space: nowrap;
         scrollbar-width: none;
@@ -535,13 +538,15 @@ footer.footer {
         right: auto !important;
         left: auto !important;
         gap: 8px;
-        font-size: 1.05rem;
+        font-size: 1rem;
         margin-left: 0;
-        flex-shrink: 0;
+        flex: 0 0 50px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        padding-right: 2px;
+        padding-right: 0;
+        width: 50px;
+        min-width: 50px;
     }
 
     .nav-icons a {
