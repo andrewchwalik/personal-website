@@ -28,7 +28,7 @@ body, h1, h2, p, span, a {
     text-decoration: none; /* Remove underline */
     font-size: 1.2rem;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 100; /* Ensure Montserrat Thin is applied */
+    font-weight: 300;
     text-transform: lowercase;
     margin: 0 10px; /* Space between navigation links */
 }
@@ -292,7 +292,7 @@ footer.footer {
 
 .about-wrap p {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 1.02rem;
     line-height: 1.78;
     color: #4d4d4d;
