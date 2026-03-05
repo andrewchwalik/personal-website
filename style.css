@@ -290,7 +290,8 @@ footer.footer {
 }
 
 .about-wrap p {
-    font-family: 'Open Sans', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
     font-size: 1.02rem;
     line-height: 1.78;
     color: #4d4d4d;
@@ -303,14 +304,14 @@ footer.footer {
 }
 
 .about-wrap a {
-    color: #1f4b9f;
+    color: #c61e1e;
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 2px;
 }
 
 .about-wrap a:hover {
-    color: #0f3270;
+    color: #9e1414;
 }
 
 /* General Styles for Smooth Scrolling */
@@ -392,7 +393,7 @@ footer.footer {
 
 /* Copyright Text */
 .footer-copyright {
-    font-size: 1rem;
+    font-size: 0.82rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 100; /* Montserrat Thin */
     text-align: right;
