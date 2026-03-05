@@ -273,6 +273,52 @@ footer.footer {
     padding: 0 10px 10px;
 }
 
+/* About Section */
+.about-section {
+    background: #ffffff;
+    padding: 70px 20px 80px;
+}
+
+.about-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 38px 34px;
+    border: 1px solid #e6e6e6;
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+.about-wrap h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 18px;
+}
+
+.about-wrap p {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 1.03rem;
+    line-height: 1.75;
+    color: #4d4d4d;
+    margin-bottom: 16px;
+}
+
+.about-wrap p:last-child {
+    margin-bottom: 0;
+}
+
+.about-wrap a {
+    color: #1f4b9f;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.about-wrap a:hover {
+    color: #0f3270;
+}
+
 /* General Styles for Smooth Scrolling */
 html {
     scroll-behavior: smooth; /* Enables smooth scrolling to anchors */
@@ -606,6 +652,26 @@ footer.footer {
 
     #portfolio {
         padding: 40px 14px 70px;
+    }
+
+    .about-section {
+        padding: 48px 14px 56px;
+    }
+
+    .about-wrap {
+        border-radius: 12px;
+        padding: 24px 18px;
+    }
+
+    .about-wrap h2 {
+        font-size: 1.55rem;
+        margin-bottom: 14px;
+    }
+
+    .about-wrap p {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        margin-bottom: 14px;
     }
 
     .item h3 {
