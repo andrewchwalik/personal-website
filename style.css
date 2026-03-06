@@ -305,14 +305,34 @@ footer.footer {
 }
 
 .about-wrap a {
+    font-family: 'Montserrat', sans-serif;
     color: #c61e1e;
-    font-weight: 500;
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .about-wrap a:hover {
     color: #9e1414;
+}
+
+.about-wrap .about-cta {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: #c61e1e;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.about-wrap .about-cta:hover {
+    color: #ffffff;
+    background: #a51616;
 }
 
 /* General Styles for Smooth Scrolling */
