@@ -1,0 +1,81 @@
+/* The square world keeps terrain and interactive stops in the same coordinate system. */
+body .world {
+  border: 5px solid #2c655d;
+  border-radius: 8px;
+  box-shadow: 0 8px 0 #1d4944, 0 16px 30px #244d4520;
+}
+body .map-toolbar {
+  background: #294f49;
+  color: #fff4c5;
+  padding: 18px 22px;
+  font-weight: bold;
+}
+body .map-toolbar .muted { color: #b1d4b5; }
+body .map-status { color: #dbed93; }
+body .map-stage { aspect-ratio: 1000 / 800; background: #67bdcf; }
+body .landscape { object-fit: contain; }
+body .player { left: 22%; top: 71.25%; width: 48px; height: 66px; filter: none; }
+body .level { min-width: 44px; min-height: 44px; }
+body .level-disc {
+  width: 44px;
+  height: 36px;
+  border-radius: 50%;
+  background: #72896a;
+  border: 3px solid #f4e0a1;
+  color: #f6f0c5;
+  box-shadow: 0 4px 0 #536a4e, 0 6px 8px #34452d30;
+}
+body .active .level-disc { background: #eab351; color: #463e2b; box-shadow: 0 4px 0 #b9803d, 0 6px 8px #34452d30; }
+body .level-label { border: 1px solid #f4ebcb; border-radius: 6px; background: #fff7dfef; top: 52px; box-shadow: 0 3px 8px #36563725; }
+body .level-state { top: 91px; }
+body .active .level-state { top: 88px; background: #294f49; }
+body .unknown { opacity: 1; }
+body .map-legend { background: #ecf0d8; color: #35584b; }
+@media (min-width: 701px) {
+  body .intro { padding-top: 34px; padding-bottom: 24px; }
+  body .world { max-width: 960px; margin-inline: auto; }
+}
+@media (max-width: 700px) {
+  body main { padding: 0; }
+  body .site-header { padding: 12px 16px; gap: 12px; }
+  body .site-header nav a { min-height: 44px; display: flex; align-items: center; font-size: 11px; }
+  body .site-header nav a:first-child { display: none; }
+  body .intro { padding: 24px 18px 20px; }
+  body .intro h1 { font-size: clamp(32px, 8.7vw, 46px); line-height: 1.09; letter-spacing: -1.5px; margin: 16px 0; }
+  body .intro .eyebrow { font-size: 9px; letter-spacing: 1px; }
+  body .intro > p:last-child { font-size: 14px; line-height: 1.6; padding: 0; }
+  body .map-stage { aspect-ratio: 1000 / 800; }
+  body .world { border-width: 0; border-radius: 0; box-shadow: none; }
+  body .map-toolbar { padding: 15px 16px; font-size: 10px; letter-spacing: .3px; }
+  body .player { width: 32px; height: 44px; }
+  body .level { width: 48px; height: 48px; touch-action: manipulation; }
+  body .level-disc { width: 34px; height: 29px; border-width: 2px; font-size: 13px; }
+  body .level-label {
+    top: 45px;
+    font-size: 11px;
+    line-height: 1.25;
+    padding: 5px 7px;
+    width: max-content;
+    max-width: 116px;
+    white-space: normal;
+    text-align: center;
+  }
+  /* Status belongs in the toolbar and detail panel, not tiny text over the map. */
+  body .level-state { display: none; }
+  body .unknown .level-label { min-width: 76px; max-width: 94px; }
+  body .map-legend { font-size: 11px; line-height: 1.5; padding: 13px 16px; gap: 6px 16px; }
+  body .chapter-panel { margin: 0 20px; padding: 28px 0; grid-template-columns: 1fr; gap: 0; }
+  body .chapter-number { display: none; }
+  body .chapter-copy .eyebrow { font-size: 10px; letter-spacing: 1px; }
+  body .chapter-copy h2 { font-size: 29px; line-height: 1.15; }
+  body .chapter-copy > p:not(.eyebrow) { font-size: 15px; line-height: 1.7; }
+  body .chapter-actions { display: grid; gap: 10px; margin-top: 20px; }
+  body .chapter-actions a { min-height: 48px; font-size: 14px; align-items: center; }
+  body .chapter-actions .button { padding: 15px 18px; }
+  body .chapter-actions .text-link { display: flex; justify-content: center; }
+  body .invitation { padding: 26px 20px; }
+  body .invitation p { font-size: 14px; }
+  body .invitation a { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; }
+  body footer { padding: 20px max(16px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); align-items: center; }
+  body footer > a { min-height: 44px; display: flex; align-items: center; }
+}

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800">
+<defs>
+  <linearGradient id="ocean" x2="0" y2="1"><stop stop-color="#246c80"/><stop offset="1" stop-color="#368fa0"/></linearGradient>
+  <linearGradient id="land" x2=".4" y2="1"><stop stop-color="#bedc78"/><stop offset="1" stop-color="#8fc965"/></linearGradient>
+  <linearGradient id="cliff" x2="1" y2=".3"><stop stop-color="#ca8253"/><stop offset=".5" stop-color="#b46b48"/><stop offset="1" stop-color="#985b42"/></linearGradient>
+  <linearGradient id="canopy" x2=".6" y2="1"><stop stop-color="#72b96c"/><stop offset=".65" stop-color="#48975d"/><stop offset="1" stop-color="#34794f"/></linearGradient>
+  <linearGradient id="roof" x2="0" y2="1"><stop stop-color="#c88a57"/><stop offset="1" stop-color="#8c573d"/></linearGradient>
+  <pattern id="waves" width="32" height="26" patternUnits="userSpaceOnUse"><path d="M4 12q6 7 12 0m0 0q6 7 12 0" fill="none" stroke="#b3e2d2" stroke-width="1.1" opacity=".14"/></pattern>
+  <pattern id="grass" width="38" height="32" patternUnits="userSpaceOnUse"><path d="m7 16-2-3m2 3 3-5m15 16-1-3m1 3 3-2" fill="none" stroke="#507d45" stroke-width="1" opacity=".22"/><circle cx="28" cy="8" r="1.2" fill="#def0a0" opacity=".5"/></pattern>
+  <pattern id="cliff-grain" width="33" height="32" patternUnits="userSpaceOnUse"><ellipse cx="12" cy="13" rx="2" ry="3.5" fill="#774a36" opacity=".15"/></pattern>
+  <path id="coast" d="M105 514Q72 474 103 429L156 388Q178 370 166 339L142 298Q125 255 163 228L237 203Q284 199 316 229L354 252Q382 268 410 242L452 207Q472 188 458 162L441 133Q427 93 471 77L555 62Q615 60 643 99L674 149Q688 179 719 188L792 205Q824 219 835 247L857 291Q867 312 896 333Q925 358 902 396L856 429Q824 447 836 478L852 513Q866 556 830 589L763 630Q723 654 674 629L622 605Q589 590 559 615L508 664Q483 691 438 682L379 664Q348 657 319 678L277 711Q239 732 187 704L128 674Q95 655 111 617L128 576Q137 545 105 514Z"/>
+  <clipPath id="landclip"><use href="#coast"/></clipPath>
+  <g id="tree">
+    <ellipse cx="6" cy="10" rx="20" ry="8" fill="#497447" opacity=".23"/>
+    <path d="M-4-12h8v22q-4 4-8 0z" fill="#94734a"/><path d="M-3-10h3v18" stroke="#c69859" stroke-width="2"/>
+    <path d="M0-55C-16-55-19-35-18-29-34-13-21 4-6 0 4 8 28 0 23-16 23-27 14-29 14-37 14-49 8-55 0-55Z" fill="url(#canopy)"/>
+    <path d="M-13-30q-2-18 11-20" fill="none" stroke="#b0d97a" stroke-width="4" opacity=".65" stroke-linecap="round"/>
+  </g>
+  <g id="bush"><ellipse cx="3" cy="4" rx="12" ry="5" fill="#578342" opacity=".2"/><path d="M-12 0q0-13 10-11Q8-19 13-6q5 10-9 11h-8z" fill="#78b45b"/><path d="M-7-5q3-7 9-5" fill="none" stroke="#b4d979" stroke-width="2"/></g>
+  <g id="rock"><ellipse cx="5" cy="11" rx="22" ry="8" fill="#174f64" opacity=".35"/><path d="m-17 6 6-19 14-7L20 6 9 14-9 12z" fill="#689ea0"/><path d="m-11-13 14-7-3 24-17 2z" fill="#94bbb0"/><path d="m3-20 17 26-20-2z" fill="#78a9a6"/></g>
+  <g id="flower"><path d="M0 0v6" stroke="#5c934b" stroke-width="1.5"/><circle cy="-2" r="3.4" fill="#fcf0bb"/><circle cy="-2" r="1.3" fill="#dca559"/></g>
+  <g id="fence"><path d="M0 0v17m30-17v17M0 4h30M0 11h30" stroke="#7d7950" stroke-width="5" stroke-linecap="round"/><path d="M0 0v14m30-14V0M0 3h30" stroke="#f5e6b3" stroke-width="3" stroke-linecap="round"/></g>
+</defs>
+<path d="M0 0h1000v800H0z" fill="url(#ocean)"/>
+<path d="M0 0h1000v800H0z" fill="url(#waves)"/>
+<use href="#coast" transform="translate(9 40)" fill="#174f61" stroke="#174f61" stroke-width="22" opacity=".32"/>
+<use href="#coast" transform="translate(0 32)" fill="url(#cliff)" stroke="#d5bc80" stroke-width="5"/>
+<use href="#coast" transform="translate(0 30)" fill="url(#cliff-grain)"/>
+<use href="#coast" fill="url(#land)" stroke="#619c57" stroke-width="5"/>
+<use href="#coast" fill="url(#grass)" stroke="#c1df82" stroke-width="2"/>
+<!-- A sheltered inlet and its river divide the two lower regions. -->
+<path d="M365 674Q340 640 361 605L389 556Q404 525 383 494L356 455Q341 424 368 400Q392 376 419 401L439 437Q454 466 443 495L422 554Q410 582 429 609L454 646Q465 667 454 686Z" fill="#599952"/>
+<path d="M370 676Q346 639 368 606L395 556Q411 523 390 491L363 454Q349 427 373 406Q395 386 413 405L432 439Q447 466 436 493L415 552Q403 583 423 613L449 650Q458 667 449 685Z" fill="#35a6b3"/>
+<path d="M373 676Q351 639 373 609L401 557M416 415l19 32" fill="none" stroke="#a5d6b5" stroke-width="3" opacity=".7"/>
+<g fill="#c1e9d1" opacity=".4"><ellipse cx="401" cy="481" rx="3" ry="2"/><ellipse cx="411" cy="504" rx="2" ry="2"/><ellipse cx="386" cy="592" rx="3" ry="2"/></g>
+<!-- Paths are drawn as a single journey, with a bridge over the inlet. -->
+<path d="M179 647Q218 651 220 610V570Q220 532 259 532H311Q349 532 349 493V458Q349 400 405 400H480Q529 400 555 367Q585 332 641 332H711Q760 332 760 300V277Q760 252 729 252H643Q605 252 605 214V171Q605 140 570 140H530" fill="none" stroke="#82a756" stroke-width="25" stroke-linejoin="round"/>
+<path d="M179 647Q218 651 220 610V570Q220 532 259 532H311Q349 532 349 493V458Q349 400 405 400H480Q529 400 555 367Q585 332 641 332H711Q760 332 760 300V277Q760 252 729 252H643Q605 252 605 214V171Q605 140 570 140H530" fill="none" stroke="#f2d995" stroke-width="19" stroke-linecap="round"/>
+<g transform="translate(357 383)"><path d="M0 23h64" stroke="#725438" stroke-width="31"/><path d="M0 16h64" stroke="#b68049" stroke-width="28"/><path d="M3 16h60" stroke="#e0ad67" stroke-width="25" stroke-dasharray="6 3"/><path d="M0 0h64M0 30h64" stroke="#825b37" stroke-width="3"/><path d="M1-5v11m62-11V6m-62 17v12m62-12v12" stroke="#f2cc8e" stroke-width="4" stroke-linecap="round"/></g>
+<!-- The higher plateau holds the final, still undiscovered destination. -->
+<path d="M464 97Q447 115 455 150L470 187Q482 202 513 199H559Q582 195 580 169L569 109Q563 88 543 85H492Q474 85 464 97Z" fill="#b7794c" transform="translate(0 15)"/>
+<path d="M464 97Q447 115 455 150L470 187Q482 202 513 199H559Q582 195 580 169L569 109Q563 88 543 85H492Q474 85 464 97Z" fill="#b8d97e" stroke="#d7e89b" stroke-width="3"/>
+<path d="M574 140h-44" fill="none" stroke="#f2d995" stroke-width="17"/>
+<use href="#tree" x="190" y="280"/>
+<use href="#tree" x="217" y="260"/>
+<use href="#tree" x="246" y="271"/>
+<use href="#tree" x="184" y="313"/>
+<use href="#tree" x="224" y="305"/>
+<use href="#tree" x="279" y="288"/>
+<use href="#tree" x="264" y="324"/>
+<use href="#tree" x="785" y="415"/>
+<use href="#tree" x="815" y="395"/>
+<use href="#tree" x="838" y="368"/>
+<use href="#tree" x="807" y="451"/>
+<use href="#tree" x="774" y="455"/>
+<use href="#tree" x="767" y="492"/>
+<use href="#tree" x="799" y="489"/>
+<use href="#tree" x="755" y="534"/>
+<use href="#tree" x="792" y="532"/>
+<use href="#tree" x="654" y="540"/>
+<use href="#tree" x="679" y="564"/>
+<use href="#tree" x="649" y="580"/>
+<use href="#tree" x="521" y="271"/>
+<use href="#tree" x="545" y="292"/>
+<use href="#bush" x="167" y="442"/>
+<use href="#bush" x="179" y="464"/>
+<use href="#bush" x="266" y="454"/>
+<use href="#bush" x="286" y="464"/>
+<use href="#bush" x="310" y="362"/>
+<use href="#bush" x="327" y="345"/>
+<use href="#bush" x="297" y="590"/>
+<use href="#bush" x="313" y="608"/>
+<use href="#bush" x="281" y="647"/>
+<use href="#bush" x="496" y="465"/>
+<use href="#bush" x="518" y="449"/>
+<use href="#bush" x="587" y="468"/>
+<use href="#bush" x="604" y="479"/>
+<use href="#bush" x="692" y="297"/>
+<use href="#bush" x="669" y="291"/>
+<use href="#bush" x="701" y="383"/>
+<use href="#bush" x="715" y="399"/>
+<use href="#bush" x="489" y="112"/>
+<use href="#bush" x="498" y="103"/>
+<use href="#flower" x="165" y="476"/>
+<use href="#flower" x="177" y="483"/>
+<use href="#flower" x="281" y="577"/>
+<use href="#flower" x="288" y="584"/>
+<use href="#flower" x="534" y="438"/>
+<use href="#flower" x="544" y="443"/>
+<use href="#flower" x="673" y="385"/>
+<use href="#flower" x="684" y="385"/>
+<use href="#rock" x="874" y="634"/>
+<use href="#rock" x="909" y="604"/>
+<use href="#rock" x="933" y="565"/>
+<use href="#rock" x="95" y="729"/>
+<use href="#rock" x="65" y="699"/>
+<use href="#fence" x="278" y="514"/><use href="#fence" x="631" y="314"/>
+<!-- The lodge sits on a clearing with a short spur to the route. -->
+<ellipse cx="287" cy="496" rx="39" ry="17" fill="#d4c583"/>
+<path d="M285 499v33" stroke="#f2d995" stroke-width="12"/>
+<g transform="translate(283 488)">
+<ellipse cx="6" cy="10" rx="26" ry="10" fill="#46613b" opacity=".2"/>
+<path d="M-22-22h44v31h-44z" fill="#deb77b"/><path d="M8-22h14V9H8z" fill="#bc935c"/>
+<path d="m-29-22 11-25h34l14 25z" fill="url(#roof)"/><path d="m-25-23 10-20h28" fill="none" stroke="#e1ac69" stroke-width="3"/>
+<path d="M-5 9V-7q0-10 11-9 7 1 7 9V9" fill="#694f3a"/><path d="M-15-13h7v9h-7z" fill="#ffdc84"/>
+</g>
+<!-- Rounded hill clusters share the same light source as the forest. -->
+<g transform="translate(666 233)"><ellipse cx="14" cy="4" rx="43" ry="12" fill="#59864d" opacity=".22"/><path d="M-26 0v-60q0-43 36-43 30 0 30 43V0z" fill="#70b66a"/><path d="M-23-54q-1-40 22-40" fill="none" stroke="#aedc82" stroke-width="8" stroke-linecap="round"/><path d="M10 0v-37q0-27 21-27 22 0 22 27V0z" fill="#8dc874"/></g>
+<g transform="translate(575 589)"><ellipse cx="7" cy="4" rx="24" ry="8" fill="#547848" opacity=".25"/><path d="m-22 0 9-24 20-8 18 30L8 9z" fill="#bd9b5d"/><path d="m-22 0 9-24 11 17-5 15z" fill="#e4c47c"/><path d="m-13-24 20-8 18 30-27-9z" fill="#d3b06a"/></g>
+</svg>
