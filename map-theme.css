@@ -1,4 +1,4 @@
-/* The square world keeps terrain and interactive stops in the same coordinate system. */
+/* Terrain, trail, and interactive stops share the same portrait coordinate system. */
 body .world {
   border: 5px solid #2c655d;
   border-radius: 8px;
@@ -12,9 +12,18 @@ body .map-toolbar {
 }
 body .map-toolbar .muted { color: #b1d4b5; }
 body .map-status { color: #dbed93; }
-body .map-stage { aspect-ratio: 1000 / 800; background: #67bdcf; }
+body .map-stage { aspect-ratio: 600 / 700; background: #246879; }
 body .landscape { object-fit: contain; }
-body .player { left: 22%; top: 71.25%; width: 48px; height: 66px; filter: none; }
+body .player { left: 48.333%; top: 52.143%; width: 6%; height: auto; aspect-ratio: 64 / 88; filter: none; transform: translate(-50%, -92%); }
+body .player::before { content: ''; position: absolute; left: 36%; top: 86%; width: 115%; height: 25%; background: #254e3f; opacity: .22; clip-path: polygon(0 0, 42% 0, 100% 64%, 94% 98%, 59% 96%, 0 24%); }
+body .player > svg { position: relative; display: block; overflow: visible; }
+body .route-guide { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; }
+body .completed .level-disc { background: #326c50; color: #fff9da; }
+body .legend-completed { background: #326c50; }
+body .legend-active { background: #eab351; }
+body .level[aria-pressed="true"] .level-disc { outline: 3px solid #fff7df; outline-offset: 4px; }
+body .level:disabled { cursor: default; opacity: .55; }
+body .travel-status { font-size: 13px; text-align: center; padding: 12px 16px; color: #35584b; }
 body .level { min-width: 44px; min-height: 44px; }
 body .level-disc {
   width: 44px;
@@ -26,14 +35,13 @@ body .level-disc {
   box-shadow: 0 4px 0 #536a4e, 0 6px 8px #34452d30;
 }
 body .active .level-disc { background: #eab351; color: #463e2b; box-shadow: 0 4px 0 #b9803d, 0 6px 8px #34452d30; }
-body .level-label { border: 1px solid #f4ebcb; border-radius: 6px; background: #fff7dfef; top: 52px; box-shadow: 0 3px 8px #36563725; }
-body .level-state { top: 91px; }
-body .active .level-state { top: 88px; background: #294f49; }
+body .level-label { border: 1px solid #fff7df50; border-radius: 4px; background: #fff7dfb8; font-size: 11px; font-weight: 500; padding: 5px 7px; top: 47px; box-shadow: 0 2px 4px #36563712; }
+body .level-state { display: none; }
 body .unknown { opacity: 1; }
 body .map-legend { background: #ecf0d8; color: #35584b; }
 @media (min-width: 701px) {
   body .intro { padding-top: 34px; padding-bottom: 24px; }
-  body .world { max-width: 960px; margin-inline: auto; }
+  body .world { max-width: 620px; margin-inline: auto; }
 }
 @media (max-width: 700px) {
   body main { padding: 0; }
@@ -44,15 +52,15 @@ body .map-legend { background: #ecf0d8; color: #35584b; }
   body .intro h1 { font-size: clamp(32px, 8.7vw, 46px); line-height: 1.09; letter-spacing: -1.5px; margin: 16px 0; }
   body .intro .eyebrow { font-size: 9px; letter-spacing: 1px; }
   body .intro > p:last-child { font-size: 14px; line-height: 1.6; padding: 0; }
-  body .map-stage { aspect-ratio: 1000 / 800; }
+  body .map-stage { aspect-ratio: 600 / 700; }
   body .world { border-width: 0; border-radius: 0; box-shadow: none; }
   body .map-toolbar { padding: 15px 16px; font-size: 10px; letter-spacing: .3px; }
-  body .player { width: 32px; height: 44px; }
+  body .player { width: 6.5%; height: auto; }
   body .level { width: 48px; height: 48px; touch-action: manipulation; }
   body .level-disc { width: 34px; height: 29px; border-width: 2px; font-size: 13px; }
   body .level-label {
-    top: 45px;
-    font-size: 11px;
+    top: 42px;
+    font-size: 10px;
     line-height: 1.25;
     padding: 5px 7px;
     width: max-content;
@@ -78,4 +86,18 @@ body .map-legend { background: #ecf0d8; color: #35584b; }
   body .invitation a { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; }
   body footer { padding: 20px max(16px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); align-items: center; }
   body footer > a { min-height: 44px; display: flex; align-items: center; }
+}
+
+/* Each limb pivots independently, and only while the character is traveling. */
+.player .leg-left { transform-origin: 27px 62px; }
+.player .leg-right { transform-origin: 40px 62px; }
+.player .arm-left { transform-origin: 22px 37px; }
+.player .arm-right { transform-origin: 43px 37px; }
+.player.walking .leg-left, .player.walking .arm-right { animation: stride .65s ease-in-out infinite alternate; }
+.player.walking .leg-right, .player.walking .arm-left { animation: stride .65s ease-in-out infinite alternate-reverse; }
+.player.walking > svg { animation: walking-bob .65s ease-in-out infinite; }
+@keyframes stride { from { transform: rotate(-17deg); } to { transform: rotate(17deg); } }
+@keyframes walking-bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -1.5px; } }
+@media (prefers-reduced-motion: reduce) {
+  .player.walking > svg, .player.walking .leg, .player.walking .arm { animation: none; }
 }
