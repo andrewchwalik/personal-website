@@ -1,3 +1,4 @@
+import { contentError } from './guestbook-filter.mjs';
 const HOME_API = 'https://andrew-home-base.chwalik.workers.dev';
 const home = document.getElementById('home-screen');
 const tv = document.getElementById('tv-dialog');
@@ -145,11 +146,13 @@ const submit = form.querySelector('[type="submit"]');
 const feedback = document.getElementById('guestbook-feedback');
 const list = document.getElementById('entries-list');
 const entriesStatus = document.getElementById('entries-status');
-const previous = document.getElementById('previous-entry');
-const next = document.getElementById('next-entry');
-const reader = document.getElementById('book-reader');
+const more = document.getElementById('more-entries');
+const scrollArea = document.getElementById('entries-scroll');
+const instructions = document.getElementById('book-instructions');
 const writing = document.getElementById('book-writing');
-let entries = [], pageIndex = 0, loading = false;
+let entries = [], loading = false;
+document.querySelector('.book-frontispiece').append(writing);
+instructions.insertBefore(document.querySelector('.book-moderation'), document.getElementById('write-entry'));
 let token = null, nextPage = null, entriesRequest = 0, tokenRequest = 0, sending = false;
 function say(text, isError = false) { feedback.textContent = text; feedback.dataset.error = String(isError); }
 function entryElement(entry) {
@@ -163,47 +166,33 @@ function entryElement(entry) {
   meta.append(name, time); item.append(meta, message);
   return item;
 }
-function renderPage(direction = 0) {
-  list.replaceChildren();
-  if (entries[pageIndex]) list.append(entryElement(entries[pageIndex]));
-  document.getElementById('book-page-number').textContent = entries.length ? `PAGE ${String(pageIndex + 1).padStart(2, '0')}` : 'FIRST PAGE';
-  previous.disabled = loading || pageIndex === 0;
-  next.disabled = loading || (pageIndex >= entries.length - 1 && !nextPage);
-  if (direction && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    list.getAnimations().forEach(animation => animation.cancel());
-    list.animate([{ opacity: .15, transform: `perspective(800px) rotateY(${direction * 9}deg) translateX(${direction * 12}px)` }, { opacity: 1, transform: 'none' }], { duration: 360, easing: 'ease-out' });
-  }
+function renderEntries() {
+  list.replaceChildren(...entries.map(entryElement));
+  more.hidden = !nextPage;
+  more.disabled = loading;
 }
 function showReader() {
-  reader.hidden = false; writing.hidden = true;
+  instructions.hidden = false; writing.hidden = true;
   book.scrollTop = 0;
 }
 async function loadEntries(append = false) {
+  if (append && (loading || !nextPage)) return;
   const request = ++entriesRequest;
   entriesStatus.textContent = 'Opening the guestbook...';
-  loading = true; renderPage();
+  loading = true; more.disabled = true;
   try {
     const page = await api('/guestbook' + (append && nextPage ? `?before=${encodeURIComponent(nextPage)}` : ''));
     if (request !== entriesRequest) return;
-    const oldLength = entries.length;
-    if (!append) { entries = []; pageIndex = 0; }
+    if (!append) { entries = []; scrollArea.scrollTop = 0; }
     const existing = new Set(entries.map(entry => entry.id));
     for (const entry of page.entries) if (!existing.has(entry.id)) { entries.push(entry); existing.add(entry.id); }
     nextPage = page.next;
-    if (append && entries.length > oldLength) pageIndex++;
-    entriesStatus.textContent = entries.length ? '' : 'No notes just yet. The first page is yours.';
+    entriesStatus.textContent = entries.length ? '' : 'No messages yet. Leave the first note!';
   } catch {
     if (request === entriesRequest) entriesStatus.textContent = 'The pages couldn’t load. Tap the refresh arrow to try again.';
   } finally {
-    if (request === entriesRequest) { loading = false; renderPage(append ? 1 : 0); }
+    if (request === entriesRequest) { loading = false; renderEntries(); }
   }
-}
-function turnPage(direction) {
-  if (loading) return;
-  if (direction > 0 && pageIndex === entries.length - 1 && nextPage) { loadEntries(true); return; }
-  const target = pageIndex + direction;
-  if (target < 0 || target >= entries.length) return;
-  pageIndex = target; renderPage(direction);
 }
 async function refreshToken() {
   const request = ++tokenRequest;
@@ -212,7 +201,7 @@ async function refreshToken() {
     const challenge = await api('/guestbook/challenge');
     await new Promise(resolve => setTimeout(resolve, 2100));
     if (request !== tokenRequest) return;
-    token = challenge.token; submit.disabled = sending;
+    token = challenge.token; validateDraft();
   }
   catch { say('Unable to connect to the guestbook. Reopen it to try again; your draft will stay here.', true); }
 }
@@ -222,12 +211,19 @@ function openGuestbook() {
   showReader();
   loadEntries();
 }
-form.elements.message.addEventListener('input', () => {
+function validateDraft() {
+  const invalid = contentError(form.elements.name.value) || contentError(form.elements.message.value);
+  submit.disabled = sending || !token || Boolean(invalid);
+  if (!sending) say(invalid || '', Boolean(invalid));
+  return invalid;
+}
+form.addEventListener('input', () => {
   document.getElementById('message-count').textContent = `${form.elements.message.value.length} / 400`;
+  validateDraft();
 });
 form.addEventListener('submit', async event => {
   event.preventDefault();
-  if (sending || !token || !form.reportValidity()) return;
+  if (sending || !token || validateDraft() || !form.reportValidity()) return;
   sending = true; submit.disabled = true; say('Adding your note...');
   const content = { name: form.elements.name.value, message: form.elements.message.value, website: form.elements.website.value, consent: form.elements.consent.checked, token };
   try {
@@ -235,11 +231,10 @@ form.addEventListener('submit', async event => {
     entriesRequest++;
     loading = false;
     entries = [entry, ...entries.filter(item => item.id !== entry.id)];
-    pageIndex = 0;
     entriesStatus.textContent = '';
     form.reset(); document.getElementById('message-count').textContent = '0 / 400';
     say('You’re in the book! Your message is now visible to everyone.');
-    showReader(); renderPage(1);
+    showReader(); renderEntries(); scrollArea.scrollTop = 0;
     document.getElementById('write-entry').focus({ preventScroll: true });
     entriesStatus.textContent = 'Your note is now part of the story.';
     await refreshToken();
@@ -247,22 +242,20 @@ form.addEventListener('submit', async event => {
     say(failure.message || 'Your note couldn’t be sent. Your draft is still here.', true);
     // Keep the same signed submission after network errors so retries cannot duplicate it.
     if (/refresh the guestbook/i.test(failure.message)) await refreshToken();
-  } finally { sending = false; submit.disabled = !token; }
+  } finally { sending = false; submit.disabled = !token || Boolean(contentError(form.elements.name.value) || contentError(form.elements.message.value)); }
 });
 document.getElementById('refresh-entries').addEventListener('click', () => loadEntries());
-previous.addEventListener('click', () => turnPage(-1));
-next.addEventListener('click', () => turnPage(1));
+more.addEventListener('click', () => loadEntries(true));
+scrollArea.addEventListener('scroll', () => {
+  if (scrollArea.scrollHeight - scrollArea.scrollTop - scrollArea.clientHeight < 100) loadEntries(true);
+});
 document.getElementById('write-entry').addEventListener('click', () => {
-  reader.hidden = true; writing.hidden = false;
+  instructions.hidden = true; writing.hidden = false;
   if (!sending) { say(''); refreshToken(); }
   document.getElementById('read-entries').focus({ preventScroll: true });
 });
 document.getElementById('read-entries').addEventListener('click', () => {
   showReader(); document.getElementById('write-entry').focus({ preventScroll: true });
-});
-book.addEventListener('keydown', event => {
-  if (reader.hidden || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
-  event.preventDefault(); turnPage(event.key === 'ArrowRight' ? 1 : -1);
 });
 document.getElementById('open-tv').addEventListener('click', openTV);
 document.getElementById('open-guestbook').addEventListener('click', openGuestbook);

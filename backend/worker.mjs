@@ -1,3 +1,4 @@
+import { contentError } from '../guestbook-filter.mjs';
 const encoder = new TextEncoder();
 const PUBLIC_FIELDS = 'id, name, message, created_at AS createdAt';
 const json = (data, status = 200) => Response.json(data, { status });
@@ -48,8 +49,7 @@ export function validateEntry(body) {
   if (!body.name.trim() || body.name.trim().length > 40) return 'Use a display name between 1 and 40 characters.';
   if (body.message.trim().length < 3 || body.message.trim().length > 400) return 'Write a message between 3 and 400 characters.';
   if (/[<>\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(body.name + body.message)) return 'Please use plain text, without HTML.';
-  if (/(https?:|www\.|\b[a-z0-9-]+\.(com|net|org|io|co|xyz)\b)/i.test(body.name + body.message)) return 'Please leave links out of the guestbook.';
-  return null;
+  return contentError(body.name) || contentError(body.message);
 }
 
 const INSERT_ENTRY = `INSERT INTO guestbook (id,name,message,created_at,visitor_hash)

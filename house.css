@@ -110,3 +110,33 @@ body:has(#home-screen[open]) { overflow:hidden; }
   .book-running-head { margin-right:0; }
 }
 @media(prefers-reduced-motion:reduce) { .room-object > span { transition:none; } }
+
+/* One fixed spread: instructions on the left, a continuous message list on the right. */
+.book-spread { grid-template-columns:1fr 1.15fr; }
+.book-frontispiece { align-items:stretch; justify-content:flex-start; padding:48px 28px 24px; }
+.book-frontispiece h2 { font-style:normal; font-size:34px; margin:12px 0 28px; }
+#book-instructions { display:flex; flex-direction:column; flex:1; text-align:left; }
+#book-instructions > p { font:18px/1.65 Georgia,serif; }
+#book-instructions .book-rules { font:12px/1.6 'DM Sans',sans-serif; color:#78816b; }
+#book-instructions > .book-moderation { font:10px/1.6 'DM Sans',sans-serif; margin:12px 0 18px; }
+#book-instructions .book-write { margin-top:auto; justify-content:center; padding:12px; background:#365948; color:#fff4d7; border-radius:4px; }
+.book-frontispiece > .book-moderation:not(.eyebrow) { display:block; text-align:left; font:9px/1.6 'DM Sans',sans-serif; }
+.book-paper { display:flex; padding:38px 24px 20px; }
+#book-reader { min-height:0; width:100%; height:min(530px,65dvh); }
+#entries-scroll { overflow-y:auto; flex:1; min-height:0; overscroll-behavior:contain; scrollbar-color:#a5ae8c #ede5cb; scrollbar-width:thin; padding-right:10px; }
+#entries-list { padding:0; }
+#entries-list li { padding:22px 0; border-bottom:1px solid #cdbf9c80; }
+.entry-message { font:16px/1.7 Georgia,serif; margin:12px 0 0; }
+.entry-meta { font-size:13px; }
+#more-entries { min-height:44px; width:100%; background:none; border:0; color:#456451; cursor:pointer; }
+#book-writing { text-align:left; }
+@media(max-width:700px) {
+  .book-spread { grid-template-columns:1fr; }
+  .book-frontispiece { padding:24px 22px 16px; }
+  .book-frontispiece h2 { font-size:30px; margin:6px 20px 14px 0; }
+  #book-instructions > p { font-size:16px; margin:0 0 12px; }
+  #book-instructions .book-write { margin-top:8px; }
+  .book-paper { padding:10px 22px 18px; }
+  #book-reader { height:310px; }
+  .book-frontispiece .book-moderation { margin-top:12px; }
+}

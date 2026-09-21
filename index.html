@@ -6,9 +6,9 @@
   <meta name="description" content="One life. A few big quests. Explore Andrew Chwalik's chapter map and follow the adventure.">
   <title>Andrew Chwalik | The Adventure</title>
   <link rel="stylesheet" href="adventure.css?v=house-1">
-  <link rel="stylesheet" href="house.css?v=house-3">
+  <link rel="stylesheet" href="house.css?v=house-5">
   <script src="adventure.js?v=house-4" defer></script>
-  <script src="house.js?v=house-4" defer></script>
+  <script src="house.js?v=house-5" type="module"></script>
 </head>
 <body>
   <header class="site-header">
@@ -91,18 +91,18 @@
   <dialog id="guestbook-dialog" class="house-panel guestbook-panel" aria-labelledby="guestbook-title">
     <button type="button" class="panel-close" data-close aria-label="Close guestbook">×</button>
     <div class="book-spread">
-    <header class="book-frontispiece"><p class="eyebrow">THE HOME BASE COLLECTION</p><div class="book-emblem" aria-hidden="true">AC</div><h2 id="guestbook-title">The guestbook.</h2><p>Little notes.<br>Fellow travelers.<br>Part of the story.</p><span class="book-edition">ANDREW CHWALIK / VOL. 01</span></header>
+    <div class="book-frontispiece"><h2 id="guestbook-title">The Guestbook</h2><div id="book-instructions"><p>Leave a note, travel tips, parenting advice, or just a positive message.</p><p class="book-rules">No links or profanity, please.</p><button type="button" id="write-entry" class="book-write">Sign the Guestbook</button></div></div>
     <div class="book-paper">
     <section id="book-reader" aria-label="Guestbook entries">
-      <div class="book-running-head"><span>NOTES FROM THE JOURNEY</span><button type="button" id="refresh-entries" aria-label="Refresh guestbook">↻</button></div>
+      <div class="book-running-head"><span>MESSAGES</span><button type="button" id="refresh-entries" aria-label="Refresh guestbook">↻</button></div>
+      <div id="entries-scroll" tabindex="0" role="region" aria-label="Guestbook messages, scroll to read more">
       <p id="entries-status" role="status">Opening the guestbook…</p>
-      <ol id="entries-list" aria-live="polite"></ol>
-      <nav class="book-pagination" aria-label="Guestbook pages"><button type="button" id="previous-entry" aria-label="Previous page" disabled>←</button><span id="book-page-number" aria-live="polite">FIRST PAGE</span><button type="button" id="next-entry" aria-label="Next page" disabled>→</button></nav>
-      <button type="button" id="write-entry" class="book-write">Leave a note <span aria-hidden="true">↗</span></button>
+      <ol id="entries-list"></ol>
+      <button type="button" id="more-entries" hidden>Load more messages</button>
+      </div>
     </section>
     <section id="book-writing" hidden aria-label="Sign the guestbook">
-    <button type="button" id="read-entries" class="book-back">← Back to the pages</button>
-    <h3 class="book-writing-title">Your part of the story.</h3>
+    <button type="button" id="read-entries" class="book-back">← Back</button>
     <form id="guestbook-form">
       <label for="guest-name">Your display name</label><input id="guest-name" name="name" maxlength="40" autocomplete="nickname" placeholder="What should we call you?" required>
       <label for="guest-message">Your message <span id="message-count">0 / 400</span></label><textarea id="guest-message" name="message" minlength="3" maxlength="400" rows="3" placeholder="Leave something kind…" required></textarea>

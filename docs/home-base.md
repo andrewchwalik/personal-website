@@ -10,10 +10,13 @@ chapter. Subsequent trips follow the house branch back to the main trail.
 The TV loads the latest public upload from Andrew's YouTube Atom feed; the soccer
 ball links to Firelands United's videos. The TV only embeds YouTube after a tap.
 Small plus markers on each object keep the room exploratory, with accessible
-names for screen readers. The guestbook opens in reading mode: one note per page,
-previous/next controls, and keyboard arrow navigation. Older notes load on demand
-using the API cursor, so readers can browse the whole book without loading it all
-at once. "Leave a note" opens the writing page without losing the current place.
+names for screen readers. The guestbook is one spread: instructions and a signing
+button on the left, a scrollable message list on the right. On phones the two
+sections stack for readability. Older notes load on scroll, with a load-more
+button as a keyboard-accessible fallback. Signing keeps the messages visible.
+The shared content filter checks names and messages in the browser and Worker.
+It rejects links, common English profanity, and common obfuscations. No automated
+filter catches every language or deliberate evasion; moderation remains available.
 
 ## Shared Guestbook
 

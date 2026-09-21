@@ -69,6 +69,15 @@ test('rate limits are enforced atomically by the database', async () => {
   } finally { sqlite.close(); }
 });
 
+test('the server rejects filtered content before saving a message', async () => {
+  const { sqlite, post } = setup();
+  try {
+    for (const message of ['shit!', 'visit example.travel']) assert.equal((await post({ message })).status, 400);
+    assert.equal((await post({ name: 'f.u.c.k' })).status, 400);
+    assert.equal(sqlite.prepare('SELECT COUNT(*) AS count FROM guestbook').get().count, 0);
+  } finally { sqlite.close(); }
+});
+
 test('public posting validates consent, size, links, HTML, and the honeypot', () => {
   const valid = { name: 'A visitor', message: 'Hello from Ohio!', consent: true, website: '' };
   assert.equal(validateEntry(valid), null);
