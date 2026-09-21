@@ -20,6 +20,17 @@ const stops = Object.fromEntries(Object.entries(chapters).map(([id, chapter]) =>
 }));
 let position = stops[3];
 let frame;
+let journey = 0;
+let branchPosition = null;
+let headingHome = false;
+const houseRoute = document.getElementById('house-route');
+let houseJunction = 0;
+let junctionDistance = Infinity;
+for (let length = 0; length <= routeLength; length += .5) {
+  const point = route.getPointAtLength(length);
+  const distance = Math.hypot(point.x - 181, point.y - 518);
+  if (distance < junctionDistance) { junctionDistance = distance; houseJunction = length; }
+}
 function place(length) {
   const point = route.getPointAtLength(length);
   player.style.left = (point.x / 600 * 100) + '%';
@@ -47,34 +58,80 @@ function showChapter(number) {
 }
 function selectChapter(number) {
   cancelAnimationFrame(frame);
+  const ticket = ++journey;
+  headingHome = false;
   showChapter(number);
-  const start = position;
-  const end = stops[number];
+  const status = document.querySelector('.travel-status');
+  status.textContent = 'Traveling to Level ' + number + '...';
+  const continueToChapter = () => walk(route, position, stops[number], ticket, () => {
+    status.textContent = 'Level ' + number + ': ' + chapters[number].title + ' Details below the map.';
+  });
+  if (branchPosition !== null) {
+    walk(houseRoute, branchPosition, 0, ticket, () => {
+      position = houseJunction;
+      branchPosition = null;
+      continueToChapter();
+    });
+  } else continueToChapter();
+}
+function walk(path, start, end, ticket, arrived) {
   // Keep a consistent walking pace even when crossing several chapters.
   const duration = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : Math.abs(end - start) * 7;
   player.classList.toggle('walking', duration > 0);
   const began = performance.now();
-  const status = document.querySelector('.travel-status');
-  status.textContent = 'Traveling to Level ' + number + '...';
   function step(now) {
+    if (ticket !== journey) return;
     const progress = duration ? Math.min(1, (now - began) / duration) : 1;
     // Short, gentle acceleration and deceleration with a steady middle pace.
     const ramp = 0.12;
     const eased = progress < ramp ? progress * progress / (2 * ramp * (1 - ramp))
       : progress > 1 - ramp ? 1 - (1 - progress) ** 2 / (2 * ramp * (1 - ramp))
       : (progress - ramp / 2) / (1 - ramp);
-    position = start + (end - start) * eased;
-    place(position);
+    const distance = start + (end - start) * eased;
+    if (path === route) { branchPosition = null; position = distance; place(position); }
+    else {
+      branchPosition = distance;
+      const point = path.getPointAtLength(distance);
+      player.style.left = (point.x / 600 * 100) + '%';
+      player.style.top = (point.y / 700 * 100) + '%';
+    }
     if (progress < 1) frame = requestAnimationFrame(step);
     else {
       player.classList.remove('walking');
-      status.textContent = 'Level ' + number + ': ' + chapters[number].title + ' Details below the map.';
+      arrived();
     }
   }
   frame = requestAnimationFrame(step);
 }
 document.querySelectorAll('[data-chapter]').forEach(button => {
   button.addEventListener('click', () => selectChapter(Number(button.dataset.chapter)));
+});
+document.getElementById('house-stop').addEventListener('click', () => {
+  if (headingHome) return;
+  cancelAnimationFrame(frame);
+  const ticket = ++journey;
+  headingHome = true;
+  document.querySelector('.travel-status').textContent = 'Heading home. Come on in...';
+  const enterFromBranch = () => {
+    walk(houseRoute, branchPosition ?? 0, houseRoute.getTotalLength(), ticket, () => {
+      headingHome = false;
+      document.dispatchEvent(new Event('enter-house'));
+    });
+  };
+  if (branchPosition !== null) enterFromBranch();
+  else walk(route, position, houseJunction, ticket, enterFromBranch);
+});
+document.addEventListener('leave-house', () => {
+  cancelAnimationFrame(frame);
+  journey++;
+  player.classList.remove('walking');
+  headingHome = false;
+  position = houseJunction;
+  branchPosition = houseRoute.getTotalLength();
+  const doorstep = houseRoute.getPointAtLength(branchPosition);
+  player.style.left = `${doorstep.x / 6}%`;
+  player.style.top = `${doorstep.y / 7}%`;
+  document.querySelector('.travel-status').textContent = 'Outside Home Base. Choose a chapter or head back inside.';
 });
 place(position);
 showChapter(3);

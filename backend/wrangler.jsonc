@@ -1,0 +1,19 @@
+{
+  "name": "andrew-home-base",
+  "main": "worker.mjs",
+  "account_id": "cf4f58cbec253b84ccd8e76507ad1f27",
+  "compatibility_date": "2026-09-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": { "enabled": true, "head_sampling_rate": 0.1 },
+  "vars": {
+    "ALLOWED_ORIGINS": "https://andrewchwalik.com,https://www.andrewchwalik.com,http://127.0.0.1:8765,http://localhost:8765",
+    "YOUTUBE_CHANNEL_ID": "UCgp9-baYOYgKONAlfDOaVBQ"
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "andrew-adventure-guestbook",
+    "database_id": "3b3d68e1-6eda-4114-9fe4-9f69a58a37cf",
+    "migrations_dir": "migrations"
+  }]
+}

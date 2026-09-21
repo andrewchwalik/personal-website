@@ -1,0 +1,5 @@
+.wrangler/
+.dev.vars*
+node_modules/
+worker-configuration.d.ts
+backend/.local-secrets.json

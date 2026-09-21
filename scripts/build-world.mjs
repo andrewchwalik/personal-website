@@ -237,7 +237,7 @@ export function buildWorld() {
   <path d="M208 456v-9m2 9 3-10m-1 16 5-5m39 18 2-10m0 9 3-7M264 581l5-6m-5 6 1-10" fill="none" stroke="#528f48" stroke-width="1.3" stroke-linecap="round"/>
   <path d="${ROUTE}" fill="none" stroke="#73a545" stroke-width="25" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
   <path d="${ROUTE}" fill="none" stroke="#f2d58b" stroke-width="21" stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="M144 490Q155 502 181 516" fill="none" stroke="#f2d58b" stroke-width="11"/>
+  <path d="M181 518 Q158 508 144 490 L135 493" fill="none" stroke="#f2d58b" stroke-width="11"/>
   <path d="M355 451Q392 446 404 444" fill="none" stroke="#d7cc7b" stroke-width="7" opacity=".7"/>
   ${stairs()}
   ${bridge()}
