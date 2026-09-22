@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 // All cast shadows use the same sun vector, independently of drawing order.
 export const SUN = { x: 0.62, y: 0.3 };
 export const ROUTE = 'M165 550 C165 510 205 510 235 510 L285 510 Q365 510 365 460 Q365 420 315 420 Q265 420 265 392 Q265 365 290 365 Q415 365 415 310 L415 275 Q415 269 470 269 L470 180';
+export const SOUTH_PATH = 'M165 550 L165 620';
+export const SOUTH_BRIDGE = { x: 165, start: 610, end: 740, width: 28 };
 export const project = ([x, y, z = 0]) => [x, y - z];
 export const cast = ([x, y, z = 0]) => [x + SUN.x * z, y + SUN.y * z];
 const n = v => Math.round(v * 100) / 100;
@@ -181,6 +183,29 @@ function bridge() {
     <path d="M227 494q30 3 60 0m-60 22q30 4 60 0" fill="none" stroke="#e1b16a" stroke-width="2"/>`;
 }
 
+function southBridge() {
+  const { x, start, end, width } = SOUTH_BRIDGE;
+  const left = x - width / 2, right = x + width / 2;
+  let deck = '', rails = '';
+  for (let y = start; y < end; y += 7) {
+    deck += path(`M${left} ${y}h${width}v6H${left}Z`, (y-start)%14 ? '#b68742' : '#c99850');
+    deck += line([[left+2,y+1.2],[right-2,y+1.2]], '#e0b373', .9);
+  }
+  for (const edge of [left, right]) {
+    for (let y = start; y < end; y += 26) {
+      const next = y + 26;
+      rails += path(`M${edge} ${y-12}Q${edge} ${y+7} ${edge} ${next-12}`, 'none', 'stroke="#e1b16a" stroke-width="2"');
+      rails += line([[edge,y,0],[edge,y,14]], '#795637', 4);
+      rails += line([[edge-0.7,y,0],[edge-0.7,y,14]], '#e8bb72', 2);
+    }
+  }
+  return `<g id="south-bridge">
+    <g opacity=".2">${shadow([[left,start+36,36],[right,start+36,36],[right,end+36,36],[left,end+36,36]])}</g>
+    ${path(`M${left} ${start}h${width}v${end-start}h-${width}Z`, '#775735')}
+    ${deck}${line([[right,start],[right,end]], '#795637', 2)}${rails}
+  </g>`;
+}
+
 function stairs() {
   const steps = 8, topHeight=58, rearY=244, run=3;
   let result='';
@@ -237,6 +262,10 @@ export function buildWorld() {
   <path d="M208 456v-9m2 9 3-10m-1 16 5-5m39 18 2-10m0 9 3-7M264 581l5-6m-5 6 1-10" fill="none" stroke="#528f48" stroke-width="1.3" stroke-linecap="round"/>
   <path d="${ROUTE}" fill="none" stroke="#73a545" stroke-width="25" stroke-linejoin="round" stroke-linecap="round" opacity=".55"/>
   <path d="${ROUTE}" fill="none" stroke="#f2d58b" stroke-width="21" stroke-linejoin="round" stroke-linecap="round"/>
+  <g clip-path="url(#main-ground)">
+    <path d="${SOUTH_PATH}" fill="none" stroke="#73a545" stroke-width="25" opacity=".55"/>
+    <path d="${SOUTH_PATH}" fill="none" stroke="#f2d58b" stroke-width="21"/>
+  </g>
   <path d="M181 518 Q158 508 144 490 L135 493" fill="none" stroke="#f2d58b" stroke-width="11"/>
   <path d="M355 451Q392 446 404 444" fill="none" stroke="#d7cc7b" stroke-width="7" opacity=".7"/>
   ${stairs()}
@@ -245,6 +274,7 @@ export function buildWorld() {
   ${flowers(176,482)}${flowers(411,467)}${flowers(304,556)}
   ${artLayer(upperObjects)}${artLayer(lowerObjects)}
   ${shadowLayer(seaObjects)}${artLayer(seaObjects)}
+  ${southBridge()}
   <ellipse cx="238" cy="686" rx="30" ry="8" fill="#5db5b4" opacity=".5"/>
   <path d="M218 622Q234 635 253 640L256 683Q238 690 215 680Z" fill="url(#fall)"/>
   <path d="M218 622Q234 635 253 640" fill="none" stroke="#a2dfbc" stroke-width="2"/>

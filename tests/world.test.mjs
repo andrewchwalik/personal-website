@@ -1,7 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { buildWorld, buildClouds, buildHouseForeground, cast, project, ROUTE, SUN, TERRAIN } from '../scripts/build-world.mjs';
+import { buildWorld, buildClouds, buildHouseForeground, cast, project, ROUTE, SUN, TERRAIN, SOUTH_PATH, SOUTH_BRIDGE } from '../scripts/build-world.mjs';
+
+test('south trail joins level one to a bridge beyond the map edge', () => {
+  assert.equal(SOUTH_PATH, 'M165 550 L165 620');
+  assert.equal(SOUTH_BRIDGE.x, 165);
+  assert.ok(SOUTH_BRIDGE.start < 620);
+  assert.ok(SOUTH_BRIDGE.end > 700);
+  assert.ok(buildWorld().includes(`d="${SOUTH_PATH}"`));
+  assert.ok(buildWorld().includes('id="south-bridge"'));
+});
 
 test('the sun produces proportional shadows in one direction', () => {
   const base=[200,300];
