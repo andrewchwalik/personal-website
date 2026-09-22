@@ -20,6 +20,8 @@ body .level[data-chapter="4"] .level-label {
   text-align: right;
 }
 @media (max-width: 700px) {
+  .map-copyright { display: none; }
+  body .adventure-layout .chapter-panel { padding-top: 18px; }
   body .level[data-chapter] .level-label { left: calc(50% + 13px); max-width: 100px; font-size: 8px; padding-block: 3px; }
   body .level[data-chapter="2"] .level-label,
   body .level[data-chapter="4"] .level-label { left: auto; right: calc(50% + 13px); }
