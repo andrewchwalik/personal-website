@@ -55,5 +55,4 @@
   <g clip-path="url(#fall-clip)"><path class="water-flow" d="M221 626v62m7-58v62m8-58v62m8-60v62m7-59v62" fill="none" stroke="#d4efcf" stroke-width="1.7" stroke-dasharray="14 22" opacity=".72"/></g>
   <path d="M214 682q5-8 10 0 5-10 10 2 5-9 11 0 7-9 12-1" fill="none" stroke="#e2f0cc" stroke-width="3.5" stroke-linecap="round"/>
   <ellipse class="sea-ripple" cx="238" cy="687" rx="29" ry="6" fill="none" stroke="#c7e7c5" stroke-width="1.5"/>
-  <g fill="#f4f0cc" opacity=".92"><path d="M37 153q-5-6 3-9h16q0-9 11-10 9-1 12 5h14q10 7-1 12H73q-4 6-13 5H41Z"/><path d="M527 359q-7-7 2-10h16q1-7 10-7h12q9 3 7 9 13 6 0 11h-36Z"/></g>
   </svg>

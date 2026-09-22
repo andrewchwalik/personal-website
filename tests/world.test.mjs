@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { buildWorld, cast, project, ROUTE, SUN, TERRAIN } from '../scripts/build-world.mjs';
+import { buildWorld, buildClouds, buildHouseForeground, cast, project, ROUTE, SUN, TERRAIN } from '../scripts/build-world.mjs';
 
 test('the sun produces proportional shadows in one direction', () => {
   const base=[200,300];
@@ -36,4 +36,19 @@ test('water animation respects reduced motion', () => {
   const svg=buildWorld();
   assert.match(svg,/@media\(prefers-reduced-motion:reduce\)/);
   assert.match(svg,/\.water-flow,\.river-flow,\.sea-ripple\{animation:none\}/);
+});
+
+test('clouds drift slowly, loop outside the view, and respect reduced motion', async () => {
+  const svg = buildClouds();
+  assert.equal(await readFile(new URL('../img/chapter-clouds.svg', import.meta.url), 'utf8'), svg);
+  assert.ok(!buildWorld().includes('drifting-cloud'));
+  assert.match(svg, /animation:cloud-drift 90s linear infinite/);
+  assert.match(svg, /--start:-140px;--end:640px/);
+  assert.match(svg, /--start:-620px;--end:100px/);
+  assert.match(svg, /@media\(prefers-reduced-motion:reduce\)\{\.drifting-cloud\{animation:none\}\}/);
+});
+
+test('the house foreground stays in sync with the generated map artwork', async () => {
+  assert.equal(await readFile(new URL('../img/chapter-house.svg', import.meta.url), 'utf8'), buildHouseForeground());
+  assert.ok(buildWorld().includes(buildHouseForeground().replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '')));
 });

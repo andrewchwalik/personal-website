@@ -23,6 +23,13 @@ let frame;
 let journey = 0;
 let branchPosition = null;
 let headingHome = false;
+let lastChapter = 3;
+let lockedReturn = null;
+let lockAnimations = [];
+function clearLockFeedback() {
+  lockAnimations.forEach(animation => animation.cancel());
+  lockAnimations = [];
+}
 const houseRoute = document.getElementById('house-route');
 let houseJunction = 0;
 let junctionDistance = Infinity;
@@ -62,13 +69,18 @@ function showChapter(number) {
   }
 }
 function selectChapter(number) {
+  if (number === 4 && lockedReturn) return;
   cancelAnimationFrame(frame);
+  clearLockFeedback();
+  lockedReturn = number === 4 ? { position, branch: branchPosition, chapter: lastChapter } : null;
   const ticket = ++journey;
   headingHome = false;
   showChapter(number);
   const status = document.querySelector('.travel-status');
   status.textContent = 'Traveling to Level ' + number + '...';
   const continueToChapter = () => walk(route, position, stops[number], ticket, () => {
+    if (number === 4) { bounceFromLock(ticket, status); return; }
+    lastChapter = number;
     status.textContent = 'Level ' + number + ': ' + chapters[number].title + (matchMedia('(min-width: 1000px)').matches ? ' Details beside the map.' : ' Details below the map.');
   });
   if (branchPosition !== null) {
@@ -78,6 +90,26 @@ function selectChapter(number) {
       continueToChapter();
     });
   } else continueToChapter();
+}
+function bounceFromLock(ticket, status) {
+  const origin = lockedReturn;
+  if (!origin || ticket !== journey) return;
+  status.textContent = 'Locked! Complete daily vlogging first. Heading back...';
+  document.getElementById('locked-note').textContent = 'Still locked. Finish the daily vlogging quest first.';
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const jitter = [0, -4, 3, -2, 2, 0].map(x => ({ transform: `translateX(${x}px)` }));
+    lockAnimations = [document.querySelector('[data-chapter="4"] .level-disc'), player.querySelector('svg')]
+      .map(element => element.animate(jitter, { duration: 420, easing: 'steps(1, end)' }));
+  }
+  const returned = () => {
+    lockedReturn = null;
+    showChapter(origin.chapter);
+    status.textContent = 'Debt free is locked. Back where you started.';
+  };
+  walk(route, position, origin.branch === null ? origin.position : houseJunction, ticket, () => {
+    if (origin.branch !== null) walk(houseRoute, 0, origin.branch, ticket, returned);
+    else returned();
+  });
 }
 function walk(path, start, end, ticket, arrived) {
   // Keep a consistent walking pace even when crossing several chapters.
@@ -115,6 +147,8 @@ document.getElementById('house-stop').addEventListener('click', () => {
   if (headingHome) return;
   cancelAnimationFrame(frame);
   const ticket = ++journey;
+  lockedReturn = null;
+  clearLockFeedback();
   headingHome = true;
   document.querySelector('.travel-status').textContent = 'Heading home. Come on in...';
   const enterFromBranch = () => {
@@ -129,6 +163,8 @@ document.getElementById('house-stop').addEventListener('click', () => {
 document.addEventListener('leave-house', () => {
   cancelAnimationFrame(frame);
   journey++;
+  lockedReturn = null;
+  clearLockFeedback();
   player.classList.remove('walking');
   headingHome = false;
   position = houseJunction;

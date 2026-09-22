@@ -251,11 +251,29 @@ export function buildWorld() {
   <g clip-path="url(#fall-clip)"><path class="water-flow" d="M221 626v62m7-58v62m8-58v62m8-60v62m7-59v62" fill="none" stroke="#d4efcf" stroke-width="1.7" stroke-dasharray="14 22" opacity=".72"/></g>
   <path d="M214 682q5-8 10 0 5-10 10 2 5-9 11 0 7-9 12-1" fill="none" stroke="#e2f0cc" stroke-width="3.5" stroke-linecap="round"/>
   <ellipse class="sea-ripple" cx="238" cy="687" rx="29" ry="6" fill="none" stroke="#c7e7c5" stroke-width="1.5"/>
-  <g fill="#f4f0cc" opacity=".92"><path d="M37 153q-5-6 3-9h16q0-9 11-10 9-1 12 5h14q10 7-1 12H73q-4 6-13 5H41Z"/><path d="M527 359q-7-7 2-10h16q1-7 10-7h12q9 3 7 9 13 6 0 11h-36Z"/></g>
   </svg>`;
+}
+
+export function buildClouds() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" overflow="hidden">
+  <style>
+    .drifting-cloud{animation:cloud-drift 90s linear infinite}
+    .cloud-near{--start:-140px;--end:640px;animation-delay:-22s}
+    .cloud-far{--start:-620px;--end:100px;animation-duration:115s;animation-delay:-92s}
+    @keyframes cloud-drift{from{transform:translateX(var(--start))}to{transform:translateX(var(--end))}}
+    @media(prefers-reduced-motion:reduce){.drifting-cloud{animation:none}}
+  </style>
+  <g fill="#f4f0cc" opacity=".92"><path class="drifting-cloud cloud-near" d="M37 153q-5-6 3-9h16q0-9 11-10 9-1 12 5h14q10 7-1 12H73q-4 6-13 5H41Z"/><path class="drifting-cloud cloud-far" d="M527 359q-7-7 2-10h16q1-7 10-7h12q9 3 7 9 13 6 0 11h-36Z"/></g>
+  </svg>`;
+}
+
+export function buildHouseForeground() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">${cottage(135,489).art}</svg>`;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   await writeFile(new URL('../img/chapter-world.svg', import.meta.url), buildWorld());
+  await writeFile(new URL('../img/chapter-house.svg', import.meta.url), buildHouseForeground());
+  await writeFile(new URL('../img/chapter-clouds.svg', import.meta.url), buildClouds());
   console.log('Built chapter-world.svg from one terrain and lighting model.');
 }

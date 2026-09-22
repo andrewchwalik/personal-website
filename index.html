@@ -6,9 +6,9 @@
   <meta name="description" content="One life. A few big quests. Explore Andrew Chwalik's chapter map and follow the adventure.">
   <title>Andrew Chwalik | The Adventure</title>
   <link rel="stylesheet" href="adventure.css?v=house-1">
-  <link rel="stylesheet" href="house.css?v=house-5">
-  <link rel="stylesheet" href="chapter-layout.css?v=1">
-  <script src="adventure.js?v=chapter-panel-1" defer></script>
+  <link rel="stylesheet" href="house.css?v=house-7">
+  <link rel="stylesheet" href="chapter-layout.css?v=4">
+  <script src="adventure.js?v=locked-return-1" defer></script>
   <script src="house.js?v=house-5" type="module"></script>
 </head>
 <body>
@@ -16,21 +16,23 @@
     <section class="intro" aria-labelledby="page-title">
       <p class="eyebrow"><span class="status-dot"></span> Andrew Chwalik / EST. 1994</p>
       <h1 id="page-title">Big dreams. <br>One level at a time.</h1>
-      <p>I'm Andrew. Dad, creator, soccer nerd.<br>This is the map of what I'm chasing. Come along for the ride.</p>
+      <p>I'm Andrew. A dad, creator, and soccer nerd. This is the interactive map of the dreams I'm chasing. Jump in and explore. See what I've done, and where I'm going. Help me get to the next destination.</p>
     </section>
     <div class="adventure-layout">
     <section class="world" aria-label="Adventure chapter map">
       <div class="map-toolbar"><span><span aria-hidden="true">✦</span> WORLD 01 <span class="muted">/ THE LONG GAME</span></span><span class="map-status">CHAPTER 03 ACTIVE</span></div>
       <div class="map-stage">
-        <img class="landscape" src="img/chapter-world.svg?v=house-1" alt="" aria-hidden="true">
+        <img class="landscape" src="img/chapter-world.svg?v=clouds-2" alt="" aria-hidden="true">
+        <img class="map-clouds" src="img/chapter-clouds.svg" alt="" aria-hidden="true">
         <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="travel-route" d="M165 550 C165 510 205 510 235 510 L285 510 Q365 510 365 460 Q365 420 315 420 Q265 420 265 392 Q265 365 290 365 Q415 365 415 310 L415 275 Q415 269 470 269 L470 180"/></svg>
         <button class="level completed" data-chapter="1" style="--x:27.5%;--y:78.571%" aria-label="Level 1: Master's degree, completed"><span class="level-disc">01</span><span class="level-label">Master's in Ireland</span></button>
         <button class="level completed" data-chapter="2" style="--x:60.833%;--y:65.714%" aria-label="Level 2: Start a soccer club, completed"><span class="level-disc">02</span><span class="level-label">Firelands United</span></button>
         <button class="level active" data-chapter="3" style="--x:48.333%;--y:52.143%" aria-label="Level 3: Vlog every day in 2026, current"><span class="level-disc">03</span><span class="level-label">Daily vlogging</span></button>
-        <button class="level locked" data-chapter="4" style="--x:69.167%;--y:39.286%" aria-label="Level 4: Pay off our debt, locked preview"><span class="level-disc">04</span><span class="level-label">Debt free</span></button>
+        <button class="level locked" data-chapter="4" style="--x:69.167%;--y:39.286%" aria-label="Pay off our debt, locked: visit and return"><span class="level-disc"><svg viewBox="0 0 20 24" aria-hidden="true"><rect x="3" y="10" width="14" height="11" rx="2"/><path d="M6 10V7a4 4 0 0 1 8 0v3M10 14v3"/></svg></span><span class="level-label">Debt free</span></button>
         <button class="level unknown" style="--x:78.333%;--y:25.714%" disabled aria-label="Future chapter, not yet accessible"><span class="level-disc">?</span></button>
         <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="house-route" d="M181 518 Q158 508 144 490 L135 493"/></svg>
-        <button class="house-stop" id="house-stop" aria-label="Visit Home Base: TV, soccer, and guestbook"><span>Home Base</span></button>
+        <button class="house-stop" id="house-stop" aria-label="Visit Home: TV, soccer, and guestbook"><span>Home</span></button>
+        <img class="house-foreground" src="img/chapter-house.svg" alt="" aria-hidden="true">
         <div class="player" aria-hidden="true"><svg viewBox="0 0 64 88">
           <defs><linearGradient id="jacket" x2="1" y2="1"><stop stop-color="#ff9144"/><stop offset="1" stop-color="#ed5f26"/></linearGradient></defs>
           <g class="leg leg-left"><path d="m23 62-2 15h10l2-15" fill="#354953"/><path d="M21 75h10v7H18q-3-5 3-7" fill="#243640"/></g>
@@ -53,7 +55,6 @@
           <path d="M26 32q7 7 13-1" fill="#fff3df" stroke="#a36d56" stroke-width=".7"/>
         </svg></div>
       </div>
-      <div class="map-legend"><span><i class="legend-active"></i> Current chapter</span><span><i class="legend-completed"></i> Completed</span><span><i class="legend-locked"></i> Next locked chapter can be previewed</span><span class="map-hint">Choose a stop to explore ↗</span></div>
     </section>
     <p class="travel-status" role="status" aria-live="polite">Level 3 selected: daily vlogging.</p>
     <section class="chapter-panel" id="chapter-panel" aria-labelledby="chapter-title">
@@ -62,7 +63,6 @@
       <div class="chapter-stamp" aria-hidden="true"><span>LESS WAITING</span><svg viewBox="0 0 64 50"><path d="M5 12h37v30H5zM42 20l17-8v30l-17-8zM14 12l4-7h12l4 7" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="27" r="8" fill="none" stroke="currentColor" stroke-width="3"/></svg><span>MORE MAKING</span></div>
     </section>
     </div>
-    <section class="invitation"><span aria-hidden="true">✦</span><p>You don't have to have the whole map figured out.<br><strong>Just take the next step with me.</strong></p><a href="links/">Explore my projects & links ↗</a></section>
   </main>
   <footer><a href="./">ANDREW CHWALIK</a><span>A work in progress. Just like me.</span><small>© 2026 Andrew Chwalik</small></footer>
   <dialog id="home-screen" class="home-screen" aria-labelledby="home-title">
