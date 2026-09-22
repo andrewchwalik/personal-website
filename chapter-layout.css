@@ -34,6 +34,14 @@ body .travel-status.sr-only { padding: 0; }
 .map-clouds { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; user-select: none; }
 
 /* Keep the portrait map and its selected chapter together on larger screens. */
+.level-progress { grid-column: 1 / -1; min-width: 0; margin-top: 20px; --progress-fill: #d5a342; }
+.level-progress[data-state="complete"] { --progress-fill: #568347; }
+.level-progress progress { display: block; appearance: none; width: 100%; height: 14px; overflow: hidden; border: 2px solid #456249; border-radius: 4px; background: #e4e5cf; box-shadow: 0 2px 0 #c5cdb6; }
+.level-progress progress::-webkit-progress-bar { background: #e4e5cf; }
+.level-progress progress::-webkit-progress-value { background: var(--progress-fill); box-shadow: inset 0 3px 0 #ffffff30; }
+.level-progress progress::-moz-progress-bar { background: var(--progress-fill); box-shadow: inset 0 3px 0 #ffffff30; }
+.level-progress small { display: block; margin-top: 9px; font-size: 11px; line-height: 1.5; color: var(--muted); }
+
 @media (min-width: 1000px) {
   .adventure-layout {
     display: grid;

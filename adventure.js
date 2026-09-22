@@ -4,6 +4,21 @@ const chapters = {
   3: { state: 'CURRENT QUEST', title: 'Vlog every day in 2026.', description: "I'm trying to vlog every single day in 2026, documenting my son growing from age 1 to 2. Which also includes running our businesses up on Lake Erie, travels in our camper, and joys of daily life.", url: 'https://www.youtube.com/@AndrewChwalik', action: 'Follow the daily vlogs', point: [290, 365] },
   4: { state: 'LOCKED PREVIEW', title: 'Pay off all our debt.', description: "The next level for our family, with more room for the life we want to build.", point: [415, 275] },
 };
+const levelProgress = {
+  1: { value: 1, max: 1, message: 'Degree Secured!' },
+  2: { value: 1, max: 1, message: "Men & women's teams compete in the summer!" },
+  3: { value: 212, max: 365, message: '212 / 365 vlogs edited' },
+  4: { value: 0, max: 1, message: 'Locked' },
+};
+function showProgress(number) {
+  const { value, max, message } = levelProgress[number];
+  const bar = document.getElementById('level-progress');
+  bar.max = max;
+  bar.value = value;
+  bar.setAttribute('aria-valuetext', message);
+  document.getElementById('level-progress-message').textContent = message;
+  document.querySelector('.level-progress').dataset.state = number === 4 ? 'locked' : value === max ? 'complete' : 'active';
+}
 const route = document.getElementById('travel-route');
 const player = document.querySelector('.player');
 const routeLength = route.getTotalLength();
@@ -46,6 +61,7 @@ function place(length) {
 }
 function showChapter(number) {
   const chapter = chapters[number];
+  showProgress(number);
   document.querySelector('.chapter-number').textContent = String(number).padStart(2, '0');
   document.getElementById('chapter-status').textContent = chapter.state + ' / LEVEL ' + String(number).padStart(2, '0');
   document.getElementById('chapter-title').textContent = chapter.title;
