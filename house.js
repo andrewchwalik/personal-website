@@ -152,7 +152,6 @@ const instructions = document.getElementById('book-instructions');
 const writing = document.getElementById('book-writing');
 let entries = [], loading = false;
 document.querySelector('.book-frontispiece').append(writing);
-instructions.insertBefore(document.querySelector('.book-moderation'), document.getElementById('write-entry'));
 let token = null, nextPage = null, entriesRequest = 0, tokenRequest = 0, sending = false;
 function say(text, isError = false) { feedback.textContent = text; feedback.dataset.error = String(isError); }
 function entryElement(entry) {

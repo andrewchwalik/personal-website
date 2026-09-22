@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="house.css?v=house-7">
   <link rel="stylesheet" href="chapter-layout.css?v=6">
   <script src="adventure.js?v=level-copy-2" defer></script>
-  <script src="house.js?v=house-5" type="module"></script>
+  <script src="house.js?v=house-6" type="module"></script>
 </head>
 <body>
   <main>
@@ -90,7 +90,7 @@
   <dialog id="guestbook-dialog" class="house-panel guestbook-panel" aria-labelledby="guestbook-title">
     <button type="button" class="panel-close" data-close aria-label="Close guestbook">×</button>
     <div class="book-spread">
-    <div class="book-frontispiece"><h2 id="guestbook-title">The Guestbook</h2><div id="book-instructions"><p>Leave a note, travel tips, parenting advice, or just a positive message.</p><p class="book-rules">No links or profanity, please.</p><button type="button" id="write-entry" class="book-write">Sign the Guestbook</button></div></div>
+    <div class="book-frontispiece"><h2 id="guestbook-title">The Guestbook</h2><div id="book-instructions"><p>Leave a note, travel tips, parenting advice, or just a positive message.</p><button type="button" id="write-entry" class="book-write">Sign the Guestbook</button></div></div>
     <div class="book-paper">
     <section id="book-reader" aria-label="Guestbook entries">
       <div class="book-running-head"><span>MESSAGES</span><button type="button" id="refresh-entries" aria-label="Refresh guestbook">↻</button></div>
@@ -107,12 +107,10 @@
       <label for="guest-message">Your message <span id="message-count">0 / 400</span></label><textarea id="guest-message" name="message" minlength="3" maxlength="400" rows="3" placeholder="Leave something kind…" required></textarea>
       <div class="guestbook-trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
       <label class="public-consent"><input name="consent" type="checkbox" required><span>I understand my display name and message will be public.</span></label>
-      <p class="book-privacy">No email needed. Please leave out links, contact details, and private information.</p>
       <button type="submit" class="book-submit" disabled>Sign the guestbook <span aria-hidden="true">↗</span></button>
       <p id="guestbook-feedback" class="book-feedback" role="status" aria-live="polite"></p>
     </form>
     </section>
-    <p class="book-moderation">Keep it kind. Spam or harmful messages may be removed. <a href="https://www.instagram.com/andrewchwalik/" target="_blank" rel="noopener noreferrer">Ask Andrew to remove an entry ↗</a></p>
     </div>
     </div>
   </dialog>
