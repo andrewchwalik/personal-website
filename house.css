@@ -3,6 +3,8 @@
 .house-stop span { position:absolute; left:75%; top:50%; transform:translateY(-50%); background:#fcf0c6df; border:1px solid #fff4d3; border-radius:4px; padding:3px 7px 3px 14px; font-size:8px; white-space:nowrap; color:#2d5143; }
 .house-foreground { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:3; }
 .house-stop:hover span,.house-stop:focus-visible span { background:#fff4c7; box-shadow:0 2px 8px #254e3f44; }
+body .house-stop:focus-visible { outline: none; }
+.house-stop:focus-visible span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 body:has(#home-screen[open]) { overflow:hidden; }
 .home-screen { max-width:none; max-height:none; width:100%; height:100dvh; margin:0; padding:0; border:0; color:#294b40; background:radial-gradient(ellipse at 50% 44%,#eee9d2 0,transparent 63%),#f6f3e8; overflow-y:auto; }
 .home-screen::backdrop { background:#274d41; }
