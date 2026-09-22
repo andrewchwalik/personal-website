@@ -55,6 +55,11 @@ function showChapter(number) {
   document.querySelectorAll('[data-chapter]').forEach(button => {
     button.setAttribute('aria-pressed', String(Number(button.dataset.chapter) === number));
   });
+  if (matchMedia('(min-width: 1000px)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const copy = document.querySelector('.chapter-copy');
+    copy.getAnimations().forEach(animation => animation.cancel());
+    copy.animate([{ opacity: .35, transform: 'translateX(-10px)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'ease-out' });
+  }
 }
 function selectChapter(number) {
   cancelAnimationFrame(frame);
@@ -64,7 +69,7 @@ function selectChapter(number) {
   const status = document.querySelector('.travel-status');
   status.textContent = 'Traveling to Level ' + number + '...';
   const continueToChapter = () => walk(route, position, stops[number], ticket, () => {
-    status.textContent = 'Level ' + number + ': ' + chapters[number].title + ' Details below the map.';
+    status.textContent = 'Level ' + number + ': ' + chapters[number].title + (matchMedia('(min-width: 1000px)').matches ? ' Details beside the map.' : ' Details below the map.');
   });
   if (branchPosition !== null) {
     walk(houseRoute, branchPosition, 0, ticket, () => {

@@ -1,0 +1,45 @@
+/* Keep the portrait map and its selected chapter together on larger screens. */
+@media (min-width: 1000px) {
+  .adventure-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr);
+    grid-template-areas: 'map details' 'status details';
+    gap: 0 36px;
+    align-items: start;
+  }
+  .adventure-layout .world { grid-area: map; width: 100%; min-width: 0; }
+  .adventure-layout .travel-status { grid-area: status; }
+  body .adventure-layout .map-legend { flex-wrap: wrap; gap: 10px 16px; }
+  body .adventure-layout .map-hint { margin-left: 0; }
+  body .adventure-layout .chapter-panel {
+    grid-area: details;
+    position: sticky;
+    top: 28px;
+    margin: 100px 0 0;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    border: 1px solid #d9decb;
+    border-radius: 6px;
+    background: #fcf9ed;
+    box-shadow: 0 5px 0 #e2e5d6, 0 12px 24px #294f4909;
+  }
+  .adventure-layout .chapter-panel::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 44px;
+    width: 18px;
+    height: 18px;
+    background: #fcf9ed;
+    border-left: 1px solid #d9decb;
+    border-bottom: 1px solid #d9decb;
+    transform: rotate(45deg);
+  }
+  body .adventure-layout .chapter-number { border: 0; font-size: 40px; letter-spacing: -2px; }
+  body .adventure-layout .chapter-stamp { display: none; }
+  body .adventure-layout .chapter-copy h2 { font-size: clamp(27px, 2.6vw, 33px); line-height: 1.15; }
+  body .adventure-layout .chapter-actions { display: grid; gap: 18px; }
+  body .adventure-layout .chapter-actions .button { min-height: 48px; align-items: center; }
+}
