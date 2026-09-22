@@ -29,6 +29,7 @@ let lockAnimations = [];
 function clearLockFeedback() {
   lockAnimations.forEach(animation => animation.cancel());
   lockAnimations = [];
+  document.querySelector('[data-chapter="4"]').classList.remove('lock-denied');
 }
 const houseRoute = document.getElementById('house-route');
 let houseJunction = 0;
@@ -88,17 +89,27 @@ function selectChapter(number) {
     });
   } else continueToChapter();
 }
-function bounceFromLock(ticket, status) {
+async function bounceFromLock(ticket, status) {
   const origin = lockedReturn;
   if (!origin || ticket !== journey) return;
   status.textContent = 'Locked! Complete daily vlogging first. Heading back...';
   document.getElementById('locked-note').textContent = 'Still locked. Finish the daily vlogging quest first.';
+  document.querySelector('[data-chapter="4"]').classList.add('lock-denied');
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const jitter = [0, -4, 3, -2, 2, 0].map(x => ({ transform: `translateX(${x}px)` }));
+    const jitter = [0, -7, 6, -5, 4, -3, 0].map((x, index) => ({
+      transform: `translateX(${x}px) skewX(${x / 2}deg)`,
+      filter: index > 0 && index < 6
+        ? 'drop-shadow(-3px 0 0 #ef6b61) drop-shadow(3px 0 0 #75e6dd)'
+        : 'none',
+    }));
     lockAnimations = [document.querySelector('[data-chapter="4"] .level-disc'), player.querySelector('svg')]
-      .map(element => element.animate(jitter, { duration: 420, easing: 'steps(1, end)' }));
+      .map(element => element.animate(jitter, { duration: 560, easing: 'steps(1, end)' }));
+    // Finish the rejection at the checkpoint before starting the return walk.
+    await Promise.all(lockAnimations.map(animation => animation.finished.catch(() => {})));
+    if (ticket !== journey) return;
   }
   const returned = () => {
+    clearLockFeedback();
     lockedReturn = null;
     showChapter(origin.chapter);
     status.textContent = 'Debt free is locked. Back where you started.';
