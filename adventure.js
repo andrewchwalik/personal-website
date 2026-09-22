@@ -1,8 +1,8 @@
 const chapters = {
-  1: { state: 'COMPLETED', title: "A master's degree. An Irish adventure.", description: "I moved to Ireland to get my master's degree and documented life along the way. This chapter is complete, but you can revisit the adventure through the vlogs.", objective: "Earn my master's degree.", url: 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee', action: 'Watch the Ireland vlogs', point: [165, 550] },
-  2: { state: 'COMPLETED', title: 'Start a soccer club.', description: "An idea became Firelands United, a minor league soccer club in northern Ohio. Starting the club is a completed chapter; the club's story keeps going.", objective: 'Launch Firelands United.', url: 'https://firelandsunited.com/', action: 'Explore Firelands United', point: [365, 460] },
-  3: { state: 'CURRENT QUEST', title: 'Show up. Hit record. Every day.', description: "Vlog every day in 2026. The everyday moments, the family adventures, and everything I'm building along the way. A whole year of making the story as I go.", objective: '365 days. 365 vlogs.', url: 'https://www.youtube.com/@AndrewChwalik', action: 'Follow the daily vlogs', point: [290, 365] },
-  4: { state: 'LOCKED PREVIEW', title: 'The next adventure: debt free.', description: "Pay off all our debt. A new chapter for our family, with more room for the life we want to build.", objective: 'Pay off all our debt.', point: [415, 275] },
+  1: { state: 'COMPLETED', title: "Get my Master's Degree", description: "I moved to Ireland to get my master's degree and documented life along the way. This level is complete, but you can revisit the adventure through the vlogs.", url: 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee', action: 'Watch the Ireland vlogs', point: [165, 550] },
+  2: { state: 'COMPLETED', title: 'Start a soccer club.', description: "An idea became Firelands United, a minor league soccer club in northern Ohio. Starting the club is a completed level; the club's story keeps going.", url: 'https://firelandsunited.com/', action: 'Explore Firelands United', point: [365, 460] },
+  3: { state: 'CURRENT QUEST', title: 'Vlog every day in 2026', description: "The everyday moments, the family adventures, and everything I'm building along the way. A whole year of making the story as I go.", url: 'https://www.youtube.com/@AndrewChwalik', action: 'Follow the daily vlogs', point: [290, 365] },
+  4: { state: 'LOCKED PREVIEW', title: 'Pay off all our debt.', description: "The next level for our family, with more room for the life we want to build.", point: [415, 275] },
 };
 const route = document.getElementById('travel-route');
 const player = document.querySelector('.player');
@@ -46,19 +46,16 @@ function place(length) {
 function showChapter(number) {
   const chapter = chapters[number];
   document.querySelector('.chapter-number').textContent = String(number).padStart(2, '0');
-  document.getElementById('chapter-status').textContent = chapter.state + ' / CHAPTER ' + String(number).padStart(2, '0');
+  document.getElementById('chapter-status').textContent = chapter.state + ' / LEVEL ' + String(number).padStart(2, '0');
   document.getElementById('chapter-title').textContent = chapter.title;
   document.getElementById('chapter-description').textContent = chapter.description;
-  const label = document.createElement('span');
-  label.textContent = 'THE GOAL';
-  document.getElementById('chapter-objective').replaceChildren(label, document.createTextNode(chapter.objective));
   document.getElementById('chapter-actions').hidden = !chapter.url;
   const link = document.querySelector('#chapter-actions .button');
   if (chapter.url) { link.href = chapter.url; link.textContent = chapter.action + ' ↗'; }
   document.querySelector('.chapter-stamp').hidden = number !== 3;
   const note = document.getElementById('locked-note');
   note.hidden = number !== 4;
-  note.textContent = 'Preview only. Complete Chapter 03 to unlock this quest.';
+  note.textContent = 'Preview only. Complete Level 03 to unlock this quest.';
   document.querySelectorAll('[data-chapter]').forEach(button => {
     button.setAttribute('aria-pressed', String(Number(button.dataset.chapter) === number));
   });
@@ -172,7 +169,7 @@ document.addEventListener('leave-house', () => {
   const doorstep = houseRoute.getPointAtLength(branchPosition);
   player.style.left = `${doorstep.x / 6}%`;
   player.style.top = `${doorstep.y / 7}%`;
-  document.querySelector('.travel-status').textContent = 'Outside Home Base. Choose a chapter or head back inside.';
+  document.querySelector('.travel-status').textContent = 'Outside Home Base. Choose a level or head back inside.';
 });
 place(position);
 showChapter(3);

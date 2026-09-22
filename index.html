@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="One life. A few big quests. Explore Andrew Chwalik's chapter map and follow the adventure.">
+  <meta name="description" content="One life. A few big quests. Explore Andrew Chwalik's level map and follow the adventure.">
   <title>Andrew Chwalik | The Adventure</title>
   <link rel="stylesheet" href="adventure.css?v=house-1">
   <link rel="stylesheet" href="house.css?v=house-7">
   <link rel="stylesheet" href="chapter-layout.css?v=4">
-  <script src="adventure.js?v=locked-return-1" defer></script>
+  <script src="adventure.js?v=level-headings-1" defer></script>
   <script src="house.js?v=house-5" type="module"></script>
 </head>
 <body>
@@ -19,8 +19,8 @@
       <p>I'm Andrew. A dad, creator, and soccer nerd. This is the interactive map of the dreams I'm chasing. Jump in and explore. See what I've done, and where I'm going. Help me get to the next destination.</p>
     </section>
     <div class="adventure-layout">
-    <section class="world" aria-label="Adventure chapter map">
-      <div class="map-toolbar"><span><span aria-hidden="true">✦</span> WORLD 01 <span class="muted">/ THE LONG GAME</span></span><span class="map-status">CHAPTER 03 ACTIVE</span></div>
+    <section class="world" aria-label="Adventure level map">
+      <div class="map-toolbar"><span><span aria-hidden="true">✦</span> WORLD 01 <span class="muted">/ THE LONG GAME</span></span><span class="map-status">LEVEL 03 ACTIVE</span></div>
       <div class="map-stage">
         <img class="landscape" src="img/chapter-world.svg?v=clouds-2" alt="" aria-hidden="true">
         <img class="map-clouds" src="img/chapter-clouds.svg" alt="" aria-hidden="true">
@@ -29,7 +29,7 @@
         <button class="level completed" data-chapter="2" style="--x:60.833%;--y:65.714%" aria-label="Level 2: Start a soccer club, completed"><span class="level-disc">02</span><span class="level-label">Firelands United</span></button>
         <button class="level active" data-chapter="3" style="--x:48.333%;--y:52.143%" aria-label="Level 3: Vlog every day in 2026, current"><span class="level-disc">03</span><span class="level-label">Daily vlogging</span></button>
         <button class="level locked" data-chapter="4" style="--x:69.167%;--y:39.286%" aria-label="Pay off our debt, locked: visit and return"><span class="level-disc"><svg viewBox="0 0 20 24" aria-hidden="true"><rect x="3" y="10" width="14" height="11" rx="2"/><path d="M6 10V7a4 4 0 0 1 8 0v3M10 14v3"/></svg></span><span class="level-label">Debt free</span></button>
-        <button class="level unknown" style="--x:78.333%;--y:25.714%" disabled aria-label="Future chapter, not yet accessible"><span class="level-disc">?</span></button>
+        <button class="level unknown" style="--x:78.333%;--y:25.714%" disabled aria-label="Future level, not yet accessible"><span class="level-disc">?</span></button>
         <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="house-route" d="M181 518 Q158 508 144 490 L135 493"/></svg>
         <button class="house-stop" id="house-stop" aria-label="Visit Home: TV, soccer, and guestbook"><span>Home</span></button>
         <img class="house-foreground" src="img/chapter-house.svg" alt="" aria-hidden="true">
@@ -59,7 +59,7 @@
     <p class="travel-status" role="status" aria-live="polite">Level 3 selected: daily vlogging.</p>
     <section class="chapter-panel" id="chapter-panel" aria-labelledby="chapter-title">
       <div class="chapter-number" aria-hidden="true">03</div>
-      <div class="chapter-copy"><p class="eyebrow" id="chapter-status">CURRENT QUEST / CHAPTER 03</p><h2 id="chapter-title">Show up. Hit record. Every day.</h2><p id="chapter-description">Vlog every day in 2026. The everyday moments, the family adventures, and everything I'm building along the way. A whole year of making the story as I go.</p><p class="objective" id="chapter-objective"><span>THE GOAL</span> 365 days. 365 vlogs.</p><div class="chapter-actions" id="chapter-actions"><a class="button" href="https://www.youtube.com/@AndrewChwalik" target="_blank" rel="noopener noreferrer">Follow the daily vlogs <span aria-hidden="true">↗</span></a><a class="text-link" href="https://www.instagram.com/andrewchwalik/" target="_blank" rel="noopener noreferrer">Join in on Instagram ↗</a></div><p id="locked-note" hidden></p></div>
+      <div class="chapter-copy"><p class="eyebrow" id="chapter-status">CURRENT QUEST / LEVEL 03</p><h2 id="chapter-title">Vlog every day in 2026</h2><p id="chapter-description">The everyday moments, the family adventures, and everything I'm building along the way. A whole year of making the story as I go.</p><div class="chapter-actions" id="chapter-actions"><a class="button" href="https://www.youtube.com/@AndrewChwalik" target="_blank" rel="noopener noreferrer">Follow the daily vlogs <span aria-hidden="true">↗</span></a><a class="text-link" href="https://www.instagram.com/andrewchwalik/" target="_blank" rel="noopener noreferrer">Join in on Instagram ↗</a></div><p id="locked-note" hidden></p></div>
       <div class="chapter-stamp" aria-hidden="true"><span>LESS WAITING</span><svg viewBox="0 0 64 50"><path d="M5 12h37v30H5zM42 20l17-8v30l-17-8zM14 12l4-7h12l4 7" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="27" r="8" fill="none" stroke="currentColor" stroke-width="3"/></svg><span>MORE MAKING</span></div>
     </section>
     </div>
