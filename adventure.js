@@ -47,6 +47,22 @@ function clearLockFeedback() {
   document.querySelector('[data-chapter="4"]').classList.remove('lock-denied');
 }
 const houseRoute = document.getElementById('house-route');
+const southRoute = document.getElementById('south-route');
+const countryRoute = document.getElementById('country-route');
+let countryPosition = 0, crossing = false, inCountry = false;
+const countryStories = {
+  roots: { point: [225, 215], title: 'Country roots.', description: 'I grew up in the country, in northwestern Ohio. This is where the adventure began.', message: 'Where it all started.' },
+  soccer: { point: [400, 430], title: 'My first soccer kicks.', description: 'Soccer has been my first true love since I started playing in the cornfields of northwestern Ohio. Those early days grew into a lifelong love of the game.', message: 'A lifelong love of the game.' },
+};
+const countryStops = Object.fromEntries(Object.entries(countryStories).map(([id, story]) => {
+  let nearest = 0, distance = Infinity;
+  for (let length = 0; length <= countryRoute.getTotalLength(); length += .5) {
+    const point = countryRoute.getPointAtLength(length);
+    const candidate = Math.hypot(point.x - story.point[0], point.y - story.point[1]);
+    if (candidate < distance) { distance = candidate; nearest = length; }
+  }
+  return [id, nearest];
+}));
 let houseJunction = 0;
 let junctionDistance = Infinity;
 for (let length = 0; length <= routeLength; length += .5) {
@@ -82,7 +98,89 @@ function showChapter(number) {
     copy.animate([{ opacity: .35, transform: 'translateX(-10px)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'ease-out' });
   }
 }
+function setCountryView(active) {
+  inCountry = active;
+  player.style.left = '27.5%';
+  player.style.top = active ? '0%' : '100%';
+  document.querySelector('.world').classList.toggle('country-view', active);
+  document.querySelector('.country-landscape').hidden = !active;
+  document.querySelectorAll('.country-control').forEach(button => { button.hidden = !active; });
+  document.getElementById('world-name').textContent = active ? 'WORLD 00 / COUNTRY ROOTS' : 'WORLD 01 / THE LONG GAME';
+  document.querySelector('.map-status').textContent = active ? 'EARLIER ADVENTURES' : 'LEVEL 03 ACTIVE';
+}
+function setCrossing(active) {
+  crossing = active;
+  document.querySelector('.world').classList.toggle('crossing', active);
+  document.querySelector('.world').setAttribute('aria-busy', String(active));
+}
+function showCountryStory(id) {
+  const story = countryStories[id];
+  document.querySelector('.chapter-number').textContent = '00';
+  document.getElementById('chapter-status').textContent = 'COMPLETED / COUNTRY ROOTS';
+  document.getElementById('chapter-title').textContent = story.title;
+  document.getElementById('chapter-description').textContent = story.description;
+  document.getElementById('chapter-actions').hidden = true;
+  document.getElementById('locked-note').hidden = true;
+  document.querySelector('.chapter-stamp').hidden = true;
+  const progress = document.getElementById('level-progress');
+  progress.max = 1; progress.value = 1;
+  progress.setAttribute('aria-valuetext', story.message);
+  document.getElementById('level-progress-message').textContent = story.message;
+  document.querySelector('.level-progress').dataset.state = 'complete';
+  document.querySelectorAll('[data-country]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.country === id)));
+}
+function visitCountry() {
+  if (crossing || inCountry) return;
+  cancelAnimationFrame(frame);
+  const ticket = ++journey;
+  clearLockFeedback(); lockedReturn = null; headingHome = false;
+  setCrossing(true);
+  document.querySelector('.travel-status').textContent = 'Crossing the bridge to Country roots.';
+  const crossBridge = () => walk(route, position, stops[1], ticket, () => {
+    walk(southRoute, 0, southRoute.getTotalLength(), ticket, () => {
+      setCountryView(true);
+      countryPosition = 0;
+      showCountryStory('roots');
+      walk(countryRoute, 0, countryStops.roots, ticket, () => {
+        setCrossing(false);
+        document.querySelector('.travel-status').textContent = 'Arrived at Country roots. Choose a memory to explore.';
+      });
+    });
+  });
+  if (branchPosition !== null) walk(houseRoute, branchPosition, 0, ticket, () => {
+    position = houseJunction; branchPosition = null; crossBridge();
+  });
+  else crossBridge();
+}
+function returnToIsland() {
+  if (crossing || !inCountry) return;
+  cancelAnimationFrame(frame);
+  const ticket = ++journey;
+  setCrossing(true);
+  document.querySelector('.travel-status').textContent = 'Crossing back to the current island.';
+  walk(countryRoute, countryPosition, 0, ticket, () => {
+    setCountryView(false);
+    showChapter(1);
+    walk(southRoute, southRoute.getTotalLength(), 0, ticket, () => {
+      position = stops[1]; branchPosition = null; lastChapter = 1;
+      place(position); setCrossing(false);
+      document.querySelector('.travel-status').textContent = 'Back on the current island at Level 1.';
+    });
+  });
+}
+document.getElementById('visit-country').addEventListener('click', visitCountry);
+document.getElementById('return-island').addEventListener('click', returnToIsland);
+document.querySelectorAll('[data-country]').forEach(button => button.addEventListener('click', () => {
+  if (crossing || !inCountry) return;
+  cancelAnimationFrame(frame);
+  const ticket = ++journey, id = button.dataset.country;
+  showCountryStory(id);
+  walk(countryRoute, countryPosition, countryStops[id], ticket, () => {
+    document.querySelector('.travel-status').textContent = countryStories[id].title;
+  });
+}));
 function selectChapter(number) {
+  if (crossing || inCountry) return;
   if (number === 4 && lockedReturn) return;
   cancelAnimationFrame(frame);
   clearLockFeedback();
@@ -151,7 +249,8 @@ function walk(path, start, end, ticket, arrived) {
     const distance = start + (end - start) * eased;
     if (path === route) { branchPosition = null; position = distance; place(position); }
     else {
-      branchPosition = distance;
+      if (path === houseRoute) branchPosition = distance;
+      if (path === countryRoute) countryPosition = distance;
       const point = path.getPointAtLength(distance);
       player.style.left = (point.x / 600 * 100) + '%';
       player.style.top = (point.y / 700 * 100) + '%';
@@ -168,6 +267,7 @@ document.querySelectorAll('[data-chapter]').forEach(button => {
   button.addEventListener('click', () => selectChapter(Number(button.dataset.chapter)));
 });
 document.getElementById('house-stop').addEventListener('click', () => {
+  if (crossing || inCountry) return;
   if (headingHome) return;
   cancelAnimationFrame(frame);
   const ticket = ++journey;

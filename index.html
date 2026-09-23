@@ -8,8 +8,8 @@
   <link rel="icon" href="favicon.svg?v=retro-2" type="image/svg+xml" sizes="any">
   <link rel="stylesheet" href="adventure.css?v=lock-feedback-1">
   <link rel="stylesheet" href="house.css?v=house-8">
-  <link rel="stylesheet" href="chapter-layout.css?v=8">
-  <script src="adventure.js?v=level-progress-1" defer></script>
+  <link rel="stylesheet" href="chapter-layout.css?v=country-1">
+  <script src="adventure.js?v=country-1" defer></script>
   <script src="house.js?v=house-6" type="module"></script>
 </head>
 <body>
@@ -21,9 +21,15 @@
     </section>
     <div class="adventure-layout">
     <section class="world" aria-label="Adventure level map">
-      <div class="map-toolbar"><span><span aria-hidden="true">✦</span> WORLD 01 <span class="muted">/ THE LONG GAME</span></span><span class="map-status">LEVEL 03 ACTIVE</span></div>
+      <div class="map-toolbar"><span id="world-name">WORLD 01 / THE LONG GAME</span><span class="map-status">LEVEL 03 ACTIVE</span></div>
       <div class="map-stage">
         <img class="landscape" src="img/chapter-world.svg?v=south-bridge-1" alt="" aria-hidden="true">
+        <img class="country-landscape" src="img/country-world.svg" alt="" aria-hidden="true" hidden>
+        <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="south-route" d="M165 550 L165 700"/><path id="country-route" d="M165 0 L165 170 Q165 215 225 215 Q300 215 300 290 Q300 345 400 345 L400 430"/></svg>
+        <button class="island-crossing" id="visit-country" style="--x:27.5%;--y:94%">Country roots ↓</button>
+        <button class="island-crossing country-control" id="return-island" style="--x:27.5%;--y:7%" hidden>Current island ↑</button>
+        <button class="level completed country-control" data-country="roots" style="--x:37.5%;--y:30.714%" aria-label="Explore Country roots, completed" hidden><span class="level-disc">✓</span><span class="level-label">Country roots</span></button>
+        <button class="level completed country-control" data-country="soccer" style="--x:66.667%;--y:61.429%" aria-label="Explore First soccer kicks, completed" hidden><span class="level-disc">✓</span><span class="level-label">First soccer kicks</span></button>
         <img class="map-clouds" src="img/chapter-clouds.svg" alt="" aria-hidden="true">
         <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="travel-route" d="M165 550 C165 510 205 510 235 510 L285 510 Q365 510 365 460 Q365 420 315 420 Q265 420 265 392 Q265 365 290 365 Q415 365 415 310 L415 275 Q415 269 470 269 L470 180"/></svg>
         <button class="level completed" data-chapter="1" style="--x:27.5%;--y:78.571%" aria-label="Level 1: Master's degree, completed"><span class="level-disc">01</span><span class="level-label">Master's in Ireland</span></button>

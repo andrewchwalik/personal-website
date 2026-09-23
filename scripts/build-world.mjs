@@ -183,8 +183,8 @@ function bridge() {
     <path d="M227 494q30 3 60 0m-60 22q30 4 60 0" fill="none" stroke="#e1b16a" stroke-width="2"/>`;
 }
 
-function southBridge() {
-  const { x, start, end, width } = SOUTH_BRIDGE;
+function southBridge(geometry = SOUTH_BRIDGE, id = 'south-bridge') {
+  const { x, start, end, width } = geometry;
   const left = x - width / 2, right = x + width / 2;
   let deck = '', rails = '';
   for (let y = start; y < end; y += 7) {
@@ -199,7 +199,7 @@ function southBridge() {
       rails += line([[edge-0.7,y,0],[edge-0.7,y,14]], '#e8bb72', 2);
     }
   }
-  return `<g id="south-bridge">
+  return `<g id="${id}">
     <g opacity=".2">${shadow([[left,start+36,36],[right,start+36,36],[right,end+36,36],[left,end+36,36]])}</g>
     ${path(`M${left} ${start}h${width}v${end-start}h-${width}Z`, '#775735')}
     ${deck}${line([[right,start],[right,end]], '#795637', 2)}${rails}
@@ -301,9 +301,55 @@ export function buildHouseForeground() {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">${cottage(135,489).art}</svg>`;
 }
 
+export const COUNTRY_ROUTE = 'M165 0 L165 170 Q165 215 225 215 Q300 215 300 290 Q300 345 400 345 L400 430';
+export function buildCountryWorld() {
+  const ground = rounded([[131,113],[191,111],[228,143],[306,128],[391,142],[446,180],[489,201],[523,256],[516,330],[539,391],[513,476],[463,503],[441,558],[355,577],[286,561],[236,589],[157,570],[133,536],[82,512],[63,451],[79,396],[58,333],[84,282],[73,229],[104,192]], 18);
+  const objects = [tree(106,292,35,14),tree(95,322,41,15),tree(109,351,35,13), tree(467,256,38,14),tree(487,281,32,13),tree(454,520,41,17),tree(431,539,34,14),tree(116,471,37,15),tree(130,504,34,13),goal(466,441), fence(342,466,40),fence(386,466,38),cottage(198,523)];
+  const fields = [
+    { x:115, y:246, w:126, h:118, fill:'#c9b45c', row:'#9d9147' },
+    { x:331, y:203, w:100, h:98, fill:'#729951', row:'#4f8147' },
+    { x:155, y:396, w:132, h:71, fill:'#b6bd66', row:'#879b4b' },
+    { x:282, y:486, w:106, h:60, fill:'#d3b461', row:'#a78b48' },
+  ];
+  const plots = fields.map(({x,y,w,h,fill,row}) => {
+    const shape = [[x,y],[x+w,y],[x+w-13,y+h],[x-13,y+h]];
+    return poly(shape, '#648d42', 'stroke="#648d42" stroke-width="5"') + poly(shape,fill) +
+      Array.from({length:Math.floor(w/9)-1},(_,i)=>line([[x+8+i*9,y+4],[x-5+i*9,y+h-4]],row,3)).join('');
+  }).join('');
+  const barn = `${poly([[340,173],[402,194],[428,181],[364,156]],'#254e3f','opacity=".2"')}
+    ${face([[337,183,0],[386,183,0],[386,183,32],[361,183,53],[337,183,32]],'#b9593f')}
+    ${face([[386,183,0],[410,166,0],[410,166,32],[386,183,32]],'#8d4436')}
+    ${face([[337,183,32],[361,183,53],[385,166,53],[361,166,32]],'#ead5a0')}
+    ${face([[361,183,53],[386,183,32],[410,166,32],[385,166,53]],'#687c66')}
+    ${path('M352 183v-23h19v23Z','#734937','stroke="#f1dca6" stroke-width="2"')}
+    ${line([[353,181],[370,161]],'#e6c78a',1.5)}${line([[353,161],[370,181]],'#e6c78a',1.5)}
+    ${path('M356 148h10v7h-10Z','#e8d6a4')}`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">
+    <title>Country roots</title><desc>A rural island of golden fields, hedgerows, a red barn and a soccer meadow. A wooden bridge connects north to the current adventure.</desc>
+    <defs>
+      <pattern id="grass" width="43" height="37" patternUnits="userSpaceOnUse"><path d="m8 15-2-4m2 4 2-5m23 16 2-4" stroke="#6b9b43" opacity=".45" fill="none"/></pattern>
+      <pattern id="cliff-grain" width="31" height="29" patternUnits="userSpaceOnUse"><path d="M8 10v3m13 8v2" stroke="#874c34" opacity=".2"/></pattern>
+      <pattern id="waves" width="32" height="23" patternUnits="userSpaceOnUse"><path d="M2 10q7 9 14 0 7 9 14 0" fill="none" stroke="#9bc9b5" opacity=".17"/></pattern>
+      <clipPath id="country-ground">${poly(ground,'white')}</clipPath>
+    </defs>
+    <path d="M0 0h600v700H0Z" fill="#287c8a"/><path d="M0 0h600v700H0Z" fill="url(#waves)"/>
+    ${terrainShadow(ground.map(([x,y])=>[x,y+36]),36,'#164e65')}
+    ${solid(ground.map(([x,y])=>[x,y+36]),36,'island','#a5c765')}
+    <g clip-path="url(#country-ground)">${plots}
+      ${path(COUNTRY_ROUTE,'none','stroke="#829b48" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"')}
+      ${path(COUNTRY_ROUTE,'none','stroke="#f2d58b" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"')}
+      ${path('M225 215Q260 200 280 184H361','none','stroke="#e4cc87" stroke-width="9"')}
+      ${shadowLayer(objects)}
+    </g>
+    ${barn}${artLayer(objects)}${flowers(247,244)}${flowers(382,438)}
+    ${southBridge({x:165,start:-26,end:135,width:28},'country-bridge')}
+  </svg>`;
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   await writeFile(new URL('../img/chapter-world.svg', import.meta.url), buildWorld());
   await writeFile(new URL('../img/chapter-house.svg', import.meta.url), buildHouseForeground());
   await writeFile(new URL('../img/chapter-clouds.svg', import.meta.url), buildClouds());
+  await writeFile(new URL('../img/country-world.svg', import.meta.url), buildCountryWorld());
   console.log('Built chapter-world.svg from one terrain and lighting model.');
 }
