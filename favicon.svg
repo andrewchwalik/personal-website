@@ -1,5 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
   <title>Andrew Chwalik</title>
-  <rect width="64" height="64" rx="16" fill="#294f49"/>
-  <path d="M13 49 27 15h10l14 34H40l-3-8H27l-3 8Zm17-17h4l-2-7Z" fill="#f2d58b" fill-rule="evenodd"/>
+  <path d="M2 0h12v1h1v1h1v12h-1v1h-1v1H2v-1H1v-1H0V2h1V1h1Z" fill="#183b35"/>
+  <path d="M2 1h12v1h1v12h-1v1H2v-1H1V2h1Z" fill="#294f49"/>
+  <path d="M2 1h12v1H2v12H1V2h1Z" fill="#6c9964"/>
+  <path d="M14 2h1v12h-1v1H2v-1h12Z" fill="#102e2a"/>
+  <path d="M6 4h4v1h1v7H9V9H7v3H5V5h1Zm1 2v1h2V6Z" transform="translate(0 1)" fill="#aa7135" fill-rule="evenodd"/>
+  <path d="M6 4h4v1h1v7H9V9H7v3H5V5h1Zm1 2v1h2V6Z" fill="#f2d58b" fill-rule="evenodd"/>
+  <path d="M6 4h4v1H6ZM5 5h1v3H5Z" fill="#fff1bd"/>
 </svg>
