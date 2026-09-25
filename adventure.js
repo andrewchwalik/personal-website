@@ -1,5 +1,4 @@
 const chapters = {
-  1: { state: 'COMPLETED', title: 'Get my masters degree.', description: "I moved to Ireland to get my master's degree and documented life along the way. Living abroad was the adventure of a lifetime. Watch some of the vlogs I created while I lived on the Emerald Isle.", url: 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee', action: 'Watch the Ireland vlogs', point: [165, 550] },
   2: { state: 'COMPLETED', title: 'Start a soccer club.', description: "Soccer has always been my first true love, since starting to play in the cornfields of northwestern Ohio. I wanted to help share that love with others by starting a local soccer club. The Firelands story continues to unfold, check it out for yourself!", url: 'https://firelandsunited.com/', action: 'Explore Firelands United', point: [365, 460] },
   3: { state: 'CURRENT QUEST', title: 'Vlog every day in 2026.', description: "I'm trying to vlog every single day in 2026, documenting my son growing from age 1 to 2. Which also includes running our businesses up on Lake Erie, travels in our camper, and joys of daily life.", url: 'https://www.youtube.com/@AndrewChwalik', action: 'Follow the daily vlogs', point: [290, 365] },
   4: { state: 'LOCKED PREVIEW', title: 'Pay off all our debt.', description: "The next level for our family, with more room for the life we want to build.", point: [415, 275] },
@@ -51,8 +50,12 @@ const southRoute = document.getElementById('south-route');
 const countryRoute = document.getElementById('country-route');
 let countryPosition = 0, crossing = false, inCountry = false;
 const countryStories = {
-  roots: { point: [225, 215], title: 'Country roots.', description: 'I grew up in the country, in northwestern Ohio. This is where the adventure began.', message: 'Where it all started.' },
-  soccer: { point: [400, 430], title: 'My first soccer kicks.', description: 'Soccer has been my first true love since I started playing in the cornfields of northwestern Ohio. Those early days grew into a lifelong love of the game.', message: 'A lifelong love of the game.' },
+  president: { number: 1, point: [165, 170], title: 'Elected President', description: 'Watch the story of this milestone.', url: 'https://youtu.be/5uaEyriSL3A', action: 'Watch the video', message: 'Completed!' },
+  startup: { number: 2, point: [225, 215], title: 'Startup Bus', description: 'Explore Startup Bus.', url: 'https://startupbus.com', action: 'Explore Startup Bus', message: 'Completed!' },
+  masters: { number: 3, point: [300, 290], title: 'Masters Degree', description: "I moved to Ireland to get my master's degree and documented life along the way. Living abroad was the adventure of a lifetime. Watch some of the vlogs I created while I lived on the Emerald Isle.", url: 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee', action: 'Watch the Ireland vlogs', message: 'Degree Secured!' },
+  icecream: { number: 4, point: [400, 345], title: 'Ice Cream Shop', description: 'Revisit the ice cream shop through the vlogs.', url: 'https://www.youtube.com/playlist?list=PLzLEqDD8AalYMul900PclGbOMbi8oqD33', action: 'Watch the shop vlogs', message: 'Completed!' },
+  delaware: { number: 5, point: [400, 430], title: 'Delaware Rising', description: 'Explore Delaware Rising.', url: 'https://delawarerising.club', action: 'Visit Delaware Rising', message: 'Completed!' },
+  house: { number: 6, point: [400, 520], title: 'First House', description: 'Watch the first-house video.', url: 'https://youtube.com/shorts/cGKcB-_NNdM', action: 'Watch the video', message: 'Completed!' },
 };
 const countryStops = Object.fromEntries(Object.entries(countryStories).map(([id, story]) => {
   let nearest = 0, distance = Infinity;
@@ -115,11 +118,14 @@ function setCrossing(active) {
 }
 function showCountryStory(id) {
   const story = countryStories[id];
-  document.querySelector('.chapter-number').textContent = '00';
-  document.getElementById('chapter-status').textContent = 'COMPLETED / COUNTRY ROOTS';
+  document.querySelector('.chapter-number').textContent = String(story.number).padStart(2, '0');
+  document.getElementById('chapter-status').textContent = 'COMPLETED / COUNTRY ROOTS / LEVEL ' + String(story.number).padStart(2, '0');
   document.getElementById('chapter-title').textContent = story.title;
   document.getElementById('chapter-description').textContent = story.description;
-  document.getElementById('chapter-actions').hidden = true;
+  document.getElementById('chapter-actions').hidden = false;
+  const link = document.querySelector('#chapter-actions .button');
+  link.href = story.url;
+  link.textContent = story.action + ' ↗';
   document.getElementById('locked-note').hidden = true;
   document.querySelector('.chapter-stamp').hidden = true;
   const progress = document.getElementById('level-progress');
@@ -136,12 +142,12 @@ function visitCountry() {
   clearLockFeedback(); lockedReturn = null; headingHome = false;
   setCrossing(true);
   document.querySelector('.travel-status').textContent = 'Crossing the bridge to Country roots.';
-  const crossBridge = () => walk(route, position, stops[1], ticket, () => {
+  const crossBridge = () => walk(route, position, 0, ticket, () => {
     walk(southRoute, 0, southRoute.getTotalLength(), ticket, () => {
       setCountryView(true);
       countryPosition = 0;
-      showCountryStory('roots');
-      walk(countryRoute, 0, countryStops.roots, ticket, () => {
+      showCountryStory('president');
+      walk(countryRoute, 0, countryStops.president, ticket, () => {
         setCrossing(false);
         document.querySelector('.travel-status').textContent = 'Arrived at Country roots. Choose a memory to explore.';
       });
@@ -160,11 +166,11 @@ function returnToIsland() {
   document.querySelector('.travel-status').textContent = 'Crossing back to the current island.';
   walk(countryRoute, countryPosition, 0, ticket, () => {
     setCountryView(false);
-    showChapter(1);
+    showChapter(lastChapter);
     walk(southRoute, southRoute.getTotalLength(), 0, ticket, () => {
-      position = stops[1]; branchPosition = null; lastChapter = 1;
+      position = 0; branchPosition = null;
       place(position); setCrossing(false);
-      document.querySelector('.travel-status').textContent = 'Back on the current island at Level 1.';
+      document.querySelector('.travel-status').textContent = 'Back on the current island at the bridge landing.';
     });
   });
 }
