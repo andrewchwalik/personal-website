@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="adventure.css?v=lock-feedback-1">
   <link rel="stylesheet" href="house.css?v=house-8">
   <link rel="stylesheet" href="chapter-layout.css?v=country-reversed">
-  <script src="adventure.js?v=country-reversed" defer></script>
+  <script src="adventure.js?v=theatre-1" defer></script>
+  <link rel="stylesheet" href="theatre.css?v=1">
+  <script src="theatre.js?v=1" type="module"></script>
   <script src="house.js?v=house-6" type="module"></script>
 </head>
 <body>
@@ -24,8 +26,9 @@
       <div class="map-toolbar"><span id="world-name">WORLD 01 / THE LONG GAME</span><span class="map-status">LEVEL 09 ACTIVE</span></div>
       <div class="map-stage">
         <img class="landscape" src="img/chapter-world.svg?v=south-bridge-1" alt="" aria-hidden="true">
-        <img class="country-landscape" src="img/country-world.svg?v=3" alt="" aria-hidden="true" hidden>
-        <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="south-route" d="M165 550 L165 700"/><path id="country-route" d="M165 0 L165 170 Q165 215 225 215 Q300 215 300 290 Q300 345 400 345 L400 520"/></svg>
+        <img class="country-landscape" src="img/country-world.svg?v=theatre-1" alt="" aria-hidden="true" hidden>
+        <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="south-route" d="M165 550 L165 700"/><path id="country-route" d="M165 0 L165 170 Q145 215 225 215 Q315 215 300 290 Q285 345 400 345 Q455 390 400 430 Q345 475 400 520"/><path id="theatre-route" d="M400 520 C340 555 255 570 198 548 L198 535"/></svg>
+        <button class="theatre-stop country-control" id="theatre-stop" aria-label="Enter the movie theatre" hidden><span>Theatre</span></button>
         <button class="island-crossing" id="visit-country" style="--x:27.5%;--y:94%">Country roots ↓</button>
         <button class="island-crossing country-control" id="return-island" style="--x:27.5%;--y:7%" hidden>Current island ↑</button>
         <button class="level completed country-control" data-country="president" style="--x:66.667%;--y:74.286%" aria-label="Level 1: Elected President, completed" hidden><span class="level-disc">01</span><span class="level-label">Elected President</span></button>
@@ -128,6 +131,15 @@
     </section>
     </div>
     </div>
+  </dialog>
+  <dialog id="theatre-dialog" aria-labelledby="theatre-title">
+    <div class="theatre-header"><div><p class="eyebrow">COUNTRY ROOTS / THE PICTURE HOUSE</p><h2 id="theatre-title">Take a seat.</h2></div><button type="button" id="close-theatre" aria-label="Leave the theatre">Back outside ↗</button></div>
+    <div class="theatre-room">
+      <img src="img/theatre-room.svg" alt="A small cinema with velvet curtains, a screen, and rows of red seats.">
+      <div id="theatre-screen"><p>Pick a film below.<small>The show starts when you do.</small></p></div>
+      <button type="button" id="theatre-door" aria-label="Walk outside to Country Roots"></button>
+    </div>
+    <div class="theatre-program"><p class="eyebrow">NOW SHOWING</p><div id="theatre-films"></div><p id="theatre-status" role="status">Choose a video to watch on the big screen.</p><a id="theatre-youtube" target="_blank" rel="noopener noreferrer" hidden>Watch on YouTube ↗</a></div>
   </dialog>
 </body>
 </html>

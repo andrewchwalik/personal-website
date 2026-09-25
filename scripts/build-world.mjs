@@ -301,10 +301,46 @@ export function buildHouseForeground() {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">${cottage(135,489).art}</svg>`;
 }
 
-export const COUNTRY_ROUTE = 'M165 0 L165 170 Q165 215 225 215 Q300 215 300 290 Q300 345 400 345 L400 520';
+export const COUNTRY_ROUTE = 'M165 0 L165 170 Q145 215 225 215 Q315 215 300 290 Q285 345 400 345 Q455 390 400 430 Q345 475 400 520';
+export const THEATRE_ROUTE = 'M400 520 C340 555 255 570 198 548 L198 535';
+
+function theatre(x, y) {
+  const v = (a,b,z) => [x+a,y+b,z];
+  const roof = [v(-40,0,49),v(40,0,49),v(55,-18,49),v(-25,-18,49)];
+  return { y, shadow: shadow([...roof,v(-40,0,0),v(40,0,0),v(55,-18,0)]), art:
+    face([v(-40,0,0),v(40,0,0),v(40,0,49),v(-40,0,49)],'#bc7256') +
+    face([v(40,0,0),v(55,-18,0),v(55,-18,49),v(40,0,49)],'#865342') +
+    face(roof,'#537b69','stroke="#36574d" stroke-width="2"') +
+    face([v(-12,0,0),v(12,0,0),v(12,0,25),v(-12,0,25)],'#294e49','stroke="#efd393" stroke-width="2"') +
+    line([v(0,0,1),v(0,0,24)],'#efd393',1.2) +
+    path(`M${x-45} ${y-43}h90v19h-90Z`,'#f2d58b','stroke="#8f543e" stroke-width="2"') +
+    `<text x="${x}" y="${y-30}" text-anchor="middle" fill="#6d4035" font-family="monospace" font-size="10" font-weight="bold">CINEMA</text>` +
+    [-37,-25,-13,-1,11,23,35].map(dx=>ellipse(x+dx,y-41,1.1,1.1,'#fff5c9')).join('') +
+    [-29,29].map(dx=>path(`M${x+dx-6} ${y-19}h12v15h-12Z`,'#334e48','stroke="#edd493" stroke-width="1.5"')).join('') };
+}
+
+export function buildTheatreRoom() {
+  const seats = [366,421,478].map((y,row)=>Array.from({length:8},(_,i)=> {
+    const x=82+i*55, w=35+row*2;
+    return `<ellipse cx="${x+23}" cy="${y+38}" rx="25" ry="8" fill="#182b2c" opacity=".3"/><path d="M${x} ${y+20}h${w}v24h-${w}Z" fill="#542f35"/><rect x="${x}" y="${y}" width="${w}" height="31" rx="8" fill="#a3564f" stroke="#693c3b" stroke-width="3"/><path d="M${x+5} ${y+5}h${w-10}" stroke="#c67e64" stroke-width="2"/><path d="M${x-4} ${y+20}v15m${w+8}-15v15" stroke="#dfb575" stroke-width="5"/>`;
+  }).join('')).join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 540"><title>The screening room</title>
+    <path d="M0 0h600v540H0Z" fill="#273f3e"/>
+    <path d="M0 0h600v335H0Z" fill="#3b5147"/>
+    <path d="M0 335h600v205H0Z" fill="#947452"/>
+    <path d="M0 335h600M65 540l115-205m355 205L420 335M0 400h600M0 465h600" stroke="#705a46" stroke-width="2"/>
+    <path d="M52 28h496v291H52Z" fill="#172e30" stroke="#d6b16e" stroke-width="4"/>
+    <path d="M80 55h440v247.5H80Z" fill="#efe4c4"/>
+    <path d="M15 15h63v294l-17-15-15 15-15-15-16 15Z M522 15h63v294l-17-15-15 15-15-15-16 15Z" fill="#904941"/>
+    <path d="M31 18v274m16-274v270m16-270v276m475-276v274m16-274v270m16-270v276" stroke="#65383a" stroke-width="7"/>
+    <path d="M14 13h572v18H14Z" fill="#c6985e"/>
+    <path d="M9 358h43v72H9Z" fill="#1c3535" stroke="#d2b27a" stroke-width="3"/>
+    <path d="M19 389h20m-20 0 7-7m-7 7 7 7" fill="none" stroke="#e7dcb5" stroke-width="3"/>
+    ${seats}</svg>`;
+}
 export function buildCountryWorld() {
   const ground = rounded([[131,113],[191,111],[228,143],[306,128],[391,142],[446,180],[489,201],[523,256],[516,330],[539,391],[513,476],[463,503],[441,558],[355,577],[286,561],[236,589],[157,570],[133,536],[82,512],[63,451],[79,396],[58,333],[84,282],[73,229],[104,192]], 18);
-  const objects = [tree(106,292,35,14),tree(95,322,41,15),tree(109,351,35,13), tree(467,256,38,14),tree(487,281,32,13),tree(454,520,41,17),tree(431,539,34,14),tree(116,471,37,15),tree(130,504,34,13),goal(466,441), fence(342,466,40),fence(424,466,38),cottage(198,523)];
+  const objects = [tree(106,292,35,14),tree(95,322,41,15),tree(109,351,35,13), tree(467,256,38,14),tree(487,281,32,13),tree(454,520,41,17),tree(431,539,34,14),tree(116,471,37,15),tree(130,504,34,13),goal(466,441),fence(424,466,38),theatre(198,535)];
   const barn = `${poly([[340,173],[402,194],[428,181],[364,156]],'#254e3f','opacity=".2"')}
     ${face([[337,183,0],[386,183,0],[386,183,32],[361,183,53],[337,183,32]],'#b9593f')}
     ${face([[386,183,0],[410,166,0],[410,166,32],[386,183,32]],'#8d4436')}
@@ -327,6 +363,7 @@ export function buildCountryWorld() {
     <g clip-path="url(#country-ground)">
       ${path(COUNTRY_ROUTE,'none','stroke="#829b48" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"')}
       ${path(COUNTRY_ROUTE,'none','stroke="#f2d58b" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"')}
+      ${path(THEATRE_ROUTE,'none','stroke="#e4cc87" stroke-width="12" stroke-linecap="round"')}
       ${path('M225 215Q260 200 280 184H361','none','stroke="#e4cc87" stroke-width="9"')}
       ${shadowLayer(objects)}
     </g>
@@ -340,5 +377,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   await writeFile(new URL('../img/chapter-house.svg', import.meta.url), buildHouseForeground());
   await writeFile(new URL('../img/chapter-clouds.svg', import.meta.url), buildClouds());
   await writeFile(new URL('../img/country-world.svg', import.meta.url), buildCountryWorld());
+  await writeFile(new URL('../img/theatre-room.svg', import.meta.url), buildTheatreRoom());
   console.log('Built chapter-world.svg from one terrain and lighting model.');
 }

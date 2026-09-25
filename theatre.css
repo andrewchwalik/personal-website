@@ -1,0 +1,26 @@
+.theatre-stop { position: absolute; left: 33%; top: 72%; width: 17%; height: 12%; min-width: 44px; min-height: 44px; transform: translate(-50%, -50%); z-index: 2; background: none; border: 0; cursor: pointer; }
+.theatre-stop span { position: absolute; top: 90%; left: 50%; transform: translateX(-50%); background: #fcf0c6df; padding: 3px 7px; border-radius: 3px; color: #294f49; font-size: 9px; }
+.theatre-stop:focus-visible { outline: none; }
+.theatre-stop:focus-visible span { outline: 2px solid #294f49; outline-offset: 3px; }
+#theatre-dialog { width: min(760px, calc(100% - 24px)); max-height: 94dvh; padding: 0; border: 3px solid #b99761; border-radius: 8px; background: #243c39; color: #f5e7c2; overflow-y: auto; box-shadow: 0 20px 80px #0008; }
+#theatre-dialog::backdrop { background: #102a2aeb; }
+body:has(#theatre-dialog[open]) { overflow: hidden; }
+.theatre-header { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.theatre-header .eyebrow { color: #d7b77c; font-size: 9px; margin: 0 0 8px; }
+.theatre-header h2 { font-size: 28px; margin: 0; }
+#close-theatre { border: 1px solid #a18c60; border-radius: 4px; color: #f5e7c2; background: #314d44; padding: 10px 12px; min-height: 44px; font-size: 11px; cursor: pointer; }
+.theatre-room { position: relative; aspect-ratio: 600 / 540; width: min(100%, max(300px, calc((94dvh - 270px) * 1.1111))); margin-inline: auto; }
+.theatre-room > img { display: block; width: 100%; height: 100%; }
+#theatre-screen { position: absolute; left: 13.3333%; top: 10.1852%; width: 73.3333%; height: 45.8333%; background: #eee3c4; color: #294f49; display: grid; place-items: center; }
+#theatre-screen p { text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: clamp(14px, 3vw, 23px); padding: 12px; }
+#theatre-screen small { display: block; font-family: 'DM Sans', sans-serif; font-size: 11px; margin-top: 8px; }
+#theatre-screen iframe { width: 100%; height: 100%; border: 0; }
+#theatre-door { position: absolute; left: 1%; top: 65%; width: 8%; height: 16%; min-width: 44px; min-height: 44px; background: transparent; border: 0; cursor: pointer; }
+.theatre-program { padding: 0 24px 24px; }
+#theatre-films { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.film-ticket { display: flex; gap: 12px; align-items: center; text-align: left; padding: 14px; border: 1px solid #bca372; border-radius: 4px; background: #efddb0; color: #294f49; min-height: 60px; cursor: pointer; font-weight: 600; font-size: 13px; }
+.film-ticket span { font: 11px monospace; color: #956339; }
+.film-ticket[aria-pressed="true"] { background: #d8b975; border-color: #fff1c3; box-shadow: inset 0 0 0 2px #fff1c3; }
+#theatre-status, #theatre-youtube { font-size: 12px; line-height: 1.5; color: #d9d7bd; }
+#theatre-youtube { display: inline-block; text-decoration: underline; text-underline-offset: 3px; padding-block: 8px; }
+@media(max-width: 600px) { .theatre-header { padding: 16px; } .theatre-header h2 { font-size: 23px; } .theatre-header .eyebrow { font-size: 8px; } .theatre-program { padding: 0 16px 18px; } .film-ticket { font-size: 11px; padding: 10px; gap: 7px; } }

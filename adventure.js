@@ -49,6 +49,8 @@ function clearLockFeedback() {
 const houseRoute = document.getElementById('house-route');
 const southRoute = document.getElementById('south-route');
 const countryRoute = document.getElementById('country-route');
+const theatreRoute = document.getElementById('theatre-route');
+let theatrePosition = null;
 let countryPosition = 0, crossing = false, inCountry = false;
 const countryStories = {
   president: { number: 1, point: [400, 520], title: 'Elected President', description: 'Watch the story of this milestone.', url: 'https://youtu.be/5uaEyriSL3A', action: 'Watch the video', message: 'Completed!' },
@@ -159,13 +161,34 @@ function visitCountry() {
   });
   else crossBridge();
 }
+function fromTheatreToTrail(ticket, arrived) {
+  if (theatrePosition === null) { arrived(); return; }
+  walk(theatreRoute, theatrePosition, 0, ticket, () => {
+    theatrePosition = null;
+    countryPosition = countryStops.president;
+    arrived();
+  });
+}
+document.getElementById('theatre-stop').addEventListener('click', () => {
+  if (crossing || !inCountry) return;
+  cancelAnimationFrame(frame);
+  const ticket = ++journey;
+  setCrossing(true);
+  document.querySelector('.travel-status').textContent = 'Heading to the theatre.';
+  const enterFromPath = () => walk(theatreRoute, theatrePosition ?? 0, theatreRoute.getTotalLength(), ticket, () => {
+    setCrossing(false);
+    document.dispatchEvent(new Event('enter-theatre'));
+  });
+  if (theatrePosition !== null) enterFromPath();
+  else walk(countryRoute, countryPosition, countryStops.president, ticket, enterFromPath);
+});
 function returnToIsland() {
   if (crossing || !inCountry) return;
   cancelAnimationFrame(frame);
   const ticket = ++journey;
   setCrossing(true);
   document.querySelector('.travel-status').textContent = 'Crossing back to the current island.';
-  walk(countryRoute, countryPosition, 0, ticket, () => {
+  fromTheatreToTrail(ticket, () => walk(countryRoute, countryPosition, 0, ticket, () => {
     setCountryView(false);
     showChapter(lastChapter);
     walk(southRoute, southRoute.getTotalLength(), 0, ticket, () => {
@@ -173,7 +196,7 @@ function returnToIsland() {
       place(position); setCrossing(false);
       document.querySelector('.travel-status').textContent = 'Back on the current island at the bridge landing.';
     });
-  });
+  }));
 }
 document.getElementById('visit-country').addEventListener('click', visitCountry);
 document.getElementById('return-island').addEventListener('click', returnToIsland);
@@ -182,9 +205,9 @@ document.querySelectorAll('[data-country]').forEach(button => button.addEventLis
   cancelAnimationFrame(frame);
   const ticket = ++journey, id = button.dataset.country;
   showCountryStory(id);
-  walk(countryRoute, countryPosition, countryStops[id], ticket, () => {
+  fromTheatreToTrail(ticket, () => walk(countryRoute, countryPosition, countryStops[id], ticket, () => {
     document.querySelector('.travel-status').textContent = countryStories[id].title;
-  });
+  }));
 }));
 function selectChapter(number) {
   if (crossing || inCountry) return;
@@ -258,6 +281,7 @@ function walk(path, start, end, ticket, arrived) {
     else {
       if (path === houseRoute) branchPosition = distance;
       if (path === countryRoute) countryPosition = distance;
+      if (path === theatreRoute) theatrePosition = distance;
       const point = path.getPointAtLength(distance);
       player.style.left = (point.x / 600 * 100) + '%';
       player.style.top = (point.y / 700 * 100) + '%';

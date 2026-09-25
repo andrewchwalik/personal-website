@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
-import { buildCountryWorld, COUNTRY_ROUTE } from '../scripts/build-world.mjs';
+import { buildCountryWorld, buildTheatreRoom, COUNTRY_ROUTE, THEATRE_ROUTE } from '../scripts/build-world.mjs';
 
 const source = readFileSync(new URL('../adventure.js', import.meta.url), 'utf8');
 test('six completed country milestones use the requested order and links', () => {
@@ -42,25 +42,48 @@ test('country artwork and walking guide share a bridge-aligned route', () => {
 
 function crossingContext(branch = null) {
   const walks = [], views = [];
+  const handlers = {};
   const context = {
     crossing: false, inCountry: false, frame: 0, journey: 0, headingHome: false,
     lockedReturn: null, position: 400, branchPosition: branch, houseJunction: 20,
-    countryStops: { house: 170 }, countryPosition: 0, lastChapter: 9,
+    countryStops: { house: 170, president: 600 }, countryPosition: 0, lastChapter: 9, theatrePosition: null,
+    theatreRoute: { name: 'theatre', getTotalLength: () => 210 },
     route: { name: 'main' }, houseRoute: { name: 'house' },
     southRoute: { name: 'south', getTotalLength: () => 150 }, countryRoute: { name: 'country' },
     cancelAnimationFrame() {}, clearLockFeedback() {}, showCountryStory() {}, showChapter() {}, place() {},
-    document: { querySelector: () => ({}) },
+    document: { querySelector: () => ({}), getElementById: id => ({ addEventListener: (type, handler) => { handlers[id] = handler; } }), dispatchEvent() {} },
+    Event: class { constructor(type) { this.type = type; } },
     setCrossing(value) { context.crossing = value; },
     setCountryView(value) { context.inCountry = value; views.push(value); },
     walk(path, start, end, ticket, arrived) {
       walks.push([path.name, start, end]);
       if (path.name === 'country') context.countryPosition = end;
+      if (path.name === 'theatre') context.theatrePosition = end;
       arrived();
     },
   };
   runInNewContext(source.slice(source.indexOf('function visitCountry()'), source.indexOf("document.getElementById('visit-country').addEventListener")), context);
-  return { context, walks, views };
+  return { context, walks, views, handlers };
 }
+
+test('theatre artwork is current and its side path matches the walking guide', () => {
+  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  assert.ok(html.includes(`id="theatre-route" d="${THEATRE_ROUTE}"`));
+  assert.ok(buildCountryWorld().includes(`d="${THEATRE_ROUTE}"`));
+  assert.equal(readFileSync(new URL('../img/theatre-room.svg', import.meta.url), 'utf8'), buildTheatreRoom());
+});
+
+test('theatre visitors walk the side path and retrace it before leaving the island', () => {
+  const {context, walks, handlers} = crossingContext();
+  context.inCountry = true;
+  context.countryPosition = 170;
+  handlers['theatre-stop']();
+  assert.deepEqual(walks, [['country',170,600],['theatre',0,210]]);
+  assert.equal(context.theatrePosition,210);
+  context.returnToIsland();
+  assert.deepEqual(walks.slice(2), [['theatre',210,0],['country',600,0],['south',150,0]]);
+  assert.equal(context.theatrePosition,null);
+});
 
 test('country crossing walks to the landing, over both bridge halves and to the first checkpoint', () => {
   const { context, walks, views } = crossingContext();
