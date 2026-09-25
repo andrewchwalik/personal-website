@@ -18,7 +18,7 @@ function setup(reducedMotion = false) {
     },
   };
   const context = {
-    lockedReturn: { position: 12, branch: null, chapter: 3 },
+    lockedReturn: { position: 12, branch: null, chapter: 9 },
     journey: 1, position: 90, route: {}, houseJunction: 40,
     document: { querySelector: () => element, getElementById: () => ({}) },
     player: { querySelector: () => element },

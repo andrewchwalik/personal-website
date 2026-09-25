@@ -1,13 +1,14 @@
 const chapters = {
-  2: { state: 'COMPLETED', title: 'Start a soccer club.', description: "Soccer has always been my first true love, since starting to play in the cornfields of northwestern Ohio. I wanted to help share that love with others by starting a local soccer club. The Firelands story continues to unfold, check it out for yourself!", url: 'https://firelandsunited.com/', action: 'Explore Firelands United', point: [365, 460] },
-  3: { state: 'CURRENT QUEST', title: 'Vlog every day in 2026.', description: "I'm trying to vlog every single day in 2026, documenting my son growing from age 1 to 2. Which also includes running our businesses up on Lake Erie, travels in our camper, and joys of daily life.", url: 'https://www.youtube.com/@AndrewChwalik', action: 'Follow the daily vlogs', point: [290, 365] },
-  4: { state: 'LOCKED PREVIEW', title: 'Pay off all our debt.', description: "The next level for our family, with more room for the life we want to build.", point: [415, 275] },
+  7: { state: 'COMPLETED', title: 'Business Owners', description: 'My wife and I run Bluebird, a sandwich shop on Lake Erie, and The Wash Company, our local laundromat. Follow our business adventures through the vlogs.', url: 'https://www.youtube.com/playlist?list=PLzLEqDD8AalbUWMfEDAjrz5yWz0Mb07Wj', action: 'Watch the business vlogs', point: [165, 550] },
+  8: { state: 'COMPLETED', title: 'Start a soccer club.', description: "Soccer has always been my first true love, since starting to play in the cornfields of northwestern Ohio. I wanted to help share that love with others by starting a local soccer club. The Firelands story continues to unfold, check it out for yourself!", url: 'https://firelandsunited.com/', action: 'Explore Firelands United', point: [365, 460] },
+  9: { state: 'CURRENT QUEST', title: 'Vlog every day in 2026.', description: "I'm trying to vlog every single day in 2026, documenting my son growing from age 1 to 2. Which also includes running our businesses up on Lake Erie, travels in our camper, and joys of daily life.", url: 'https://www.youtube.com/@AndrewChwalik', action: 'Follow the daily vlogs', point: [290, 365] },
+  10: { state: 'LOCKED PREVIEW', title: 'Pay off all our debt.', description: "The next level for our family, with more room for the life we want to build.", point: [415, 275] },
 };
 const levelProgress = {
-  1: { value: 1, max: 1, message: 'Degree Secured!' },
-  2: { value: 1, max: 1, message: "Men & women's teams compete in the summer!" },
-  3: { value: 212, max: 365, message: '212 / 365 vlogs edited' },
-  4: { value: 0, max: 1, message: 'Locked' },
+  7: { value: 1, max: 1, message: 'Business owners!' },
+  8: { value: 1, max: 1, message: "Men & women's teams compete in the summer!" },
+  9: { value: 212, max: 365, message: '212 / 365 vlogs edited' },
+  10: { value: 0, max: 1, message: 'Locked' },
 };
 function showProgress(number) {
   const { value, max, message } = levelProgress[number];
@@ -16,7 +17,7 @@ function showProgress(number) {
   bar.value = value;
   bar.setAttribute('aria-valuetext', message);
   document.getElementById('level-progress-message').textContent = message;
-  document.querySelector('.level-progress').dataset.state = number === 4 ? 'locked' : value === max ? 'complete' : 'active';
+  document.querySelector('.level-progress').dataset.state = number === 10 ? 'locked' : value === max ? 'complete' : 'active';
 }
 const route = document.getElementById('travel-route');
 const player = document.querySelector('.player');
@@ -32,18 +33,18 @@ const stops = Object.fromEntries(Object.entries(chapters).map(([id, chapter]) =>
   }
   return [id, nearest];
 }));
-let position = stops[3];
+let position = stops[9];
 let frame;
 let journey = 0;
 let branchPosition = null;
 let headingHome = false;
-let lastChapter = 3;
+let lastChapter = 9;
 let lockedReturn = null;
 let lockAnimations = [];
 function clearLockFeedback() {
   lockAnimations.forEach(animation => animation.cancel());
   lockAnimations = [];
-  document.querySelector('[data-chapter="4"]').classList.remove('lock-denied');
+  document.querySelector('[data-chapter="10"]').classList.remove('lock-denied');
 }
 const houseRoute = document.getElementById('house-route');
 const southRoute = document.getElementById('south-route');
@@ -88,10 +89,10 @@ function showChapter(number) {
   document.getElementById('chapter-actions').hidden = !chapter.url;
   const link = document.querySelector('#chapter-actions .button');
   if (chapter.url) { link.href = chapter.url; link.textContent = chapter.action + ' ↗'; }
-  document.querySelector('.chapter-stamp').hidden = number !== 3;
+  document.querySelector('.chapter-stamp').hidden = number !== 9;
   const note = document.getElementById('locked-note');
-  note.hidden = number !== 4;
-  note.textContent = 'Preview only. Complete Level 03 to unlock this quest.';
+  note.hidden = number !== 10;
+  note.textContent = 'Preview only. Complete Level 09 to unlock this quest.';
   document.querySelectorAll('[data-chapter]').forEach(button => {
     button.setAttribute('aria-pressed', String(Number(button.dataset.chapter) === number));
   });
@@ -109,7 +110,7 @@ function setCountryView(active) {
   document.querySelector('.country-landscape').hidden = !active;
   document.querySelectorAll('.country-control').forEach(button => { button.hidden = !active; });
   document.getElementById('world-name').textContent = active ? 'WORLD 00 / COUNTRY ROOTS' : 'WORLD 01 / THE LONG GAME';
-  document.querySelector('.map-status').textContent = active ? 'EARLIER ADVENTURES' : 'LEVEL 03 ACTIVE';
+  document.querySelector('.map-status').textContent = active ? 'EARLIER ADVENTURES' : 'LEVEL 09 ACTIVE';
 }
 function setCrossing(active) {
   crossing = active;
@@ -187,17 +188,17 @@ document.querySelectorAll('[data-country]').forEach(button => button.addEventLis
 }));
 function selectChapter(number) {
   if (crossing || inCountry) return;
-  if (number === 4 && lockedReturn) return;
+  if (number === 10 && lockedReturn) return;
   cancelAnimationFrame(frame);
   clearLockFeedback();
-  lockedReturn = number === 4 ? { position, branch: branchPosition, chapter: lastChapter } : null;
+  lockedReturn = number === 10 ? { position, branch: branchPosition, chapter: lastChapter } : null;
   const ticket = ++journey;
   headingHome = false;
   showChapter(number);
   const status = document.querySelector('.travel-status');
   status.textContent = 'Traveling to Level ' + number + '...';
   const continueToChapter = () => walk(route, position, stops[number], ticket, () => {
-    if (number === 4) { bounceFromLock(ticket, status); return; }
+    if (number === 10) { bounceFromLock(ticket, status); return; }
     lastChapter = number;
     status.textContent = 'Level ' + number + ': ' + chapters[number].title + (matchMedia('(min-width: 1000px)').matches ? ' Details beside the map.' : ' Details below the map.');
   });
@@ -214,7 +215,7 @@ async function bounceFromLock(ticket, status) {
   if (!origin || ticket !== journey) return;
   status.textContent = 'Locked! Complete daily vlogging first. Heading back...';
   document.getElementById('locked-note').textContent = 'Still locked. Finish the daily vlogging quest first.';
-  document.querySelector('[data-chapter="4"]').classList.add('lock-denied');
+  document.querySelector('[data-chapter="10"]').classList.add('lock-denied');
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const jitter = [0, -7, 6, -5, 4, -3, 0].map((x, index) => ({
       transform: `translateX(${x}px) skewX(${x / 2}deg)`,
@@ -222,7 +223,7 @@ async function bounceFromLock(ticket, status) {
         ? 'drop-shadow(-3px 0 0 #ef6b61) drop-shadow(3px 0 0 #75e6dd)'
         : 'none',
     }));
-    lockAnimations = [document.querySelector('[data-chapter="4"] .level-disc'), player.querySelector('svg')]
+    lockAnimations = [document.querySelector('[data-chapter="10"] .level-disc'), player.querySelector('svg')]
       .map(element => element.animate(jitter, { duration: 560, easing: 'steps(1, end)' }));
     // Finish the rejection at the checkpoint before starting the return walk.
     await Promise.all(lockAnimations.map(animation => animation.finished.catch(() => {})));
@@ -305,4 +306,4 @@ document.addEventListener('leave-house', () => {
   document.querySelector('.travel-status').textContent = 'Outside Home Base. Choose a level or head back inside.';
 });
 place(position);
-showChapter(3);
+showChapter(9);

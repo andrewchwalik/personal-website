@@ -42,7 +42,7 @@ function crossingContext(branch = null) {
   const context = {
     crossing: false, inCountry: false, frame: 0, journey: 0, headingHome: false,
     lockedReturn: null, position: 400, branchPosition: branch, houseJunction: 20,
-    countryStops: { president: 170 }, countryPosition: 0, lastChapter: 3,
+    countryStops: { president: 170 }, countryPosition: 0, lastChapter: 9,
     route: { name: 'main' }, houseRoute: { name: 'house' },
     southRoute: { name: 'south', getTotalLength: () => 150 }, countryRoute: { name: 'country' },
     cancelAnimationFrame() {}, clearLockFeedback() {}, showCountryStory() {}, showChapter() {}, place() {},
@@ -69,7 +69,7 @@ test('country crossing walks to the landing, over both bridge halves and to the 
   assert.deepEqual(walks.slice(3), [['country',170,0],['south',150,0]]);
   assert.deepEqual(views, [true,false]);
   assert.equal(context.position, 0);
-  assert.equal(context.lastChapter, 3);
+  assert.equal(context.lastChapter, 9);
   assert.equal(context.branchPosition, null);
 });
 

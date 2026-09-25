@@ -8,8 +8,8 @@
   <link rel="icon" href="favicon.svg?v=retro-2" type="image/svg+xml" sizes="any">
   <link rel="stylesheet" href="adventure.css?v=lock-feedback-1">
   <link rel="stylesheet" href="house.css?v=house-8">
-  <link rel="stylesheet" href="chapter-layout.css?v=country-2">
-  <script src="adventure.js?v=country-2" defer></script>
+  <link rel="stylesheet" href="chapter-layout.css?v=levels-10">
+  <script src="adventure.js?v=levels-10" defer></script>
   <script src="house.js?v=house-6" type="module"></script>
 </head>
 <body>
@@ -21,7 +21,7 @@
     </section>
     <div class="adventure-layout">
     <section class="world" aria-label="Adventure level map">
-      <div class="map-toolbar"><span id="world-name">WORLD 01 / THE LONG GAME</span><span class="map-status">LEVEL 03 ACTIVE</span></div>
+      <div class="map-toolbar"><span id="world-name">WORLD 01 / THE LONG GAME</span><span class="map-status">LEVEL 09 ACTIVE</span></div>
       <div class="map-stage">
         <img class="landscape" src="img/chapter-world.svg?v=south-bridge-1" alt="" aria-hidden="true">
         <img class="country-landscape" src="img/country-world.svg?v=2" alt="" aria-hidden="true" hidden>
@@ -36,9 +36,10 @@
         <button class="level completed country-control" data-country="house" style="--x:66.667%;--y:74.286%" aria-label="Level 6: First House, completed" hidden><span class="level-disc">06</span><span class="level-label">First House</span></button>
         <img class="map-clouds" src="img/chapter-clouds.svg" alt="" aria-hidden="true">
         <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="travel-route" d="M165 550 C165 510 205 510 235 510 L285 510 Q365 510 365 460 Q365 420 315 420 Q265 420 265 392 Q265 365 290 365 Q415 365 415 310 L415 275 Q415 269 470 269 L470 180"/></svg>
-        <button class="level completed" data-chapter="2" style="--x:60.833%;--y:65.714%" aria-label="Level 2: Start a soccer club, completed"><span class="level-disc">02</span><span class="level-label">Firelands United</span></button>
-        <button class="level active" data-chapter="3" style="--x:48.333%;--y:52.143%" aria-label="Level 3: Vlog every day in 2026, current"><span class="level-disc">03</span><span class="level-label">Daily vlogging</span></button>
-        <button class="level locked" data-chapter="4" style="--x:69.167%;--y:39.286%" aria-label="Pay off our debt, locked: visit and return"><span class="level-disc"><svg viewBox="0 0 20 24" aria-hidden="true"><rect x="3" y="10" width="14" height="11" rx="2"/><path d="M6 10V7a4 4 0 0 1 8 0v3M10 14v3"/></svg></span><span class="level-label">Debt free</span></button>
+        <button class="level completed" data-chapter="7" style="--x:27.5%;--y:78.571%" aria-label="Level 7: Business Owners, completed"><span class="level-disc">07</span><span class="level-label">Business Owners</span></button>
+        <button class="level completed" data-chapter="8" style="--x:60.833%;--y:65.714%" aria-label="Level 8: Firelands United, completed"><span class="level-disc">08</span><span class="level-label">Firelands United</span></button>
+        <button class="level active" data-chapter="9" style="--x:48.333%;--y:52.143%" aria-label="Level 9: Daily Vlog, current"><span class="level-disc">09</span><span class="level-label">Daily Vlog</span></button>
+        <button class="level locked" data-chapter="10" style="--x:69.167%;--y:39.286%" aria-label="Level 10: Debt, locked: visit and return"><span class="level-disc"><svg viewBox="0 0 20 24" aria-hidden="true"><rect x="3" y="10" width="14" height="11" rx="2"/><path d="M6 10V7a4 4 0 0 1 8 0v3M10 14v3"/></svg></span><span class="level-label">Debt</span></button>
         <button class="level unknown" style="--x:78.333%;--y:25.714%" disabled aria-label="Future level, not yet accessible"><span class="level-disc">?</span></button>
         <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="house-route" d="M181 518 Q158 508 144 490 L135 493"/></svg>
         <button class="house-stop" id="house-stop" aria-label="Visit Home: TV, soccer, and guestbook"><span>Home</span></button>
@@ -66,11 +67,11 @@
         </svg></div>
       </div>
     </section>
-    <p class="travel-status sr-only" role="status" aria-live="polite">Level 3 selected: daily vlogging.</p>
+    <p class="travel-status sr-only" role="status" aria-live="polite">Level 9 selected: daily vlogging.</p>
     <p class="map-copyright"><small>© 2026 Andrew Chwalik</small></p>
     <section class="chapter-panel" id="chapter-panel" aria-labelledby="chapter-title">
-      <div class="chapter-number" aria-hidden="true">03</div>
-      <div class="chapter-copy"><p class="eyebrow" id="chapter-status">CURRENT QUEST / LEVEL 03</p><h2 id="chapter-title">Vlog every day in 2026.</h2><p id="chapter-description">I'm trying to vlog every single day in 2026, documenting my son growing from age 1 to 2. Which also includes running our businesses up on Lake Erie, travels in our camper, and joys of daily life.</p><div class="chapter-actions" id="chapter-actions"><a class="button" href="https://www.youtube.com/@AndrewChwalik" target="_blank" rel="noopener noreferrer">Follow the daily vlogs <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="https://patreon.com/andrewchwalik" target="_blank" rel="noopener noreferrer">Support on Patreon ↗</a></div><p id="locked-note" hidden></p></div>
+      <div class="chapter-number" aria-hidden="true">09</div>
+      <div class="chapter-copy"><p class="eyebrow" id="chapter-status">CURRENT QUEST / LEVEL 09</p><h2 id="chapter-title">Vlog every day in 2026.</h2><p id="chapter-description">I'm trying to vlog every single day in 2026, documenting my son growing from age 1 to 2. Which also includes running our businesses up on Lake Erie, travels in our camper, and joys of daily life.</p><div class="chapter-actions" id="chapter-actions"><a class="button" href="https://www.youtube.com/@AndrewChwalik" target="_blank" rel="noopener noreferrer">Follow the daily vlogs <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="https://patreon.com/andrewchwalik" target="_blank" rel="noopener noreferrer">Support on Patreon ↗</a></div><p id="locked-note" hidden></p></div>
       <div class="chapter-stamp" aria-hidden="true"><span>LESS WAITING</span><svg viewBox="0 0 64 50"><path d="M5 12h37v30H5zM42 20l17-8v30l-17-8zM14 12l4-7h12l4 7" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="27" r="8" fill="none" stroke="currentColor" stroke-width="3"/></svg><span>MORE MAKING</span></div>
       <div class="level-progress" data-state="active">
         <progress id="level-progress" value="212" max="365" aria-label="Level progress" aria-describedby="level-progress-message">212 / 365</progress>
