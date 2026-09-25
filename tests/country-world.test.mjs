@@ -46,7 +46,7 @@ function crossingContext(branch = null) {
   const context = {
     crossing: false, inCountry: false, frame: 0, journey: 0, headingHome: false,
     lockedReturn: null, position: 400, branchPosition: branch, houseJunction: 20,
-    countryStops: { house: 170, president: 600 }, countryPosition: 0, lastChapter: 9, theatrePosition: null,
+    countryStops: { house: 170, president: 600 }, theatreJunction: 380, countryPosition: 0, lastChapter: 9, theatrePosition: null,
     theatreRoute: { name: 'theatre', getTotalLength: () => 210 },
     route: { name: 'main' }, houseRoute: { name: 'house' },
     southRoute: { name: 'south', getTotalLength: () => 150 }, countryRoute: { name: 'country' },
@@ -78,10 +78,10 @@ test('theatre visitors walk the side path and retrace it before leaving the isla
   context.inCountry = true;
   context.countryPosition = 170;
   handlers['theatre-stop']();
-  assert.deepEqual(walks, [['country',170,600],['theatre',0,210]]);
+  assert.deepEqual(walks, [['country',170,380],['theatre',0,210]]);
   assert.equal(context.theatrePosition,210);
   context.returnToIsland();
-  assert.deepEqual(walks.slice(2), [['theatre',210,0],['country',600,0],['south',150,0]]);
+  assert.deepEqual(walks.slice(2), [['theatre',210,0],['country',380,0],['south',150,0]]);
   assert.equal(context.theatrePosition,null);
 });
 

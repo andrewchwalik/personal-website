@@ -1,4 +1,4 @@
-.theatre-stop { position: absolute; left: 33%; top: 72%; width: 17%; height: 12%; min-width: 44px; min-height: 44px; transform: translate(-50%, -50%); z-index: 2; background: none; border: 0; cursor: pointer; }
+.theatre-stop { position: absolute; left: 33%; top: 45.57%; width: 17%; height: 12%; min-width: 44px; min-height: 44px; transform: translate(-50%, -50%); z-index: 2; background: none; border: 0; cursor: pointer; }
 .theatre-stop span { position: absolute; top: 90%; left: 50%; transform: translateX(-50%); background: #fcf0c6df; padding: 3px 7px; border-radius: 3px; color: #294f49; font-size: 9px; }
 .theatre-stop:focus-visible { outline: none; }
 .theatre-stop:focus-visible span { outline: 2px solid #294f49; outline-offset: 3px; }

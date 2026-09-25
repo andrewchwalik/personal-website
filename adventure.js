@@ -69,6 +69,14 @@ const countryStops = Object.fromEntries(Object.entries(countryStories).map(([id,
   }
   return [id, nearest];
 }));
+// Find the side-path junction on the trail between levels four and three.
+const theatreEntrance = theatreRoute.getPointAtLength(0);
+let theatreJunction = 0, theatreJunctionDistance = Infinity;
+for (let length = 0; length <= countryRoute.getTotalLength(); length += .5) {
+  const point = countryRoute.getPointAtLength(length);
+  const distance = Math.hypot(point.x - theatreEntrance.x, point.y - theatreEntrance.y);
+  if (distance < theatreJunctionDistance) { theatreJunctionDistance = distance; theatreJunction = length; }
+}
 let houseJunction = 0;
 let junctionDistance = Infinity;
 for (let length = 0; length <= routeLength; length += .5) {
@@ -165,7 +173,7 @@ function fromTheatreToTrail(ticket, arrived) {
   if (theatrePosition === null) { arrived(); return; }
   walk(theatreRoute, theatrePosition, 0, ticket, () => {
     theatrePosition = null;
-    countryPosition = countryStops.president;
+    countryPosition = theatreJunction;
     arrived();
   });
 }
@@ -180,7 +188,7 @@ document.getElementById('theatre-stop').addEventListener('click', () => {
     document.dispatchEvent(new Event('enter-theatre'));
   });
   if (theatrePosition !== null) enterFromPath();
-  else walk(countryRoute, countryPosition, countryStops.president, ticket, enterFromPath);
+  else walk(countryRoute, countryPosition, theatreJunction, ticket, enterFromPath);
 });
 function returnToIsland() {
   if (crossing || !inCountry) return;
