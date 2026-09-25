@@ -119,7 +119,7 @@ function setCountryView(active) {
   document.querySelector('.world').classList.toggle('country-view', active);
   document.querySelector('.country-landscape').hidden = !active;
   document.querySelectorAll('.country-control').forEach(button => { button.hidden = !active; });
-  document.getElementById('world-name').textContent = active ? 'WORLD 00 / COUNTRY ROOTS' : 'WORLD 01 / THE LONG GAME';
+  document.getElementById('world-name').textContent = active ? 'WORLD 01' : 'WORLD 02';
   document.querySelector('.map-status').textContent = active ? 'EARLIER ADVENTURES' : 'LEVEL 09 ACTIVE';
 }
 function setCrossing(active) {
@@ -130,7 +130,7 @@ function setCrossing(active) {
 function showCountryStory(id) {
   const story = countryStories[id];
   document.querySelector('.chapter-number').textContent = String(story.number).padStart(2, '0');
-  document.getElementById('chapter-status').textContent = 'COMPLETED / COUNTRY ROOTS / LEVEL ' + String(story.number).padStart(2, '0');
+  document.getElementById('chapter-status').textContent = 'COMPLETED / WORLD 01 / LEVEL ' + String(story.number).padStart(2, '0');
   document.getElementById('chapter-title').textContent = story.title;
   document.getElementById('chapter-description').textContent = story.description;
   document.getElementById('chapter-actions').hidden = false;
@@ -152,7 +152,7 @@ function visitCountry() {
   const ticket = ++journey;
   clearLockFeedback(); lockedReturn = null; headingHome = false;
   setCrossing(true);
-  document.querySelector('.travel-status').textContent = 'Crossing the bridge to Country roots.';
+  document.querySelector('.travel-status').textContent = 'Crossing the bridge to World 01.';
   const crossBridge = () => walk(route, position, 0, ticket, () => {
     walk(southRoute, 0, southRoute.getTotalLength(), ticket, () => {
       setCountryView(true);
@@ -160,7 +160,7 @@ function visitCountry() {
       showCountryStory('house');
       walk(countryRoute, 0, countryStops.house, ticket, () => {
         setCrossing(false);
-        document.querySelector('.travel-status').textContent = 'Arrived at Country roots. Choose a memory to explore.';
+        document.querySelector('.travel-status').textContent = 'Arrived at World 01. Choose a memory to explore.';
       });
     });
   });

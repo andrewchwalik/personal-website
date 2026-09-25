@@ -101,6 +101,7 @@ body .level[data-country="delaware"] .level-label,
 body .level[data-country="masters"] .level-label,
 body .level[data-country="president"] .level-label { left: auto; right: calc(50% + 16px); padding: 4px 10px 4px 7px; }
 @media (max-width: 700px) {
-  .island-crossing { font-size: 9px; padding: 5px 7px; }
+  .island-crossing { padding: 5px 7px; }
   body .level[data-country] .level-label { font-size: 8px; max-width: 90px; }
 }
+.island-crossing { min-width: 44px; font-size: 24px; line-height: 1; }

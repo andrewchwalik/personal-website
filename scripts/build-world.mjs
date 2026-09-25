@@ -339,6 +339,10 @@ export function buildTheatreRoom() {
     ${seats}</svg>`;
 }
 export function buildCountryWorld() {
+  const bluffTop = rounded([[176,417],[221,395],[280,407],[313,436],[293,474],[243,489],[193,466]], 15);
+  const bluffBase = bluffTop.map(([x,y]) => [x,y+18]);
+  const pond = 'M207 428C202 413 230 408 247 419C261 427 285 419 288 438C291 453 267 466 246 457C230 450 212 452 207 428Z';
+  const bluffRocks = [boulder(192,436,12,9),boulder(277,471,10,8),boulder(292,419,14,10)];
   const ground = rounded([[131,113],[191,111],[228,143],[306,128],[391,142],[446,180],[489,201],[523,256],[516,330],[539,391],[513,476],[463,503],[441,558],[355,577],[286,561],[236,589],[157,570],[133,536],[82,512],[63,451],[79,396],[58,333],[84,282],[73,229],[104,192]], 18);
   const objects = [tree(106,292,35,14),tree(95,322,41,15),tree(109,351,35,13), tree(467,256,38,14),tree(487,281,32,13),tree(454,520,41,17),tree(431,539,34,14),tree(116,471,37,15),tree(130,504,34,13),goal(466,441),fence(424,466,38),theatre(198,350)];
   const barn = `${poly([[340,173],[402,194],[428,181],[364,156]],'#254e3f','opacity=".2"')}
@@ -350,17 +354,29 @@ export function buildCountryWorld() {
     ${line([[353,181],[370,161]],'#e6c78a',1.5)}${line([[353,161],[370,181]],'#e6c78a',1.5)}
     ${path('M356 148h10v7h-10Z','#e8d6a4')}`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">
-    <title>Country roots</title><desc>A rural island of open grass, hedgerows, a red barn and a soccer meadow. A wooden bridge connects north to the current adventure.</desc>
+    <title>World 01</title><desc>A grassy island with a terraced bluff, rippling pond, red barn, cinema and soccer meadow. A wooden bridge connects north to World 02.</desc>
+    <style>@keyframes pond-ripple{from{stroke-dashoffset:0;opacity:.35}50%{opacity:.7}to{stroke-dashoffset:-32;opacity:.35}}.pond-ripple{animation:pond-ripple 6s linear infinite}@media(prefers-reduced-motion:reduce){.pond-ripple{animation:none}}</style>
     <defs>
       <pattern id="grass" width="43" height="37" patternUnits="userSpaceOnUse"><path d="m8 15-2-4m2 4 2-5m23 16 2-4" stroke="#6b9b43" opacity=".45" fill="none"/></pattern>
       <pattern id="cliff-grain" width="31" height="29" patternUnits="userSpaceOnUse"><path d="M8 10v3m13 8v2" stroke="#874c34" opacity=".2"/></pattern>
       <pattern id="waves" width="32" height="23" patternUnits="userSpaceOnUse"><path d="M2 10q7 9 14 0 7 9 14 0" fill="none" stroke="#9bc9b5" opacity=".17"/></pattern>
       <clipPath id="country-ground">${poly(ground,'white')}</clipPath>
+      <clipPath id="pond-water">${path(pond,'white')}</clipPath>
     </defs>
     <path d="M0 0h600v700H0Z" fill="#287c8a"/><path d="M0 0h600v700H0Z" fill="url(#waves)"/>
     ${terrainShadow(ground.map(([x,y])=>[x,y+36]),36,'#164e65')}
     ${solid(ground.map(([x,y])=>[x,y+36]),36,'island','#a5c765')}
     <g clip-path="url(#country-ground)">
+      ${path('M104 386Q154 376 167 408M329 168Q298 152 259 171M346 546Q301 516 255 537','none','stroke="#8fb653" stroke-width="24" opacity=".3"')}
+      ${terrainShadow(bluffBase,18,'#376e40')}
+      ${solid(bluffBase,18,'pond-bluff','#b2cd71')}
+      ${path(pond,'#369ba2','stroke="#71924d" stroke-width="5"')}
+      <g clip-path="url(#pond-water)">
+        ${path('M204 427Q237 412 253 431Q275 441 293 430','none','stroke="#71c6b6" stroke-width="10" opacity=".4"')}
+        ${path('M213 431q10 5 21 0m13 10q12 5 27-1m-43 8q10 4 18 0','none','class="pond-ripple" stroke="#d0e8c3" stroke-width="1.5" stroke-dasharray="10 22" stroke-linecap="round"')}
+      </g>
+      ${path('M201 443l-3-9m3 9 3-8m64 22 2-9m-2 9 6-5','none','stroke="#54834d" stroke-width="2" stroke-linecap="round"')}
+      ${shadowLayer(bluffRocks)}${artLayer(bluffRocks)}
       ${path(COUNTRY_ROUTE,'none','stroke="#829b48" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"')}
       ${path(COUNTRY_ROUTE,'none','stroke="#f2d58b" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"')}
       ${path(THEATRE_ROUTE,'none','stroke="#e4cc87" stroke-width="12" stroke-linecap="round"')}

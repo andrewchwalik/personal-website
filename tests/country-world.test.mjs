@@ -29,6 +29,23 @@ test('six completed country milestones use the requested order and links', () =>
   assert.ok(!html.includes('data-chapter="1"'), 'the masters checkpoint has moved off the current island');
 });
 
+test('worlds use numbers and accessible arrow-only travel controls', () => {
+  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  assert.ok(html.includes('id="world-name">WORLD 02</span>'));
+  assert.match(html, /aria-label="Visit World 01"[^>]*>↓<\/button>/);
+  assert.match(html, /aria-label="Visit World 02"[^>]*>↑<\/button>/);
+  assert.doesNotMatch(html + source, /COUNTRY ROOTS|THE LONG GAME|WORLD 00/);
+  assert.match(source, /active \? 'WORLD 01' : 'WORLD 02'/);
+});
+
+test('world one has layered terrain and reduced-motion-safe pond animation', () => {
+  const svg = buildCountryWorld();
+  assert.match(svg, /pond-bluff-sides/);
+  assert.match(svg, /clip-path="url\(#pond-water\)"/);
+  assert.match(svg, /prefers-reduced-motion:reduce/);
+  assert.match(svg, /\.pond-ripple\{animation:none\}/);
+});
+
 test('country artwork and walking guide share a bridge-aligned route', () => {
   const svg = buildCountryWorld();
   const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
