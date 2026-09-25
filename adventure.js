@@ -51,12 +51,12 @@ const southRoute = document.getElementById('south-route');
 const countryRoute = document.getElementById('country-route');
 let countryPosition = 0, crossing = false, inCountry = false;
 const countryStories = {
-  president: { number: 1, point: [165, 170], title: 'Elected President', description: 'Watch the story of this milestone.', url: 'https://youtu.be/5uaEyriSL3A', action: 'Watch the video', message: 'Completed!' },
-  startup: { number: 2, point: [225, 215], title: 'Startup Bus', description: 'Explore Startup Bus.', url: 'https://startupbus.com', action: 'Explore Startup Bus', message: 'Completed!' },
-  masters: { number: 3, point: [300, 290], title: 'Masters Degree', description: "I moved to Ireland to get my master's degree and documented life along the way. Living abroad was the adventure of a lifetime. Watch some of the vlogs I created while I lived on the Emerald Isle.", url: 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee', action: 'Watch the Ireland vlogs', message: 'Degree Secured!' },
-  icecream: { number: 4, point: [400, 345], title: 'Ice Cream Shop', description: 'Revisit the ice cream shop through the vlogs.', url: 'https://www.youtube.com/playlist?list=PLzLEqDD8AalYMul900PclGbOMbi8oqD33', action: 'Watch the shop vlogs', message: 'Completed!' },
-  delaware: { number: 5, point: [400, 430], title: 'Delaware Rising', description: 'Explore Delaware Rising.', url: 'https://delawarerising.club', action: 'Visit Delaware Rising', message: 'Completed!' },
-  house: { number: 6, point: [400, 520], title: 'First House', description: 'Watch the first-house video.', url: 'https://youtube.com/shorts/cGKcB-_NNdM', action: 'Watch the video', message: 'Completed!' },
+  president: { number: 1, point: [400, 520], title: 'Elected President', description: 'Watch the story of this milestone.', url: 'https://youtu.be/5uaEyriSL3A', action: 'Watch the video', message: 'Completed!' },
+  startup: { number: 2, point: [400, 430], title: 'Startup Bus', description: 'Explore Startup Bus.', url: 'https://startupbus.com', action: 'Explore Startup Bus', message: 'Completed!' },
+  masters: { number: 3, point: [400, 345], title: 'Masters Degree', description: "I moved to Ireland to get my master's degree and documented life along the way. Living abroad was the adventure of a lifetime. Watch some of the vlogs I created while I lived on the Emerald Isle.", url: 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee', action: 'Watch the Ireland vlogs', message: 'Degree Secured!' },
+  icecream: { number: 4, point: [300, 290], title: 'Ice Cream Shop', description: 'Revisit the ice cream shop through the vlogs.', url: 'https://www.youtube.com/playlist?list=PLzLEqDD8AalYMul900PclGbOMbi8oqD33', action: 'Watch the shop vlogs', message: 'Completed!' },
+  delaware: { number: 5, point: [225, 215], title: 'Delaware Rising', description: 'Explore Delaware Rising.', url: 'https://delawarerising.club', action: 'Visit Delaware Rising', message: 'Completed!' },
+  house: { number: 6, point: [165, 170], title: 'First House', description: 'Watch the first-house video.', url: 'https://youtube.com/shorts/cGKcB-_NNdM', action: 'Watch the video', message: 'Completed!' },
 };
 const countryStops = Object.fromEntries(Object.entries(countryStories).map(([id, story]) => {
   let nearest = 0, distance = Infinity;
@@ -147,8 +147,8 @@ function visitCountry() {
     walk(southRoute, 0, southRoute.getTotalLength(), ticket, () => {
       setCountryView(true);
       countryPosition = 0;
-      showCountryStory('president');
-      walk(countryRoute, 0, countryStops.president, ticket, () => {
+      showCountryStory('house');
+      walk(countryRoute, 0, countryStops.house, ticket, () => {
         setCrossing(false);
         document.querySelector('.travel-status').textContent = 'Arrived at Country roots. Choose a memory to explore.';
       });

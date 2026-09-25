@@ -17,10 +17,13 @@ test('six completed country milestones use the requested order and links', () =>
   ];
   const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   assert.equal(Object.keys(stories).length, 6);
+  let previousY = Infinity;
   expected.forEach(([id,title,url], index) => {
     assert.equal(stories[id].number, index + 1);
     assert.equal(stories[id].title, title);
     assert.equal(stories[id].url, url);
+    assert.ok(stories[id].point[1] < previousY, 'higher numbers must be closer to the northern bridge');
+    previousY = stories[id].point[1];
     assert.ok(html.includes(`class="level completed country-control" data-country="${id}"`));
   });
   assert.ok(!html.includes('data-chapter="1"'), 'the masters checkpoint has moved off the current island');
@@ -42,7 +45,7 @@ function crossingContext(branch = null) {
   const context = {
     crossing: false, inCountry: false, frame: 0, journey: 0, headingHome: false,
     lockedReturn: null, position: 400, branchPosition: branch, houseJunction: 20,
-    countryStops: { president: 170 }, countryPosition: 0, lastChapter: 9,
+    countryStops: { house: 170 }, countryPosition: 0, lastChapter: 9,
     route: { name: 'main' }, houseRoute: { name: 'house' },
     southRoute: { name: 'south', getTotalLength: () => 150 }, countryRoute: { name: 'country' },
     cancelAnimationFrame() {}, clearLockFeedback() {}, showCountryStory() {}, showChapter() {}, place() {},
