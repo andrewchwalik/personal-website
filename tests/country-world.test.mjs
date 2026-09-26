@@ -38,12 +38,13 @@ test('worlds use numbers and accessible arrow-only travel controls', () => {
   assert.match(source, /active \? 'WORLD 01' : 'WORLD 02'/);
 });
 
-test('world one has layered terrain and reduced-motion-safe pond animation', () => {
+test('world one has a pasture, three cows and reduced-motion-safe grazing', () => {
   const svg = buildCountryWorld();
-  assert.match(svg, /pond-bluff-sides/);
-  assert.match(svg, /clip-path="url\(#pond-water\)"/);
+  assert.match(svg, /id="pasture"/);
+  assert.equal((svg.match(/class="pasture-cow"/g) || []).length, 3);
+  assert.doesNotMatch(svg, /pond|bluff/);
   assert.match(svg, /prefers-reduced-motion:reduce/);
-  assert.match(svg, /\.pond-ripple\{animation:none\}/);
+  assert.match(svg, /\.cow-head\{animation:none\}/);
 });
 
 test('country artwork and walking guide share a bridge-aligned route', () => {
