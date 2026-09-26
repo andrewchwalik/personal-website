@@ -363,7 +363,7 @@ export function buildCountryWorld() {
     fence(180,393,52),fence(232,393,52),fence(284,393,52),fence(336,393,42),
     fence(183,545,52),fence(235,545,52),fence(287,545,48)];
   const ground = rounded([[131,113],[191,111],[228,143],[306,128],[391,142],[446,180],[489,201],[523,256],[516,330],[539,391],[513,476],[463,503],[441,558],[355,577],[286,561],[236,589],[157,570],[133,536],[82,512],[63,451],[79,396],[58,333],[84,282],[73,229],[104,192]], 18);
-  const objects = [...pastureObjects,tree(106,292,35,14),tree(95,322,41,15),tree(109,351,35,13), tree(467,256,38,14),tree(487,281,32,13),tree(454,520,41,17),tree(431,539,34,14),tree(116,471,37,15),tree(130,504,34,13),goal(466,441),fence(424,466,38),theatre(198,350)];
+  const objects = [...pastureObjects,tree(106,292,35,14),tree(95,322,41,15),tree(109,351,35,13), tree(467,256,38,14),tree(487,281,32,13),tree(454,520,41,17),tree(431,539,34,14),tree(116,471,37,15),tree(130,504,34,13),fence(424,466,38),theatre(198,350)];
   const barn = `${poly([[340,173],[402,194],[428,181],[364,156]],'#254e3f','opacity=".2"')}
     ${face([[337,183,0],[386,183,0],[386,183,32],[361,183,53],[337,183,32]],'#b9593f')}
     ${face([[386,183,0],[410,166,0],[410,166,32],[386,183,32]],'#8d4436')}
@@ -373,7 +373,7 @@ export function buildCountryWorld() {
     ${line([[353,181],[370,161]],'#e6c78a',1.5)}${line([[353,161],[370,181]],'#e6c78a',1.5)}
     ${path('M356 148h10v7h-10Z','#e8d6a4')}`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">
-    <title>World 01</title><desc>A walking trail through a fenced pasture with grazing cows, a red barn, cinema and soccer meadow. A wooden bridge connects north to World 02.</desc>
+    <title>World 01</title><desc>A walking trail through a fenced pasture with grazing cows, a red barn and cinema. A wooden bridge connects north to World 02.</desc>
     <style>@keyframes graze{0%,65%,100%{transform:translateY(0)}75%,90%{transform:translateY(3px)}}.cow-head{animation:graze 8s ease-in-out infinite}.pasture-cow:nth-of-type(2) .cow-head{animation-delay:-3s}@media(prefers-reduced-motion:reduce){.cow-head{animation:none}}</style>
     <defs>
       <pattern id="grass" width="43" height="37" patternUnits="userSpaceOnUse"><path d="m8 15-2-4m2 4 2-5m23 16 2-4" stroke="#6b9b43" opacity=".45" fill="none"/></pattern>
