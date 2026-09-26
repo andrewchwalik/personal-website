@@ -1,4 +1,4 @@
-import { theatreVideos } from './theatre-videos.mjs';
+import { theatreVideos } from './theatre-videos.mjs?v=2';
 
 const dialog = document.getElementById('theatre-dialog');
 const screen = document.getElementById('theatre-screen');

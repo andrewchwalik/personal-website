@@ -4,6 +4,13 @@ import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import { theatreVideos } from '../theatre-videos.mjs';
 
+test('theatre contains the seven selected films in requested order', () => {
+  assert.deepEqual(theatreVideos.map(video => video.id), [
+    'MpxoSS3UO6w', '2Q6Vg-vA92w', 'FVb1Xv_TsLU', '3wUPADWSrI8',
+    '3WN5MRzv4AA', '5HkvZZ1wV0w', '1QhbDCUMUpE',
+  ]);
+});
+
 test('theatre selection replaces the player and closing stops playback', () => {
   class Element {
     constructor(tag = 'div') { this.tag = tag; this.children = []; this.dataset = {}; this.events = {}; this.hidden = false; }
@@ -35,12 +42,19 @@ test('theatre selection replaces the player and closing stops playback', () => {
   const buttons = elements['theatre-films'].children;
   assert.equal(buttons.length, theatreVideos.length);
   buttons[0].events.click();
-  assert.match(elements['theatre-screen'].children[0].src, /youtube-nocookie.com\/embed\/5uaEyriSL3A/);
+  assert.match(elements['theatre-screen'].children[0].src, /youtube-nocookie.com\/embed\/MpxoSS3UO6w/);
   buttons[1].events.click();
   assert.equal(elements['theatre-screen'].children.length,1);
-  assert.match(elements['theatre-screen'].children[0].src, /cGKcB-_NNdM/);
+  assert.match(elements['theatre-screen'].children[0].src, /2Q6Vg-vA92w/);
   assert.equal(buttons[0]['aria-pressed'],'false');
   assert.equal(buttons[1]['aria-pressed'],'true');
+  buttons.forEach((button, index) => {
+    button.events.click();
+    assert.equal(elements['theatre-screen'].children.length, 1);
+    assert.equal(elements['theatre-screen'].children[0].src,
+      `https://www.youtube-nocookie.com/embed/${theatreVideos[index].id}?autoplay=1&rel=0`);
+    assert.equal(elements['theatre-youtube'].href, `https://www.youtube.com/watch?v=${theatreVideos[index].id}`);
+  });
   elements['theatre-door'].events.click();
   assert.equal(elements['theatre-dialog'].open,false);
   assert.equal(elements['theatre-screen'].children[0].tag,'p');
