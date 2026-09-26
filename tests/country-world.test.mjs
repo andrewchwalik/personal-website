@@ -8,7 +8,7 @@ const source = readFileSync(new URL('../adventure.js', import.meta.url), 'utf8')
 test('six completed country milestones use the requested order and links', () => {
   const stories = runInNewContext(source.slice(source.indexOf('const countryStories ='), source.indexOf('const countryStops =')) + '\ncountryStories;');
   const expected = [
-    ['president', 'Elected President', 'https://youtu.be/5uaEyriSL3A'],
+    ['president', 'Elected student body president.', 'https://youtu.be/5uaEyriSL3A'],
     ['startup', 'Startup Bus', 'https://startupbus.com'],
     ['masters', 'Masters Degree', 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee'],
     ['icecream', 'Ice Cream Shop', 'https://www.youtube.com/playlist?list=PLzLEqDD8AalYMul900PclGbOMbi8oqD33'],
