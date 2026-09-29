@@ -9,11 +9,11 @@ test('six completed country milestones use the requested order and links', () =>
   const stories = runInNewContext(source.slice(source.indexOf('const countryStories ='), source.indexOf('const countryStops =')) + '\ncountryStories;');
   const expected = [
     ['president', 'Elected student body president.', 'https://youtu.be/5uaEyriSL3A'],
-    ['startup', 'Startup Bus', 'https://startupbus.com'],
+    ['startup', 'Completed the European Startup Bus.', 'https://startupbus.com'],
     ['masters', 'Masters Degree', 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee'],
-    ['icecream', 'Ice Cream Shop', 'https://www.youtube.com/playlist?list=PLzLEqDD8AalYMul900PclGbOMbi8oqD33'],
-    ['delaware', 'Delaware Rising', 'https://delawarerising.club'],
-    ['house', 'First House', 'https://youtube.com/shorts/cGKcB-_NNdM'],
+    ['icecream', 'Started an ice cream shop.', 'https://www.youtube.com/playlist?list=PLzLEqDD8AalYMul900PclGbOMbi8oqD33'],
+    ['delaware', 'Founded a minor league soccer club.', 'https://delawarerising.club'],
+    ['house', 'Buying & fixing our first house.', 'https://youtube.com/shorts/cGKcB-_NNdM'],
   ];
   const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   assert.equal(Object.keys(stories).length, 6);
