@@ -10,7 +10,7 @@ test('six completed country milestones use the requested order and links', () =>
   const expected = [
     ['president', 'Elected student body president.', 'https://youtu.be/5uaEyriSL3A'],
     ['startup', 'Completed the European Startup Bus.', 'https://startupbus.com'],
-    ['masters', 'Masters Degree', 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee'],
+    ['masters', 'Graduated with a masters degree.', 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee'],
     ['icecream', 'Started an ice cream shop.', 'https://www.youtube.com/playlist?list=PLzLEqDD8AalYMul900PclGbOMbi8oqD33'],
     ['delaware', 'Founded a minor league soccer club.', 'https://delawarerising.club'],
     ['house', 'Buying & fixing our first house.', 'https://youtube.com/shorts/cGKcB-_NNdM'],
