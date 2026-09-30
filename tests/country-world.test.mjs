@@ -56,6 +56,9 @@ test('country artwork and walking guide share a bridge-aligned route', () => {
   assert.ok(COUNTRY_ROUTE.startsWith('M165 0'));
   assert.match(svg, /id="country-bridge"/);
   assert.doesNotMatch(svg, /NaN|undefined/);
+  assert.match(svg, /country-highland-sides/);
+  assert.equal((svg.match(/class="country-stairs"/g) || []).length, 2);
+  assert.doesNotMatch(svg, /M225 215Q260 200 280 184H361/);
 });
 
 function crossingContext(branch = null) {

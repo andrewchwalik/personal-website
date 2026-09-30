@@ -301,8 +301,20 @@ export function buildHouseForeground() {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">${cottage(135,489).art}</svg>`;
 }
 
-export const COUNTRY_ROUTE = 'M165 0 L165 170 Q145 215 225 215 Q315 215 300 290 Q285 345 400 345 Q455 390 400 430 Q345 475 400 520';
-export const THEATRE_ROUTE = 'M317.5 331.25 C280 355 235 375 198 365 L198 350';
+export const COUNTRY_ROUTE = 'M165 0 L165 170 Q145 215 225 215 Q315 215 300 290 Q285 330 317 350 L365 315 Q400 315 400 345 L400 401 Q420 414 400 430 Q345 475 400 520';
+export const THEATRE_ROUTE = 'M317 350 C280 365 235 375 198 365 L198 350';
+
+function countryStairs(start, end, count) {
+  const dx = end[0] - start[0], dy = end[1] - start[1];
+  const length = Math.hypot(dx, dy);
+  const side = [-dy / length * 12, dx / length * 12];
+  const edge = (p, sign) => [p[0] + side[0] * sign, p[1] + side[1] * sign];
+  return `<g class="country-stairs">${Array.from({length: count}, (_,i) => {
+    const a = mix(start,end,i/count), b = mix(start,end,(i+1)/count);
+    return poly([edge(a,-1),edge(a,1),edge(b,1),edge(b,-1)],i%2 ? '#d3b174' : '#e7c58a') +
+      line([edge(b,-1),edge(b,1)],'#a67a47',1.4);
+  }).join('')}${line([edge(start,-1),edge(end,-1)],'#f2daa3',2)}${line([edge(start,1),edge(end,1)],'#a67a47',2)}</g>`;
+}
 
 function theatre(x, y) {
   const v = (a,b,z) => [x+a,y+b,z];
@@ -359,6 +371,9 @@ function cow(x, y, facing = 1, size = .65) {
 }
 
 export function buildCountryWorld() {
+  const highlandTop = rounded([[365,285],[437,273],[478,291],[492,323],[465,365],[365,365]], 10);
+  const highlandBase = highlandTop.map(([x,y]) => [x,y+36]);
+  const highlandObjects = [boulder(459,315,16,11),boulder(474,330,10,7),tree(428,299,28,10)];
   // The trail crosses the meadow through gaps in the north and south fences.
   const pasture = rounded([[270,401],[391,402],[474,392],[486,418],[454,473],[404,510],[277,505],[259,458]], 16);
   const pastureObjects = [cow(306,436),cow(319,488,-1),cow(465,419,-1),
@@ -375,7 +390,7 @@ export function buildCountryWorld() {
     ${line([[353,181],[370,161]],'#e6c78a',1.5)}${line([[353,161],[370,181]],'#e6c78a',1.5)}
     ${path('M356 148h10v7h-10Z','#e8d6a4')}`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700">
-    <title>World 01</title><desc>A walking trail through a fenced pasture with grazing cows, a red barn and cinema. A wooden bridge connects north to World 02.</desc>
+    <title>World 01</title><desc>A walking trail climbs a rocky grass plateau by two stairways and winds through a cow pasture. A red barn stands in the grass beside the trail, with a cinema on its own side path. A wooden bridge connects north to World 02.</desc>
     <style>@keyframes graze{0%,65%,100%{transform:translateY(0)}75%,90%{transform:translateY(3px)}}.cow-head{animation:graze 8s ease-in-out infinite}.pasture-cow:nth-of-type(2) .cow-head{animation-delay:-3s}@media(prefers-reduced-motion:reduce){.cow-head{animation:none}}</style>
     <defs>
       <pattern id="grass" width="43" height="37" patternUnits="userSpaceOnUse"><path d="m8 15-2-4m2 4 2-5m23 16 2-4" stroke="#6b9b43" opacity=".45" fill="none"/></pattern>
@@ -390,10 +405,14 @@ export function buildCountryWorld() {
       ${path('M104 386Q154 376 167 408M329 168Q298 152 259 171M346 546Q301 516 255 537','none','stroke="#8fb653" stroke-width="24" opacity=".3"')}
       ${poly(pasture,'#94bd60','id="pasture"')}${poly(pasture,'url(#grass)')}
       ${path('M280 454q30-14 55-6m-43 42q30 8 50-3M452 422q10 6 20-1','none','stroke="#b7d17d" stroke-width="8" opacity=".4" stroke-linecap="round"')}
+      ${terrainShadow(highlandBase,36,'#376e40')}
+      ${solid(highlandBase,36,'country-highland','#b1cd70')}
       ${path(COUNTRY_ROUTE,'none','stroke="#829b48" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"')}
       ${path(COUNTRY_ROUTE,'none','stroke="#f2d58b" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"')}
       ${path(THEATRE_ROUTE,'none','stroke="#e4cc87" stroke-width="12" stroke-linecap="round"')}
-      ${path('M225 215Q260 200 280 184H361','none','stroke="#e4cc87" stroke-width="9"')}
+      ${countryStairs([317,350],[365,315],8)}
+      ${countryStairs([400,365],[400,401],6)}
+      ${shadowLayer(highlandObjects)}${artLayer(highlandObjects)}
       ${shadowLayer(objects)}
     </g>
     ${barn}${artLayer(objects)}${flowers(247,244)}${flowers(382,438)}
