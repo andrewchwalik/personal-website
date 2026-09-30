@@ -22,9 +22,10 @@ test('current island continues the country milestones with levels seven through 
 test('level progress updates values, messages and completed or locked states', () => {
   const bar = { setAttribute(name, value) { this[name] = value; } };
   const label = {};
+  const start = {}, end = {};
   const wrapper = { dataset: {} };
   const context = { document: {
-    getElementById: id => id === 'level-progress' ? bar : label,
+    getElementById: id => ({ 'level-progress': bar, 'level-progress-message': label, 'progress-start': start, 'progress-end': end })[id],
     querySelector: () => wrapper,
   } };
   runInNewContext(progressSource, context);
@@ -40,5 +41,12 @@ test('level progress updates values, messages and completed or locked states', (
     assert.equal(bar['aria-valuetext'], message);
     assert.equal(label.textContent, message);
     assert.equal(wrapper.dataset.state, state);
+    assert.equal(start.textContent, level === 9 ? '0' : '0%');
+    assert.equal(end.textContent, level === 9 ? '365' : '100%');
   }
+  context.showProgress(9);
+  context.showProgressEndpoints();
+  assert.equal(start.textContent, '0%');
+  assert.equal(end.textContent, '100%');
+  assert.match(source, /function showCountryStory\(id\) \{\s+showProgressEndpoints\(\);/);
 });

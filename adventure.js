@@ -10,7 +10,12 @@ const levelProgress = {
   9: { value: 212, max: 365, message: '212 / 365 vlogs edited' },
   10: { value: 0, max: 1, message: 'Locked' },
 };
+function showProgressEndpoints(days = false) {
+  document.getElementById('progress-start').textContent = days ? '0' : '0%';
+  document.getElementById('progress-end').textContent = days ? '365' : '100%';
+}
 function showProgress(number) {
+  showProgressEndpoints(number === 9);
   const { value, max, message } = levelProgress[number];
   const bar = document.getElementById('level-progress');
   bar.max = max;
@@ -128,6 +133,7 @@ function setCrossing(active) {
   document.querySelector('.world').setAttribute('aria-busy', String(active));
 }
 function showCountryStory(id) {
+  showProgressEndpoints();
   const story = countryStories[id];
   document.querySelector('.chapter-number').textContent = String(story.number).padStart(2, '0');
   document.getElementById('chapter-status').textContent = 'COMPLETED / WORLD 01 / LEVEL ' + String(story.number).padStart(2, '0');
