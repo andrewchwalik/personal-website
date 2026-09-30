@@ -11,6 +11,8 @@ test('current island continues the country milestones with levels seven through 
   assert.deepEqual(Object.keys(chapters), ['7', '8', '9', '10']);
   assert.equal(chapters[7].url, 'https://www.youtube.com/playlist?list=PLzLEqDD8AalbUWMfEDAjrz5yWz0Mb07Wj');
   assert.equal(chapters[7].state, 'COMPLETED');
+  assert.equal(chapters[7].title, 'Become a small business owner.');
+  assert.equal(chapters[8].title, 'Build a minor league soccer club.');
   assert.equal(chapters[8].url, 'https://firelandsunited.com/');
   assert.equal(chapters[9].state, 'CURRENT QUEST');
   assert.equal(chapters[10].state, 'LOCKED PREVIEW');

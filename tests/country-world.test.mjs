@@ -8,12 +8,12 @@ const source = readFileSync(new URL('../adventure.js', import.meta.url), 'utf8')
 test('six completed country milestones use the requested order and links', () => {
   const stories = runInNewContext(source.slice(source.indexOf('const countryStories ='), source.indexOf('const countryStops =')) + '\ncountryStories;');
   const expected = [
-    ['president', 'Elected student body president.', 'https://youtu.be/5uaEyriSL3A'],
-    ['startup', 'Completed the European Startup Bus.', 'https://startupbus.com'],
-    ['masters', 'Graduated with a masters degree.', 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee'],
-    ['icecream', 'Started an ice cream shop.', 'https://www.youtube.com/playlist?list=PLzLEqDD8AalYMul900PclGbOMbi8oqD33'],
-    ['delaware', 'Founded a minor league soccer club.', 'https://delawarerising.club'],
-    ['house', 'Buying & fixing our first house.', 'https://youtube.com/shorts/cGKcB-_NNdM'],
+    ['president', 'Become student body president.', 'https://youtu.be/5uaEyriSL3A'],
+    ['startup', 'Complete the Startup Bus.', 'https://startupbus.com'],
+    ['masters', 'Get my masters degree.', 'https://www.youtube.com/playlist?list=PLzLEqDD8Aalbud4qkLVkzkFjuXDJrZ1Ee'],
+    ['icecream', 'Start an ice cream shop.', 'https://www.youtube.com/playlist?list=PLzLEqDD8AalYMul900PclGbOMbi8oqD33'],
+    ['delaware', 'Create a soccer club from scratch.', 'https://delawarerising.club'],
+    ['house', 'Buy our first home.', 'https://youtube.com/shorts/cGKcB-_NNdM'],
   ];
   const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
   assert.equal(Object.keys(stories).length, 6);
