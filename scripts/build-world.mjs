@@ -338,9 +338,11 @@ export function buildTheatreRoom() {
     <path d="M19 389h20m-20 0 7-7m-7 7 7 7" fill="none" stroke="#e7dcb5" stroke-width="3"/>
     ${seats}</svg>`;
 }
-function cow(x, y, facing = 1) {
-  return { y, shadow: shadow([[x-20,y,0],[x+24,y,0],[x-18,y,25],[x+20,y,24]]), art:
-    `<g class="pasture-cow" transform="translate(${x} ${y}) scale(${facing} 1)">
+function cow(x, y, facing = 1, size = .65) {
+  const footprint = [[-20,0,0],[24,0,0],[-18,0,25],[20,0,24]]
+    .map(([dx,dy,z]) => [x + dx * size * facing, y + dy * size, z * size]);
+  return { y, shadow: shadow(footprint), art:
+    `<g class="pasture-cow" transform="translate(${x} ${y}) scale(${facing * size} ${size})">
       <path d="M-14-13v13m9-13v11M10-13V0m7-13v11" stroke="#4d5545" stroke-width="4" stroke-linecap="round"/>
       <path d="M-20-19q-8 0-7 14" fill="none" stroke="#e6dfbc" stroke-width="2"/>
       <path d="M-28-8l-1 5 4-1" fill="#46564a"/>
@@ -358,10 +360,10 @@ function cow(x, y, facing = 1) {
 
 export function buildCountryWorld() {
   // The trail crosses the meadow through gaps in the north and south fences.
-  const pasture = rounded([[176,392],[388,390],[474,375],[493,405],[477,472],[422,552],[185,541],[161,468]], 20);
-  const pastureObjects = [cow(237,436),cow(307,494,-1),cow(470,401,-1),
-    fence(180,393,52),fence(232,393,52),fence(284,393,52),fence(336,393,42),
-    fence(183,545,52),fence(235,545,52),fence(287,545,48)];
+  const pasture = rounded([[270,401],[391,402],[474,392],[486,418],[454,473],[404,510],[277,505],[259,458]], 16);
+  const pastureObjects = [cow(306,436),cow(319,488,-1),cow(465,419,-1),
+    fence(272,402,48),fence(320,402,48),
+    fence(278,506,38),fence(316,506,38)];
   const ground = rounded([[131,113],[191,111],[228,143],[306,128],[391,142],[446,180],[489,201],[523,256],[516,330],[539,391],[513,476],[463,503],[441,558],[355,577],[286,561],[236,589],[157,570],[133,536],[82,512],[63,451],[79,396],[58,333],[84,282],[73,229],[104,192]], 18);
   const objects = [...pastureObjects,tree(106,292,35,14),tree(95,322,41,15),tree(109,351,35,13), tree(467,256,38,14),tree(487,281,32,13),tree(454,520,41,17),tree(431,539,34,14),tree(116,471,37,15),tree(130,504,34,13),fence(424,466,38),theatre(198,350)];
   const barn = `${poly([[340,173],[402,194],[428,181],[364,156]],'#254e3f','opacity=".2"')}
@@ -387,7 +389,7 @@ export function buildCountryWorld() {
     <g clip-path="url(#country-ground)">
       ${path('M104 386Q154 376 167 408M329 168Q298 152 259 171M346 546Q301 516 255 537','none','stroke="#8fb653" stroke-width="24" opacity=".3"')}
       ${poly(pasture,'#94bd60','id="pasture"')}${poly(pasture,'url(#grass)')}
-      ${path('M194 459q42-23 75-9m-51 58q53 13 103-4M447 414q16 9 28-1','none','stroke="#b7d17d" stroke-width="12" opacity=".4" stroke-linecap="round"')}
+      ${path('M280 454q30-14 55-6m-43 42q30 8 50-3M452 422q10 6 20-1','none','stroke="#b7d17d" stroke-width="8" opacity=".4" stroke-linecap="round"')}
       ${path(COUNTRY_ROUTE,'none','stroke="#829b48" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"')}
       ${path(COUNTRY_ROUTE,'none','stroke="#f2d58b" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"')}
       ${path(THEATRE_ROUTE,'none','stroke="#e4cc87" stroke-width="12" stroke-linecap="round"')}
