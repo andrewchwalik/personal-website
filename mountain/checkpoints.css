@@ -1,0 +1,100 @@
+/* Carved stone rims and enamel faces share the landscape's upper-left light. */
+.stop {
+  --face-light: #658c70;
+  --face-dark: #21473a;
+  --symbol: #fff0c5;
+  --rim-light: #f0deb2;
+  --rim-dark: #857255;
+  isolation: isolate;
+}
+.disc {
+  width: 35px;
+  height: 33px;
+  border: 0;
+  border-radius: 46%;
+  color: var(--symbol);
+  background: linear-gradient(145deg, var(--rim-light), #b9ac8f 48%, var(--rim-dark));
+  box-shadow: inset 1px 1px 1px #fff8dfb3, inset -1px -1px 1px #34483c80,
+    0 3px 0 #655f50, 2px 5px 3px #233a3c66;
+  transition: filter 160ms ease, transform 160ms ease;
+}
+.disc::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 44%;
+  background: radial-gradient(ellipse at 25% 15%, #ffffff20, transparent 65%),
+    linear-gradient(145deg, var(--face-light), var(--face-dark));
+  box-shadow: inset 1px 1px 2px #102c3666, 0 1px 0 #fff1cc80;
+}
+.disc svg {
+  position: relative;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 0 #182f3870);
+}
+.stop[data-id=debt] {
+  --face-light: #f5d181;
+  --face-dark: #ae682c;
+  --symbol: #fff9df;
+  --rim-light: #fff0b9;
+  --rim-dark: #987141;
+}
+.stop.preview {
+  --face-light: #718c9c;
+  --face-dark: #33485b;
+  --rim-light: #e4e6d7;
+  --rim-dark: #788a8b;
+}
+.stop.side { --face-light: #bf906b; --face-dark: #654733; }
+.stop[data-id=camp] { --face-light: #789e91; --face-dark: #345c54; }
+.stop[data-id=debt] .disc,
+.stop.preview .disc,
+.stop.side .disc {
+  color: var(--symbol);
+  background: linear-gradient(145deg, var(--rim-light), #b9ac8f 48%, var(--rim-dark));
+}
+.tag {
+  left: 35px;
+  padding: 5px 9px 5px 11px;
+  border: 1px solid #dcc6a17a;
+  border-radius: 2px 6px 6px 2px;
+  background: linear-gradient(170deg, #586258f2, #303d37ed);
+  color: #fff3d9;
+  box-shadow: inset 0 1px 0 #fff7d521, 1px 2px 2px #26363366;
+  text-shadow: 0 1px 1px #162e2b;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .1px;
+}
+.stop.flip .tag {
+  right: 35px;
+  padding: 5px 11px 5px 9px;
+  border-radius: 6px 2px 2px 6px;
+}
+.stop[data-id=summit] .tag { border-radius: 5px; padding: 5px 9px; }
+.stop[aria-pressed=true] .tag {
+  background: linear-gradient(170deg, #697365f2, #354b3fed);
+  border-color: #e5cb91;
+  font-weight: 600;
+}
+.stop:focus-visible { border-radius: 8px; outline-color: #ffdf91; }
+@media(hover:hover) {
+  .stop:hover .disc { filter: brightness(1.14); transform: translateY(-1px); }
+  .stop:hover .tag { border-color: #ffe1a4; }
+}
+@media(max-width:760px) {
+  .disc { width: 30px; height: 29px; }
+  .disc::before { inset: 3px; }
+  .disc svg { width: 15px; height: 15px; }
+  .tag { left: 33px; font-size: 8px; padding: 4px 7px 4px 9px; }
+  .stop.flip .tag { right: 33px; padding: 4px 9px 4px 7px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .disc { transition: none; }
+}

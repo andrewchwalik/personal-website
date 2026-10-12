@@ -26,6 +26,20 @@ function walk(path,from,to,ticket,done){
   frame=requestAnimationFrame(tick);
 }
 function action(text,url){const a=document.createElement('a');a.className='action';a.textContent=text;a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;}
+function markerIcon(stop){
+  const icons={
+    camp:'M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6',
+    vlog:'M4 7h11v11H4ZM15 11l6-3v9l-6-3',
+    summit:'M6 21V3M6 4q5-3 12 0v9q-7-3-12 0',
+    future:'M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5ZM12 14v3',
+    debt:'M12 3 20 12 12 21 4 12ZM12 8v5M12 17v.1',
+    completed:'m6 12 4 4 9-9'
+  };
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');
+  const icon=document.createElementNS(svg.namespaceURI,'path');
+  icon.setAttribute('d',icons[stop.id]||icons.completed);svg.append(icon);return svg;
+}
 function show(stop){
   $('stop-state').textContent=stop.state;$('stop-title').textContent=stop.title;$('stop-description').textContent=stop.description;
   $('actions').replaceChildren();
@@ -49,7 +63,7 @@ function visit(stop){
 }
 for(const stop of [...stops,vlog]){
   const button=document.createElement('button');button.className=`stop ${stop.preview?'preview':''} ${stop.id==='vlog'?'side':''} ${['firelands','future','vlog'].includes(stop.id)?'flip':''}`;button.dataset.id=stop.id;button.style.setProperty('--x',`${stop.point[0]/600*100}%`);button.style.setProperty('--y',`${stop.point[1]/930*100}%`);button.setAttribute('aria-label',`${stop.label}: ${stop.state.toLowerCase()}`);button.setAttribute('aria-pressed','false');
-  const disc=document.createElement('span');disc.className='disc';disc.textContent=stop.preview?'?':stop.id==='camp'?'⌂':stop.id==='vlog'?'+':stop.state==='COMPLETED'?'✓':'3';
+  const disc=document.createElement('span');disc.className='disc';disc.append(markerIcon(stop));
   const label=document.createElement('span');label.className='tag';label.textContent=stop.label;button.append(disc,label);button.onclick=()=>visit(stop);$('stops').append(button);
 }
 for(const memory of memories){const detail=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p'),link=document.createElement('a');summary.textContent=memory.title;text.textContent=memory.text;link.textContent='Explore this story ↗';link.href=memory.url;link.target='_blank';link.rel='noopener noreferrer';detail.append(summary,text,link);$('memories').append(detail);}
