@@ -1,4 +1,4 @@
-import { route, sideRoute, caveRoute, cave, stops, vlog, memories } from './data.mjs?v=4';
+import { route, sideRoute, caveRoute, cave, stops, vlog, memories } from './data.mjs?v=5';
 const $ = id => document.getElementById(id);
 const trail = $('route'), branch = $('side-route'), player = $('player');
 trail.setAttribute('d',route); branch.setAttribute('d',sideRoute);
@@ -32,7 +32,7 @@ function markerIcon(stop){
   const icons={
     camp:'M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6',
     vlog:'M4 7h11v11H4ZM15 11l6-3v9l-6-3',
-    cave:'M3 20V12a9 9 0 0 1 18 0v8ZM10 10l6 4-6 4Z',
+    cave:'M8 5 19 12 8 19Z',
     summit:'M6 21V3M6 4q5-3 12 0v9q-7-3-12 0',
     future:'M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5ZM12 14v3',
     debt:'M12 3 20 12 12 21 4 12ZM12 8v5M12 17v.1',
@@ -41,7 +41,7 @@ function markerIcon(stop){
   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
   svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');
   const icon=document.createElementNS(svg.namespaceURI,'path');
-  icon.setAttribute('d',icons[stop.id]||icons.completed);svg.append(icon);return svg;
+  icon.setAttribute('d',icons[stop.id]||icons.completed);if(stop.id==='cave')icon.setAttribute('fill','currentColor');svg.append(icon);return svg;
 }
 function show(stop){
   $('stop-state').textContent=stop.state;$('stop-title').textContent=stop.title;$('stop-description').textContent=stop.description;
