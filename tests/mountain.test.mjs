@@ -8,6 +8,8 @@ test('mountain artwork shares the interactive trails and is reproducible',()=>{
   assert.equal(readFileSync(new URL('../mountain/world.svg',import.meta.url),'utf8'),art);
   assert.ok(art.includes(`d="${route}"`));assert.ok(art.includes(`d="${sideRoute}"`));
   assert.doesNotMatch(art,/NaN|undefined/);
+  assert.match(art,/grey granite mountain/);
+  assert.doesNotMatch(art,/#b9653d|#9e5038|#f3bd59/);
 });
 test('mountain keeps the club journey distinct from the vlog and past accomplishments',()=>{
   assert.deepEqual(stops.map(s=>s.id),['camp','delaware','firelands','debt','future','summit']);
