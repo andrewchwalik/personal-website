@@ -1,6 +1,8 @@
 // Coordinates trace the illustrated trail in the shared 600 x 930 map space.
 export const route = 'M172 730 Q193 716 177 698 Q135 678 153 662 Q170 642 246 642 C302 640 397 649 427 626 Q437 616 435 586 L435 543 Q435 531 434 524 Q432 502 398 493 C346 483 230 490 179 476 Q150 469 151 453 L151 420 Q151 410 152 399 Q154 382 179 369 Q197 350 246 355 C300 359 392 362 421 347 Q427 346 430 344 Q435 339 435 329 L435 288 Q435 247 406 237 C370 224 309 227 261 211 Q244 205 244 195 L244 156 Q241 141 261 133 L289 121 Q303 116 303 107';
 export const sideRoute = 'M246 642 Q250 673 319 697 Q363 716 414 719 L432 721';
+export const caveRoute = 'M299 486 Q301 476 299 465 L300 455';
+export const cave = { id: 'cave', point: [300,455], junction: [299,486], label: 'Cave cinema', state: 'SIDE QUEST / CINEMA', title: 'A little cinema inside the mountain.', description: 'Take a break from the climb. Step inside and watch a few of my favorite adventures on the big screen.', action: 'Enter the cave cinema' };
 export const stops = [
   { id: 'camp', point: [172,730], label: 'Base camp', state: 'YOUR BACKSTORY', title: 'Every climb starts somewhere.', description: 'The experiences that brought me here. Explore the projects, risks, and little adventures behind the bigger dream.', action: 'Explore my accomplishments' },
   { id: 'delaware', point: [246,642], label: 'Delaware Rising', state: 'COMPLETED', title: 'Create a soccer club from scratch.', description: "My brother and I founded the first amateur soccer club in Delaware, OH. We built it from scratch to give players a high level, unique playing experience - resulting in multiple titles for the men's and women's teams!", url: 'https://delawarerising.club', action: 'Explore Delaware Rising' },
