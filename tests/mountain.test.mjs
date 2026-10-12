@@ -1,15 +1,24 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { buildMountain } from '../scripts/build-mountain.mjs';
 import { route,sideRoute,stops,vlog,memories } from '../mountain/data.mjs';
-test('mountain artwork shares the interactive trails and is reproducible',()=>{
-  const art=buildMountain();
-  assert.equal(readFileSync(new URL('../mountain/world.svg',import.meta.url),'utf8'),art);
-  assert.ok(art.includes(`d="${route}"`));assert.ok(art.includes(`d="${sideRoute}"`));
-  assert.doesNotMatch(art,/NaN|undefined/);
-  assert.match(art,/grey granite mountain/);
-  assert.doesNotMatch(art,/#b9653d|#9e5038|#f3bd59/);
+test('mountain serves optimized game artwork rather than the retired SVG platforms',()=>{
+  const art=readFileSync(new URL('../mountain/world-painted.webp',import.meta.url));
+  assert.equal(art.toString('ascii',0,4),'RIFF');
+  assert.equal(art.toString('ascii',8,12),'WEBP');
+  assert.ok(art.length<600_000,'Keep the map fast on mobile connections');
+  const html=readFileSync(new URL('../mountain/index.html',import.meta.url),'utf8');
+  assert.match(html,/src="world-painted.webp"/);
+  assert.doesNotMatch(html,/src="world.svg"/);
+});
+test('trail branches and destinations use the painted world coordinate space',()=>{
+  assert.ok(route.startsWith(`M${stops[0].point.join(' ')}`));
+  assert.ok(sideRoute.startsWith(`M${stops[1].point.join(' ')}`));
+  assert.ok(sideRoute.endsWith(`L${vlog.point.join(' ')}`));
+  for(const stop of [...stops,vlog]){
+    assert.ok(stop.point[0]>0&&stop.point[0]<600);
+    assert.ok(stop.point[1]>0&&stop.point[1]<930);
+  }
 });
 test('mountain keeps the club journey distinct from the vlog and past accomplishments',()=>{
   assert.deepEqual(stops.map(s=>s.id),['camp','delaware','firelands','debt','future','summit']);

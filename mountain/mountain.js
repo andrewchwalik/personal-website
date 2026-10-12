@@ -1,4 +1,4 @@
-import { route, sideRoute, stops, vlog, memories } from './data.mjs';
+import { route, sideRoute, stops, vlog, memories } from './data.mjs?v=2';
 const $ = id => document.getElementById(id);
 const trail = $('route'), branch = $('side-route'), player = $('player');
 trail.setAttribute('d',route); branch.setAttribute('d',sideRoute);
