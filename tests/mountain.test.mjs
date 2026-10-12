@@ -17,6 +17,8 @@ test('trail branches and destinations use the painted world coordinate space',()
   assert.ok(sideRoute.endsWith(`L${vlog.point.join(' ')}`));
   assert.ok(caveRoute.startsWith(`M${cave.junction.join(' ')}`));
   assert.ok(caveRoute.endsWith(`L${cave.point.join(' ')}`));
+  assert.deepEqual(cave.markerPoint,cave.junction);
+  assert.ok(cave.markerPoint[1]>cave.point[1],'Marker sits below the cave, not on the entrance');
   assert.ok(cave.point[1]>stops.find(stop=>stop.id==='debt').point[1]);
   assert.ok(cave.point[1]<stops.find(stop=>stop.id==='firelands').point[1]);
   for(const stop of [...stops,vlog,cave]){

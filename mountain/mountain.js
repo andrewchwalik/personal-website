@@ -1,4 +1,4 @@
-import { route, sideRoute, caveRoute, cave, stops, vlog, memories } from './data.mjs?v=3';
+import { route, sideRoute, caveRoute, cave, stops, vlog, memories } from './data.mjs?v=4';
 const $ = id => document.getElementById(id);
 const trail = $('route'), branch = $('side-route'), player = $('player');
 trail.setAttribute('d',route); branch.setAttribute('d',sideRoute);
@@ -67,9 +67,13 @@ function visit(stop){
   if(sidePosition!==null)walk(activeBranch.path,sidePosition,0,ticket,()=>{sidePosition=null;position=activeBranch.junction;activeBranch=null;onTrail();});else onTrail();
 }
 for(const stop of [...stops,vlog,cave]){
-  const button=document.createElement('button');button.className=`stop ${stop.preview?'preview':''} ${stop.id==='vlog'?'side':''} ${['firelands','future','vlog'].includes(stop.id)?'flip':''}`;button.dataset.id=stop.id;button.style.setProperty('--x',`${stop.point[0]/600*100}%`);button.style.setProperty('--y',`${stop.point[1]/930*100}%`);button.setAttribute('aria-label',`${stop.label}: ${stop.state.toLowerCase()}`);button.setAttribute('aria-pressed','false');
+  const point=stop.markerPoint||stop.point;
+  const button=document.createElement('button');button.className=`stop ${stop.preview?'preview':''} ${stop.id==='vlog'?'side':''} ${['firelands','future','vlog'].includes(stop.id)?'flip':''}`;button.dataset.id=stop.id;button.setAttribute('aria-label',`${stop.label}: ${stop.state.toLowerCase()}`);button.setAttribute('aria-pressed','false');
   const disc=document.createElement('span');disc.className='disc';disc.append(markerIcon(stop));
-  const label=document.createElement('span');label.className='tag';label.textContent=stop.label;button.append(disc,label);button.onclick=()=>visit(stop);$('stops').append(button);
+  button.style.setProperty('--x',`${point[0]/600*100}%`);button.style.setProperty('--y',`${point[1]/930*100}%`);
+  button.append(disc);
+  if(stop.id!=='cave'){const label=document.createElement('span');label.className='tag';label.textContent=stop.label;button.append(label);}
+  button.onclick=()=>visit(stop);$('stops').append(button);
 }
 for(const memory of memories){const detail=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p'),link=document.createElement('a');summary.textContent=memory.title;text.textContent=memory.text;link.textContent='Explore this story ↗';link.href=memory.url;link.target='_blank';link.rel='noopener noreferrer';detail.append(summary,text,link);$('memories').append(detail);}
 $('close-camp').onclick=()=>$('camp').close();
