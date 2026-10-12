@@ -9,4 +9,6 @@ test('links page features the main website instead of Patreon',()=>{
   assert.doesNotMatch(html,/patreon/i);
   assert.match(html,/Latest Vlog/);
   assert.match(html,/Firelands United/);
+  assert.match(html,/href="https:\/\/www.instagram.com\/andrewchwalik\/"/);
+  assert.doesNotMatch(html,/Nutmegged/i);
 });

@@ -855,6 +855,11 @@ body.links-page {
     background: linear-gradient(135deg, rgba(255, 214, 202, 0.92), rgba(255, 241, 234, 0.92));
 }
 
+.links-page .links-icon-instagram {
+    color: #bd3e65;
+    background: linear-gradient(135deg, #f9d5df, #fff0df);
+}
+
 .links-page .links-icon-firelands {
     color: #1b6e60;
     background: linear-gradient(135deg, rgba(187, 241, 225, 0.92), rgba(234, 255, 247, 0.92));
