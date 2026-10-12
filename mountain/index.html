@@ -5,7 +5,7 @@
   <title>The Climb | Andrew Chwalik</title>
   <meta name="description" content="An experimental adventure map: the climb toward buying a soccer club in England.">
   <link rel="icon" href="/favicon-32.png?v=3" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
-  <link rel="stylesheet" href="mountain.css?v=2"><link rel="stylesheet" href="checkpoints.css?v=1"><link rel="stylesheet" href="cave.css?v=1"><script type="module" src="mountain.js?v=6"></script><script type="module" src="cave.js?v=1"></script><script type="module" src="water.js?v=1"></script>
+  <link rel="stylesheet" href="mountain.css?v=2"><link rel="stylesheet" href="checkpoints.css?v=1"><link rel="stylesheet" href="cave.css?v=1"><link rel="stylesheet" href="atmosphere.css?v=1"><script type="module" src="mountain.js?v=6"></script><script type="module" src="cave.js?v=1"></script><script type="module" src="water.js?v=2"></script>
 </head>
 <body>
   <main>
@@ -16,21 +16,43 @@
         <div class="map-top"><span>THE CLIMB</span><span>EXPLORE AT YOUR OWN PACE</span></div>
         <div class="stage">
           <img src="world-cave.webp" width="1024" height="1536" fetchpriority="high" alt="An illustrated alpine adventure: a winding trail through pine forests, flowing waterfalls and granite cliffs passes a lantern-lit cinema cave on its way to a summit football ground.">
+          <svg class="sky-clouds" viewBox="0 0 1024 1536" preserveAspectRatio="none" aria-hidden="true">
+            <defs><clipPath id="distant-sky"><path clip-rule="evenodd" d="M0 0H1024V1536H0Z M0 1536V1070L45 956 22 900 61 815 117 721 125 623 167 518 210 431 251 431 268 335 313 258 331 205 363 151 423 129 447 71 480 43 516 34 560 32 578 80 610 106 640 149 674 213 693 290 730 340 754 394 789 482 831 537 885 592 912 650 967 680 991 768 1024 812V1536Z"/></clipPath></defs>
+            <g clip-path="url(#distant-sky)">
+              <image class="sky-cloud cloud-one" href="sky-cloud.webp" x="-650" y="70" width="650" height="217"/>
+              <image class="sky-cloud cloud-two" href="sky-cloud.webp" x="-650" y="285" width="540" height="180"/>
+              <image class="sky-cloud cloud-three" href="sky-cloud.webp" x="-650" y="650" width="620" height="207"/>
+            </g>
+          </svg>
           <svg class="water-effects" viewBox="0 0 1024 1536" preserveAspectRatio="none" aria-hidden="true"></svg>
           <svg class="guide" viewBox="0 0 600 930" aria-hidden="true"><path id="route"/><path id="side-route"/><path id="cave-route"/></svg>
           <div id="stops"></div>
           <div id="player" aria-hidden="true"><svg viewBox="0 0 64 88">
-            <ellipse cx="33" cy="83" rx="17" ry="4" fill="#244e3d" opacity=".25"/>
-            <g class="leg left"><path d="m22 60-1 18h10l2-18" fill="#354953"/><path d="M21 75h10v7H18v-4Z" fill="#243640"/></g>
-            <g class="leg right"><path d="m35 60 2 18h10l-5-18" fill="#354953"/><path d="M37 75h10l5 4v3H37Z" fill="#243640"/></g>
-            <g class="arm left"><path d="m21 36-8 14-2 13 7 1 8-24" fill="#d9aa82"/><path d="m21 36-7 13 9 4 5-16" fill="#f17b35"/></g>
-            <g class="arm right"><path d="m43 36 9 14 2 13-7 1-8-24" fill="#d9aa82"/><path d="m43 36 8 13-9 4-5-16" fill="#f17b35"/></g>
-            <path d="M22 35q10-5 21 0l6 27q-16 8-32 0Z" fill="#f58137"/><path d="m34 47 3-4 2 7q9 12-5 12-10-2-4-11Z" fill="#303e50"/>
-            <rect x="27" y="25" width="12" height="12" rx="5" fill="#cf9974"/><ellipse cx="32" cy="20" rx="15" ry="17" fill="#e7b890"/>
-            <path d="M17 21 15 13q-3-5 2-7-1-5 6-4 4-3 9-1 5-3 9 0 7-1 8 4 6 3 1 10l-3 7-3-10q-6-5-13-1l-10 2-1 9Z" fill="#63412e"/>
-            <path d="M20 9q0-5 5-4m2 3q1-6 6-5m2 6q4-6 8-2" fill="none" stroke="#926749" stroke-width="1.7"/>
+            <defs>
+              <radialGradient id="hero-skin" cx="30%" cy="25%" r="80%"><stop stop-color="#ffe0b6"/><stop offset=".5" stop-color="#dca57d"/><stop offset="1" stop-color="#98654c"/></radialGradient>
+              <linearGradient id="hero-shirt" x2="1" y2=".5"><stop stop-color="#ffd190"/><stop offset=".3" stop-color="#f39548"/><stop offset=".7" stop-color="#db682e"/><stop offset="1" stop-color="#963e25"/></linearGradient>
+              <linearGradient id="hero-trousers"><stop stop-color="#697477"/><stop offset=".35" stop-color="#47575b"/><stop offset="1" stop-color="#233239"/></linearGradient>
+              <radialGradient id="hero-hair" cx="25%" cy="20%" r="85%"><stop stop-color="#a17a50"/><stop offset=".4" stop-color="#755033"/><stop offset="1" stop-color="#3e2d24"/></radialGradient>
+              <radialGradient id="hero-ground"><stop stop-color="#203335" stop-opacity=".45"/><stop offset="1" stop-color="#203335" stop-opacity="0"/></radialGradient>
+            </defs>
+            <ellipse cx="36" cy="83" rx="21" ry="5" fill="url(#hero-ground)"/>
+            <g class="leg left"><path d="M22 58q6-3 12 1l-3 19H21Z" fill="url(#hero-trousers)"/><path d="M22 75h9v7H17q-1-5 5-7" fill="#344048"/><path d="M19 78h10" stroke="#8b9692" stroke-width="1.4"/></g>
+            <g class="leg right"><path d="M33 59q4-3 9 0l5 19H36Z" fill="url(#hero-trousers)"/><path d="M36 75h10q6 2 6 7H36Z" fill="#293740"/><path d="m38 78 8 1" stroke="#77857f" stroke-width="1.4"/></g>
+            <g class="arm left"><path d="M21 36q-8 10-10 24-1 7 5 5l10-25Z" fill="url(#hero-skin)"/><path d="M21 36q-6 4-8 13l10 4 5-16Z" fill="url(#hero-shirt)"/></g>
+            <g class="arm right"><path d="M43 36q9 10 11 25 1 6-6 4l-9-25Z" fill="url(#hero-skin)"/><path d="m43 36 8 13-9 4-5-16" fill="url(#hero-shirt)"/></g>
+            <path d="M22 35q10-5 21 0l4 26q-14 8-29 0Z" fill="url(#hero-shirt)"/>
+            <path d="M24 38q8 5 16-1M21 58q9 4 21 2" fill="none" stroke="#ffe0a6" stroke-opacity=".38" stroke-width="1.2"/>
+            <path d="m34 47 3-4 2 7q9 12-5 12-10-2-4-11Z" fill="#303e50"/>
+            <rect x="27" y="25" width="12" height="12" rx="5" fill="url(#hero-skin)"/>
+            <g transform="translate(2 2) scale(.94)">
+            <ellipse cx="18" cy="22" rx="3" ry="5" fill="#d9a47c"/><ellipse cx="46" cy="22" rx="3" ry="5" fill="#a97253"/>
+            <path d="M18 15Q18 3 32 3T46 15l-1 13q-3 11-13 11T19 28Z" fill="url(#hero-skin)"/>
+            <path d="M17 21 15 13q-3-5 2-7-1-5 6-4 4-3 9-1 5-3 9 0 7-1 8 4 6 3 1 10l-3 7-3-10q-6-5-13-1l-10 2-1 9Z" fill="url(#hero-hair)"/>
+            <path d="M20 9q0-5 5-4m2 3q1-6 6-5m2 6q4-6 8-2M18 13q1-3 4-3m14-7 3 2" fill="none" stroke="#b89261" stroke-opacity=".65" stroke-width="1.4" stroke-linecap="round"/>
             <path d="m23 19 5-1m8 0 5 1M26 21v2m12-2v2" stroke="#42352f" stroke-width="2" stroke-linecap="round"/>
             <path d="M24 29q4-5 8-2 5-3 10 2l-1 2q-6-2-9-1-4-2-9 1Z" fill="#43342f"/><path d="M26 32q7 7 13-1" fill="#fff3df"/>
+            <path d="m32 21-2 5h4" fill="none" stroke="#aa7255" stroke-width="1" stroke-linecap="round"/>
+            </g>
           </svg></div>
         </div>
       </section>

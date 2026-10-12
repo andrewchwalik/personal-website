@@ -1,0 +1,10 @@
+/* The sky clip excludes the entire foreground silhouette, including its tree line. */
+.sky-clouds { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.sky-cloud { pointer-events: none; animation: distant-cloud-drift 150s linear infinite; opacity: .43; }
+.cloud-one { animation-delay: -46s; }
+.cloud-two { animation-duration: 205s; animation-delay: -142s; opacity: .31; }
+.cloud-three { animation-duration: 175s; animation-delay: -22s; opacity: .36; }
+@keyframes distant-cloud-drift { from { transform: translateX(0); } to { transform: translateX(1740px); } }
+.sky-clouds.paused .sky-cloud { animation-play-state: paused; }
+#player svg { filter: drop-shadow(1px 2px 1px #1d333740); }
+@media(prefers-reduced-motion:reduce) { .sky-cloud { animation: none; opacity: 0; } }

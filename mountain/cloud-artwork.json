@@ -1,0 +1,6 @@
+{
+  "asset": "sky-cloud.webp",
+  "generation": "OpenAI built-in image generation with transparent background",
+  "placement": "Animated within an inverse foreground silhouette clip so clouds appear only behind the mountain. Character shading is native SVG, retaining independently animated limbs.",
+  "prompt": "Asset for a polished stylized 3D alpine adventure video game: a single wide wispy mountain cloud bank isolated on fully transparent background. Landscape 3:1 composition. Soft sculpted volumetric cumulus with gentle irregular puffs, airy translucent feathered edges and wispy trailing strands, warm ivory highlights from upper left, cool pale blue-grey soft shading underneath. Match a richly illustrated miniature alpine game world, not vector clip art, not flat circles, not photoreal storm clouds. Cloud occupies central 75% width with plenty of fully transparent padding on all sides, fading naturally to transparent, no hard cropped edges. No scenery, no sun, no sky rectangle, no ground, no text, no shadow on a surface. Delicate translucent atmospheric cloud, not a dense opaque wall."
+}

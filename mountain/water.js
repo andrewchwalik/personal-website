@@ -20,7 +20,11 @@ channels.forEach((channel,index)=>{
   const mist=document.createElementNS(ns,'ellipse');mist.setAttribute('cx',channel.x);mist.setAttribute('cy',channel.y);mist.setAttribute('rx',channel.r);mist.setAttribute('ry',channel.r*.5);mist.setAttribute('fill','url(#water-mist)');mist.setAttribute('class','water-mist');mist.style.animationDelay=`${-index*.7}s`;svg.append(mist);
 });
 let visible=true;
-function pause(){svg.classList.toggle('paused',!visible||document.hidden||Boolean(document.querySelector('dialog[open]')));}
+function pause(){
+  const paused=!visible||document.hidden||Boolean(document.querySelector('dialog[open]'));
+  svg.classList.toggle('paused',paused);
+  document.querySelector('.sky-clouds')?.classList.toggle('paused',paused);
+}
 new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;pause();}).observe(svg);
 document.addEventListener('visibilitychange',pause);
 new MutationObserver(pause).observe(document.body,{subtree:true,attributes:true,attributeFilter:['open']});
