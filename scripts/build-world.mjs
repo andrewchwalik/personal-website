@@ -16,6 +16,7 @@ const face = (points, fill, extra = '') => poly(points.map(project), fill, extra
 const path = (d, fill, extra = '') => `<path d="${d}" fill="${fill}" ${extra}/>`;
 const line = (points, color, width = 1, extra = '') => `<polyline points="${coords(points.map(project))}" fill="none" stroke="${color}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round" ${extra}/>`;
 const ellipse = (x, y, rx, ry, fill, extra = '') => `<ellipse cx="${n(x)}" cy="${n(y)}" rx="${n(rx)}" ry="${n(ry)}" fill="${fill}" ${extra}/>`;
+export { solid, terrainShadow, tree, boulder, cottage, goal, shadowLayer, artLayer, poly, path };
 const mix = (a, b, t) => a.map((v, i) => v + (b[i] - v) * t);
 
 export function hull(points) {
