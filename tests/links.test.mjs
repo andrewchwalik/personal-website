@@ -18,4 +18,14 @@ test('links page features the main website instead of Patreon',()=>{
   assert.equal((html.match(/class="links-item(?: links-item-world)?"/g)||[]).length,6);
   assert.match(html,/href="links.css\?v=1"/);
   assert.match(html,/src="\.\.\/mountain\/world-cave.webp"/);
+  assert.ok(html.includes('<p class="links-description">On a life quest to buy a European soccer club. Join the climb.</p>'));
+  const destinations = [...html.matchAll(/class="links-item(?: links-item-world)?" href="([^"]+)"/g)].map(match => match[1]);
+  assert.deepEqual(destinations, [
+    'https://andrewchwalik.com/',
+    'https://www.youtube.com/watch?v=xrza5E3FDzI&amp;list=PLzLEqDD8AalbilRUTFy1a4Z22oysBob35',
+    'https://www.instagram.com/andrewchwalik/',
+    'https://ko-fi.com/andrewchwalik',
+    'https://cash.app/$AndrewChwalik',
+    'https://firelandsunited.com/'
+  ]);
 });
