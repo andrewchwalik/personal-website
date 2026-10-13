@@ -15,4 +15,7 @@ test('links page features the main website instead of Patreon',()=>{
   assert.match(html,/Support the Adventure/);
   assert.ok(html.includes('href="https://cash.app/$AndrewChwalik"'));
   assert.match(html,/Cash App/);
+  assert.equal((html.match(/class="links-item(?: links-item-world)?"/g)||[]).length,6);
+  assert.match(html,/href="links.css\?v=1"/);
+  assert.match(html,/src="\.\.\/mountain\/world-cave.webp"/);
 });
