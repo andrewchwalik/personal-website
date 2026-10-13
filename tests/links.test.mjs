@@ -13,4 +13,6 @@ test('links page features the main website instead of Patreon',()=>{
   assert.doesNotMatch(html,/Nutmegged/i);
   assert.match(html,/href="https:\/\/ko-fi.com\/andrewchwalik"/);
   assert.match(html,/Support the Adventure/);
+  assert.ok(html.includes('href="https://cash.app/$AndrewChwalik"'));
+  assert.match(html,/Cash App/);
 });
