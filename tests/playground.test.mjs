@@ -3,19 +3,35 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import { stops as mountainStops, memories } from '../mountain/data.mjs';
-import { stops, route, bridgeRoute } from '../mountain/playground/data.mjs';
+import { stops, route, bridgeRoute, bridgeJunction } from '../mountain/playground/data.mjs';
+import { wrapDistance, shortestLoopTarget } from '../mountain/playground/loop.mjs';
 const source = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 
 test('playground preserves every off-mountain accomplishment and its link', () => {
   assert.deepEqual(stops.map(stop => stop.id), ['president','startup','icecream','home','business']);
   assert.deepEqual(stops.map(stop => stop.url), memories.map(memory => memory.url));
-  assert.ok(route.startsWith('M280 165'));
-  assert.ok(bridgeRoute.startsWith('M372 522'));
-  assert.ok(bridgeRoute.endsWith('600 646'));
-  const art=readFileSync(new URL('../mountain/playground/world.webp', import.meta.url));
+  assert.ok(route.endsWith('Z'), 'Playground trail is a closed loop');
+  assert.ok(bridgeRoute.startsWith(`M${bridgeJunction.join(' ')}`));
+  const art=readFileSync(new URL('../mountain/playground/world-park.webp', import.meta.url));
   assert.equal(art.toString('ascii',8,12),'WEBP');
   assert.ok(art.length<600_000);
   assert.equal(mountainStops.find(stop=>stop.id==='coaching').state,'IN PROGRESS');
+});
+
+test('loop travel takes the shorter direction without jumping across the seam', () => {
+  assert.equal(shortestLoopTarget(90,10,100),110);
+  assert.equal(shortestLoopTarget(10,90,100),-10);
+  assert.equal(shortestLoopTarget(10,40,100),40);
+  assert.equal(shortestLoopTarget(40,10,100),10);
+  assert.equal(shortestLoopTarget(20,20,100),20);
+  assert.equal(wrapDistance(-10,100),90);
+  assert.equal(wrapDistance(110,100),10);
+  assert.equal(wrapDistance(100,100),0);
+  for(let from=0;from<100;from+=7)for(let to=0;to<100;to+=9){
+    const target=shortestLoopTarget(from,to,100);
+    assert.ok(Math.abs(target-from)<=50);
+    assert.equal(wrapDistance(target,100),to);
+  }
 });
 
 test('both worlds share one guestbook controller and its existing moderation', () => {
