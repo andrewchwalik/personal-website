@@ -12,7 +12,7 @@ test('playground preserves every off-mountain accomplishment and its link', () =
   assert.deepEqual(stops.slice(0,5).map(stop => stop.url), memories.map(memory => memory.url));
   assert.ok(route.endsWith('Z'), 'Playground trail is a closed loop');
   assert.ok(bridgeRoute.startsWith(`M${bridgeJunction.join(' ')}`));
-  const art=readFileSync(new URL('../mountain/playground/world-playful.webp', import.meta.url));
+  const art=readFileSync(new URL('../mountain/playground/world-incline.webp', import.meta.url));
   assert.equal(art.toString('ascii',8,12),'WEBP');
   assert.ok(art.length<600_000);
   assert.equal(mountainStops.find(stop=>stop.id==='coaching').state,'IN PROGRESS');

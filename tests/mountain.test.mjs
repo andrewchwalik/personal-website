@@ -30,11 +30,11 @@ test('trail branches and destinations use the painted world coordinate space',()
   }
 });
 test('mountain keeps the club journey distinct from the vlog and past accomplishments',()=>{
-  assert.deepEqual(stops.map(s=>s.id),['masters','delaware','firelands','coaching','debt','future','summit']);
+  assert.deepEqual(stops.map(s=>s.id),['masters','delaware','headcoach','firelands','coaching','debt','future','summit']);
   assert.equal(stops.at(-1).title,'Buy European Club');
   assert.equal(stops.at(-1).label,'Buy European Club');
   assert.equal(stops.at(-1).preview,true);
   assert.equal(vlog.id,'vlog');assert.equal(memories.length,5);
-  assert.equal(stops.filter(s=>s.state==='COMPLETED').length,3);
+  assert.equal(stops.filter(s=>s.state==='COMPLETED').length,4);
   assert.ok(memories.every(memory=>!memory.title.includes('masters')));
 });

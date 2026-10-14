@@ -123,6 +123,9 @@ body:has(#home-screen[open]) { overflow:hidden; }
 #book-instructions .book-rules { font:12px/1.6 'DM Sans',sans-serif; color:#78816b; }
 #book-instructions > .book-moderation { font:10px/1.6 'DM Sans',sans-serif; margin:12px 0 18px; }
 #book-instructions .book-write { margin-top:auto; justify-content:center; padding:12px; background:#365948; color:#fff4d7; border-radius:4px; }
+.book-welcome { margin:8px 0 24px; padding-top:14px; border-top:1px solid #cdbf9c; color:#62705b; }
+.book-welcome p { margin:0 0 12px; font:14px/1.65 Georgia,serif; }
+.book-welcome strong { font:600 11px 'DM Sans',sans-serif; }
 .book-frontispiece > .book-moderation:not(.eyebrow) { display:block; text-align:left; font:9px/1.6 'DM Sans',sans-serif; }
 .book-paper { display:flex; padding:38px 24px 20px; }
 #book-reader { min-height:0; width:100%; height:min(530px,65dvh); }

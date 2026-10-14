@@ -1,4 +1,5 @@
 import { contentError } from './guestbook-filter.mjs';
+import { welcomeEntry, readerEntries } from './guestbook-welcome.mjs';
 const HOME_API = 'https://andrew-home-base.chwalik.workers.dev';
 async function api(path, options = {}) {
   const response = await fetch(HOME_API + path, { ...options, signal: AbortSignal.timeout(12_000) });
@@ -24,6 +25,15 @@ const entriesStatus = document.getElementById('entries-status');
 const more = document.getElementById('more-entries');
 const scrollArea = document.getElementById('entries-scroll');
 const instructions = document.getElementById('book-instructions');
+const welcome = document.createElement('aside');
+welcome.className = 'book-welcome';
+welcome.setAttribute('aria-label', 'A welcome from Andrew');
+const welcomeText = document.createElement('p');
+welcomeText.textContent = welcomeEntry.message;
+const signature = document.createElement('strong');
+signature.textContent = welcomeEntry.name;
+welcome.append(welcomeText, signature);
+instructions.insertBefore(welcome, document.getElementById('write-entry'));
 const writing = document.getElementById('book-writing');
 let entries = [], loading = false;
 document.querySelector('.book-frontispiece').append(writing);
@@ -41,7 +51,7 @@ function entryElement(entry) {
   return item;
 }
 function renderEntries() {
-  list.replaceChildren(...entries.map(entryElement));
+  list.replaceChildren(...readerEntries(entries).map(entryElement));
   more.hidden = !nextPage;
   more.disabled = loading;
 }
@@ -61,7 +71,7 @@ async function loadEntries(append = false) {
     const existing = new Set(entries.map(entry => entry.id));
     for (const entry of page.entries) if (!existing.has(entry.id)) { entries.push(entry); existing.add(entry.id); }
     nextPage = page.next;
-    entriesStatus.textContent = entries.length ? '' : 'No messages yet. Leave the first note!';
+    entriesStatus.textContent = readerEntries(entries).length ? '' : 'Leave a note to join Andrew in the guestbook!';
   } catch {
     if (request === entriesRequest) entriesStatus.textContent = 'The pages couldn’t load. Tap the refresh arrow to try again.';
   } finally {

@@ -1,4 +1,4 @@
-import { route, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=3';
+import { route, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=4';
 import { wrapDistance, shortestLoopTarget } from './loop.mjs';
 const $ = id => document.getElementById(id);
 const trail=$('route'), bridge=$('bridge-route'), player=$('player');

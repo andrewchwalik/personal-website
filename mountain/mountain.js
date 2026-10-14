@@ -1,5 +1,5 @@
-import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=6';
-import { initGuestbook } from '../guestbook.js?v=1';
+import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=7';
+import { initGuestbook } from '../guestbook.js?v=2';
 const openGuestbook = initGuestbook();
 const $ = id => document.getElementById(id);
 const trail = $('route'), branch = $('side-route'), player = $('player');
@@ -75,7 +75,7 @@ function visit(stop){
 }
 for(const stop of [...stops,vlog,cave,bridge,guestbook]){
   const point=stop.markerPoint||stop.point;
-  const button=document.createElement('button');button.className=`stop ${stop.preview?'preview':''} ${stop.id==='vlog'?'side':''} ${['firelands','future','vlog'].includes(stop.id)?'flip':''}`;button.dataset.id=stop.id;button.setAttribute('aria-label',`${stop.label}: ${stop.state.toLowerCase()}`);button.setAttribute('aria-pressed','false');
+  const button=document.createElement('button');button.className=`stop ${stop.preview?'preview':''} ${stop.id==='vlog'?'side':''} ${['headcoach','firelands','future','vlog'].includes(stop.id)?'flip':''}`;button.dataset.id=stop.id;button.setAttribute('aria-label',`${stop.label}: ${stop.state.toLowerCase()}`);button.setAttribute('aria-pressed','false');
   const disc=document.createElement('span');disc.className='disc';disc.append(markerIcon(stop));
   button.style.setProperty('--x',`${point[0]/600*100}%`);button.style.setProperty('--y',`${point[1]/930*100}%`);
   button.append(disc);

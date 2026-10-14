@@ -1,4 +1,4 @@
-import { initGuestbook } from './guestbook.js?v=1';
+import { initGuestbook } from './guestbook.js?v=2';
 const openGuestbook = initGuestbook();
 const HOME_API = 'https://andrew-home-base.chwalik.workers.dev';
 const home = document.getElementById('home-screen');
