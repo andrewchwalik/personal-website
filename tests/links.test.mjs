@@ -10,13 +10,13 @@ test('links page features the main website instead of Patreon',()=>{
   assert.match(html,/fa-futbol/);
   assert.match(html,/class="links-handdrawn-arrow"/);
   assert.doesNotMatch(html,/patreon/i);
-  assert.match(html,/Watch on YouTube/);
-  assert.match(html,/Connect on Instagram/);
+  assert.match(html,/class="links-label">YouTube<\/span>/);
+  assert.match(html,/class="links-label">Instagram<\/span>/);
   assert.match(html,/Firelands United/);
   assert.match(html,/href="https:\/\/www.instagram.com\/andrewchwalik\/"/);
   assert.doesNotMatch(html,/Nutmegged/i);
   assert.match(html,/href="https:\/\/ko-fi.com\/andrewchwalik"/);
-  assert.match(html,/Support the Adventure/);
+  assert.match(html,/class="links-label">Ko-fi<\/span>/);
   assert.ok(html.includes('href="https://cash.app/$AndrewChwalik"'));
   assert.match(html,/Cash App/);
   assert.equal((html.match(/class="links-item(?: links-item-world)?"/g)||[]).length,6);
