@@ -8,14 +8,38 @@ import { wrapDistance, shortestLoopTarget } from '../mountain/playground/loop.mj
 const source = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 
 test('playground preserves every off-mountain accomplishment and its link', () => {
-  assert.deepEqual(stops.map(stop => stop.id), ['president','startup','icecream','home','business']);
-  assert.deepEqual(stops.map(stop => stop.url), memories.map(memory => memory.url));
+  assert.deepEqual(stops.map(stop => stop.id), ['president','startup','icecream','home','business','soccer','family','roadtrip']);
+  assert.deepEqual(stops.slice(0,5).map(stop => stop.url), memories.map(memory => memory.url));
   assert.ok(route.endsWith('Z'), 'Playground trail is a closed loop');
   assert.ok(bridgeRoute.startsWith(`M${bridgeJunction.join(' ')}`));
-  const art=readFileSync(new URL('../mountain/playground/world-park.webp', import.meta.url));
+  const art=readFileSync(new URL('../mountain/playground/world-playful.webp', import.meta.url));
   assert.equal(art.toString('ascii',8,12),'WEBP');
   assert.ok(art.length<600_000);
   assert.equal(mountainStops.find(stop=>stop.id==='coaching').state,'IN PROGRESS');
+});
+
+test('new playground stories have distinct equipment and safe optional links', () => {
+  assert.equal(new Set(stops.map(stop=>stop.feature)).size,8);
+  assert.deepEqual(stops.slice(5).map(stop=>stop.label),['College Soccer Player','Start a Family','USA Roadtrip']);
+  for(const stop of stops){
+    assert.ok(stop.point[0]>0 && stop.point[0]<600);
+    assert.ok(stop.point[1]>0 && stop.point[1]<930);
+    assert.ok(stop.title && stop.text && stop.feature);
+  }
+  const code=source('../mountain/playground/playground.js');
+  const show=code.slice(code.indexOf('function show(stop)'),code.indexOf('function visit(stop)'));
+  const result=runInNewContext(`
+    const elements={};
+    const $=id=>elements[id]??=({children:[],replaceChildren(){this.children=[]},append(link){this.children.push(link)}});
+    const document={createElement:()=>({}),querySelectorAll:()=>[]};
+    ${show}
+    show({title:'Old',text:'Story',url:'https://example.com',id:'old'});
+    const previous=$('actions').children.length;
+    show({title:'New',text:'Story',id:'new'});
+    ({previous,current:$('actions').children.length});
+  `);
+  assert.equal(result.previous,1);
+  assert.equal(result.current,0);
 });
 
 test('loop travel takes the shorter direction without jumping across the seam', () => {

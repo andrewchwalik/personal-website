@@ -1,4 +1,4 @@
-import { route, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=2';
+import { route, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=3';
 import { wrapDistance, shortestLoopTarget } from './loop.mjs';
 const $ = id => document.getElementById(id);
 const trail=$('route'), bridge=$('bridge-route'), player=$('player');
@@ -26,8 +26,12 @@ function walk(path,from,to,ticket,done){
 }
 function show(stop){
   $('stop-state').textContent='COMPLETED / THE PLAYGROUND';$('stop-title').textContent=stop.title;$('stop-description').textContent=stop.text;
-  const link=document.createElement('a');link.className='action';link.href=stop.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Explore this story';
-  $('actions').replaceChildren(link);$('progress').hidden=false;
+  $('actions').replaceChildren();
+  if(stop.url){
+    const link=document.createElement('a');link.className='action';link.href=stop.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Explore this story';
+    $('actions').append(link);
+  }
+  $('progress').hidden=false;
   document.querySelectorAll('.stop').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.id===stop.id)));
 }
 function visit(stop){
@@ -40,7 +44,7 @@ function visit(stop){
   if(bridgePosition!==null)walk(bridge,bridgePosition,0,ticket,()=>{bridgePosition=null;position=junction;onTrail();});else onTrail();
 }
 for(const stop of [...stops,{id:'bridge',label:'The mountain',point:bridgeMarker}]){
-  const button=document.createElement('button');button.className='stop'+(['startup','home','bridge'].includes(stop.id)?' flip':'');button.dataset.id=stop.id;
+  const button=document.createElement('button');button.className='stop'+(stop.flip||stop.id==='bridge'?' flip':'');button.dataset.id=stop.id;
   button.style.setProperty('--x',stop.point[0]/600*100+'%');button.style.setProperty('--y',stop.point[1]/930*100+'%');
   button.setAttribute('aria-label',stop.id==='bridge'?'Walk back to the mountain':stop.label+': completed');button.setAttribute('aria-pressed','false');
   const disc=document.createElement('span');disc.className='disc';
@@ -49,5 +53,5 @@ for(const stop of [...stops,{id:'bridge',label:'The mountain',point:bridgeMarker
   button.append(disc,label);button.onclick=()=>visit(stop.id==='bridge'?null:stop);$('stops').append(button);
 }
 if(new URLSearchParams(location.search).get('from')==='mountain'){
-  bridgePosition=bridge.getTotalLength();place(bridge,bridgePosition);visit(stops.at(-1));
+  bridgePosition=bridge.getTotalLength();place(bridge,bridgePosition);visit(stops.find(stop=>stop.id==='home'));
 }else place(trail,position);
