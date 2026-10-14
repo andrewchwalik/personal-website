@@ -1,4 +1,4 @@
-import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=8';
+import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=9';
 import { revealWorld, titleCase } from './world-ready.mjs';
 import { initGuestbook } from '../guestbook.js?v=2';
 const openGuestbook = initGuestbook();
@@ -43,7 +43,9 @@ function markerIcon(stop){
     summit:'M6 21V3M6 4q5-3 12 0v9q-7-3-12 0',
     future:'M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5ZM12 14v3',
     debt:'M12 3 20 12 12 21 4 12ZM12 8v5M12 17v.1',
-    completed:'m6 12 4 4 9-9'
+    completed:'m6 12 4 4 9-9',
+    spanish:'M3 4h18v12H9l-5 4v-4H3ZM7 8h10M7 12h7',
+    doctorate:'M2 8l10-5 10 5-10 5ZM6 10v7q6 4 12 0v-7M22 8v10'
   };
   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
   svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');
@@ -76,7 +78,7 @@ function visit(stop){
 }
 for(const stop of [...stops,vlog,cave,bridge,guestbook]){
   const point=stop.markerPoint||stop.point;
-  const button=document.createElement('button');button.className=`stop ${stop.preview?'preview':''} ${stop.id==='vlog'?'side':''} ${['headcoach','firelands','future','vlog'].includes(stop.id)?'flip':''}`;button.dataset.id=stop.id;button.setAttribute('aria-label',`${stop.label}: ${stop.state.toLowerCase()}`);button.setAttribute('aria-pressed','false');
+  const button=document.createElement('button');button.className=`stop ${stop.preview?'preview':''} ${stop.id==='vlog'?'side':''} ${['headcoach','firelands','doctorate','future','vlog'].includes(stop.id)?'flip':''}`;button.dataset.id=stop.id;button.setAttribute('aria-label',`${stop.label}: ${stop.state.toLowerCase()}`);button.setAttribute('aria-pressed','false');
   const disc=document.createElement('span');disc.className='disc';disc.append(markerIcon(stop));
   button.style.setProperty('--x',`${point[0]/600*100}%`);button.style.setProperty('--y',`${point[1]/930*100}%`);
   button.append(disc);

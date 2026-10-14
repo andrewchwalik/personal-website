@@ -24,3 +24,9 @@ test('playground bridge climbs to the right edge from its existing landing', () 
   assert.ok(bridgeRoute.endsWith('600 460'));
   assert.ok(460<bridgeJunction[1]);
 });
+
+test('Spanish and doctorate are planned milestones immediately after debt', () => {
+  const index=stops.findIndex(stop=>stop.id==='debt');
+  assert.deepEqual(stops.slice(index+1,index+3).map(stop=>stop.title),['Learn Spanish','Doctorate Degree']);
+  assert.ok(stops[index+1].preview && stops[index+2].preview);
+});

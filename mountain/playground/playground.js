@@ -1,4 +1,4 @@
-import { route, slideRoute, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=5';
+import { route, slideRoute, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=6';
 import { revealWorld, titleCase } from '../world-ready.mjs';
 import { wrapDistance, shortestLoopTarget } from './loop.mjs';
 const $ = id => document.getElementById(id);
