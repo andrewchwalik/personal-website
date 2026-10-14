@@ -20,7 +20,7 @@ test('links page features the main website instead of Patreon',()=>{
   assert.ok(html.includes('href="https://cash.app/$AndrewChwalik"'));
   assert.match(html,/Cash App/);
   assert.equal((html.match(/class="links-item(?: links-item-world)?"/g)||[]).length,6);
-  assert.match(html,/href="links.css\?v=3"/);
+  assert.match(html,/href="links.css\?v=4"/);
   assert.match(html,/src="\.\.\/mountain\/world-cave.webp"/);
   const intro = html.match(/<p class="links-description">([\s\S]*?)<\/p>/)[1];
   assert.equal(intro.replace(/<[^>]*>/g, '').trim(), 'On a life quest to buy a European soccer club. Join the climb. Check out the latest progress.');
