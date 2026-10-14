@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Playground | Andrew Chwalik</title>
+<meta name="description" content="The adventures, experiments, and lessons that helped Andrew Chwalik find his climb.">
+<link rel="icon" href="/favicon-32.png?v=3" type="image/png">
+<link rel="stylesheet" href="../mountain.css?v=2"><link rel="stylesheet" href="../checkpoints.css?v=1"><link rel="stylesheet" href="playground.css?v=1">
+<script type="module" src="playground.js?v=1"></script>
+</head>
+<body><main>
+<header><a class="back" href="../?from=playground">&#8592; Back to the mountain</a><span class="edition">THE WORLD BEFORE THE CLIMB</span></header>
+<section class="intro"><p class="eyebrow">ANDREW CHWALIK / THE PLAYGROUND</p><h1>A little play.<br>A lot of becoming.</h1><p>Trying things. Building skills. Finding what matters.<br>These are the adventures that helped me find my mountain.</p></section>
+<div class="layout"><section class="map" aria-label="Interactive playground map">
+<div class="map-top"><span>THE PLAYGROUND</span><span>EVERY DETOUR TAUGHT ME SOMETHING</span></div>
+<div class="stage"><img src="world.webp" width="1024" height="1536" fetchpriority="high" alt="A sunny alpine playground with a wooden climbing frame, vintage bus, ice-cream kiosk, treehouse, and sandbox connected by a winding trail. A wooden bridge leads off to the right, back to the mountain.">
+<svg class="guide" viewBox="0 0 600 930" aria-hidden="true"><path id="route"/><path id="bridge-route"/></svg>
+<div id="stops"></div><div id="player" aria-hidden="true"><svg viewBox="0 0 64 88">
+            <defs>
+              <radialGradient id="hero-skin" cx="30%" cy="25%" r="80%"><stop stop-color="#ffe0b6"/><stop offset=".5" stop-color="#dca57d"/><stop offset="1" stop-color="#98654c"/></radialGradient>
+              <linearGradient id="hero-shirt" x2="1" y2=".5"><stop stop-color="#ffd190"/><stop offset=".3" stop-color="#f39548"/><stop offset=".7" stop-color="#db682e"/><stop offset="1" stop-color="#963e25"/></linearGradient>
+              <linearGradient id="hero-trousers"><stop stop-color="#697477"/><stop offset=".35" stop-color="#47575b"/><stop offset="1" stop-color="#233239"/></linearGradient>
+              <radialGradient id="hero-hair" cx="25%" cy="20%" r="85%"><stop stop-color="#a17a50"/><stop offset=".4" stop-color="#755033"/><stop offset="1" stop-color="#3e2d24"/></radialGradient>
+              <radialGradient id="hero-ground"><stop stop-color="#203335" stop-opacity=".45"/><stop offset="1" stop-color="#203335" stop-opacity="0"/></radialGradient>
+            </defs>
+            <ellipse cx="36" cy="83" rx="21" ry="5" fill="url(#hero-ground)"/>
+            <g class="leg left"><path d="M22 58q6-3 12 1l-3 19H21Z" fill="url(#hero-trousers)"/><path d="M22 75h9v7H17q-1-5 5-7" fill="#344048"/><path d="M19 78h10" stroke="#8b9692" stroke-width="1.4"/></g>
+            <g class="leg right"><path d="M33 59q4-3 9 0l5 19H36Z" fill="url(#hero-trousers)"/><path d="M36 75h10q6 2 6 7H36Z" fill="#293740"/><path d="m38 78 8 1" stroke="#77857f" stroke-width="1.4"/></g>
+            <g class="arm left"><path d="M21 36q-8 10-10 24-1 7 5 5l10-25Z" fill="url(#hero-skin)"/><path d="M21 36q-6 4-8 13l10 4 5-16Z" fill="url(#hero-shirt)"/></g>
+            <g class="arm right"><path d="M43 36q9 10 11 25 1 6-6 4l-9-25Z" fill="url(#hero-skin)"/><path d="m43 36 8 13-9 4-5-16" fill="url(#hero-shirt)"/></g>
+            <path d="M22 35q10-5 21 0l4 26q-14 8-29 0Z" fill="url(#hero-shirt)"/>
+            <path d="M24 38q8 5 16-1M21 58q9 4 21 2" fill="none" stroke="#ffe0a6" stroke-opacity=".38" stroke-width="1.2"/>
+            <path d="m34 47 3-4 2 7q9 12-5 12-10-2-4-11Z" fill="#303e50"/>
+            <rect x="27" y="25" width="12" height="12" rx="5" fill="url(#hero-skin)"/>
+            <g transform="translate(2 2) scale(.94)">
+            <ellipse cx="18" cy="22" rx="3" ry="5" fill="#d9a47c"/><ellipse cx="46" cy="22" rx="3" ry="5" fill="#a97253"/>
+            <path d="M18 15Q18 3 32 3T46 15l-1 13q-3 11-13 11T19 28Z" fill="url(#hero-skin)"/>
+            <path d="M17 21 15 13q-3-5 2-7-1-5 6-4 4-3 9-1 5-3 9 0 7-1 8 4 6 3 1 10l-3 7-3-10q-6-5-13-1l-10 2-1 9Z" fill="url(#hero-hair)"/>
+            <path d="M20 9q0-5 5-4m2 3q1-6 6-5m2 6q4-6 8-2M18 13q1-3 4-3m14-7 3 2" fill="none" stroke="#b89261" stroke-opacity=".65" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="m23 19 5-1m8 0 5 1M26 21v2m12-2v2" stroke="#42352f" stroke-width="2" stroke-linecap="round"/>
+            <path d="M24 29q4-5 8-2 5-3 10 2l-1 2q-6-2-9-1-4-2-9 1Z" fill="#43342f"/><path d="M26 32q7 7 13-1" fill="#fff3df"/>
+            <path d="m32 21-2 5h4" fill="none" stroke="#aa7255" stroke-width="1" stroke-linecap="round"/>
+            </g>
+          </svg></div>
+</div></section>
+<section class="details" aria-labelledby="stop-title"><p class="eyebrow" id="stop-state">THE STORY SO FAR</p><h2 id="stop-title">Room to try things.</h2><p id="stop-description">Every experiment left me with something to carry into the climb. Choose a stop to explore its story.</p><div id="actions"></div><div id="progress" hidden><div class="ends"><span>0%</span><span>100%</span></div><progress max="1" value="1" aria-label="Completed accomplishment"></progress><small>Completed</small></div><p class="note">Not every adventure has to lead to the summit. Some are worth having just for the experience.</p><a class="text-link" href="../?from=playground">Return to the climb &#8599;</a></section></div>
+<p id="travel-status" role="status" class="sr-only"></p>
+</main></body></html>

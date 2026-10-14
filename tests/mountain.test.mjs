@@ -1,19 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { route,sideRoute,caveRoute,cave,stops,vlog,memories } from '../mountain/data.mjs';
+import { route,sideRoute,caveRoute,cave,stops,vlog,memories,bridge,bridgeRoute,guestbook,guestbookRoute } from '../mountain/data.mjs';
 test('mountain serves optimized game artwork rather than the retired SVG platforms',()=>{
-  const art=readFileSync(new URL('../mountain/world-cave.webp',import.meta.url));
+  const art=readFileSync(new URL('../mountain/world-connected.webp',import.meta.url));
   assert.equal(art.toString('ascii',0,4),'RIFF');
   assert.equal(art.toString('ascii',8,12),'WEBP');
   assert.ok(art.length<600_000,'Keep the map fast on mobile connections');
   const html=readFileSync(new URL('../mountain/index.html',import.meta.url),'utf8');
-  assert.match(html,/src="world-cave.webp"/);
+  assert.match(html,/src="world-connected.webp"/);
   assert.doesNotMatch(html,/src="world.svg"/);
 });
 test('trail branches and destinations use the painted world coordinate space',()=>{
-  assert.ok(route.startsWith(`M${stops[0].point.join(' ')}`));
-  assert.ok(sideRoute.startsWith(`M${stops[1].point.join(' ')}`));
+  assert.ok(route.startsWith(`M${bridge.junction.join(' ')}`));
+  assert.ok(sideRoute.startsWith(`M${stops.find(stop=>stop.id==='delaware').point.join(' ')}`));
+  assert.ok(bridgeRoute.startsWith(`M${bridge.junction.join(' ')}`));
+  assert.ok(guestbookRoute.startsWith(`M${guestbook.junction.join(' ')}`));
+  assert.ok(guestbookRoute.endsWith(`L${guestbook.point.join(' ')}`));
   assert.ok(sideRoute.endsWith(`L${vlog.point.join(' ')}`));
   assert.ok(caveRoute.startsWith(`M${cave.junction.join(' ')}`));
   assert.ok(caveRoute.endsWith(`L${cave.point.join(' ')}`));
@@ -27,10 +30,11 @@ test('trail branches and destinations use the painted world coordinate space',()
   }
 });
 test('mountain keeps the club journey distinct from the vlog and past accomplishments',()=>{
-  assert.deepEqual(stops.map(s=>s.id),['camp','delaware','firelands','debt','future','summit']);
+  assert.deepEqual(stops.map(s=>s.id),['masters','delaware','firelands','coaching','debt','future','summit']);
   assert.equal(stops.at(-1).title,'Buy European Club');
   assert.equal(stops.at(-1).label,'Buy European Club');
   assert.equal(stops.at(-1).preview,true);
-  assert.equal(vlog.id,'vlog');assert.equal(memories.length,6);
-  assert.equal(stops.filter(s=>s.state==='COMPLETED').length,2);
+  assert.equal(vlog.id,'vlog');assert.equal(memories.length,5);
+  assert.equal(stops.filter(s=>s.state==='COMPLETED').length,3);
+  assert.ok(memories.every(memory=>!memory.title.includes('masters')));
 });

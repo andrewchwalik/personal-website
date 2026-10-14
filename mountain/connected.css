@@ -1,0 +1,9 @@
+.book-stop .disc { width: 22px; height: 21px; opacity: .94; }
+.book-stop .disc svg { width: 12px; height: 12px; }
+.stop[data-id=coaching] .tag { top: 48px; left: 50%; transform: translateX(-50%); }
+.stop[data-id=coaching] { --face-light: #f5d181; --face-dark: #ae682c; }
+.stop[data-id=debt] { --face-light: #819487; --face-dark: #52685c; }
+.stop[data-id=bridge] .tag { font-size: 8px; }
+#guestbook-dialog { width: min(880px, calc(100% - 24px)); }
+.walking .leg, .walking .arm { animation-duration: .36s; }
+.walking .right { animation-delay: -.36s; }

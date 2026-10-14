@@ -1,8 +1,12 @@
-import { route, sideRoute, caveRoute, cave, stops, vlog, memories } from './data.mjs?v=5';
+import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=6';
+import { initGuestbook } from '../guestbook.js?v=1';
+const openGuestbook = initGuestbook();
 const $ = id => document.getElementById(id);
 const trail = $('route'), branch = $('side-route'), player = $('player');
 trail.setAttribute('d',route); branch.setAttribute('d',sideRoute);
 const caveBranch = $('cave-route');caveBranch.setAttribute('d',caveRoute);
+const bridgeBranch = $('bridge-route');bridgeBranch.setAttribute('d',bridgeRoute);
+const bookBranch = $('guestbook-route');bookBranch.setAttribute('d',guestbookRoute);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 function nearest(point) {
   let best=0, distance=Infinity;
@@ -10,11 +14,11 @@ function nearest(point) {
   return best;
 }
 const distances = Object.fromEntries(stops.map(stop=>[stop.id,nearest(stop.point)]));
-const branches = {vlog:{path:branch,junction:distances.delaware},cave:{path:caveBranch,junction:nearest(cave.junction)}};
-let position=distances.debt, sidePosition=null, activeBranch=null, frame=0, trip=0;
+const branches = {vlog:{path:branch,junction:distances.delaware},cave:{path:caveBranch,junction:nearest(cave.junction)},bridge:{path:bridgeBranch,junction:nearest(bridge.junction)},guestbook:{path:bookBranch,junction:distances.delaware}};
+let position=distances.coaching, sidePosition=null, activeBranch=null, frame=0, trip=0;
 function place(path,d){const p=path.getPointAtLength(d);player.style.left=`${p.x/600*100}%`;player.style.top=`${p.y/930*100}%`;}
 function walk(path,from,to,ticket,done){
-  const duration=reduced.matches?0:Math.abs(to-from)/90*1000;
+  const duration=reduced.matches?0:Math.abs(to-from)/145*1000;
   const start=performance.now();
   function tick(now){
     if(ticket!==trip)return;
@@ -30,7 +34,9 @@ function walk(path,from,to,ticket,done){
 function action(text,url){const a=document.createElement('a');a.className='action';a.textContent=text;a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;}
 function markerIcon(stop){
   const icons={
-    camp:'M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6',
+    bridge:'M20 12H4m7-7-7 7 7 7',
+    guestbook:'M4 5q4-2 8 1 4-3 8-1v14q-4-2-8 1-4-3-8-1ZM12 6v14',
+    coaching:'M7 4h10v8l-5 4-5-4ZM9 15l-2 6 5-2 5 2-2-6',
     vlog:'M4 7h11v11H4ZM15 11l6-3v9l-6-3',
     cave:'M8 5 19 12 8 19Z',
     summit:'M6 21V3M6 4q5-3 12 0v9q-7-3-12 0',
@@ -46,7 +52,8 @@ function markerIcon(stop){
 function show(stop){
   $('stop-state').textContent=stop.state;$('stop-title').textContent=stop.title;$('stop-description').textContent=stop.description;
   $('actions').replaceChildren();
-  if(stop.id==='camp'){const button=document.createElement('button');button.className='action';button.textContent=stop.action;button.onclick=()=>{$('camp').showModal();};$('actions').append(button);}
+  if(stop.id==='bridge')$('actions').append(action(stop.action,'./playground/'));
+  else if(stop.id==='guestbook'){const button=document.createElement('button');button.className='action';button.textContent=stop.action;button.onclick=openGuestbook;$('actions').append(button);}
   else if(stop.id==='cave'){const button=document.createElement('button');button.className='action';button.textContent=stop.action;button.onclick=()=>visit(cave);$('actions').append(button);}
   else if(stop.url)$('actions').append(action(stop.action,stop.url));
   if(stop.id==='summit'||stop.id==='debt')$('actions').append(action('Support the journey','https://patreon.com/andrewchwalik'));
@@ -59,22 +66,25 @@ function visit(stop){
   if(stop.preview){show(stop);$('travel-status').textContent=`Preview: ${stop.title} The character remains on the accessible trail.`;return;}
   const ticket=trip;player.classList.add('walking');
   $('travel-status').textContent=`Walking to ${stop.label}.`;
-  const arrived=()=>{player.classList.remove('walking');show(stop);$('travel-status').textContent=`Arrived at ${stop.label}. Details are below the map on mobile.`;if(stop.id==='camp')$('camp').showModal();if(stop.id==='cave')document.dispatchEvent(new Event('enter-cave'));};
+  const arrived=()=>{player.classList.remove('walking');show(stop);$('travel-status').textContent=`Arrived at ${stop.label}. Details are below the map on mobile.`;if(stop.id==='bridge')location.assign('./playground/?from=mountain');if(stop.id==='guestbook')openGuestbook();if(stop.id==='cave')document.dispatchEvent(new Event('enter-cave'));};
   const destination=branches[stop.id];
   const onTrail=()=>walk(trail,position,destination?destination.junction:distances[stop.id],ticket,()=>{
     if(destination){activeBranch=destination;walk(destination.path,0,destination.path.getTotalLength(),ticket,arrived);}else arrived();
   });
   if(sidePosition!==null)walk(activeBranch.path,sidePosition,0,ticket,()=>{sidePosition=null;position=activeBranch.junction;activeBranch=null;onTrail();});else onTrail();
 }
-for(const stop of [...stops,vlog,cave]){
+for(const stop of [...stops,vlog,cave,bridge,guestbook]){
   const point=stop.markerPoint||stop.point;
   const button=document.createElement('button');button.className=`stop ${stop.preview?'preview':''} ${stop.id==='vlog'?'side':''} ${['firelands','future','vlog'].includes(stop.id)?'flip':''}`;button.dataset.id=stop.id;button.setAttribute('aria-label',`${stop.label}: ${stop.state.toLowerCase()}`);button.setAttribute('aria-pressed','false');
   const disc=document.createElement('span');disc.className='disc';disc.append(markerIcon(stop));
   button.style.setProperty('--x',`${point[0]/600*100}%`);button.style.setProperty('--y',`${point[1]/930*100}%`);
   button.append(disc);
-  if(stop.id!=='cave'){const label=document.createElement('span');label.className='tag';label.textContent=stop.label;button.append(label);}
+  if(!['cave','guestbook'].includes(stop.id)){const label=document.createElement('span');label.className='tag';label.textContent=stop.label;button.append(label);}
+  if(stop.id==='guestbook'){button.classList.add('book-stop');button.setAttribute('aria-haspopup','dialog');}
   button.onclick=()=>visit(stop);$('stops').append(button);
 }
-for(const memory of memories){const detail=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p'),link=document.createElement('a');summary.textContent=memory.title;text.textContent=memory.text;link.textContent='Explore this story ↗';link.href=memory.url;link.target='_blank';link.rel='noopener noreferrer';detail.append(summary,text,link);$('memories').append(detail);}
-$('close-camp').onclick=()=>$('camp').close();
-place(trail,position);show(stops.find(stop=>stop.id==='debt'));
+place(trail,position);show(stops.find(stop=>stop.id==='coaching'));
+if(new URLSearchParams(location.search).get('from')==='playground'){
+  activeBranch=branches.bridge;sidePosition=bridgeBranch.getTotalLength();
+  place(bridgeBranch,sidePosition);visit(stops[0]);
+}
