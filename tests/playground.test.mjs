@@ -20,7 +20,7 @@ test('playground preserves every off-mountain accomplishment and its link', () =
 
 test('new playground stories have distinct equipment and safe optional links', () => {
   assert.equal(new Set(stops.map(stop=>stop.feature)).size,8);
-  assert.deepEqual(stops.slice(5).map(stop=>stop.label),['College Soccer Player','Start a Family','USA Roadtrip']);
+  assert.deepEqual(stops.slice(5).map(stop=>stop.label),['College Athlete','Start a Family','USA Roadtrip']);
   for(const stop of stops){
     assert.ok(stop.point[0]>0 && stop.point[0]<600);
     assert.ok(stop.point[1]>0 && stop.point[1]<930);
@@ -31,7 +31,7 @@ test('new playground stories have distinct equipment and safe optional links', (
   const result=runInNewContext(`
     const elements={};
     const $=id=>elements[id]??=({children:[],replaceChildren(){this.children=[]},append(link){this.children.push(link)}});
-    const document={createElement:()=>({}),querySelectorAll:()=>[]};
+    const document={createElement:()=>({}),querySelectorAll:()=>[]}; const titleCase=text=>text;
     ${show}
     show({title:'Old',text:'Story',url:'https://example.com',id:'old'});
     const previous=$('actions').children.length;

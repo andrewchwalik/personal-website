@@ -1,4 +1,5 @@
-import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=7';
+import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=8';
+import { revealWorld, titleCase } from './world-ready.mjs';
 import { initGuestbook } from '../guestbook.js?v=2';
 const openGuestbook = initGuestbook();
 const $ = id => document.getElementById(id);
@@ -50,7 +51,7 @@ function markerIcon(stop){
   icon.setAttribute('d',icons[stop.id]||icons.completed);if(stop.id==='cave')icon.setAttribute('fill','currentColor');svg.append(icon);return svg;
 }
 function show(stop){
-  $('stop-state').textContent=stop.state;$('stop-title').textContent=stop.title;$('stop-description').textContent=stop.description;
+  $('stop-state').textContent=stop.state;$('stop-title').textContent=titleCase(stop.title);$('stop-description').textContent=stop.description;
   $('actions').replaceChildren();
   if(stop.id==='bridge')$('actions').append(action(stop.action,'./playground/'));
   else if(stop.id==='guestbook'){const button=document.createElement('button');button.className='action';button.textContent=stop.action;button.onclick=openGuestbook;$('actions').append(button);}
@@ -79,12 +80,15 @@ for(const stop of [...stops,vlog,cave,bridge,guestbook]){
   const disc=document.createElement('span');disc.className='disc';disc.append(markerIcon(stop));
   button.style.setProperty('--x',`${point[0]/600*100}%`);button.style.setProperty('--y',`${point[1]/930*100}%`);
   button.append(disc);
-  if(!['cave','guestbook'].includes(stop.id)){const label=document.createElement('span');label.className='tag';label.textContent=stop.label;button.append(label);}
+  if(!['cave','guestbook','bridge'].includes(stop.id)){const label=document.createElement('span');label.className='tag';label.textContent=titleCase(stop.label);button.append(label);}
   if(stop.id==='guestbook'){button.classList.add('book-stop');button.setAttribute('aria-haspopup','dialog');}
   button.onclick=()=>visit(stop);$('stops').append(button);
 }
 place(trail,position);show(stops.find(stop=>stop.id==='coaching'));
-if(new URLSearchParams(location.search).get('from')==='playground'){
+const fromPlayground=new URLSearchParams(location.search).get('from')==='playground';
+if(fromPlayground)place(bridgeBranch,bridgeBranch.getTotalLength());
+const ready=await revealWorld();
+if(ready && fromPlayground){
   activeBranch=branches.bridge;sidePosition=bridgeBranch.getTotalLength();
   place(bridgeBranch,sidePosition);visit(stops[0]);
 }

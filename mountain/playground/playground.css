@@ -3,4 +3,9 @@
 .disc .symbol { position:relative;z-index:1;font-size:16px; }
 .walking .leg,.walking .arm { animation-duration:.36s; }
 .walking .right { animation-delay:-.36s; }
+.walking.sliding .leg,.walking.sliding .arm { animation:none; transform:rotate(-25deg); }
+.walking.sliding svg { transform:rotate(-12deg); }
+.walking.climbing .arm { animation-duration:.5s; }
+.walking.climbing .leg { animation-duration:.5s; }
+.walking.climbing .right { animation-delay:-.5s; }
 @media(max-width:760px){.tag{max-width:90px}.intro h1{font-size:32px}.map-top{font-size:7px}}

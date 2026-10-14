@@ -1,18 +1,37 @@
-import { route, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=4';
+import { route, slideRoute, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=5';
+import { revealWorld, titleCase } from '../world-ready.mjs';
 import { wrapDistance, shortestLoopTarget } from './loop.mjs';
 const $ = id => document.getElementById(id);
 const trail=$('route'), bridge=$('bridge-route'), player=$('player');
 trail.setAttribute('d',route);bridge.setAttribute('d',bridgeRoute);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-function nearest(point){
+function nearest(point,path=trail){
   let best=0, gap=Infinity;
-  for(let d=0;d<=trail.getTotalLength();d+=.5){const p=trail.getPointAtLength(d),distance=Math.hypot(p.x-point[0],p.y-point[1]);if(distance<gap){gap=distance;best=d;}}
+  for(let d=0;d<=path.getTotalLength();d+=.5){const p=path.getPointAtLength(d),distance=Math.hypot(p.x-point[0],p.y-point[1]);if(distance<gap){gap=distance;best=d;}}
   return best;
 }
 const junction=nearest(bridgeJunction);
+const slide=document.createElementNS('http://www.w3.org/2000/svg','path');
+slide.setAttribute('d',slideRoute);trail.parentNode.append(slide);
+const playStart=nearest([112,236]), playTop=nearest([245,140]), slideTop=nearest([245,140],slide);
+let direction=1;
 let position=junction, bridgePosition=null, frame=0, trip=0;
-function place(path,d){const p=path.getPointAtLength(path===trail?wrapDistance(d,trail.getTotalLength()):d);player.style.left=`${p.x/600*100}%`;player.style.top=`${p.y/930*100}%`;}
+function place(path,d){
+  const distance=path===trail?wrapDistance(d,trail.getTotalLength()):d;
+  let p=path.getPointAtLength(distance);
+  const inPlayset=path===trail && distance>=playStart;
+  if(inPlayset && direction<0){
+    const at=distance<=playTop
+      ? (distance-playStart)/(playTop-playStart)*slideTop
+      : slideTop+(distance-playTop)/(trail.getTotalLength()-playTop)*(slide.getTotalLength()-slideTop);
+    p=slide.getPointAtLength(at);
+  }
+  player.classList.toggle('sliding',inPlayset && direction<0 && distance<playTop);
+  player.classList.toggle('climbing',inPlayset && direction>0 && distance<playTop);
+  player.style.left=`${p.x/600*100}%`;player.style.top=`${p.y/930*100}%`;
+}
 function walk(path,from,to,ticket,done){
+  direction=Math.sign(to-from)||direction;
   const duration=reduced.matches?0:Math.abs(to-from)/145*1000,start=performance.now();
   function tick(now){
     if(ticket!==trip)return;
@@ -25,7 +44,7 @@ function walk(path,from,to,ticket,done){
   frame=requestAnimationFrame(tick);
 }
 function show(stop){
-  $('stop-state').textContent='COMPLETED / THE PLAYGROUND';$('stop-title').textContent=stop.title;$('stop-description').textContent=stop.text;
+  $('stop-state').textContent='COMPLETED / THE PLAYGROUND';$('stop-title').textContent=titleCase(stop.title);$('stop-description').textContent=stop.text;
   $('actions').replaceChildren();
   if(stop.url){
     const link=document.createElement('a');link.className='action';link.href=stop.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Explore this story';
@@ -49,9 +68,12 @@ for(const stop of [...stops,{id:'bridge',label:'The mountain',point:bridgeMarker
   button.setAttribute('aria-label',stop.id==='bridge'?'Walk back to the mountain':stop.label+': completed');button.setAttribute('aria-pressed','false');
   const disc=document.createElement('span');disc.className='disc';
   const symbol=document.createElement('span');symbol.className='symbol';symbol.setAttribute('aria-hidden','true');symbol.textContent=stop.id==='bridge'?'\u2192':'\u2713';disc.append(symbol);
-  const label=document.createElement('span');label.className='tag';label.textContent=stop.label;
-  button.append(disc,label);button.onclick=()=>visit(stop.id==='bridge'?null:stop);$('stops').append(button);
+  button.append(disc);
+  if(stop.id!=='bridge'){const label=document.createElement('span');label.className='tag';label.textContent=titleCase(stop.label);button.append(label);}
+  button.onclick=()=>visit(stop.id==='bridge'?null:stop);$('stops').append(button);
 }
-if(new URLSearchParams(location.search).get('from')==='mountain'){
-  bridgePosition=bridge.getTotalLength();place(bridge,bridgePosition);visit(stops.find(stop=>stop.id==='home'));
-}else place(trail,position);
+const fromMountain=new URLSearchParams(location.search).get('from')==='mountain';
+if(fromMountain){bridgePosition=bridge.getTotalLength();place(bridge,bridgePosition);}
+else place(trail,position);
+const ready=await revealWorld();
+if(ready && fromMountain)visit(stops.find(stop=>stop.id==='home'));
