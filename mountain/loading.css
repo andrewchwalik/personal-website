@@ -1,0 +1,22 @@
+.world-loader { position:absolute; inset:0; overflow:hidden; pointer-events:none; background:radial-gradient(ellipse at 50% 45%,#496c55,#294c43); }
+html.world-loading .stage>.world-loader { visibility:visible; }
+html:not(.world-loading) .world-loader,html.world-error .world-loader { display:none; }
+.loader-ground { position:absolute; top:calc(50% + 39px); left:0; right:0; height:1px; background:#e4d4a32b; }
+.loader-run { position:absolute; width:100%; height:88px; top:calc(50% - 44px); animation:loader-cross 4.5s linear -.9s infinite; will-change:transform; }
+.loader-player { position:absolute; width:58px; height:80px; left:0; top:0; }
+.loader-player>svg { display:block; width:100%; height:100%; overflow:visible; }
+.loader-player .leg,.loader-player .arm { transform-box:fill-box; transform-origin:50% 0; animation:loader-stride .32s ease-in-out infinite alternate; }
+.loader-player .right { animation-delay:-.32s; }
+.loader-player .leg.right { animation:loader-kick .9s ease-in-out infinite; }
+.loader-ball { position:absolute; left:64px; top:58px; width:23px; height:23px; animation:loader-tap .9s ease-out infinite; }
+.loader-ball svg { display:block; width:100%; height:100%; animation:loader-roll .9s linear infinite; filter:drop-shadow(1px 3px 2px #142e3555); }
+.loader-caption { position:absolute; top:calc(50% + 63px); left:16px; right:16px; margin:0; text-align:center; color:#f5e8c8; font:13px/1.5 Georgia,serif; letter-spacing:.4px; }
+@keyframes loader-cross { from { transform:translateX(-110px); } to { transform:translateX(calc(100% + 30px)); } }
+@keyframes loader-stride { from { transform:rotate(-16deg); } to { transform:rotate(16deg); } }
+@keyframes loader-kick { 0%,100% { transform:rotate(12deg); } 15% { transform:rotate(-32deg); } 45% { transform:rotate(18deg); } }
+@keyframes loader-tap { 0%,100% { transform:translate(0,0); } 25% { transform:translate(19px,-8px); } 60% { transform:translate(12px,0); } 80% { transform:translate(6px,-2px); } }
+@keyframes loader-roll { to { transform:rotate(360deg); } }
+@media(prefers-reduced-motion:reduce) {
+  .loader-run { transform:translateX(calc(50% - 45px)); }
+  .world-loader * { animation:none!important; }
+}

@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en" class="world-loading">
 <head>
-<style>html.world-loading .stage{background:#355b51}html.world-loading .stage>*{visibility:hidden}html.world-loading .stage::after{content:'Preparing your adventure...';position:absolute;inset:0;display:grid;place-items:center;color:#f5e8c8;font:14px Georgia,serif}html.world-error .stage::after{display:none}html.world-loading .stage>.world-retry{visibility:visible;position:absolute;inset:40% 12%;border:1px solid #f5e8c8;border-radius:8px;background:#355b51;color:#f5e8c8;z-index:10}</style>
+<style>html.world-loading .stage{background:#355b51}html.world-loading .stage>*{visibility:hidden}html.world-error .stage::after{display:none}html.world-loading .stage>.world-retry{visibility:visible;position:absolute;inset:40% 12%;border:1px solid #f5e8c8;border-radius:8px;background:#355b51;color:#f5e8c8;z-index:10}</style>
+<link rel="stylesheet" href="/mountain/loading.css?v=1">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Playground | Andrew Chwalik</title>
 <meta name="description" content="The adventures, experiments, and lessons that helped Andrew Chwalik find his climb.">
@@ -14,7 +15,34 @@
 <section class="intro"><p class="eyebrow">ANDREW CHWALIK / THE PLAYGROUND</p><h1>A little play.<br>A lot of becoming.</h1><p>Trying things. Building skills. Finding what matters.<br>These are the adventures that helped me find my mountain.</p></section>
 <div class="layout"><section class="map" aria-label="Interactive playground map">
 <div class="map-top"><span>THE PLAYGROUND</span><span>EVERY DETOUR TAUGHT ME SOMETHING</span></div>
-<div class="stage" aria-busy="true"><img src="world-junction.webp" width="1024" height="1536" fetchpriority="high" alt="A winding playground loop connects a flag-topped playfort, bus climbing toy, family swings, little playhouse, pretend market, camper slide, ice cream kiosk, and soccer play area. A continuous wooden bridge rises uphill over the creek and off the right edge toward the mountain.">
+<div class="stage" aria-busy="true">
+<div class="world-loader" role="status" aria-label="Loading your adventure"><div class="loader-ground" aria-hidden="true"></div><div class="loader-run" aria-hidden="true"><div class="loader-player"><svg viewBox="0 0 64 88">
+            <defs>
+              <radialGradient id="loader-hero-skin" cx="30%" cy="25%" r="80%"><stop stop-color="#ffe0b6"/><stop offset=".5" stop-color="#dca57d"/><stop offset="1" stop-color="#98654c"/></radialGradient>
+              <linearGradient id="loader-hero-shirt" x2="1" y2=".5"><stop stop-color="#ffd190"/><stop offset=".3" stop-color="#f39548"/><stop offset=".7" stop-color="#db682e"/><stop offset="1" stop-color="#963e25"/></linearGradient>
+              <linearGradient id="loader-hero-trousers"><stop stop-color="#697477"/><stop offset=".35" stop-color="#47575b"/><stop offset="1" stop-color="#233239"/></linearGradient>
+              <radialGradient id="loader-hero-hair" cx="25%" cy="20%" r="85%"><stop stop-color="#a17a50"/><stop offset=".4" stop-color="#755033"/><stop offset="1" stop-color="#3e2d24"/></radialGradient>
+              <radialGradient id="loader-hero-ground"><stop stop-color="#203335" stop-opacity=".45"/><stop offset="1" stop-color="#203335" stop-opacity="0"/></radialGradient>
+            </defs>
+            <ellipse cx="36" cy="83" rx="21" ry="5" fill="url(#loader-hero-ground)"/>
+            <g class="leg left"><path d="M22 58q6-3 12 1l-3 19H21Z" fill="url(#loader-hero-trousers)"/><path d="M22 75h9v7H17q-1-5 5-7" fill="#344048"/><path d="M19 78h10" stroke="#8b9692" stroke-width="1.4"/></g>
+            <g class="leg right"><path d="M33 59q4-3 9 0l5 19H36Z" fill="url(#loader-hero-trousers)"/><path d="M36 75h10q6 2 6 7H36Z" fill="#293740"/><path d="m38 78 8 1" stroke="#77857f" stroke-width="1.4"/></g>
+            <g class="arm left"><path d="M21 36q-8 10-10 24-1 7 5 5l10-25Z" fill="url(#loader-hero-skin)"/><path d="M21 36q-6 4-8 13l10 4 5-16Z" fill="url(#loader-hero-shirt)"/></g>
+            <g class="arm right"><path d="M43 36q9 10 11 25 1 6-6 4l-9-25Z" fill="url(#loader-hero-skin)"/><path d="m43 36 8 13-9 4-5-16" fill="url(#loader-hero-shirt)"/></g>
+            <path d="M22 35q10-5 21 0l4 26q-14 8-29 0Z" fill="url(#loader-hero-shirt)"/>
+            <path d="M24 38q8 5 16-1M21 58q9 4 21 2" fill="none" stroke="#ffe0a6" stroke-opacity=".38" stroke-width="1.2"/>
+            <path d="m34 47 3-4 2 7q9 12-5 12-10-2-4-11Z" fill="#303e50"/>
+            <rect x="27" y="25" width="12" height="12" rx="5" fill="url(#loader-hero-skin)"/>
+            <g transform="translate(2 2) scale(.94)">
+            <ellipse cx="18" cy="22" rx="3" ry="5" fill="#d9a47c"/><ellipse cx="46" cy="22" rx="3" ry="5" fill="#a97253"/>
+            <path d="M18 15Q18 3 32 3T46 15l-1 13q-3 11-13 11T19 28Z" fill="url(#loader-hero-skin)"/>
+            <path d="M17 21 15 13q-3-5 2-7-1-5 6-4 4-3 9-1 5-3 9 0 7-1 8 4 6 3 1 10l-3 7-3-10q-6-5-13-1l-10 2-1 9Z" fill="url(#loader-hero-hair)"/>
+            <path d="M20 9q0-5 5-4m2 3q1-6 6-5m2 6q4-6 8-2M18 13q1-3 4-3m14-7 3 2" fill="none" stroke="#b89261" stroke-opacity=".65" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="m23 19 5-1m8 0 5 1M26 21v2m12-2v2" stroke="#42352f" stroke-width="2" stroke-linecap="round"/>
+            <path d="M24 29q4-5 8-2 5-3 10 2l-1 2q-6-2-9-1-4-2-9 1Z" fill="#43342f"/><path d="M26 32q7 7 13-1" fill="#fff3df"/>
+            <path d="m32 21-2 5h4" fill="none" stroke="#aa7255" stroke-width="1" stroke-linecap="round"/>
+            </g>
+          </svg></div><div class="loader-ball"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5" fill="#fff7e4" stroke="#253e36" stroke-width="1.5"/><path d="m16 9 7 5-3 8h-8l-3-8Z M6 5l5-2 1 5-5 4-5-2Z M25 5l5 6-5 2-4-5Z M29 23l-5 6-4-4 2-5Z M8 29l-6-6 7-3 3 5Z" fill="#29473e"/><path d="m12 8 4 1 5-1M7 12l2 2M25 13l-2 1M20 22l0 3M12 22l0 3" fill="none" stroke="#29473e" stroke-width="1"/></svg></div></div><p class="loader-caption" aria-hidden="true">Warming up for the adventure...</p></div><img src="world-junction.webp" width="1024" height="1536" fetchpriority="high" alt="A winding playground loop connects a flag-topped playfort, bus climbing toy, family swings, little playhouse, pretend market, camper slide, ice cream kiosk, and soccer play area. A continuous wooden bridge rises uphill over the creek and off the right edge toward the mountain.">
 <svg class="guide" viewBox="0 0 600 930" aria-hidden="true"><path id="route"/><path id="bridge-route"/></svg>
 <div id="stops"></div><div id="player" aria-hidden="true"><svg viewBox="0 0 64 88">
             <defs>
