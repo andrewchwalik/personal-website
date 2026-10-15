@@ -7,8 +7,8 @@ test('both worlds ship the soccer loader before JavaScript runs without duplicat
     const html=read(path);
     assert.match(html,/class="world-loader" role="status"/);
     assert.match(html,/class="loader-ball"/);
-    assert.match(html,/class="loader-player"/);
-    assert.match(html,/\/mountain\/loading.css\?v=1/);
+    assert.match(html,/class="loader-leg-front"/);
+    assert.match(html,/\/mountain\/loading.css\?v=2/);
     const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
     assert.equal(new Set(ids).size,ids.length);
     assert.doesNotMatch(html,/Preparing your adventure/);
@@ -17,8 +17,7 @@ test('both worlds ship the soccer loader before JavaScript runs without duplicat
 test('loader stops after readiness or errors and respects reduced motion',()=>{
   const css=read('../mountain/loading.css');
   assert.match(css,/html:not\(.world-loading\) .world-loader,html.world-error .world-loader \{ display:none/);
-  assert.match(css,/@keyframes loader-kick/);
-  assert.match(css,/@keyframes loader-roll/);
+  assert.match(read('../mountain/loading.js'),/requestAnimationFrame/);
   assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
-  assert.match(css,/animation:none!important/);
+  assert.match(css,/transform:none!important/);
 });
