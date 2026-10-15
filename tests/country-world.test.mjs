@@ -15,7 +15,7 @@ test('six completed country milestones use the requested order and links', () =>
     ['delaware', 'Create a soccer club from scratch.', 'https://delawarerising.club'],
     ['house', 'Buy our first home.', 'https://youtube.com/shorts/cGKcB-_NNdM'],
   ];
-  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const html = readFileSync(new URL('./fixtures/islands.html', import.meta.url), 'utf8');
   assert.equal(Object.keys(stories).length, 6);
   let previousY = Infinity;
   expected.forEach(([id,title,url], index) => {
@@ -30,7 +30,7 @@ test('six completed country milestones use the requested order and links', () =>
 });
 
 test('worlds use numbers and accessible arrow-only travel controls', () => {
-  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const html = readFileSync(new URL('./fixtures/islands.html', import.meta.url), 'utf8');
   assert.ok(html.includes('id="world-name">WORLD 02</span>'));
   assert.match(html, /aria-label="Visit World 01"[^>]*>↓<\/button>/);
   assert.match(html, /aria-label="Visit World 02"[^>]*>↑<\/button>/);
@@ -49,7 +49,7 @@ test('world one has a pasture, three cows and reduced-motion-safe grazing', () =
 
 test('country artwork and walking guide share a bridge-aligned route', () => {
   const svg = buildCountryWorld();
-  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const html = readFileSync(new URL('./fixtures/islands.html', import.meta.url), 'utf8');
   assert.equal(readFileSync(new URL('../img/country-world.svg', import.meta.url), 'utf8'), svg);
   assert.ok(html.includes(`id="country-route" d="${COUNTRY_ROUTE}"`));
   assert.ok(svg.includes(`d="${COUNTRY_ROUTE}"`));
@@ -88,7 +88,7 @@ function crossingContext(branch = null) {
 }
 
 test('theatre artwork is current and its side path matches the walking guide', () => {
-  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const html = readFileSync(new URL('./fixtures/islands.html', import.meta.url), 'utf8');
   assert.ok(html.includes(`id="theatre-route" d="${THEATRE_ROUTE}"`));
   assert.ok(buildCountryWorld().includes(`d="${THEATRE_ROUTE}"`));
   assert.equal(readFileSync(new URL('../img/theatre-room.svg', import.meta.url), 'utf8'), buildTheatreRoom());

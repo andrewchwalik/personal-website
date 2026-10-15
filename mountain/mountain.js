@@ -1,4 +1,4 @@
-import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=9';
+import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=10';
 import { revealWorld, titleCase } from './world-ready.mjs';
 import { initGuestbook } from '../guestbook.js?v=2';
 const openGuestbook = initGuestbook();
@@ -55,7 +55,7 @@ function markerIcon(stop){
 function show(stop){
   $('stop-state').textContent=stop.state;$('stop-title').textContent=titleCase(stop.title);$('stop-description').textContent=stop.description;
   $('actions').replaceChildren();
-  if(stop.id==='bridge')$('actions').append(action(stop.action,'./playground/'));
+  if(stop.id==='bridge')$('actions').append(action(stop.action,'/mountain/playground/'));
   else if(stop.id==='guestbook'){const button=document.createElement('button');button.className='action';button.textContent=stop.action;button.onclick=openGuestbook;$('actions').append(button);}
   else if(stop.id==='cave'){const button=document.createElement('button');button.className='action';button.textContent=stop.action;button.onclick=()=>visit(cave);$('actions').append(button);}
   else if(stop.url)$('actions').append(action(stop.action,stop.url));
@@ -69,7 +69,7 @@ function visit(stop){
   if(stop.preview){show(stop);$('travel-status').textContent=`Preview: ${stop.title} The character remains on the accessible trail.`;return;}
   const ticket=trip;player.classList.add('walking');
   $('travel-status').textContent=`Walking to ${stop.label}.`;
-  const arrived=()=>{player.classList.remove('walking');show(stop);$('travel-status').textContent=`Arrived at ${stop.label}. Details are below the map on mobile.`;if(stop.id==='bridge')location.assign('./playground/?from=mountain');if(stop.id==='guestbook')openGuestbook();if(stop.id==='cave')document.dispatchEvent(new Event('enter-cave'));};
+  const arrived=()=>{player.classList.remove('walking');show(stop);$('travel-status').textContent=`Arrived at ${stop.label}. Details are below the map on mobile.`;if(stop.id==='bridge')location.assign('/mountain/playground/?from=mountain');if(stop.id==='guestbook')openGuestbook();if(stop.id==='cave')document.dispatchEvent(new Event('enter-cave'));};
   const destination=branches[stop.id];
   const onTrail=()=>walk(trail,position,destination?destination.junction:distances[stop.id],ticket,()=>{
     if(destination){activeBranch=destination;walk(destination.path,0,destination.path.getTotalLength(),ticket,arrived);}else arrived();

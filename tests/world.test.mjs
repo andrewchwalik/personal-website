@@ -25,7 +25,7 @@ test('the sun produces proportional shadows in one direction', () => {
 
 test('the generated artwork is current and uses the actual walking route', async () => {
   const svg=await readFile(new URL('../img/chapter-world.svg',import.meta.url),'utf8');
-  const html=await readFile(new URL('../index.html',import.meta.url),'utf8');
+  const html=await readFile(new URL('./fixtures/islands.html',import.meta.url),'utf8');
   assert.equal(svg,buildWorld());
   assert.ok(svg.includes(`d="${ROUTE}"`));
   assert.ok(html.includes(`id="travel-route" d="${ROUTE}"`));

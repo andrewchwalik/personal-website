@@ -90,7 +90,7 @@ test('mountain guestbook and bridge journeys finish on their branches', () => {
   assert.deepEqual(JSON.parse(JSON.stringify(result.records)),[
     ['trail',200,100],['book',0,30],['book',30,0],['trail',100,0],['bridge',0,60]
   ]);
-  assert.equal(result.destinations[0],'./playground/?from=mountain');
+  assert.equal(result.destinations[0],'/mountain/playground/?from=mountain');
 });
 
 test('faster travel keeps easing, cancellation and reduced-motion support', () => {

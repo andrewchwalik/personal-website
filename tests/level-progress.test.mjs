@@ -16,7 +16,7 @@ test('current island continues the country milestones with levels seven through 
   assert.equal(chapters[8].url, 'https://firelandsunited.com/');
   assert.equal(chapters[9].state, 'CURRENT QUEST');
   assert.equal(chapters[10].state, 'LOCKED PREVIEW');
-  const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  const html = readFileSync(new URL('./fixtures/islands.html', import.meta.url), 'utf8');
   for (const id of Object.keys(chapters)) assert.ok(html.includes(`data-chapter="${id}"`));
   assert.ok(source.includes('let position = stops[9]'));
 });

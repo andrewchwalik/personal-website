@@ -10,7 +10,7 @@ test('the room artwork is reproducible and fits one responsive coordinate system
   assert.doesNotMatch(svg, /undefined|NaN/);
 });
 test('the optional house branch matches its drawn path', async () => {
-  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const html = await readFile(new URL('./fixtures/islands.html', import.meta.url), 'utf8');
   const svg = await readFile(new URL('../img/chapter-world.svg', import.meta.url), 'utf8');
   const branch = html.match(/id="house-route" d="([^"]+)"/)[1];
   assert.ok(svg.includes(`d="${branch}"`));

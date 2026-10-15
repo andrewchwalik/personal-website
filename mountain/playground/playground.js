@@ -56,7 +56,7 @@ function show(stop){
 function visit(stop){
   cancelAnimationFrame(frame);const ticket=++trip;player.classList.add('walking');
   $('travel-status').textContent=stop?'Walking to '+stop.label+'.':'Crossing back to the mountain.';
-  const arrived=()=>{player.classList.remove('walking');if(stop){show(stop);$('travel-status').textContent='Arrived at '+stop.label+'.';}else location.assign('../?from=playground');};
+  const arrived=()=>{player.classList.remove('walking');if(stop){show(stop);$('travel-status').textContent='Arrived at '+stop.label+'.';}else location.assign('/?from=playground');};
   const onTrail=()=>walk(trail,position,shortestLoopTarget(position,stop?nearest(stop.point):junction,trail.getTotalLength()),ticket,()=>{
     if(stop)arrived();else walk(bridge,0,bridge.getTotalLength(),ticket,arrived);
   });

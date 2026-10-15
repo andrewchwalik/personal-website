@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="One life. A few big quests. Explore Andrew Chwalik's level map and follow the adventure.">
+  <title>Andrew Chwalik</title>
+  <link rel="icon" href="/favicon.ico?v=3" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml" sizes="any">
+  <link rel="icon" href="/favicon-32.png?v=3" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" sizes="180x180">
+  <link rel="stylesheet" href="adventure.css?v=lock-feedback-1">
+  <link rel="stylesheet" href="house.css?v=house-9">
+  <link rel="stylesheet" href="chapter-layout.css?v=progress-5">
+  <script src="adventure.js?v=titles-8" defer></script>
+  <link rel="stylesheet" href="theatre.css?v=2">
+  <script src="theatre.js?v=2" type="module"></script>
+  <script src="house.js?v=house-8" type="module"></script>
+</head>
+<body>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow"><span class="status-dot"></span> Andrew Chwalik / EST. 1994</p>
+      <h1 id="page-title">Big dreams. <br>One level at a time.</h1>
+      <p>I'm Andrew. A dad, creator, and soccer nerd. This is the interactive map of the dreams I'm chasing. Jump in and explore. See what I've done, and where I'm going. Help me get to the next destination.</p>
+    </section>
+    <p style="text-align:center;margin:0 0 24px;font-size:12px"><a href="/mountain/" style="text-decoration:underline;text-underline-offset:4px">Explore the mountain prototype ↗</a></p>
+    <div class="adventure-layout">
+    <section class="world" aria-label="Adventure level map">
+      <div class="map-toolbar"><span id="world-name">WORLD 02</span><span class="map-status">LEVEL 09 ACTIVE</span></div>
+      <div class="map-stage">
+        <img class="landscape" src="img/chapter-world.svg?v=south-bridge-1" alt="" aria-hidden="true">
+        <img class="country-landscape" src="img/country-world.svg?v=plateau-4" alt="" aria-hidden="true" hidden>
+        <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="south-route" d="M165 550 L165 700"/><path id="country-route" d="M165 0 L165 170 Q145 215 225 215 Q315 215 300 290 Q285 330 317 350 L365 315 Q400 315 400 345 L400 401 Q420 414 400 430 Q345 475 400 520"/><path id="theatre-route" d="M317 350 C280 365 235 375 198 365 L198 350"/></svg>
+        <button class="theatre-stop country-control" id="theatre-stop" aria-label="Enter the movie theatre" hidden><span>Theatre</span></button>
+        <button class="island-crossing" id="visit-country" aria-label="Visit World 01" style="--x:27.5%;--y:94%">↓</button>
+        <button class="island-crossing country-control" id="return-island" aria-label="Visit World 02" style="--x:27.5%;--y:7%" hidden>↑</button>
+        <button class="level completed country-control" data-country="president" style="--x:66.667%;--y:74.286%" aria-label="Level 1: Elected student body president, completed" hidden><span class="level-disc">01</span><span class="level-label">Elected President</span></button>
+        <button class="level completed country-control" data-country="startup" style="--x:66.667%;--y:61.429%" aria-label="Level 2: Startup Bus, completed" hidden><span class="level-disc">02</span><span class="level-label">Startup Bus</span></button>
+        <button class="level completed country-control" data-country="masters" style="--x:66.667%;--y:49.286%" aria-label="Level 3: Masters Degree, completed" hidden><span class="level-disc">03</span><span class="level-label">Masters Degree</span></button>
+        <button class="level completed country-control" data-country="icecream" style="--x:50%;--y:41.429%" aria-label="Level 4: Ice Cream Shop, completed" hidden><span class="level-disc">04</span><span class="level-label">Ice Cream Shop</span></button>
+        <button class="level completed country-control" data-country="delaware" style="--x:37.5%;--y:30.714%" aria-label="Level 5: Delaware Rising, completed" hidden><span class="level-disc">05</span><span class="level-label">Delaware Rising</span></button>
+        <button class="level completed country-control" data-country="house" style="--x:27.5%;--y:24.286%" aria-label="Level 6: First House, completed" hidden><span class="level-disc">06</span><span class="level-label">First House</span></button>
+        <img class="map-clouds" src="img/chapter-clouds.svg" alt="" aria-hidden="true">
+        <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="travel-route" d="M165 550 C165 510 205 510 235 510 L285 510 Q365 510 365 460 Q365 420 315 420 Q265 420 265 392 Q265 365 290 365 Q415 365 415 310 L415 275 Q415 269 470 269 L470 180"/></svg>
+        <button class="level completed" data-chapter="7" style="--x:27.5%;--y:78.571%" aria-label="Level 7: Business Owners, completed"><span class="level-disc">07</span><span class="level-label">Business Owners</span></button>
+        <button class="level completed" data-chapter="8" style="--x:60.833%;--y:65.714%" aria-label="Level 8: Firelands United, completed"><span class="level-disc">08</span><span class="level-label">Firelands United</span></button>
+        <button class="level active" data-chapter="9" style="--x:48.333%;--y:52.143%" aria-label="Level 9: Daily Vlog, current"><span class="level-disc">09</span><span class="level-label">Daily Vlog</span></button>
+        <button class="level locked" data-chapter="10" style="--x:69.167%;--y:39.286%" aria-label="Level 10: Debt, locked: visit and return"><span class="level-disc"><svg viewBox="0 0 20 24" aria-hidden="true"><rect x="3" y="10" width="14" height="11" rx="2"/><path d="M6 10V7a4 4 0 0 1 8 0v3M10 14v3"/></svg></span><span class="level-label">Debt</span></button>
+        <button class="level unknown" style="--x:78.333%;--y:25.714%" disabled aria-label="Future level, not yet accessible"><span class="level-disc">?</span></button>
+        <svg class="route-guide" viewBox="0 0 600 700" preserveAspectRatio="none" aria-hidden="true"><path id="house-route" d="M181 518 Q158 508 144 490 L135 493"/></svg>
+        <button class="house-stop" id="house-stop" aria-label="Visit Home: TV, soccer, and guestbook"><span>Home</span></button>
+        <img class="house-foreground" src="img/chapter-house.svg" alt="" aria-hidden="true">
+        <div class="player" aria-hidden="true"><svg viewBox="0 0 64 88">
+          <defs><linearGradient id="jacket" x2="1" y2="1"><stop stop-color="#ff9144"/><stop offset="1" stop-color="#ed5f26"/></linearGradient></defs>
+          <g class="leg leg-left"><path d="m23 62-2 15h10l2-15" fill="#354953"/><path d="M21 75h10v7H18q-3-5 3-7" fill="#243640"/></g>
+          <g class="leg leg-right"><path d="m36 62 1 15h10l-4-15" fill="#354953"/><path d="M37 75h10l5 4v3H37z" fill="#243640"/></g>
+          <g class="arm arm-left"><path d="M21 37q-8 2-8 13l-2 12q2 6 7 2l5-18" fill="#daaa83"/><path d="M22 36q-8 3-8 14l8 2 5-15" fill="#f47b31"/></g>
+          <g class="arm arm-right"><path d="M43 37q9 2 9 13l2 12q-2 6-7 2l-5-18" fill="#daaa83"/><path d="M43 36q8 4 9 14l-9 2-4-15" fill="#f47b31"/></g>
+          <path d="M22 35q10-5 21 0l6 27q-16 8-32 0z" fill="url(#jacket)"/>
+          <path d="M23 35q9 9 19 0" fill="none" stroke="#da591f" stroke-width="2"/>
+          <path d="M25 36q7 13 15 0" fill="none" stroke="#ded9c9" stroke-width="1"/>
+          <path d="m34 49 2-4 2 4 3 3q0 7-6 7t-5-6z" fill="#303e50"/>
+          <rect x="27" y="25" width="12" height="11" rx="5" fill="#cf9974"/>
+          <ellipse cx="32" cy="20" rx="15" ry="17" fill="#e7b890"/>
+          <path d="M17 21 15 13q-3-5 2-7-1-5 6-4 4-3 9-1 5-3 9 0 7-1 8 4 6 3 1 10l-3 7-3-10q-6-5-13-1l-10 2-1 9z" fill="#63412e"/>
+          <path d="M20 9q0-5 5-4m2 3q1-6 6-5m2 6q4-6 8-2" fill="none" stroke="#926749" stroke-width="1.7" stroke-linecap="round"/>
+          <path d="m23 19 5-1m8 0 5 1" stroke="#42352f" stroke-width="2" stroke-linecap="round"/>
+          <path d="M26 21v1m12-1v1" stroke="#3c463f" stroke-width="2" stroke-linecap="round"/>
+          <path d="m32 22-1 4 3 1" fill="none" stroke="#be896b" stroke-width="1"/>
+          <path d="M20 25q1 12 13 12 11-2 12-12l-3 6q-9 8-19 0z" fill="#826452" opacity=".45"/>
+          <path d="M24 29q4-5 8-2 5-3 10 2l-1 2q-6-2-9-1-4-2-9 1z" fill="#43342f"/>
+          <path d="M26 32q7 7 13-1" fill="#fff3df" stroke="#a36d56" stroke-width=".7"/>
+        </svg></div>
+      </div>
+    </section>
+    <p class="travel-status sr-only" role="status" aria-live="polite">Level 9 selected: daily vlogging.</p>
+    <p class="map-copyright"><small>© 2026 Andrew Chwalik</small></p>
+    <section class="chapter-panel" id="chapter-panel" aria-labelledby="chapter-title">
+      <div class="chapter-number" aria-hidden="true">09</div>
+      <div class="chapter-copy"><p class="eyebrow" id="chapter-status">CURRENT QUEST / LEVEL 09</p><h2 id="chapter-title">Vlog every day in 2026.</h2><p id="chapter-description">I'm trying to vlog every single day in 2026, documenting my son growing from age 1 to 2. Which also includes running our businesses up on Lake Erie, travels in our camper, and joys of daily life.</p><div class="chapter-actions" id="chapter-actions"><a class="button" href="https://www.youtube.com/@AndrewChwalik" target="_blank" rel="noopener noreferrer">Follow the daily vlogs <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="https://patreon.com/andrewchwalik" target="_blank" rel="noopener noreferrer">Support on Patreon ↗</a></div><p id="locked-note" hidden></p></div>
+      <div class="chapter-stamp" aria-hidden="true"><span>LESS WAITING</span><svg viewBox="0 0 64 50"><path d="M5 12h37v30H5zM42 20l17-8v30l-17-8zM14 12l4-7h12l4 7" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="27" r="8" fill="none" stroke="currentColor" stroke-width="3"/></svg><span>MORE MAKING</span></div>
+      <div class="level-progress" data-state="active">
+        <div class="progress-endpoints" aria-hidden="true"><span id="progress-start">0</span><span id="progress-end">365</span></div>
+        <progress id="level-progress" value="212" max="365" aria-label="Level progress" aria-describedby="level-progress-message">212 / 365</progress>
+        <small id="level-progress-message">212 / 365 vlogs edited</small>
+      </div>
+    </section>
+    </div>
+  </main>
+  <dialog id="home-screen" class="home-screen" aria-labelledby="home-title">
+    <div class="home-wrap">
+      <div class="home-bar"><button type="button" id="leave-house">← Back to the island</button><span>HOME BASE / ALWAYS OPEN</span></div>
+      <header class="home-intro"><p class="eyebrow">A PAUSE BETWEEN ADVENTURES</p><h1 id="home-title" tabindex="-1">Come on in.</h1><p>Make yourself at home.</p></header>
+      <div class="room-scene" aria-label="Explore the room">
+        <img src="img/home-base.svg?v=house-3" alt="A cozy room with an open doorway, a television, a soccer ball, and a guestbook on a wooden table.">
+        <div id="room-character" class="player room-character" aria-hidden="true"></div>
+        <button class="room-object room-door" id="exit-door" aria-label="Walk outside to the island"><span aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16"><path d="M13 8H3m5-5L3 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+        <button class="room-object room-tv" id="open-tv" aria-haspopup="dialog" aria-label="Watch the latest vlog"><span aria-hidden="true">+</span></button>
+        <button class="room-object room-book" id="open-guestbook" aria-haspopup="dialog" aria-label="Read the guestbook"><span aria-hidden="true">+</span></button>
+        <a class="room-object room-ball" href="https://www.youtube.com/@FirelandsUnited/videos" target="_blank" rel="noopener noreferrer" aria-label="Watch Firelands United vlogs"><span aria-hidden="true">+</span></a>
+      </div>
+      <p id="room-travel-status" class="sr-only" role="status"></p>
+    </div>
+  </dialog>
+  <dialog id="tv-dialog" class="house-panel tv-panel" aria-labelledby="tv-title">
+    <button type="button" class="panel-close" data-close aria-label="Close TV">×</button>
+    <p class="eyebrow">NOW PLAYING / ANDREW CHWALIK</p><h2 id="tv-title">The latest adventure.</h2>
+    <div id="video-screen" class="video-screen"><p>Finding the latest vlog…</p></div>
+    <p id="video-status" role="status"></p>
+    <a id="video-link" class="room-link" href="https://www.youtube.com/@AndrewChwalik" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
+  </dialog>
+  <dialog id="guestbook-dialog" class="house-panel guestbook-panel" aria-labelledby="guestbook-title">
+    <button type="button" class="panel-close" data-close aria-label="Close guestbook">×</button>
+    <div class="book-spread">
+    <div class="book-frontispiece"><h2 id="guestbook-title">The Guestbook</h2><div id="book-instructions"><p>Leave a note, travel tips, parenting advice, or just a positive message.</p><button type="button" id="write-entry" class="book-write">Sign the Guestbook</button></div></div>
+    <div class="book-paper">
+    <section id="book-reader" aria-label="Guestbook entries">
+      <div class="book-running-head"><span>MESSAGES</span><button type="button" id="refresh-entries" aria-label="Refresh guestbook">↻</button></div>
+      <div id="entries-scroll" tabindex="0" role="region" aria-label="Guestbook messages, scroll to read more">
+      <p id="entries-status" role="status">Opening the guestbook…</p>
+      <ol id="entries-list"></ol>
+      <button type="button" id="more-entries" hidden>Load more messages</button>
+      </div>
+    </section>
+    <section id="book-writing" hidden aria-label="Sign the guestbook">
+    <button type="button" id="read-entries" class="book-back">← Back</button>
+    <form id="guestbook-form">
+      <label for="guest-name">Your display name</label><input id="guest-name" name="name" maxlength="40" autocomplete="nickname" placeholder="What should we call you?" required>
+      <label for="guest-message">Your message <span id="message-count">0 / 400</span></label><textarea id="guest-message" name="message" minlength="3" maxlength="400" rows="3" placeholder="Leave something kind…" required></textarea>
+      <div class="guestbook-trap" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <label class="public-consent"><input name="consent" type="checkbox" required><span>I understand my display name and message will be public.</span></label>
+      <button type="submit" class="book-submit" disabled>Sign the guestbook <span aria-hidden="true">↗</span></button>
+      <p id="guestbook-feedback" class="book-feedback" role="status" aria-live="polite"></p>
+    </form>
+    </section>
+    </div>
+    </div>
+  </dialog>
+  <dialog id="theatre-dialog" aria-labelledby="theatre-title">
+    <div class="theatre-header"><div><p class="eyebrow">WORLD 01 / THE PICTURE HOUSE</p><h2 id="theatre-title">Take a seat.</h2></div><button type="button" id="close-theatre" aria-label="Leave the theatre">Back outside ↗</button></div>
+    <div class="theatre-room">
+      <img src="img/theatre-room.svg" alt="A small cinema with velvet curtains, a screen, and rows of red seats.">
+      <div id="theatre-screen"><p>Pick a film below.<small>The show starts when you do.</small></p></div>
+      <button type="button" id="theatre-door" aria-label="Walk outside to World 01"></button>
+    </div>
+    <div class="theatre-program"><p class="eyebrow">NOW SHOWING</p><div id="theatre-films"></div><p id="theatre-status" role="status">Choose a video to watch on the big screen.</p><a id="theatre-youtube" target="_blank" rel="noopener noreferrer" hidden>Watch on YouTube ↗</a></div>
+  </dialog>
+</body>
+</html>

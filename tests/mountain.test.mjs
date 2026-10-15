@@ -7,8 +7,8 @@ test('mountain serves optimized game artwork rather than the retired SVG platfor
   assert.equal(art.toString('ascii',0,4),'RIFF');
   assert.equal(art.toString('ascii',8,12),'WEBP');
   assert.ok(art.length<600_000,'Keep the map fast on mobile connections');
-  const html=readFileSync(new URL('../mountain/index.html',import.meta.url),'utf8');
-  assert.match(html,/src="world-connected.webp"/);
+  const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
+  assert.match(html,/src="\/mountain\/world-connected.webp"/);
   assert.doesNotMatch(html,/src="world.svg"/);
 });
 test('trail branches and destinations use the painted world coordinate space',()=>{
