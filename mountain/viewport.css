@@ -1,0 +1,23 @@
+/* Keep the artwork, paths, and percentage-positioned stops in one viewport. */
+main { max-width: 1240px; padding: 16px 24px 28px; }
+.intro { padding: 12px 0 20px; }
+.intro h1 { font-size: clamp(28px, 3vw, 38px); margin: 10px 0; }
+.intro .eyebrow { margin: 8px 0; }
+.intro > p:last-child { margin: 0 auto; }
+.layout { grid-template-columns: minmax(0, 1.8fr) minmax(280px, 1fr); gap: 32px; }
+.map { width: 100%; max-width: calc(var(--map-height, 620px) * 1.12 + 10px); justify-self: center; }
+.stage { aspect-ratio: auto; height: var(--map-height, min(68svh, 720px)); }
+.details { padding-top: 12px; top: 24px; }
+.details h2 { font-size: clamp(26px, 2.6vw, 32px); }
+@media (max-width: 760px) {
+  main { padding: 10px 10px 24px; }
+  main > header { gap: 6px; }
+  .intro { padding: 8px 4px 14px; }
+  .intro h1 { font-size: 26px; margin: 8px 0; }
+  .intro .eyebrow { font-size: 8px; letter-spacing: 1.2px; }
+  .intro > p:last-child { font-size: 11px; line-height: 1.4; }
+  .layout { display: block; }
+  .map { margin-inline: auto; }
+  .map-top { padding: 9px 8px; }
+  .details { padding: 20px 8px 0; }
+}
