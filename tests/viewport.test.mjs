@@ -43,7 +43,31 @@ test('scrolling does not enlarge the map and short screens retain usable targets
 test('both worlds load the shared viewport layout after their own styles', () => {
   for (const file of ['index.html', 'mountain/playground/index.html']) {
     const html = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
-    assert.match(html, /viewport\.css\?v=1/);
-    assert.match(html, /type="module" src="[^\"]*viewport\.js\?v=1/);
+    assert.match(html, /viewport\.css\?v=2/);
+    assert.match(html, /type="module" src="[^\"]*viewport\.js\?v=2/);
   }
+});
+
+test('plane interaction cannot pause the flight or reveal its hit rectangle', () => {
+  const css = readFileSync(new URL('../mountain/atmosphere.css', import.meta.url), 'utf8');
+  assert.doesNotMatch(css, /support-flight:has/);
+  assert.match(css, /\.flight-hit-area\s*\{ fill: transparent; stroke: none;/);
+});
+
+test('pointer activation clears keyboard mode without removing keyboard access', () => {
+  const listeners = {};
+  const root = { clientHeight: 768, dataset: {} };
+  runInNewContext(source, {
+    document: {
+      documentElement: root,
+      querySelector: () => ({ clientWidth: 600, getBoundingClientRect: () => ({ top: 200 }), style: { setProperty() {} } }),
+      fonts: { ready: Promise.resolve() },
+    },
+    window: { scrollY: 0, addEventListener: (name, handler) => { listeners[name] = handler; } },
+    ResizeObserver: class { observe() {} },
+  });
+  listeners.keydown({ key: 'Tab' });
+  assert.equal(root.dataset.input, 'keyboard');
+  listeners.pointerdown();
+  assert.equal(root.dataset.input, 'pointer');
 });

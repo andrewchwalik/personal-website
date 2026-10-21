@@ -2,6 +2,15 @@ const stage = document.querySelector('.stage');
 const main = document.querySelector('main');
 const intro = document.querySelector('.intro');
 
+window.addEventListener('pointerdown', () => {
+  document.documentElement.dataset.input = 'pointer';
+}, true);
+window.addEventListener('keydown', event => {
+  if (['Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+    document.documentElement.dataset.input = 'keyboard';
+  }
+}, true);
+
 function fitMap() {
   // Document coordinates stay stable while a visitor scrolls to the details.
   const top = stage.getBoundingClientRect().top + window.scrollY;

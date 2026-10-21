@@ -8,12 +8,10 @@
 .sky-clouds.paused .sky-cloud { animation-play-state: paused; }
 #player svg { filter: drop-shadow(1px 2px 1px #1d333740); }
 .support-flight { transform-origin: 0 28px; animation: support-flyby 85s linear -18s infinite; }
-.support-plane { pointer-events: auto; cursor: pointer; }
-.support-plane:hover .flight-hit-area,
-.support-plane:focus-visible .flight-hit-area { fill: #fff3d322; stroke: #fff1c6; stroke-width: 2; }
-.support-flight:has(.support-plane:hover),
-.support-flight:has(.support-plane:focus-visible) { animation-play-state: paused; }
-.support-flight:has(.support-plane:focus-visible) { animation: none; transform: translate(12px, 0) scale(.78); opacity: 1; }
+.support-plane, .support-plane:focus-visible { pointer-events: auto; cursor: pointer; outline: none; }
+/* The larger hit area stays invisible, including after browser back navigation. */
+.flight-hit-area { fill: transparent; stroke: none; }
+:root[data-input=keyboard] .support-plane:focus-visible text { text-decoration: underline; }
 .plane-propeller { transform-origin: 425px 28px; animation: propeller-spin .14s linear infinite alternate; }
 /* Receding toward the horizon softens contrast as well as apparent size. */
 @keyframes support-flyby {
