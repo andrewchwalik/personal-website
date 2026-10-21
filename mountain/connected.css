@@ -7,3 +7,21 @@
 #guestbook-dialog { width: min(880px, calc(100% - 24px)); }
 .walking .leg, .walking .arm { animation-duration: .36s; }
 .walking .right { animation-delay: -.36s; }
+
+/* Smaller mountain markers, with the original 44px tap targets preserved. */
+@media (max-width: 760px) {
+  .stop .disc { width: 25px; height: 24px; }
+  .stop .disc svg { width: 12px; height: 12px; }
+  .stop .tag {
+    left: 30px;
+    max-width: 88px;
+    padding: 3px 6px 3px 7px;
+    font-size: 7.5px;
+    letter-spacing: 0;
+  }
+  .stop.flip .tag { left: auto; right: 30px; padding: 3px 7px 3px 6px; }
+  .stop[data-id=summit] .tag { top: 38px; padding: 3px 6px; }
+  .stop[data-id=coaching] .tag { top: 40px; }
+  .book-stop .disc { width: 20px; height: 19px; }
+  .book-stop .disc svg { width: 10px; height: 10px; }
+}
