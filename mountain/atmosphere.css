@@ -7,4 +7,18 @@
 @keyframes distant-cloud-drift { from { transform: translateX(0); } to { transform: translateX(1740px); } }
 .sky-clouds.paused .sky-cloud { animation-play-state: paused; }
 #player svg { filter: drop-shadow(1px 2px 1px #1d333740); }
+.support-flight { animation: support-flyby 70s linear -22s infinite; }
+.support-plane { pointer-events: auto; cursor: pointer; }
+.support-plane:hover .flight-hit-area,
+.support-plane:focus-visible .flight-hit-area { fill: #fff3d322; stroke: #fff1c6; stroke-width: 2; }
+.support-flight:has(.support-plane:hover),
+.support-flight:has(.support-plane:focus-visible) { animation-play-state: paused; }
+.support-flight:has(.support-plane:focus-visible) { animation: none; transform: translateX(0); }
+.plane-propeller { transform-origin: 425px 28px; animation: propeller-spin .14s linear infinite alternate; }
+@keyframes support-flyby { from { transform: translateX(-460px); } to { transform: translateX(1070px); } }
+@keyframes propeller-spin { to { transform: scaleY(.18); opacity: .45; } }
+@media(prefers-reduced-motion:reduce) {
+  .support-flight { animation: none; transform: translateX(0); }
+  .plane-propeller { animation: none; }
+}
 @media(prefers-reduced-motion:reduce) { .sky-cloud { animation: none; opacity: 0; } }
