@@ -1,6 +1,7 @@
 import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=10';
 import { revealWorld, titleCase } from './world-ready.mjs';
 import { nearestPoint } from './path-lookup.mjs';
+import { updatePanel } from './detail-panel.mjs';
 import { initGuestbook } from '../guestbook.js?v=2';
 const openGuestbook = initGuestbook();
 const $ = id => document.getElementById(id);
@@ -52,6 +53,9 @@ function markerIcon(stop){
   icon.setAttribute('d',icons[stop.id]||icons.completed);if(stop.id==='cave')icon.setAttribute('fill','currentColor');svg.append(icon);return svg;
 }
 function show(stop){
+  updatePanel(stop.id, () => renderStop(stop));
+}
+function renderStop(stop){
   $('stop-state').textContent=stop.state;$('stop-title').textContent=titleCase(stop.title);$('stop-description').textContent=stop.description;
   $('actions').replaceChildren();
   if(stop.id==='bridge')$('actions').append(action(stop.action,'/mountain/playground/'));

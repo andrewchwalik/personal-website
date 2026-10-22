@@ -1,0 +1,19 @@
+.map { position: relative; z-index: 2; }
+.details {
+  position: relative;
+  top: auto;
+  align-self: start;
+  background: linear-gradient(110deg, #dce8cc, #e6eedb);
+  border-radius: 0 12px 12px 0;
+  padding: 24px;
+  box-shadow: 0 5px 16px #29473e0a;
+}
+@media (min-width: 761px) {
+  .details {
+    margin-left: calc(-1 * var(--panel-bridge, 36px));
+    padding-left: calc(var(--panel-bridge, 36px) + 24px);
+  }
+}
+@media (max-width: 760px) {
+  .details { margin-top: -6px; padding: 26px 18px 22px; border-radius: 0 0 12px 12px; }
+}
