@@ -17,7 +17,9 @@ function fitMap() {
   const viewport = document.documentElement.clientHeight;
   const available = viewport - top - 20;
   // Keep touch targets usable on very short/landscape displays; allow scrolling.
-  const height = Math.max(360, Math.min(available, stage.clientWidth * 1.55));
+  const height = Math.max(360, window.innerWidth > 760
+    ? available
+    : Math.min(available, stage.clientWidth * 1.55));
   main.style.setProperty('--map-height', `${Math.round(height)}px`);
 }
 

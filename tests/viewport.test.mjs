@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 
 const source = readFileSync(new URL('../mountain/viewport.js', import.meta.url), 'utf8');
 
-function viewportFit({ width, height, top, scroll = 0 }) {
+function viewportFit({ width, height, top, scroll = 0, screenWidth = 375 }) {
   let result;
   const stage = { clientWidth: width, getBoundingClientRect: () => ({ top: top - scroll }) };
   const main = { style: { setProperty: (_, value) => { result = Number.parseFloat(value); } } };
@@ -15,7 +15,7 @@ function viewportFit({ width, height, top, scroll = 0 }) {
       documentElement: { clientHeight: height },
       fonts: { ready: Promise.resolve() },
     },
-    window: { scrollY: scroll, addEventListener() {} },
+    window: { innerWidth: screenWidth, scrollY: scroll, addEventListener() {} },
     ResizeObserver: class { observe() {} },
   });
   return result;
@@ -43,9 +43,17 @@ test('scrolling does not enlarge the map and short screens retain usable targets
 test('both worlds load the shared viewport layout after their own styles', () => {
   for (const file of ['index.html', 'mountain/playground/index.html']) {
     const html = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
-    assert.match(html, /viewport\.css\?v=2/);
-    assert.match(html, /type="module" src="[^\"]*viewport\.js\?v=2/);
+    assert.match(html, /viewport\.css\?v=3/);
+    assert.match(html, /type="module" src="[^\"]*viewport\.js\?v=3/);
   }
+});
+
+test('desktop sizing uses available height without shrinking on repeated resizes', () => {
+  const options = { width: 460, height: 768, top: 55, screenWidth: 1366 };
+  assert.equal(viewportFit(options), 693);
+  assert.equal(viewportFit({ ...options, width: 330 }), 693);
+  const css = readFileSync(new URL('../mountain/viewport.css', import.meta.url), 'utf8');
+  assert.match(css, /\.stage \{ height: auto; aspect-ratio: 2 \/ 3; \}/);
 });
 
 test('plane interaction cannot pause the flight or reveal its hit rectangle', () => {

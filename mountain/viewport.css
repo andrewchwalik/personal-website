@@ -12,6 +12,20 @@ main { max-width: 1240px; padding: 16px 24px 28px; }
 .stage { aspect-ratio: auto; height: var(--map-height, min(68svh, 720px)); }
 .details { padding-top: 12px; top: 24px; }
 .details h2 { font-size: clamp(26px, 2.6vw, 32px); }
+@media (min-width: 761px) {
+  main { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr); gap: 0 36px; max-width: 1120px; }
+  main > header { grid-column: 1 / -1; grid-row: 1; margin-bottom: 16px; }
+  .layout { display: contents; }
+  .intro { grid-column: 2; grid-row: 1; text-align: left; padding: 12px 0 18px; }
+  .intro h1 { font-size: clamp(28px, 3vw, 38px); }
+  .map { grid-column: 1; grid-row: 1 / span 2; align-self: start; max-width: calc(var(--map-height, 620px) * 2 / 3 + 10px); }
+  /* Scale the complete scene together, never squeeze the artwork to a new ratio. */
+  .stage { height: auto; aspect-ratio: 2 / 3; }
+  .details { grid-column: 2; grid-row: 2; position: static; padding-top: 0; }
+  main:has(> header) .intro { grid-row: 2; }
+  main:has(> header) .map { grid-row: 2 / span 2; }
+  main:has(> header) .details { grid-row: 3; }
+}
 @media (max-width: 760px) {
   main { padding: 10px 10px 24px; }
   main > header { gap: 6px; }
