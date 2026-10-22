@@ -1,5 +1,6 @@
 import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=10';
 import { revealWorld, titleCase } from './world-ready.mjs';
+import { nearestPoint } from './path-lookup.mjs';
 import { initGuestbook } from '../guestbook.js?v=2';
 const openGuestbook = initGuestbook();
 const $ = id => document.getElementById(id);
@@ -10,9 +11,7 @@ const bridgeBranch = $('bridge-route');bridgeBranch.setAttribute('d',bridgeRoute
 const bookBranch = $('guestbook-route');bookBranch.setAttribute('d',guestbookRoute);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 function nearest(point) {
-  let best=0, distance=Infinity;
-  for(let d=0;d<=trail.getTotalLength();d+=.5){const p=trail.getPointAtLength(d), gap=Math.hypot(p.x-point[0],p.y-point[1]);if(gap<distance){best=d;distance=gap;}}
-  return best;
+  return nearestPoint(trail, point);
 }
 const distances = Object.fromEntries(stops.map(stop=>[stop.id,nearest(stop.point)]));
 const branches = {vlog:{path:branch,junction:distances.delaware},cave:{path:caveBranch,junction:nearest(cave.junction)},bridge:{path:bridgeBranch,junction:nearest(bridge.junction)},guestbook:{path:bookBranch,junction:distances.delaware}};

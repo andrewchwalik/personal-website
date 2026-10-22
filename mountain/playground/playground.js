@@ -1,14 +1,13 @@
 import { route, slideRoute, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=6';
 import { revealWorld, titleCase } from '../world-ready.mjs';
+import { nearestPoint } from '../path-lookup.mjs';
 import { wrapDistance, shortestLoopTarget } from './loop.mjs';
 const $ = id => document.getElementById(id);
 const trail=$('route'), bridge=$('bridge-route'), player=$('player');
 trail.setAttribute('d',route);bridge.setAttribute('d',bridgeRoute);
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 function nearest(point,path=trail){
-  let best=0, gap=Infinity;
-  for(let d=0;d<=path.getTotalLength();d+=.5){const p=path.getPointAtLength(d),distance=Math.hypot(p.x-point[0],p.y-point[1]);if(distance<gap){gap=distance;best=d;}}
-  return best;
+  return nearestPoint(path, point);
 }
 const junction=nearest(bridgeJunction);
 const slide=document.createElementNS('http://www.w3.org/2000/svg','path');
