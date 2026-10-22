@@ -9,11 +9,15 @@
   box-shadow: 0 5px 16px #29473e0a;
 }
 @media (min-width: 761px) {
+  /* Give the mountain introduction more room without stretching the map. */
+  main { max-width: 1240px; grid-template-columns: minmax(0, 1fr) minmax(280px, 1.2fr); column-gap: 24px; }
   .details {
     margin-left: calc(-1 * var(--panel-bridge, 36px));
     padding-left: calc(var(--panel-bridge, 36px) + 24px);
   }
 }
 @media (max-width: 760px) {
+  .intro { padding-inline: 0; }
+  .intro > p:last-child { max-width: none; }
   .details { margin-top: -6px; padding: 26px 18px 22px; border-radius: 0 0 12px 12px; }
 }
