@@ -7,23 +7,28 @@ svg.setAttribute('preserveAspectRatio', 'none');
 svg.setAttribute('aria-hidden', 'true');
 
 if (document.body.classList.contains('playground')) {
-  // Separate channels keep highlights off the painted stepping stones and banks.
+  // Trace each current independently in the artwork's 1024 x 1536 coordinates.
+  // Gaps avoid exposed rocks; the middle bend turns right before returning left.
   const channels = [
-    'M1009 910 Q986 936 981 966',
-    'M967 982 Q948 1004 946 1030',
-    'M940 1065 Q929 1090 930 1118',
-    'M929 1148 Q935 1170 951 1190',
-    'M965 1221 Q980 1244 996 1261 L1020 1276',
+    ['M1024 929 C1013 940 987 949 978 967',
+     'M1024 938 C1009 947 990 957 985 974'],
+    ['M969 979 C958 994 963 1015 980 1029 C993 1040 1004 1052 1005 1067',
+     'M977 982 C968 998 974 1016 988 1028 C1003 1042 1011 1055 1011 1068'],
+    ['M1004 1080 C1004 1100 984 1119 976 1135',
+     'M1011 1083 C1009 1104 991 1124 984 1139'],
+    ['M968 1148 C956 1169 958 1191 972 1211',
+     'M976 1152 C965 1175 968 1194 980 1210'],
+    ['M979 1225 C988 1241 1011 1248 1024 1263',
+     'M987 1223 C999 1238 1016 1242 1024 1252'],
   ];
-  channels.forEach((d, index) => {
-    for (let layer = 0; layer < 2; layer++) {
+  channels.forEach((currents, index) => {
+    currents.forEach((d, layer) => {
       const path = document.createElementNS(ns, 'path');
       path.setAttribute('d', d);
       path.setAttribute('class', layer ? 'stream-current fine' : 'stream-current');
       path.style.animationDelay = `${-index * .57 - layer * 1.3}s`;
-      if (layer) path.setAttribute('transform', 'translate(5 0)');
       svg.append(path);
-    }
+    });
   });
 } else {
   // Sample adjacent empty sky over the painted cloth only, preserving the pole.
