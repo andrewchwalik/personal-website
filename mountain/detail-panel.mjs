@@ -13,6 +13,8 @@ connectPanel();
 
 export function updatePanel(id, render) {
   const ticket = ++revision;
+  const style = getComputedStyle(panel);
+  const start = { opacity: style.opacity, transform: style.transform };
   animation?.cancel();
   if (!current || current === id || matchMedia('(prefers-reduced-motion: reduce)').matches) {
     current = id;
@@ -21,13 +23,17 @@ export function updatePanel(id, render) {
   }
   current = id;
   const mobile = matchMedia('(max-width: 760px)').matches;
-  const hidden = { opacity: 0, transform: mobile ? 'translateY(-24px)' : 'translateX(-48px)' };
+  const hidden = { opacity: 0, transform: mobile ? 'translateY(-14px)' : 'translateX(-28px)' };
   const visible = { opacity: 1, transform: 'translate(0, 0)' };
-  animation = panel.animate([visible, hidden], { duration: 150, easing: 'ease-in', fill: 'forwards' });
+  animation = panel.animate([start, hidden], { duration: 220, easing: 'cubic-bezier(.4,0,.6,1)', fill: 'both' });
   animation.finished.then(() => {
     if (ticket !== revision) return;
     render();
     animation.cancel();
-    animation = panel.animate([hidden, visible], { duration: 300, easing: 'cubic-bezier(.2,.7,.2,1)' });
+    animation = panel.animate([hidden, visible], { duration: 480, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' });
+    const entering = animation;
+    entering.finished.then(() => {
+      if (ticket === revision) { entering.cancel(); animation = undefined; }
+    }).catch(() => {});
   }).catch(() => {}); // A new selection cancels an unfinished transition.
 }

@@ -1,7 +1,7 @@
 import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=10';
 import { revealWorld, titleCase } from './world-ready.mjs';
 import { nearestPoint } from './path-lookup.mjs';
-import { updatePanel } from './detail-panel.mjs';
+import { updatePanel } from './detail-panel.mjs?v=2';
 import { initGuestbook } from '../guestbook.js?v=2';
 const openGuestbook = initGuestbook();
 const $ = id => document.getElementById(id);
