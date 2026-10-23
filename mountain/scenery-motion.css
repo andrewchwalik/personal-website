@@ -1,0 +1,6 @@
+.scenery-motion { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.stream-current { fill: none; stroke: #e5faff; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 3 14 7 24; opacity: .48; animation: stream-downstream 3.2s linear infinite; }
+.stream-current.fine { stroke-width: 1; opacity: .65; animation-duration: 4.6s; }
+.scenery-motion.paused * { animation-play-state: paused; }
+@keyframes stream-downstream { to { stroke-dashoffset: -96; } }
+@media (prefers-reduced-motion: reduce) { .scenery-motion { display: none; } }
