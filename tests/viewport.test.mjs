@@ -71,8 +71,14 @@ test('large monitors expand both worlds without stretching the map', () => {
     assert.ok(layoutWidth<screen.screenWidth);
   }
   for (const file of ['index.html','mountain/playground/index.html']) {
-    assert.match(readFileSync(new URL(`../${file}`,import.meta.url),'utf8'), /detail-panel\.css\?v=9/);
+    assert.match(readFileSync(new URL(`../${file}`,import.meta.url),'utf8'), /detail-panel\.css\?v=10/);
   }
+});
+
+test('both worlds request identical shared sizing and spacing assets', () => {
+  const pages=['index.html','mountain/playground/index.html'].map(file=>readFileSync(new URL(`../${file}`,import.meta.url),'utf8'));
+  const assets=html=>[...html.matchAll(/(?:href|src)="([^"]*(?:viewport\.(?:css|js)|detail-panel\.css)\?v=\d+)"/g)].map(match=>match[1]);
+  assert.deepEqual(assets(pages[0]),assets(pages[1]));
 });
 
 test('desktop map reserves outer padding, border and shadow without page overflow', () => {
