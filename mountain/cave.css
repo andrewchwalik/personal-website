@@ -11,8 +11,7 @@
 }
 #cave-cinema::backdrop { background: #101d24e6; backdrop-filter: blur(7px); }
 .cave-header { position: sticky; top: 0; z-index: 3; padding: 18px 24px; background: linear-gradient(#302a24, #201c1a); }
-.cave-header .eyebrow { color: #bda47c; font-size: 8px; margin: 0; }
-.cave-header h2 { font-size: 25px; margin: 5px 0 0; }
+.cave-header h2 { font-size: 25px; margin: 0; }
 #leave-cave { min-height: 44px; padding: 8px 14px; border: 1px solid #947e5e; border-radius: 6px; background: #302b24; color: #fff0d2; white-space: nowrap; }
 .cave-room { position: relative; aspect-ratio: 3/2; background: #211b17 url('cave-room.webp') center top / 100% auto no-repeat; }
 #cave-screen { position: absolute; left: 26.8%; top: 19.5%; width: 46.4%; height: 31%; background: #080909; overflow: hidden; border-radius: 2px; scroll-margin-top: 95px; }
@@ -21,7 +20,7 @@
 .screen-welcome span { font-size: clamp(20px, 4vw, 40px); color: #cfaf79; }
 .screen-welcome p { margin: 0; font-size: 12px; }
 .cave-programme { padding: 0 24px 24px; }
-#cave-status { font-size: 13px; line-height: 1.6; color: #d2c6b4; margin-top: 0; }
+#cave-status { position: absolute; top: 54%; left: 50%; transform: translateX(-50%); width: max-content; max-width: 58%; margin: 0; padding: 9px 16px; border: 1px solid #b09261; border-radius: 5px; background: linear-gradient(165deg, #665038, #382b20); box-shadow: 0 3px 0 #241a13, 0 6px 12px #0008, inset 0 1px 0 #ddbd8240; color: #ffe6b5; font-size: 13px; line-height: 1.4; font-weight: 600; text-align: center; overflow-wrap: anywhere; }
 #cave-youtube { position: absolute; left: 50%; bottom: 83%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 18px; border: 1px solid #b09261; border-radius: 5px; background: linear-gradient(165deg, #665038, #382b20); box-shadow: 0 3px 0 #241a13, 0 6px 12px #0008, inset 0 1px 0 #ddbd8240; color: #ffe6b5; font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap; }
 #cave-youtube:hover { color: #fff7e4; background: #695239; }
 #cave-films { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -44,6 +43,7 @@
   #leave-cave { padding: 8px 10px; font-size: 12px; }
   .cave-room { aspect-ratio: 1; background-size: 200% auto; }
   #cave-youtube { bottom: 79%; font-size: 11px; padding: 6px 14px; }
+  #cave-status { top: 79%; max-width: 90%; padding: 8px 12px; font-size: 11px; }
   #cave-screen { left: 3.6%; top: 26%; width: 92.8%; height: 41.3%; }
   .cave-room:has(iframe) #cave-screen { height: auto; aspect-ratio: 16/9; top: 24%; box-shadow: 0 0 0 5px #5c4129; }
   .cave-programme { padding: 0 14px 18px; }

@@ -19,7 +19,8 @@ function playFilm(video){
   iframe.referrerPolicy='strict-origin-when-cross-origin';
   screen.replaceChildren(iframe);
   youtube.href=`https://www.youtube.com/watch?v=${video.id}`;
-  status.textContent=`Now showing: ${video.title}.`;
+  status.textContent=video.title;
+  status.hidden=false;
   films.querySelectorAll('button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.video===video.id)));
   screen.scrollIntoView({block:'nearest',behavior:'instant'});
 }
@@ -40,7 +41,8 @@ document.getElementById('leave-cave').addEventListener('click',()=>dialog.close(
 dialog.addEventListener('close',()=>{
   // Escape and the exit button both stop playback and leave the player at the doorway.
   screen.replaceChildren(welcome.cloneNode(true));youtube.href=channelUrl;
-  status.textContent='A few of my favorite adventures. Pick a film and settle in.';
+  status.textContent='';
+  status.hidden=true;
   films.querySelectorAll('button').forEach(button=>button.setAttribute('aria-pressed','false'));
   document.getElementById('player').classList.remove('inside-cave');
   scrollTo({top:savedScroll,behavior:'instant'});

@@ -34,10 +34,14 @@ test('cave cinema uses all seven films, replaces playback and cleans up on any c
     assert.equal(elements['cave-screen'].children.length,1);
     assert.equal(elements['cave-screen'].children[0].src,`https://www.youtube-nocookie.com/embed/${theatreVideos[i].id}?autoplay=1&mute=1&playsinline=1&rel=0`);
     assert.equal(elements['cave-youtube'].href,`https://www.youtube.com/watch?v=${theatreVideos[i].id}`);
+    assert.equal(elements['cave-status'].textContent,theatreVideos[i].title);
+    assert.equal(elements['cave-status'].hidden,false);
   });
   elements['leave-cave'].events.click();
   assert.equal(elements['cave-screen'].children[0].tag,'p');
   assert.equal(elements['cave-youtube'].href,'https://www.youtube.com/@AndrewChwalik');
+  assert.equal(elements['cave-status'].textContent,'');
+  assert.equal(elements['cave-status'].hidden,true);
   assert.equal(elements.player.classes.has('inside-cave'),false);
   assert.equal(elements['cave-stop'].focused,true);
   events['enter-cave']();buttons[0].events.click();elements['cave-cinema'].close();
@@ -48,7 +52,9 @@ test('YouTube sign sits in the cave room and defaults to the channel',()=>{
   const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
   assert.match(html,/<div class="cave-room"><a id="cave-youtube" href="https:\/\/www.youtube.com\/@AndrewChwalik"/);
   const programme=html.match(/<section class="cave-programme"[\s\S]*?<\/section>/)[0];
-  assert.doesNotMatch(programme,/cave-youtube|Watch on YouTube/);
+  assert.doesNotMatch(programme,/cave-youtube|Watch on YouTube|cave-status/);
+  assert.match(html,/<p id="cave-status" role="status" hidden><\/p><\/div>/);
+  assert.doesNotMatch(html,/A DETOUR WORTH TAKING/);
 });
 
 test('waterfall motion cannot intercept clicks and honors motion preferences',()=>{
