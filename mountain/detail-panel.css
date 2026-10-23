@@ -22,19 +22,20 @@
    its native aspect ratio; extra width belongs to readable supporting text. */
 @media (min-width: 1400px) {
   main {
-    max-width: none;
-    width: min(96%, calc(var(--map-height, 900px) * 1.55 + 120px));
+    max-width: 2200px;
+    width: min(88%, calc(var(--map-height, 900px) * 1.3 + 120px));
+    padding-block: clamp(24px, 4vh, 64px);
     padding-inline: clamp(24px, 2vw, 64px);
     column-gap: clamp(24px, 2vw, 64px);
   }
   .intro { padding-top: clamp(12px, 1vw, 28px); }
-  .intro h1 { font-size: clamp(38px, 2.6vw, 72px); }
-  .intro > p:last-child { font-size: clamp(15px, 1.05vw, 28px); }
-  .details { padding: clamp(24px, 2vw, 64px); padding-left: calc(var(--panel-bridge, 36px) + clamp(24px, 2vw, 64px)); }
-  .details h2 { font-size: clamp(32px, 2.2vw, 60px); }
-  .details > p:not(.eyebrow) { font-size: clamp(16px, 1.05vw, 28px); }
+  .intro h1 { font-size: clamp(36px, 2vw, 52px); }
+  .intro > p:last-child { font-size: clamp(15px, .85vw, 22px); }
+  .details { padding: clamp(24px, 1.5vw, 42px); padding-left: calc(var(--panel-bridge, 36px) + clamp(24px, 1.5vw, 42px)); }
+  .details h2 { font-size: clamp(30px, 1.7vw, 44px); }
+  .details > p:not(.eyebrow) { font-size: clamp(16px, .85vw, 22px); }
   .details .eyebrow { font-size: clamp(10px, .7vw, 18px); }
-  .details .action { font-size: clamp(12px, .85vw, 22px); padding: 1em 1.3em; }
+  .details .action { font-size: clamp(12px, .7vw, 18px); padding: 1em 1.3em; }
   .details .ends, .details #progress-message { font-size: clamp(11px, .8vw, 20px); }
   .map-top { font-size: clamp(9px, .65vw, 16px); }
 }
