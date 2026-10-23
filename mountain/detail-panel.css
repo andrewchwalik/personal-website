@@ -20,6 +20,7 @@
 }
 @media (max-width: 760px) {
   .intro { padding-inline: 0; }
+  .intro h1 { font-size: clamp(14px, 4.5vw, 24px); letter-spacing: -.35px; white-space: nowrap; }
   .intro > p:last-child { max-width: none; }
   .details { margin-top: -6px; padding: 26px 18px 22px; border-radius: 0 0 12px 12px; }
 }
