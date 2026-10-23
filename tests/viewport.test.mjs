@@ -56,6 +56,22 @@ test('desktop sizing uses available height without shrinking on repeated resizes
   assert.match(css, /\.stage \{ height: auto; aspect-ratio: 2 \/ 3; \}/);
 });
 
+test('large monitors expand both worlds without stretching the map', () => {
+  const css = readFileSync(new URL('../mountain/detail-panel.css', import.meta.url), 'utf8');
+  assert.match(css, /@media \(min-width: 1400px\)/);
+  assert.match(css, /width: min\(96%, calc\(var\(--map-height, 900px\) \* 1\.55 \+ 120px\)\)/);
+  for (const screen of [{screenWidth:1920,height:1080}, {screenWidth:2560,height:1440}, {screenWidth:3840,height:2160}]) {
+    const fitted=viewportFit({...screen,width:600,top:70});
+    assert.equal(fitted,screen.height-90);
+    const layoutWidth=Math.min(screen.screenWidth*.96,fitted*1.55+120);
+    assert.ok(layoutWidth>1240);
+    assert.ok(layoutWidth<screen.screenWidth);
+  }
+  for (const file of ['index.html','mountain/playground/index.html']) {
+    assert.match(readFileSync(new URL(`../${file}`,import.meta.url),'utf8'), /detail-panel\.css\?v=6/);
+  }
+});
+
 test('plane interaction cannot pause the flight or reveal its hit rectangle', () => {
   const css = readFileSync(new URL('../mountain/atmosphere.css', import.meta.url), 'utf8');
   assert.doesNotMatch(css, /support-flight:has/);
