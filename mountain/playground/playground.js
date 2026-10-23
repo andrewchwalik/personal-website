@@ -1,4 +1,4 @@
-import { route, slideRoute, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=6';
+import { route, slideRoute, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=7';
 import { revealWorld, titleCase } from '../world-ready.mjs';
 import { nearestPoint } from '../path-lookup.mjs';
 import { updatePanel } from '../detail-panel.mjs?v=2';
@@ -14,6 +14,8 @@ const junction=nearest(bridgeJunction);
 const slide=document.createElementNS('http://www.w3.org/2000/svg','path');
 slide.setAttribute('d',slideRoute);trail.parentNode.append(slide);
 const playStart=nearest([112,236]), playTop=nearest([245,140]), slideTop=nearest([245,140],slide);
+const ropeBottom=nearest([238,221]), ropeTop=nearest([264,148]);
+const rockTop=nearest([294,142]), rockBottom=nearest([310,195]);
 let direction=1;
 let position=junction, bridgePosition=null, frame=0, trip=0;
 function place(path,d){
@@ -27,7 +29,9 @@ function place(path,d){
     p=slide.getPointAtLength(at);
   }
   player.classList.toggle('sliding',inPlayset && direction<0 && distance<playTop);
-  player.classList.toggle('climbing',inPlayset && direction>0 && distance<playTop);
+  const onRope = direction>0 && distance>=ropeBottom && distance<=ropeTop;
+  const onRockWall = distance>=rockTop && distance<=rockBottom;
+  player.classList.toggle('climbing',inPlayset && (onRope || onRockWall));
   player.style.left=`${p.x/600*100}%`;player.style.top=`${p.y/930*100}%`;
 }
 function walk(path,from,to,ticket,done){

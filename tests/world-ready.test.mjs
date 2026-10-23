@@ -27,6 +27,11 @@ test('world reveal waits for artwork decoding and a complete paint setup',async(
 test('playset traversal has separate rope and slide approaches meeting at the platform',()=>{
   assert.ok(route.includes('238 221 L264 148 L245 140'));
   assert.ok(slideRoute.includes('182 198 Q205 170 217 133 L245 140'));
+  const rockWall = 'L245 140 L294 142 L310 195';
+  assert.ok(route.includes(rockWall), 'Left-to-right leaves the platform down the rock wall');
+  assert.ok(slideRoute.includes(rockWall), 'Reverse traversal climbs the same rock wall before the slide');
+  assert.ok(route.startsWith('M363 110'));
+  assert.ok(slideRoute.endsWith('363 110'), 'Both routes join the same right-hand path');
   assert.deepEqual(stops.find(stop=>stop.id==='president').point,[245,140]);
   assert.equal(stops.find(stop=>stop.id==='soccer').label,'College Athlete');
 });
