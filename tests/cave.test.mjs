@@ -53,6 +53,7 @@ test('waterfall motion cannot intercept clicks and honors motion preferences',()
   assert.match(source,/document.hidden/);assert.match(source,/IntersectionObserver/);
 });
 
+import { branchTransfer } from '../mountain/branch-travel.mjs';
 test('switching side quests retraces the old branch before entering the cave and leaving it',()=>{
   const source=readFileSync(new URL('../mountain/mountain.js',import.meta.url),'utf8');
   const visit=source.slice(source.indexOf('function visit(stop)'),source.indexOf('for(const stop of'));
@@ -72,7 +73,7 @@ test('switching side quests retraces the old branch before entering the cave and
     const atCave=sidePosition;
     visit({id:'firelands',label:'Firelands United'});
     ({records,events,atCave,position,sidePosition});
-  `);
+  `, { branchTransfer });
   assert.deepEqual(JSON.parse(JSON.stringify(result.records)),[
     ['vlog',40,0],['trail',100,200],['cave',0,20],['cave',20,0],['trail',200,150]
   ]);

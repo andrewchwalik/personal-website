@@ -70,6 +70,7 @@ test('both worlds share one guestbook controller and its existing moderation', (
   assert.doesNotMatch(source('../house.js'), /function validateDraft/);
 });
 
+import { branchTransfer } from '../mountain/branch-travel.mjs';
 test('mountain guestbook and bridge journeys finish on their branches', () => {
   const code=source('../mountain/mountain.js');
   const visit=code.slice(code.indexOf('function visit(stop)'),code.indexOf('for(const stop of'));
@@ -85,7 +86,7 @@ test('mountain guestbook and bridge journeys finish on their branches', () => {
     ${visit}
     visit({id:'guestbook',label:'Guestbook'});visit({id:'bridge',label:'Playground'});
     ({records,destinations,opened});
-  `);
+  `, { branchTransfer });
   assert.equal(result.opened,1);
   assert.deepEqual(JSON.parse(JSON.stringify(result.records)),[
     ['trail',200,100],['book',0,30],['book',30,0],['trail',100,0],['bridge',0,60]

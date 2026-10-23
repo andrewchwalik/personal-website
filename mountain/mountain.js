@@ -1,6 +1,7 @@
 import { route, sideRoute, caveRoute, cave, stops, vlog, bridgeRoute, bridge, guestbookRoute, guestbook } from './data.mjs?v=10';
 import { revealWorld, titleCase } from './world-ready.mjs';
 import { nearestPoint } from './path-lookup.mjs';
+import { branchTransfer } from './branch-travel.mjs';
 import { updatePanel } from './detail-panel.mjs?v=2';
 import { initGuestbook } from '../guestbook.js?v=2';
 const openGuestbook = initGuestbook();
@@ -16,6 +17,10 @@ function nearest(point) {
 }
 const distances = Object.fromEntries(stops.map(stop=>[stop.id,nearest(stop.point)]));
 const branches = {vlog:{path:branch,junction:distances.delaware},cave:{path:caveBranch,junction:nearest(cave.junction)},bridge:{path:bridgeBranch,junction:nearest(bridge.junction)},guestbook:{path:bookBranch,junction:distances.delaware}};
+for (const destination of [branches.vlog, branches.guestbook]) {
+  destination.sharedStem = 'lower-trail';
+  destination.sharedLength = nearestPoint(destination.path, [319, 697]);
+}
 let position=distances.coaching, sidePosition=null, activeBranch=null, frame=0, trip=0;
 function place(path,d){const p=path.getPointAtLength(d);player.style.left=`${p.x/600*100}%`;player.style.top=`${p.y/930*100}%`;}
 function walk(path,from,to,ticket,done){
@@ -74,8 +79,20 @@ function visit(stop){
   $('travel-status').textContent=`Walking to ${stop.label}.`;
   const arrived=()=>{player.classList.remove('walking');show(stop);$('travel-status').textContent=`Arrived at ${stop.label}. Details are below the map on mobile.`;if(stop.id==='bridge')location.assign('/mountain/playground/?from=mountain');if(stop.id==='guestbook')openGuestbook();if(stop.id==='cave')document.dispatchEvent(new Event('enter-cave'));};
   const destination=branches[stop.id];
+  const transfer = branchTransfer(activeBranch, destination, sidePosition);
+  if (transfer) {
+    const next = () => {
+      const segment = transfer.shift();
+      if (!segment) { arrived(); return; }
+      activeBranch = segment.branch;
+      sidePosition = segment.from;
+      walk(segment.branch.path, segment.from, segment.to, ticket, next);
+    };
+    next();
+    return;
+  }
   const onTrail=()=>walk(trail,position,destination?destination.junction:distances[stop.id],ticket,()=>{
-    if(destination){activeBranch=destination;walk(destination.path,0,destination.path.getTotalLength(),ticket,arrived);}else arrived();
+    if(destination){activeBranch=destination;sidePosition=0;walk(destination.path,0,destination.path.getTotalLength(),ticket,arrived);}else arrived();
   });
   if(sidePosition!==null)walk(activeBranch.path,sidePosition,0,ticket,()=>{sidePosition=null;position=activeBranch.junction;activeBranch=null;onTrail();});else onTrail();
 }
