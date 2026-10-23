@@ -19,16 +19,19 @@
 .screen-welcome { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #e5d8b8; background: radial-gradient(ellipse, #253032 0, #080909 75%); }
 .screen-welcome span { font-size: clamp(20px, 4vw, 40px); color: #cfaf79; }
 .screen-welcome p { margin: 0; font-size: 12px; }
-.cave-programme { padding: 0 24px 24px; }
-#cave-status { position: absolute; top: 54%; left: 50%; transform: translateX(-50%); width: max-content; max-width: 58%; margin: 0; padding: 9px 16px; border: 1px solid #b09261; border-radius: 5px; background: linear-gradient(165deg, #665038, #382b20); box-shadow: 0 3px 0 #241a13, 0 6px 12px #0008, inset 0 1px 0 #ddbd8240; color: #ffe6b5; font-size: 13px; line-height: 1.4; font-weight: 600; text-align: center; overflow-wrap: anywhere; }
+.cave-programme { position: relative; isolation: isolate; overflow: hidden; padding: 20px 24px 24px; background: #280c12; }
+/* Crop to the existing red seats; blur only the scenery, never the film titles. */
+.cave-programme::before { content: ''; position: absolute; inset: -12px; z-index: -1; pointer-events: none; background: linear-gradient(#18090a30, #18090a70), url('cave-room.webp') center bottom / 100% 400% no-repeat; filter: blur(7px); }
+#cave-status { position: absolute; top: 54%; left: 50%; transform: translateX(-50%); width: max-content; max-width: 48%; margin: 0; padding: 4px 9px; border: 1px solid #73614c70; border-radius: 2px; background: #342e26d9; box-shadow: 0 1px 2px #100e0c66; color: #dacbb4; font-size: 10px; line-height: 1.4; font-weight: 400; text-align: center; overflow-wrap: anywhere; }
 #cave-youtube { position: absolute; left: 50%; bottom: 83%; transform: translateX(-50%) rotate(-1deg); isolation: isolate; display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 14px; color: #e0ceb0; font-size: 10px; font-weight: 500; letter-spacing: .025em; text-shadow: 0 1px 1px #17120e; text-decoration: none; white-space: nowrap; }
 /* The weathered plaque is smaller than its transparent touch target. */
 #cave-youtube::before { content: ''; position: absolute; z-index: -1; inset: 8px 0; border: 1px solid #695944; border-radius: 2px 4px 3px 2px; background: radial-gradient(circle at 6px 50%, #29231b 1px, transparent 1.8px), radial-gradient(circle at calc(100% - 6px) 50%, #29231b 1px, transparent 1.8px), repeating-linear-gradient(3deg, transparent 0 5px, #1d171314 6px, transparent 7px 11px), linear-gradient(170deg, #514637, #393127); box-shadow: 0 2px 2px #100e0c99, inset 0 1px 0 #ab96722e; }
 #cave-youtube:hover { color: #fff0d3; }
 #cave-films { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-#cave-films button { min-height: 52px; display: flex; align-items: center; gap: 12px; padding: 12px; text-align: left; color: #efdfbf; border: 1px solid #655640; border-radius: 5px; background: linear-gradient(145deg, #3a3228, #2b2621); font-size: 12px; line-height: 1.5; }
+#cave-films button { min-height: 52px; display: flex; align-items: center; gap: 12px; padding: 12px; text-align: left; color: #f6e9d5; border: 1px solid #e0bbc32e; border-radius: 5px; background: #19070b66; text-shadow: 0 1px 2px #140407; font-size: 12px; line-height: 1.5; }
 #cave-films button>span:first-child { color: #bda278; font: 12px 'Space Grotesk', sans-serif; }
-#cave-films button[aria-pressed=true] { border-color: #f1c278; background: #53412b; }
+#cave-films button:hover { background: #50182580; }
+#cave-films button[aria-pressed=true] { border-color: #e8c19d; background: #651d3099; }
 #cave-cinema button:focus-visible, #cave-cinema a:focus-visible { outline-color: #ffd58a; }
 .water-effects { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 .water-flow { fill: none; stroke: #f1ffff; stroke-linecap: round; stroke-width: 2.6; stroke-dasharray: 7 19 2 27; opacity: .48; animation: water-fall 2.6s linear infinite; }
@@ -45,10 +48,10 @@
   #leave-cave { padding: 8px 10px; font-size: 12px; }
   .cave-room { aspect-ratio: 1; background-size: 200% auto; }
   #cave-youtube { bottom: 79%; font-size: 10px; padding: 0 12px; }
-  #cave-status { top: 79%; max-width: 90%; padding: 8px 12px; font-size: 11px; }
+  #cave-status { top: 79%; max-width: 80%; padding: 4px 8px; font-size: 9px; }
   #cave-screen { left: 3.6%; top: 26%; width: 92.8%; height: 41.3%; }
   .cave-room:has(iframe) #cave-screen { height: auto; aspect-ratio: 16/9; top: 24%; box-shadow: 0 0 0 5px #5c4129; }
-  .cave-programme { padding: 0 14px 18px; }
+  .cave-programme { padding: 16px 14px 18px; }
   #cave-films { grid-template-columns: 1fr; }
 }
 @media(prefers-reduced-motion:reduce) { .water-effects * { animation: none !important; } }
