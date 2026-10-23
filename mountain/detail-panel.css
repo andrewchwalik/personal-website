@@ -29,15 +29,15 @@
     column-gap: clamp(24px, 2vw, 64px);
   }
   .intro { padding-top: clamp(12px, 1vw, 28px); }
-  .intro h1 { font-size: clamp(36px, 2vw, 52px); }
-  .intro > p:last-child { font-size: clamp(15px, .85vw, 22px); }
+  .intro h1 { font-size: clamp(30px, 1.5vw, 38px); }
+  .intro > p:last-child { font-size: 16px; }
   .details { padding: clamp(24px, 1.5vw, 42px); padding-left: calc(var(--panel-bridge, 36px) + clamp(24px, 1.5vw, 42px)); }
-  .details h2 { font-size: clamp(30px, 1.7vw, 44px); }
-  .details > p:not(.eyebrow) { font-size: clamp(16px, .85vw, 22px); }
-  .details .eyebrow { font-size: clamp(10px, .7vw, 18px); }
-  .details .action { font-size: clamp(12px, .7vw, 18px); padding: 1em 1.3em; }
-  .details .ends, .details #progress-message { font-size: clamp(11px, .8vw, 20px); }
-  .map-top { font-size: clamp(9px, .65vw, 16px); }
+  .details h2 { font-size: 30px; }
+  .details > p:not(.eyebrow) { font-size: 16px; }
+  .details .eyebrow { font-size: 10px; }
+  .details .action { font-size: 13px; padding: 1em 1.3em; }
+  .details .ends, .details #progress-message { font-size: 12px; }
+  .map-top { font-size: 10px; }
 }
 @media (max-width: 760px) {
   .intro { padding-inline: 0; }

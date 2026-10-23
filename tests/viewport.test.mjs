@@ -5,11 +5,12 @@ import { runInNewContext } from 'node:vm';
 
 const source = readFileSync(new URL('../mountain/viewport.js', import.meta.url), 'utf8');
 
-function viewportFit({ width, height, top, scroll = 0, screenWidth = 375 }) {
+function viewportFit({ width, height, top, scroll = 0, screenWidth = 375, paddingBottom = 0 }) {
   let result;
   const stage = { clientWidth: width, getBoundingClientRect: () => ({ top: top - scroll }) };
   const main = { style: { setProperty: (_, value) => { result = Number.parseFloat(value); } } };
   runInNewContext(source, {
+    getComputedStyle: () => ({paddingBottom: `${paddingBottom}px`}),
     document: {
       querySelector: selector => selector === '.stage' ? stage : main,
       documentElement: { clientHeight: height },
@@ -44,7 +45,7 @@ test('both worlds load the shared viewport layout after their own styles', () =>
   for (const file of ['index.html', 'mountain/playground/index.html']) {
     const html = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
     assert.match(html, /viewport\.css\?v=3/);
-    assert.match(html, /type="module" src="[^\"]*viewport\.js\?v=3/);
+    assert.match(html, /type="module" src="[^\"]*viewport\.js\?v=4/);
   }
 });
 
@@ -70,8 +71,18 @@ test('large monitors expand both worlds without stretching the map', () => {
     assert.ok(layoutWidth<screen.screenWidth);
   }
   for (const file of ['index.html','mountain/playground/index.html']) {
-    assert.match(readFileSync(new URL(`../${file}`,import.meta.url),'utf8'), /detail-panel\.css\?v=7/);
+    assert.match(readFileSync(new URL(`../${file}`,import.meta.url),'utf8'), /detail-panel\.css\?v=8/);
   }
+});
+
+test('desktop map reserves outer padding, border and shadow without page overflow', () => {
+  for (const paddingBottom of [28, 43.2, 64]) {
+    const height=viewportFit({width:800,height:1440,top:100,screenWidth:2560,paddingBottom});
+    assert.ok(100+height+paddingBottom+13<=1440);
+  }
+  const css=readFileSync(new URL('../mountain/detail-panel.css',import.meta.url),'utf8');
+  assert.match(css,/\.intro h1 \{ font-size: clamp\(30px, 1.5vw, 38px\)/);
+  assert.match(css,/\.details > p:not\(\.eyebrow\) \{ font-size: 16px/);
 });
 
 test('plane interaction cannot pause the flight or reveal its hit rectangle', () => {
@@ -84,6 +95,7 @@ test('pointer activation clears keyboard mode without removing keyboard access',
   const listeners = {};
   const root = { clientHeight: 768, dataset: {} };
   runInNewContext(source, {
+    getComputedStyle: () => ({paddingBottom:'28px'}),
     document: {
       documentElement: root,
       querySelector: () => ({ clientWidth: 600, getBoundingClientRect: () => ({ top: 200 }), style: { setProperty() {} } }),
