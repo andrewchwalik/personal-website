@@ -39,6 +39,13 @@
   .details .ends, .details #progress-message { font-size: 12px; }
   .map-top { font-size: 10px; }
 }
+/* Desktop worlds are a fixed screen, not a scrollable document. Keep lengthy
+   checkpoint content accessible inside its panel instead of growing the page. */
+@media (min-width: 1024px) and (min-height: 700px) {
+  html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+  main { height: 100dvh; grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); }
+  .intro, .details { min-height: 0; max-height: 100%; overflow-y: auto; overscroll-behavior: contain; }
+}
 @media (max-width: 760px) {
   .intro { padding-inline: 0; }
   .intro h1 { font-size: clamp(14px, 4.5vw, 24px); letter-spacing: -.35px; white-space: nowrap; }

@@ -71,7 +71,7 @@ test('large monitors expand both worlds without stretching the map', () => {
     assert.ok(layoutWidth<screen.screenWidth);
   }
   for (const file of ['index.html','mountain/playground/index.html']) {
-    assert.match(readFileSync(new URL(`../${file}`,import.meta.url),'utf8'), /detail-panel\.css\?v=8/);
+    assert.match(readFileSync(new URL(`../${file}`,import.meta.url),'utf8'), /detail-panel\.css\?v=9/);
   }
 });
 
@@ -83,6 +83,14 @@ test('desktop map reserves outer padding, border and shadow without page overflo
   const css=readFileSync(new URL('../mountain/detail-panel.css',import.meta.url),'utf8');
   assert.match(css,/\.intro h1 \{ font-size: clamp\(30px, 1.5vw, 38px\)/);
   assert.match(css,/\.details > p:not\(\.eyebrow\) \{ font-size: 16px/);
+});
+
+test('desktop worlds prevent document scrolling while keeping panel overflow accessible', () => {
+  const css=readFileSync(new URL('../mountain/detail-panel.css',import.meta.url),'utf8');
+  assert.match(css, /@media \(min-width: 1024px\) and \(min-height: 700px\)/);
+  assert.match(css, /html, body \{ height: 100%; overflow: hidden; overscroll-behavior: none/);
+  assert.match(css, /height: 100dvh; grid-template-rows: minmax\(0, 1fr\) minmax\(0, 1fr\)/);
+  assert.match(css, /\.intro, \.details \{[^}]*overflow-y: auto/);
 });
 
 test('plane interaction cannot pause the flight or reveal its hit rectangle', () => {
