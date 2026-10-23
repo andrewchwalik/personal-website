@@ -1,4 +1,4 @@
-.intro>p:last-child { max-width: 410px; margin-inline:auto; }
+.intro>p:last-child { max-width: none; margin-inline:auto; }
 .details small { display:block;margin-top:8px;color:var(--muted);font-size:11px; }
 .disc .symbol { position:relative;z-index:1;font-size:16px; }
 .walking .leg,.walking .arm { animation-duration:.36s; }
@@ -8,4 +8,4 @@
 .walking.climbing .arm { animation-duration:.5s; }
 .walking.climbing .leg { animation-duration:.5s; }
 .walking.climbing .right { animation-delay:-.5s; }
-@media(max-width:760px){.tag{max-width:90px}.intro h1{font-size:32px}.map-top{font-size:7px}}
+@media(max-width:760px){.tag{max-width:90px}.playground .intro h1{white-space:normal}}

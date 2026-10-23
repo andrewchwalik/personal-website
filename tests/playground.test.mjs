@@ -32,6 +32,7 @@ test('new playground stories have distinct equipment and safe optional links', (
     const elements={};
     const $=id=>elements[id]??=({children:[],replaceChildren(){this.children=[]},append(link){this.children.push(link)}});
     const document={createElement:()=>({}),querySelectorAll:()=>[]}; const titleCase=text=>text;
+    const updatePanel=(id,render)=>render();
     ${show}
     show({title:'Old',text:'Story',url:'https://example.com',id:'old'});
     const previous=$('actions').children.length;

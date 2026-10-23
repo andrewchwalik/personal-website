@@ -1,6 +1,7 @@
 import { route, slideRoute, bridgeRoute, bridgeJunction, bridgeMarker, stops } from './data.mjs?v=6';
 import { revealWorld, titleCase } from '../world-ready.mjs';
 import { nearestPoint } from '../path-lookup.mjs';
+import { updatePanel } from '../detail-panel.mjs?v=2';
 import { wrapDistance, shortestLoopTarget } from './loop.mjs';
 const $ = id => document.getElementById(id);
 const trail=$('route'), bridge=$('bridge-route'), player=$('player');
@@ -43,13 +44,15 @@ function walk(path,from,to,ticket,done){
   frame=requestAnimationFrame(tick);
 }
 function show(stop){
-  $('stop-state').textContent='COMPLETED / THE PLAYGROUND';$('stop-title').textContent=titleCase(stop.title);$('stop-description').textContent=stop.text;
+  updatePanel(stop.id, () => renderStop(stop));
+}
+function renderStop(stop){
+  $('stop-state').textContent='COMPLETED';$('stop-title').textContent=titleCase(stop.title);$('stop-description').textContent=stop.text;
   $('actions').replaceChildren();
   if(stop.url){
     const link=document.createElement('a');link.className='action';link.href=stop.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Explore this story';
     $('actions').append(link);
   }
-  $('progress').hidden=false;
   document.querySelectorAll('.stop').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.id===stop.id)));
 }
 function visit(stop){

@@ -68,8 +68,9 @@ function renderStop(stop){
   else if(stop.id==='cave'){const button=document.createElement('button');button.className='action';button.textContent=stop.action;button.onclick=()=>visit(cave);$('actions').append(button);}
   else if(stop.url)$('actions').append(action(stop.action,stop.url));
   if(stop.id==='summit'||stop.id==='debt')$('actions').append(action('Support the journey','https://patreon.com/andrewchwalik'));
-  const completed=stop.state==='COMPLETED', days=stop.id==='vlog';
-  $('progress').hidden=!(completed||days);$('start').textContent=days?'0':'0%';$('end').textContent=days?'365':'100%';$('bar').max=days?365:1;$('bar').value=days?212:1;$('progress-message').textContent=days?'212 / 365 vlogs edited':'Completed';
+  const days=stop.id==='vlog';
+  $('progress').hidden=!days;
+  if(days){$('start').textContent='0';$('end').textContent='365';$('bar').max=365;$('bar').value=212;$('progress-message').textContent='212 / 365 vlogs edited';}
   document.querySelectorAll('.stop').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.id===stop.id)));
 }
 function visit(stop){
